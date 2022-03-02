@@ -1,14 +1,11 @@
-import time
 import os
 import pensando_dss
 import pensando_dss.psm
 import argparse
-import sys
 import urllib3
+import requests
 from pensando_dss.psm.api import network_v1_api
 from pensando_dss.psm.models.network import *
-from pensando_dss.psm.model.network_virtual_router_list import NetworkVirtualRouterList
-from pensando_dss.psm.model.api_status import ApiStatus
 from pprint import pprint
 from dss_common import *
 from dateutil.parser import parse as dateutil_parser
@@ -16,9 +13,12 @@ from dateutil.parser import parse as dateutil_parser
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pensando_dss.psm.Configuration(
-    psm_config_path = os.environ["HOME"] + "/.psm/config.json"
+    psm_config_path = os.environ["HOME"] + "/.psm/config.json",
+    interactive_mode=True
 )
 configuration.verify_ssl = False
+
+urllib3.disable_warnings(requests.packages.urllib3.exceptions.InsecureRequestWarning)
 
 # Enter a context with an instance of the API client
 with pensando_dss.psm.ApiClient(configuration) as api_client:
@@ -43,6 +43,7 @@ with pensando_dss.psm.ApiClient(configuration) as api_client:
     sort_order = "sort-order_example" # str | order to sort List results in. (optional)
     meta_only = True # bool | If MetaOnly is set to true, the watch event notification that matches the watch criteria will not contain the full object. It will only contain the information about the object that changed, i.e. which object and what changed. MetaOnly is not set by default. (optional)
 
+    # example passing only required values which don't have defaults set
     try:
         description = "List all configured Network objects on the Pensando PSM"
         parser = argparse.ArgumentParser(description=description)
@@ -50,31 +51,18 @@ with pensando_dss.psm.ApiClient(configuration) as api_client:
         parser.add_argument("-n", "---name", help = "Show verbose information for specified Network")
         args = parser.parse_args()
         if not args.verbose and not args.name:
+            display_fields = ['name', 'virtual_router', 'vlan_id', 'ingress_security_policy', 'egress_security_policy', 'status']
             api_response = api_instance.list_network1()
             print(f"\nThere are {len(api_response.to_dict()['items'])} configured Networks\n")
-            dict = api_response.to_dict()
-            name_width = get_max_width(dict, key1="meta", key2="name")
-            vrf_width = get_max_width(dict, key1="spec", key2="virtual_router")
-            ing_nsp_width = get_max_width(dict, key1="spec", key2="ingress_security_policy")
-            egr_nsp_width = get_max_width(dict, key1="spec", key2="egress_security_policy")
-            vlan_width = 14
-            propagation_status_width = get_max_width(dict, key1="status", key2="propagation_status", key3="status")
-            print("Network Name".ljust(name_width) + "VRF".ljust(vrf_width) + "VLAN".ljust(vlan_width) + "Ingress Policy".ljust(ing_nsp_width) + "Egress Policy".ljust(egr_nsp_width) + "Propagation Status".ljust(propagation_status_width))
-            print("............".ljust(name_width) + "...".ljust(vrf_width) + "....".ljust(vlan_width) +"..............".ljust(ing_nsp_width) +"............".ljust(egr_nsp_width) +"..................".ljust(propagation_status_width))
-            for i in range(len(api_response.to_dict()["items"])):
-                network_name = api_response.to_dict()['items'][i]['meta']['name']
-                vrf_name = api_response.to_dict()['items'][i]['spec']['virtual_router']
-                vlan_id = str(api_response.to_dict()['items'][i]['spec']['vlan_id'])
-                propagation_status = api_response.to_dict()['items'][i]['status']['propagation_status']['status']
-                try:
-                    ing_nsp = api_response.to_dict()['items'][i]['spec']['ingress_security_policy'][0]
-                except KeyError:
-                    ing_nsp = ""
-                try:
-                    egr_nsp = api_response.to_dict()['items'][i]['spec']['egress_security_policy'][0]
-                except KeyError:
-                    egr_nsp = ""
-                print(f"{network_name.ljust(name_width)}{vrf_name.ljust(vrf_width)}{vlan_id.ljust(vlan_width)}{ing_nsp.ljust(ing_nsp_width)}{egr_nsp.ljust(egr_nsp_width)}{propagation_status.ljust(propagation_status_width)}")
+            api_response_dict = api_response.to_dict()
+            max_column_width_list = get_max_width(api_response_dict['items'], display_fields)
+            print("NETWORK NAME".ljust(max_column_width_list[0])+ "VRF".ljust(max_column_width_list[1])+ "VLAN".ljust(max_column_width_list[2])+ "INGRESS POLICY".ljust(max_column_width_list[3])+ "EGRESS POLICY".ljust(max_column_width_list[4])+ "PRPOGATION STATUS".ljust(max_column_width_list[5]))
+            print("------------".ljust(max_column_width_list[0])+ "---".ljust(max_column_width_list[1])+ "----".ljust(max_column_width_list[2])+ "--------------".ljust(max_column_width_list[3])+ "-------------".ljust(max_column_width_list[4])+ "-----------------".ljust(max_column_width_list[5]))
+            for out in api_response_dict['items']:
+                print_list = pretty_print(display_fields, out)
+                for v in print_list:
+                    name, vrf, vlan, ing_pol, egr_pol, prop_status = v
+                    print(name.ljust(max_column_width_list[0])+ vrf.ljust(max_column_width_list[1]) + str(vlan).ljust(max_column_width_list[2]) + ing_pol.ljust(max_column_width_list[3]) + egr_pol.ljust(max_column_width_list[4]) + prop_status.ljust(max_column_width_list[5]))
         if args.verbose:
              api_response = api_instance.list_network1()
              pprint(api_response.to_dict())
@@ -83,3 +71,5 @@ with pensando_dss.psm.ApiClient(configuration) as api_client:
             pprint(api_response.to_dict())
     except pensando_dss.psm.ApiException as e:
         print("Exception when calling NetworkV1Api->list_network1: %s\n" % e)
+
+

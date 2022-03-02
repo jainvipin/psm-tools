@@ -1,21 +1,17 @@
-import time
 import os
 import pensando_dss
 import pensando_dss.psm
 import argparse
-import sys
-import urllib3
 from pensando_dss.psm.api import security_v1_api
 from pensando_dss.psm.models.security import *
-from pensando_dss.psm.model.security_app_list import SecurityAppList
-from pensando_dss.psm.model.api_status import ApiStatus
 from pprint import pprint
 from dss_common import *
 from dateutil.parser import parse as dateutil_parser
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pensando_dss.psm.Configuration(
-    psm_config_path = os.environ["HOME"] + "/.psm/config.json"
+    psm_config_path = os.environ["HOME"] + "/.psm/config.json",
+    interactive_mode = True
 )
 configuration.verify_ssl = False
 
@@ -51,65 +47,19 @@ with pensando_dss.psm.ApiClient(configuration) as api_client:
         parser.add_argument("-n", "---name", help = "Verbose output for a specified App")
         args = parser.parse_args()
         if not args.verbose and not args.name:
+            display_fields = ['name', 'alg', 'type', 'protocol', 'ports']
             api_response = api_instance.list_app1()
             print(f"\nThere are {len(api_response.to_dict()['items'])} configured Apps\n")
             dict = api_response.to_dict()
-            name_width = get_max_width(dict, key1="meta", key2="name")
-            port_width = get_max_width (dict, key1="spec", key2="proto_ports")
-            alg_width = 15
-            alg_type_width = 15
-            protocol_width = 15
-            modified_dict = {}
-            current_list_index = 1
-            for i in range(len(dict["items"])):
-                n=0
-                try:
-                    for j in range(len(dict["items"][i]["spec"]["proto_ports"])):
-                        if n == 0:
-                            try:
-                                if dict["items"][i]["spec"]["alg"]:
-                                    app_name = dict['items'][i]['meta']['name']
-                                    modified_dict[current_list_index]=[app_name]
-                                    is_alg = "Yes"
-                                    alg_type = dict["items"][i]["spec"]["alg"]["type"]
-                                    protocol = dict["items"][i]["spec"]["proto_ports"][j]["protocol"]
-                                    ports = dict["items"][i]["spec"]["proto_ports"][j]["ports"]
-                                    modified_dict[current_list_index].extend([is_alg, alg_type, protocol, ports])
-                                    current_list_index+=1
-                                    n+=1
-                            except KeyError:
-                                app_name = dict['items'][i]['meta']['name']
-                                modified_dict[current_list_index]=[app_name]
-                                is_alg = "-"
-                                alg_type = "-"
-                                protocol = dict["items"][i]["spec"]["proto_ports"][j]["protocol"]
-                                ports = dict["items"][i]["spec"]["proto_ports"][j]["ports"]
-                                modified_dict[current_list_index].extend([is_alg, alg_type, protocol, ports])
-                                current_list_index+=1
-                                n+=1
-                        else:
-                            app_name = ""
-                            modified_dict[current_list_index]=[app_name]
-                            is_alg = "-"
-                            alg_type = "-"
-                            protocol = dict["items"][i]["spec"]["proto_ports"][j]["protocol"]
-                            ports = dict["items"][i]["spec"]["proto_ports"][j]["ports"]
-                            modified_dict[current_list_index].extend([is_alg, alg_type, protocol, ports])
-                            current_list_index+=1
-                except KeyError:
-                    app_name = dict['items'][i]['meta']['name']
-                    modified_dict[current_list_index]=[app_name]
-                    is_alg = "Yes"
-                    alg_type = dict["items"][i]["spec"]["alg"]["type"]
-                    protocol = ""
-                    ports = ""
-                    modified_dict[current_list_index].extend([is_alg, alg_type, protocol, ports])
-                    current_list_index+=1
-            print("App Name".ljust(name_width) + "ALG".ljust(alg_width) + "ALG Type".ljust(alg_type_width) + "Protocol".ljust(protocol_width) + "Ports")
-            print(".........".ljust(name_width) + "....".ljust(alg_width) + ".........".ljust(alg_type_width) + ".........".ljust(protocol_width) + "......")
-            for key, value in modified_dict.items():
-                app_name, alg, alg_type, protocol, ports = value
-                print(f"{app_name.ljust(name_width)}{alg.ljust(alg_width)}{alg_type.ljust(alg_type_width)}{protocol.ljust(protocol_width)}{ports}")
+            api_response_dict = api_response.to_dict()
+            max_column_width_list = get_max_width(api_response_dict['items'], display_fields)
+            print("APP NAME".ljust(max_column_width_list[0]) + "ALG".ljust(max_column_width_list[1]) + "ALG TYPE".ljust(max_column_width_list[2]) + "PROTOCOL".ljust(max_column_width_list[3])+ "PORTS".ljust(max_column_width_list[4]))
+            print("--------".ljust(max_column_width_list[0])+ "----".ljust(max_column_width_list[1])+ "--------".ljust(max_column_width_list[2])+   "---------".ljust(max_column_width_list[3])+ "----".ljust(max_column_width_list[4]))
+            for out in api_response_dict['items']:
+                print_list = pretty_print(display_fields, out)
+                for v in print_list:
+                    name, alg, type, por, pro = v
+                    print(name.ljust(max_column_width_list[0]) + alg.ljust(max_column_width_list[1]) + type.ljust(max_column_width_list[2]) + por.ljust(max_column_width_list[3]) + pro.ljust(max_column_width_list[4]))
         if args.verbose:
              api_response = api_instance.list_app1()
              pprint(api_response.to_dict())

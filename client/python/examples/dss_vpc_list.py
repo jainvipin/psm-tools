@@ -1,14 +1,11 @@
-import time
 import os
 import pensando_dss
 import pensando_dss.psm
 import argparse
-import sys
 import urllib3
+import requests
 from pensando_dss.psm.api import network_v1_api
 from pensando_dss.psm.models.network import *
-from pensando_dss.psm.model.network_virtual_router_list import NetworkVirtualRouterList
-from pensando_dss.psm.model.api_status import ApiStatus
 from pprint import pprint
 from dss_common import *
 from dateutil.parser import parse as dateutil_parser
@@ -16,9 +13,12 @@ from dateutil.parser import parse as dateutil_parser
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pensando_dss.psm.Configuration(
-    psm_config_path = os.environ["HOME"] + "/.psm/config.json"
+    psm_config_path = os.environ["HOME"] + "/.psm/config.json",
+    interactive_mode=True
 )
 configuration.verify_ssl = False
+
+urllib3.disable_warnings(requests.packages.urllib3.exceptions.InsecureRequestWarning)
 
 # Enter a context with an instance of the API client
 with pensando_dss.psm.ApiClient(configuration) as api_client:
@@ -44,24 +44,26 @@ with pensando_dss.psm.ApiClient(configuration) as api_client:
     meta_only = True # bool | If MetaOnly is set to true, the watch event notification that matches the watch criteria will not contain the full object. It will only contain the information about the object that changed, i.e. which object and what changed. MetaOnly is not set by default. (optional)
 
     try:
-        #Uncomment this to suppress "InsecureRequestWarning: Unverified HTTPS request" message when running script
+        #Uncomment this to suppress "InsecureRequestWarning: Unverified HTTPS request" message
         #urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
         description = "List all configured VRF objects on the Pensando PSM"
         parser = argparse.ArgumentParser(description=description)
         parser.add_argument("-v", "--verbose", help = "Verbose output for all configured VRFs", action="store_true")
         parser.add_argument("-n", "---name", help = "Show verbose information for specified VRF")
         args = parser.parse_args()
+        display_fields = ['name', 'uuid', 'status']
         if not args.verbose and not args.name:
             api_response = api_instance.list_virtual_router1()
             print(f"\nThere are {len(api_response.to_dict()['items'])} configured VRFs\n")
-            dict = api_response.to_dict()
-            name_width = get_max_width(dict, key1="meta", key2="name")
-            uuid_width = get_max_width(dict, key1="meta", key2="uuid")
-            propagation_status_width = get_max_width(dict, key1="status", key2="propagation_status", key3="status")
-            print("VRF Name".ljust(name_width) + "UUID".ljust(uuid_width) + "Propagation Status".ljust(propagation_status_width) + "Modification Time")
-            print("........".ljust(name_width) + "....".ljust(uuid_width) + "..................".ljust(propagation_status_width) + ".................")
-            for i in range(len(api_response.to_dict()["items"])):
-                print(f"{api_response.to_dict()['items'][i]['meta']['name'].ljust(name_width)}{api_response.to_dict()['items'][i]['meta']['uuid'].ljust(uuid_width)}{api_response.to_dict()['items'][i]['status']['propagation_status']['status'].ljust(propagation_status_width)}{api_response.to_dict()['items'][i]['meta']['mod_time']}")
+            api_response_dict = api_response.to_dict()
+            max_column_width_list = get_max_width(api_response_dict['items'], display_fields)
+            print("VRF NAME".ljust(max_column_width_list[0])+ "UUID".ljust(max_column_width_list[1])+ "STATUS".ljust(max_column_width_list[2]))
+            print("--------".ljust(max_column_width_list[0])+ "----".ljust(max_column_width_list[1])+ "------".ljust(max_column_width_list[2]))
+            for out in api_response_dict['items']:
+                print_list = pretty_print(display_fields, out)
+                for v in print_list:
+                    name, por, pro = v
+                    print(name.ljust(max_column_width_list[0])+ por.ljust(max_column_width_list[1]) + pro.ljust(max_column_width_list[2]))
         if args.verbose:
             api_response = api_instance.list_virtual_router1()
             pprint(api_response.to_dict())

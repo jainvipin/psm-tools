@@ -1,21 +1,18 @@
-import time
 import os
 import pensando_dss
 import pensando_dss.psm
 import argparse
-import sys
-import urllib3
 from pensando_dss.psm.api import security_v1_api
 from pensando_dss.psm.models.security import *
-from pensando_dss.psm.model.security_network_security_policy_list import SecurityNetworkSecurityPolicyList
-from pensando_dss.psm.model.api_status import ApiStatus
 from pprint import pprint
 from dss_common import *
 from dateutil.parser import parse as dateutil_parser
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pensando_dss.psm.Configuration(
-    psm_config_path = os.environ["HOME"] + "/.psm/config.json"
+    psm_config_path = os.environ["HOME"] + "/.psm/config.json",
+    interactive_mode=True
 )
 configuration.verify_ssl = False
 
@@ -44,30 +41,27 @@ with pensando_dss.psm.ApiClient(configuration) as api_client:
     meta_only = True # bool | If MetaOnly is set to true, the watch event notification that matches the watch criteria will not contain the full object. It will only contain the information about the object that changed, i.e. which object and what changed. MetaOnly is not set by default. (optional)
     try:
         #Uncomment this to suppress "InsecureRequestWarning: Unverified HTTPS request" message
-        #urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+        # urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
         description = "List all configured Security Policy objects on the Pensando PSM"
         parser = argparse.ArgumentParser(description=description)
         parser.add_argument("-v", "--verbose", help = "Verbose output for all configured Security Policies", action="store_true")
         parser.add_argument("-n", "---name", help = "Show verbose information for specified Security Policy")
         args = parser.parse_args()
         if not args.verbose and not args.name:
+            display_fields = ["name", "status"]
             api_response = api_instance.list_network_security_policy1()
             print(f"\nThere are {len(api_response.to_dict()['items'])} configured Security Policies\n")
-            dict = api_response.to_dict()
-            name_width = get_max_width(dict, key1="meta", key2="name")
+            api_response_dict = api_response.to_dict()
+            max_column_width_list = get_max_width(api_response_dict['items'], display_fields)
             rule_width = 25
-            propagation_status_width = get_max_width(dict, key1="status", key2="propagation_status", key3="status")
-            print("Security Policy Name".ljust(name_width) + "Number of Rules".ljust(rule_width) + "Propagation Status")
-            print(".....................".ljust(name_width) + "................".ljust(rule_width) + "...................".ljust(propagation_status_width))
-            for i in range(len(dict['items'])):
-                nsp_name = dict['items'][i]['meta']['name']
-                propagation_status = dict['items'][i]['status']['propagation_status']['status']
-                try:
-                    number_of_rules = len(dict['items'][i]['spec']['rules'])
-                    print(f"{nsp_name.ljust(name_width)}{str(number_of_rules).ljust(rule_width)}{propagation_status}")
-                except KeyError:
-                    number_of_rules = 0
-                    print(f"{nsp_name.ljust(name_width)}{str(number_of_rules).ljust(rule_width)}{propagation_status}")
+            print("Security Policy Name".ljust(max_column_width_list[0]) + "Number of Rules".ljust(rule_width) + "Propagation Status".ljust(max_column_width_list[1]))
+            print("....................".ljust(max_column_width_list[0]) + "...............".ljust(rule_width) + "..................".ljust(max_column_width_list[1]))
+            for out in api_response_dict['items']:
+                print_list = pretty_print(display_fields, out)
+                for v in print_list:
+                    name, prop_status = v
+                    rules = get_rule_length(out)
+                    print(name.ljust(max_column_width_list[0])+ rules.ljust(rule_width) + prop_status.ljust(max_column_width_list[1]))
         if args.verbose:
             api_response = api_instance.list_network_security_policy1()
             pprint(api_response.to_dict())
