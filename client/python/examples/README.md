@@ -1,3 +1,6 @@
+# Environment Setup:
+* Follow this [README](https://github.com/pensando/psm-tools/blob/main/client/README.md) before you try below examples
+
 # Example Flow
 
 ## List existing Objects:

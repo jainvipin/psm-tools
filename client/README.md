@@ -12,6 +12,8 @@ make run-container
 ```
 Inside the container run `make gen {language} {distribution}` to generate the client bindings for your PSM instance/version, where language is {`python`, `go`}, and distribution is {`ent`, `cloud`, `dss`} for  Enterprise, Cloud, and Distributed services switch respectively
 
+**Note**: Generate these bindings everytime after _upgrading/downgrading_ to new PSM builds.
+
 ```
 # python enterprise bindings
 root@6de26ac2cb83:/client# make gen python ent
