@@ -22,8 +22,8 @@ type SearchPolicySearchRequest struct {
 	App *string `json:"app,omitempty"`
 	// Inbound ip-address, use any to refer to all ipaddresses eg: 10.1.1.1, any.
 	FromIpAddress *string `json:"from-ip-address,omitempty"`
-	// Inbound security group.
-	FromSecurityGroup *string `json:"from-security-group,omitempty"`
+	// Inbound workload group.
+	FromWorkloadGroup *string `json:"from-workload-group,omitempty"`
 	// Kind of the policy that this request should act on. It should be either NetworkSecurityPolicy or IPSecPolicy.
 	Kinds *[]string `json:"kinds,omitempty"`
 	// Name is optional. If provided policy-search will be limited to the specified policy of the given name on the given kind. If empty, then all the policies of the given kind will be searched.
@@ -38,8 +38,8 @@ type SearchPolicySearchRequest struct {
 	Tenant *string `json:"tenant,omitempty"`
 	// Outbound ip-address, use any to refer to all ipaddresses eg: 20.1.1.1, any.
 	ToIpAddress *string `json:"to-ip-address,omitempty"`
-	// Outbound security group.
-	ToSecurityGroup *string `json:"to-security-group,omitempty"`
+	// Outbound workload group.
+	ToWorkloadGroup *string `json:"to-workload-group,omitempty"`
 }
 
 // NewSearchPolicySearchRequest instantiates a new SearchPolicySearchRequest object
@@ -163,36 +163,36 @@ func (o *SearchPolicySearchRequest) SetFromIpAddress(v string) {
 	o.FromIpAddress = &v
 }
 
-// GetFromSecurityGroup returns the FromSecurityGroup field value if set, zero value otherwise.
-func (o *SearchPolicySearchRequest) GetFromSecurityGroup() string {
-	if o == nil || o.FromSecurityGroup == nil {
+// GetFromWorkloadGroup returns the FromWorkloadGroup field value if set, zero value otherwise.
+func (o *SearchPolicySearchRequest) GetFromWorkloadGroup() string {
+	if o == nil || o.FromWorkloadGroup == nil {
 		var ret string
 		return ret
 	}
-	return *o.FromSecurityGroup
+	return *o.FromWorkloadGroup
 }
 
-// GetFromSecurityGroupOk returns a tuple with the FromSecurityGroup field value if set, nil otherwise
+// GetFromWorkloadGroupOk returns a tuple with the FromWorkloadGroup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SearchPolicySearchRequest) GetFromSecurityGroupOk() (*string, bool) {
-	if o == nil || o.FromSecurityGroup == nil {
+func (o *SearchPolicySearchRequest) GetFromWorkloadGroupOk() (*string, bool) {
+	if o == nil || o.FromWorkloadGroup == nil {
 		return nil, false
 	}
-	return o.FromSecurityGroup, true
+	return o.FromWorkloadGroup, true
 }
 
-// HasFromSecurityGroup returns a boolean if a field has been set.
-func (o *SearchPolicySearchRequest) HasFromSecurityGroup() bool {
-	if o != nil && o.FromSecurityGroup != nil {
+// HasFromWorkloadGroup returns a boolean if a field has been set.
+func (o *SearchPolicySearchRequest) HasFromWorkloadGroup() bool {
+	if o != nil && o.FromWorkloadGroup != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetFromSecurityGroup gets a reference to the given string and assigns it to the FromSecurityGroup field.
-func (o *SearchPolicySearchRequest) SetFromSecurityGroup(v string) {
-	o.FromSecurityGroup = &v
+// SetFromWorkloadGroup gets a reference to the given string and assigns it to the FromWorkloadGroup field.
+func (o *SearchPolicySearchRequest) SetFromWorkloadGroup(v string) {
+	o.FromWorkloadGroup = &v
 }
 
 // GetKinds returns the Kinds field value if set, zero value otherwise.
@@ -419,36 +419,36 @@ func (o *SearchPolicySearchRequest) SetToIpAddress(v string) {
 	o.ToIpAddress = &v
 }
 
-// GetToSecurityGroup returns the ToSecurityGroup field value if set, zero value otherwise.
-func (o *SearchPolicySearchRequest) GetToSecurityGroup() string {
-	if o == nil || o.ToSecurityGroup == nil {
+// GetToWorkloadGroup returns the ToWorkloadGroup field value if set, zero value otherwise.
+func (o *SearchPolicySearchRequest) GetToWorkloadGroup() string {
+	if o == nil || o.ToWorkloadGroup == nil {
 		var ret string
 		return ret
 	}
-	return *o.ToSecurityGroup
+	return *o.ToWorkloadGroup
 }
 
-// GetToSecurityGroupOk returns a tuple with the ToSecurityGroup field value if set, nil otherwise
+// GetToWorkloadGroupOk returns a tuple with the ToWorkloadGroup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SearchPolicySearchRequest) GetToSecurityGroupOk() (*string, bool) {
-	if o == nil || o.ToSecurityGroup == nil {
+func (o *SearchPolicySearchRequest) GetToWorkloadGroupOk() (*string, bool) {
+	if o == nil || o.ToWorkloadGroup == nil {
 		return nil, false
 	}
-	return o.ToSecurityGroup, true
+	return o.ToWorkloadGroup, true
 }
 
-// HasToSecurityGroup returns a boolean if a field has been set.
-func (o *SearchPolicySearchRequest) HasToSecurityGroup() bool {
-	if o != nil && o.ToSecurityGroup != nil {
+// HasToWorkloadGroup returns a boolean if a field has been set.
+func (o *SearchPolicySearchRequest) HasToWorkloadGroup() bool {
+	if o != nil && o.ToWorkloadGroup != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetToSecurityGroup gets a reference to the given string and assigns it to the ToSecurityGroup field.
-func (o *SearchPolicySearchRequest) SetToSecurityGroup(v string) {
-	o.ToSecurityGroup = &v
+// SetToWorkloadGroup gets a reference to the given string and assigns it to the ToWorkloadGroup field.
+func (o *SearchPolicySearchRequest) SetToWorkloadGroup(v string) {
+	o.ToWorkloadGroup = &v
 }
 
 func (o SearchPolicySearchRequest) MarshalJSON() ([]byte, error) {
@@ -462,8 +462,8 @@ func (o SearchPolicySearchRequest) MarshalJSON() ([]byte, error) {
 	if o.FromIpAddress != nil {
 		toSerialize["from-ip-address"] = o.FromIpAddress
 	}
-	if o.FromSecurityGroup != nil {
-		toSerialize["from-security-group"] = o.FromSecurityGroup
+	if o.FromWorkloadGroup != nil {
+		toSerialize["from-workload-group"] = o.FromWorkloadGroup
 	}
 	if o.Kinds != nil {
 		toSerialize["kinds"] = o.Kinds
@@ -486,8 +486,8 @@ func (o SearchPolicySearchRequest) MarshalJSON() ([]byte, error) {
 	if o.ToIpAddress != nil {
 		toSerialize["to-ip-address"] = o.ToIpAddress
 	}
-	if o.ToSecurityGroup != nil {
-		toSerialize["to-security-group"] = o.ToSecurityGroup
+	if o.ToWorkloadGroup != nil {
+		toSerialize["to-workload-group"] = o.ToWorkloadGroup
 	}
 	return json.Marshal(toSerialize)
 }

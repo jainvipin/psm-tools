@@ -30,7 +30,7 @@ type AuthLocal struct {
 // will change when the set of required properties is changed
 func NewAuthLocal() *AuthLocal {
 	this := AuthLocal{}
-	var allowedFailedLoginAttempts int32 = 3
+	var allowedFailedLoginAttempts int32 = 10
 	this.AllowedFailedLoginAttempts = &allowedFailedLoginAttempts
 	var failedLoginAttemptsDuration string = "15m"
 	this.FailedLoginAttemptsDuration = &failedLoginAttemptsDuration
@@ -44,7 +44,7 @@ func NewAuthLocal() *AuthLocal {
 // but it doesn't guarantee that properties required by API are set
 func NewAuthLocalWithDefaults() *AuthLocal {
 	this := AuthLocal{}
-	var allowedFailedLoginAttempts int32 = 3
+	var allowedFailedLoginAttempts int32 = 10
 	this.AllowedFailedLoginAttempts = &allowedFailedLoginAttempts
 	var failedLoginAttemptsDuration string = "15m"
 	this.FailedLoginAttemptsDuration = &failedLoginAttemptsDuration

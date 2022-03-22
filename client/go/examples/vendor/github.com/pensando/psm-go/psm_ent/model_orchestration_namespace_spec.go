@@ -22,6 +22,8 @@ type OrchestrationNamespaceSpec struct {
 	MonitoredSpec *map[string]interface{} `json:"monitored-spec,omitempty"`
 	// Length of string should be at least 1.
 	Name *string `json:"name,omitempty"`
+	// SmartServiceMonitoredNamespaceSpec contains namespace specific configuration.
+	SmartservicemonitoredSpec *map[string]interface{} `json:"smartservicemonitored-spec,omitempty"`
 }
 
 // NewOrchestrationNamespaceSpec instantiates a new OrchestrationNamespaceSpec object
@@ -173,6 +175,38 @@ func (o *OrchestrationNamespaceSpec) SetName(v string) {
 	o.Name = &v
 }
 
+// GetSmartservicemonitoredSpec returns the SmartservicemonitoredSpec field value if set, zero value otherwise.
+func (o *OrchestrationNamespaceSpec) GetSmartservicemonitoredSpec() map[string]interface{} {
+	if o == nil || o.SmartservicemonitoredSpec == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return *o.SmartservicemonitoredSpec
+}
+
+// GetSmartservicemonitoredSpecOk returns a tuple with the SmartservicemonitoredSpec field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrchestrationNamespaceSpec) GetSmartservicemonitoredSpecOk() (*map[string]interface{}, bool) {
+	if o == nil || o.SmartservicemonitoredSpec == nil {
+		return nil, false
+	}
+	return o.SmartservicemonitoredSpec, true
+}
+
+// HasSmartservicemonitoredSpec returns a boolean if a field has been set.
+func (o *OrchestrationNamespaceSpec) HasSmartservicemonitoredSpec() bool {
+	if o != nil && o.SmartservicemonitoredSpec != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSmartservicemonitoredSpec gets a reference to the given map[string]interface{} and assigns it to the SmartservicemonitoredSpec field.
+func (o *OrchestrationNamespaceSpec) SetSmartservicemonitoredSpec(v map[string]interface{}) {
+	o.SmartservicemonitoredSpec = &v
+}
+
 func (o OrchestrationNamespaceSpec) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.ManagedSpec != nil {
@@ -186,6 +220,9 @@ func (o OrchestrationNamespaceSpec) MarshalJSON() ([]byte, error) {
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
+	}
+	if o.SmartservicemonitoredSpec != nil {
+		toSerialize["smartservicemonitored-spec"] = o.SmartservicemonitoredSpec
 	}
 	return json.Marshal(toSerialize)
 }

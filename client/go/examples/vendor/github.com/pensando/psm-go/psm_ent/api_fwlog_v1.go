@@ -32,77 +32,21 @@ type ApiFwlogGetDownloadFwLogFileContentRequest struct {
 	ctx _context.Context
 	ApiService *FwlogV1ApiService
 	oTenant string
-	oName string
 	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiFwlogGetDownloadFwLogFileContentRequest) ONamespace(oNamespace string) ApiFwlogGetDownloadFwLogFileContentRequest {
 	r.oNamespace = &oNamespace
 	return r
 }
-func (r ApiFwlogGetDownloadFwLogFileContentRequest) OGenerationId(oGenerationId string) ApiFwlogGetDownloadFwLogFileContentRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiFwlogGetDownloadFwLogFileContentRequest) OResourceVersion(oResourceVersion string) ApiFwlogGetDownloadFwLogFileContentRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiFwlogGetDownloadFwLogFileContentRequest) OUuid(oUuid string) ApiFwlogGetDownloadFwLogFileContentRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiFwlogGetDownloadFwLogFileContentRequest) OCreationTime(oCreationTime time.Time) ApiFwlogGetDownloadFwLogFileContentRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiFwlogGetDownloadFwLogFileContentRequest) OModTime(oModTime time.Time) ApiFwlogGetDownloadFwLogFileContentRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiFwlogGetDownloadFwLogFileContentRequest) OSelfLink(oSelfLink string) ApiFwlogGetDownloadFwLogFileContentRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiFwlogGetDownloadFwLogFileContentRequest) LabelSelector(labelSelector string) ApiFwlogGetDownloadFwLogFileContentRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiFwlogGetDownloadFwLogFileContentRequest) FieldSelector(fieldSelector string) ApiFwlogGetDownloadFwLogFileContentRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiFwlogGetDownloadFwLogFileContentRequest) FieldChangeSelector(fieldChangeSelector []string) ApiFwlogGetDownloadFwLogFileContentRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiFwlogGetDownloadFwLogFileContentRequest) From(from int32) ApiFwlogGetDownloadFwLogFileContentRequest {
-	r.from = &from
-	return r
-}
-func (r ApiFwlogGetDownloadFwLogFileContentRequest) MaxResults(maxResults int32) ApiFwlogGetDownloadFwLogFileContentRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiFwlogGetDownloadFwLogFileContentRequest) SortOrder(sortOrder string) ApiFwlogGetDownloadFwLogFileContentRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiFwlogGetDownloadFwLogFileContentRequest) MetaOnly(metaOnly bool) ApiFwlogGetDownloadFwLogFileContentRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -114,15 +58,13 @@ func (r ApiFwlogGetDownloadFwLogFileContentRequest) Execute() (FwlogFwLogList, *
  * GetDownloadFwLogFileContent fwlog/v1/tenants/default/objects/<objectName>
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiFwlogGetDownloadFwLogFileContentRequest
  */
-func (a *FwlogV1ApiService) GetDownloadFwLogFileContent(ctx _context.Context, oTenant string, oName string) ApiFwlogGetDownloadFwLogFileContentRequest {
+func (a *FwlogV1ApiService) GetDownloadFwLogFileContent(ctx _context.Context, oTenant string) ApiFwlogGetDownloadFwLogFileContentRequest {
 	return ApiFwlogGetDownloadFwLogFileContentRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -147,7 +89,6 @@ func (a *FwlogV1ApiService) GetDownloadFwLogFileContentExecute(r ApiFwlogGetDown
 
 	localVarPath := localBasePath + "/fwlog/v1/tenants/{O.Tenant}/objects/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -156,44 +97,11 @@ func (a *FwlogV1ApiService) GetDownloadFwLogFileContentExecute(r ApiFwlogGetDown
 	if r.oNamespace != nil {
 		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
 	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -260,80 +168,20 @@ type ApiFwlogGetDownloadFwLogFileContent1Request struct {
 	ApiService *FwlogV1ApiService
 	oName string
 	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiFwlogGetDownloadFwLogFileContent1Request) OTenant(oTenant string) ApiFwlogGetDownloadFwLogFileContent1Request {
 	r.oTenant = &oTenant
 	return r
 }
-func (r ApiFwlogGetDownloadFwLogFileContent1Request) ONamespace(oNamespace string) ApiFwlogGetDownloadFwLogFileContent1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiFwlogGetDownloadFwLogFileContent1Request) OGenerationId(oGenerationId string) ApiFwlogGetDownloadFwLogFileContent1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiFwlogGetDownloadFwLogFileContent1Request) OResourceVersion(oResourceVersion string) ApiFwlogGetDownloadFwLogFileContent1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiFwlogGetDownloadFwLogFileContent1Request) OUuid(oUuid string) ApiFwlogGetDownloadFwLogFileContent1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiFwlogGetDownloadFwLogFileContent1Request) OCreationTime(oCreationTime time.Time) ApiFwlogGetDownloadFwLogFileContent1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiFwlogGetDownloadFwLogFileContent1Request) OModTime(oModTime time.Time) ApiFwlogGetDownloadFwLogFileContent1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiFwlogGetDownloadFwLogFileContent1Request) OSelfLink(oSelfLink string) ApiFwlogGetDownloadFwLogFileContent1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiFwlogGetDownloadFwLogFileContent1Request) LabelSelector(labelSelector string) ApiFwlogGetDownloadFwLogFileContent1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiFwlogGetDownloadFwLogFileContent1Request) FieldSelector(fieldSelector string) ApiFwlogGetDownloadFwLogFileContent1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiFwlogGetDownloadFwLogFileContent1Request) FieldChangeSelector(fieldChangeSelector []string) ApiFwlogGetDownloadFwLogFileContent1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiFwlogGetDownloadFwLogFileContent1Request) From(from int32) ApiFwlogGetDownloadFwLogFileContent1Request {
-	r.from = &from
-	return r
-}
-func (r ApiFwlogGetDownloadFwLogFileContent1Request) MaxResults(maxResults int32) ApiFwlogGetDownloadFwLogFileContent1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiFwlogGetDownloadFwLogFileContent1Request) SortOrder(sortOrder string) ApiFwlogGetDownloadFwLogFileContent1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiFwlogGetDownloadFwLogFileContent1Request) MetaOnly(metaOnly bool) ApiFwlogGetDownloadFwLogFileContent1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -384,47 +232,11 @@ func (a *FwlogV1ApiService) GetDownloadFwLogFileContent1Execute(r ApiFwlogGetDow
 	if r.oTenant != nil {
 		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -490,100 +302,20 @@ type ApiFwlogGetGetLogs1Request struct {
 	ctx _context.Context
 	ApiService *FwlogV1ApiService
 	sourceIps *[]string
-	destinationIps *[]string
-	sourcePorts *[]int64
-	destinationPorts *[]int64
-	protocols *[]string
-	actions *[]string
-	reporterIds *[]string
 	startTime *time.Time
-	endTime *time.Time
 	sortOrder *string
-	maxResults *int32
-	tenants *[]string
-	scrollId *string
-	scrollExpiry *string
-	batchSize *int32
-	scrollAction *string
-	countOnly *bool
-	encryptionStatus *string
-	vpcNames *[]string
 }
 
 func (r ApiFwlogGetGetLogs1Request) SourceIps(sourceIps []string) ApiFwlogGetGetLogs1Request {
 	r.sourceIps = &sourceIps
 	return r
 }
-func (r ApiFwlogGetGetLogs1Request) DestinationIps(destinationIps []string) ApiFwlogGetGetLogs1Request {
-	r.destinationIps = &destinationIps
-	return r
-}
-func (r ApiFwlogGetGetLogs1Request) SourcePorts(sourcePorts []int64) ApiFwlogGetGetLogs1Request {
-	r.sourcePorts = &sourcePorts
-	return r
-}
-func (r ApiFwlogGetGetLogs1Request) DestinationPorts(destinationPorts []int64) ApiFwlogGetGetLogs1Request {
-	r.destinationPorts = &destinationPorts
-	return r
-}
-func (r ApiFwlogGetGetLogs1Request) Protocols(protocols []string) ApiFwlogGetGetLogs1Request {
-	r.protocols = &protocols
-	return r
-}
-func (r ApiFwlogGetGetLogs1Request) Actions(actions []string) ApiFwlogGetGetLogs1Request {
-	r.actions = &actions
-	return r
-}
-func (r ApiFwlogGetGetLogs1Request) ReporterIds(reporterIds []string) ApiFwlogGetGetLogs1Request {
-	r.reporterIds = &reporterIds
-	return r
-}
 func (r ApiFwlogGetGetLogs1Request) StartTime(startTime time.Time) ApiFwlogGetGetLogs1Request {
 	r.startTime = &startTime
 	return r
 }
-func (r ApiFwlogGetGetLogs1Request) EndTime(endTime time.Time) ApiFwlogGetGetLogs1Request {
-	r.endTime = &endTime
-	return r
-}
 func (r ApiFwlogGetGetLogs1Request) SortOrder(sortOrder string) ApiFwlogGetGetLogs1Request {
 	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiFwlogGetGetLogs1Request) MaxResults(maxResults int32) ApiFwlogGetGetLogs1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiFwlogGetGetLogs1Request) Tenants(tenants []string) ApiFwlogGetGetLogs1Request {
-	r.tenants = &tenants
-	return r
-}
-func (r ApiFwlogGetGetLogs1Request) ScrollId(scrollId string) ApiFwlogGetGetLogs1Request {
-	r.scrollId = &scrollId
-	return r
-}
-func (r ApiFwlogGetGetLogs1Request) ScrollExpiry(scrollExpiry string) ApiFwlogGetGetLogs1Request {
-	r.scrollExpiry = &scrollExpiry
-	return r
-}
-func (r ApiFwlogGetGetLogs1Request) BatchSize(batchSize int32) ApiFwlogGetGetLogs1Request {
-	r.batchSize = &batchSize
-	return r
-}
-func (r ApiFwlogGetGetLogs1Request) ScrollAction(scrollAction string) ApiFwlogGetGetLogs1Request {
-	r.scrollAction = &scrollAction
-	return r
-}
-func (r ApiFwlogGetGetLogs1Request) CountOnly(countOnly bool) ApiFwlogGetGetLogs1Request {
-	r.countOnly = &countOnly
-	return r
-}
-func (r ApiFwlogGetGetLogs1Request) EncryptionStatus(encryptionStatus string) ApiFwlogGetGetLogs1Request {
-	r.encryptionStatus = &encryptionStatus
-	return r
-}
-func (r ApiFwlogGetGetLogs1Request) VpcNames(vpcNames []string) ApiFwlogGetGetLogs1Request {
-	r.vpcNames = &vpcNames
 	return r
 }
 
@@ -631,59 +363,11 @@ func (a *FwlogV1ApiService) GetGetLogs1Execute(r ApiFwlogGetGetLogs1Request) (Fw
 	if r.sourceIps != nil {
 		localVarQueryParams.Add("source-ips", parameterToString(*r.sourceIps, "csv"))
 	}
-	if r.destinationIps != nil {
-		localVarQueryParams.Add("destination-ips", parameterToString(*r.destinationIps, "csv"))
-	}
-	if r.sourcePorts != nil {
-		localVarQueryParams.Add("source-ports", parameterToString(*r.sourcePorts, "csv"))
-	}
-	if r.destinationPorts != nil {
-		localVarQueryParams.Add("destination-ports", parameterToString(*r.destinationPorts, "csv"))
-	}
-	if r.protocols != nil {
-		localVarQueryParams.Add("protocols", parameterToString(*r.protocols, "csv"))
-	}
-	if r.actions != nil {
-		localVarQueryParams.Add("actions", parameterToString(*r.actions, "csv"))
-	}
-	if r.reporterIds != nil {
-		localVarQueryParams.Add("reporter-ids", parameterToString(*r.reporterIds, "csv"))
-	}
 	if r.startTime != nil {
 		localVarQueryParams.Add("start-time", parameterToString(*r.startTime, ""))
 	}
-	if r.endTime != nil {
-		localVarQueryParams.Add("end-time", parameterToString(*r.endTime, ""))
-	}
 	if r.sortOrder != nil {
 		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.tenants != nil {
-		localVarQueryParams.Add("tenants", parameterToString(*r.tenants, "csv"))
-	}
-	if r.scrollId != nil {
-		localVarQueryParams.Add("scroll-id", parameterToString(*r.scrollId, ""))
-	}
-	if r.scrollExpiry != nil {
-		localVarQueryParams.Add("scroll-expiry", parameterToString(*r.scrollExpiry, ""))
-	}
-	if r.batchSize != nil {
-		localVarQueryParams.Add("batch-size", parameterToString(*r.batchSize, ""))
-	}
-	if r.scrollAction != nil {
-		localVarQueryParams.Add("scroll-action", parameterToString(*r.scrollAction, ""))
-	}
-	if r.countOnly != nil {
-		localVarQueryParams.Add("count-only", parameterToString(*r.countOnly, ""))
-	}
-	if r.encryptionStatus != nil {
-		localVarQueryParams.Add("encryption-status", parameterToString(*r.encryptionStatus, ""))
-	}
-	if r.vpcNames != nil {
-		localVarQueryParams.Add("vpc-names", parameterToString(*r.vpcNames, "csv"))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -749,100 +433,20 @@ type ApiFwlogGetWatchLogsRequest struct {
 	ctx _context.Context
 	ApiService *FwlogV1ApiService
 	sourceIps *[]string
-	destinationIps *[]string
-	sourcePorts *[]int64
-	destinationPorts *[]int64
-	protocols *[]string
-	actions *[]string
-	reporterIds *[]string
 	startTime *time.Time
-	endTime *time.Time
 	sortOrder *string
-	maxResults *int32
-	tenants *[]string
-	scrollId *string
-	scrollExpiry *string
-	batchSize *int32
-	scrollAction *string
-	countOnly *bool
-	encryptionStatus *string
-	vpcNames *[]string
 }
 
 func (r ApiFwlogGetWatchLogsRequest) SourceIps(sourceIps []string) ApiFwlogGetWatchLogsRequest {
 	r.sourceIps = &sourceIps
 	return r
 }
-func (r ApiFwlogGetWatchLogsRequest) DestinationIps(destinationIps []string) ApiFwlogGetWatchLogsRequest {
-	r.destinationIps = &destinationIps
-	return r
-}
-func (r ApiFwlogGetWatchLogsRequest) SourcePorts(sourcePorts []int64) ApiFwlogGetWatchLogsRequest {
-	r.sourcePorts = &sourcePorts
-	return r
-}
-func (r ApiFwlogGetWatchLogsRequest) DestinationPorts(destinationPorts []int64) ApiFwlogGetWatchLogsRequest {
-	r.destinationPorts = &destinationPorts
-	return r
-}
-func (r ApiFwlogGetWatchLogsRequest) Protocols(protocols []string) ApiFwlogGetWatchLogsRequest {
-	r.protocols = &protocols
-	return r
-}
-func (r ApiFwlogGetWatchLogsRequest) Actions(actions []string) ApiFwlogGetWatchLogsRequest {
-	r.actions = &actions
-	return r
-}
-func (r ApiFwlogGetWatchLogsRequest) ReporterIds(reporterIds []string) ApiFwlogGetWatchLogsRequest {
-	r.reporterIds = &reporterIds
-	return r
-}
 func (r ApiFwlogGetWatchLogsRequest) StartTime(startTime time.Time) ApiFwlogGetWatchLogsRequest {
 	r.startTime = &startTime
 	return r
 }
-func (r ApiFwlogGetWatchLogsRequest) EndTime(endTime time.Time) ApiFwlogGetWatchLogsRequest {
-	r.endTime = &endTime
-	return r
-}
 func (r ApiFwlogGetWatchLogsRequest) SortOrder(sortOrder string) ApiFwlogGetWatchLogsRequest {
 	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiFwlogGetWatchLogsRequest) MaxResults(maxResults int32) ApiFwlogGetWatchLogsRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiFwlogGetWatchLogsRequest) Tenants(tenants []string) ApiFwlogGetWatchLogsRequest {
-	r.tenants = &tenants
-	return r
-}
-func (r ApiFwlogGetWatchLogsRequest) ScrollId(scrollId string) ApiFwlogGetWatchLogsRequest {
-	r.scrollId = &scrollId
-	return r
-}
-func (r ApiFwlogGetWatchLogsRequest) ScrollExpiry(scrollExpiry string) ApiFwlogGetWatchLogsRequest {
-	r.scrollExpiry = &scrollExpiry
-	return r
-}
-func (r ApiFwlogGetWatchLogsRequest) BatchSize(batchSize int32) ApiFwlogGetWatchLogsRequest {
-	r.batchSize = &batchSize
-	return r
-}
-func (r ApiFwlogGetWatchLogsRequest) ScrollAction(scrollAction string) ApiFwlogGetWatchLogsRequest {
-	r.scrollAction = &scrollAction
-	return r
-}
-func (r ApiFwlogGetWatchLogsRequest) CountOnly(countOnly bool) ApiFwlogGetWatchLogsRequest {
-	r.countOnly = &countOnly
-	return r
-}
-func (r ApiFwlogGetWatchLogsRequest) EncryptionStatus(encryptionStatus string) ApiFwlogGetWatchLogsRequest {
-	r.encryptionStatus = &encryptionStatus
-	return r
-}
-func (r ApiFwlogGetWatchLogsRequest) VpcNames(vpcNames []string) ApiFwlogGetWatchLogsRequest {
-	r.vpcNames = &vpcNames
 	return r
 }
 
@@ -890,59 +494,11 @@ func (a *FwlogV1ApiService) GetWatchLogsExecute(r ApiFwlogGetWatchLogsRequest) (
 	if r.sourceIps != nil {
 		localVarQueryParams.Add("source-ips", parameterToString(*r.sourceIps, "csv"))
 	}
-	if r.destinationIps != nil {
-		localVarQueryParams.Add("destination-ips", parameterToString(*r.destinationIps, "csv"))
-	}
-	if r.sourcePorts != nil {
-		localVarQueryParams.Add("source-ports", parameterToString(*r.sourcePorts, "csv"))
-	}
-	if r.destinationPorts != nil {
-		localVarQueryParams.Add("destination-ports", parameterToString(*r.destinationPorts, "csv"))
-	}
-	if r.protocols != nil {
-		localVarQueryParams.Add("protocols", parameterToString(*r.protocols, "csv"))
-	}
-	if r.actions != nil {
-		localVarQueryParams.Add("actions", parameterToString(*r.actions, "csv"))
-	}
-	if r.reporterIds != nil {
-		localVarQueryParams.Add("reporter-ids", parameterToString(*r.reporterIds, "csv"))
-	}
 	if r.startTime != nil {
 		localVarQueryParams.Add("start-time", parameterToString(*r.startTime, ""))
 	}
-	if r.endTime != nil {
-		localVarQueryParams.Add("end-time", parameterToString(*r.endTime, ""))
-	}
 	if r.sortOrder != nil {
 		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.tenants != nil {
-		localVarQueryParams.Add("tenants", parameterToString(*r.tenants, "csv"))
-	}
-	if r.scrollId != nil {
-		localVarQueryParams.Add("scroll-id", parameterToString(*r.scrollId, ""))
-	}
-	if r.scrollExpiry != nil {
-		localVarQueryParams.Add("scroll-expiry", parameterToString(*r.scrollExpiry, ""))
-	}
-	if r.batchSize != nil {
-		localVarQueryParams.Add("batch-size", parameterToString(*r.batchSize, ""))
-	}
-	if r.scrollAction != nil {
-		localVarQueryParams.Add("scroll-action", parameterToString(*r.scrollAction, ""))
-	}
-	if r.countOnly != nil {
-		localVarQueryParams.Add("count-only", parameterToString(*r.countOnly, ""))
-	}
-	if r.encryptionStatus != nil {
-		localVarQueryParams.Add("encryption-status", parameterToString(*r.encryptionStatus, ""))
-	}
-	if r.vpcNames != nil {
-		localVarQueryParams.Add("vpc-names", parameterToString(*r.vpcNames, "csv"))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

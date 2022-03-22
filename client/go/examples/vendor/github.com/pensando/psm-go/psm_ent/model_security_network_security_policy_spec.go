@@ -16,8 +16,6 @@ import (
 
 // SecurityNetworkSecurityPolicySpec struct for SecurityNetworkSecurityPolicySpec
 type SecurityNetworkSecurityPolicySpec struct {
-	// list of security groups this policy is attached to.
-	AttachGroups *[]string `json:"attach-groups,omitempty"`
 	// specifies if the set of rules need to be attached globally to a tenant.
 	AttachTenant *bool `json:"attach-tenant,omitempty"`
 	// Policy priority. If not specified, it will be assigned automatically in increments of 1000.
@@ -32,6 +30,8 @@ type SecurityNetworkSecurityPolicySpec struct {
 // will change when the set of required properties is changed
 func NewSecurityNetworkSecurityPolicySpec() *SecurityNetworkSecurityPolicySpec {
 	this := SecurityNetworkSecurityPolicySpec{}
+	var attachTenant bool = true
+	this.AttachTenant = &attachTenant
 	return &this
 }
 
@@ -40,39 +40,9 @@ func NewSecurityNetworkSecurityPolicySpec() *SecurityNetworkSecurityPolicySpec {
 // but it doesn't guarantee that properties required by API are set
 func NewSecurityNetworkSecurityPolicySpecWithDefaults() *SecurityNetworkSecurityPolicySpec {
 	this := SecurityNetworkSecurityPolicySpec{}
+	var attachTenant bool = true
+	this.AttachTenant = &attachTenant
 	return &this
-}
-
-// GetAttachGroups returns the AttachGroups field value if set, zero value otherwise.
-func (o *SecurityNetworkSecurityPolicySpec) GetAttachGroups() []string {
-	if o == nil || o.AttachGroups == nil {
-		var ret []string
-		return ret
-	}
-	return *o.AttachGroups
-}
-
-// GetAttachGroupsOk returns a tuple with the AttachGroups field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SecurityNetworkSecurityPolicySpec) GetAttachGroupsOk() (*[]string, bool) {
-	if o == nil || o.AttachGroups == nil {
-		return nil, false
-	}
-	return o.AttachGroups, true
-}
-
-// HasAttachGroups returns a boolean if a field has been set.
-func (o *SecurityNetworkSecurityPolicySpec) HasAttachGroups() bool {
-	if o != nil && o.AttachGroups != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAttachGroups gets a reference to the given []string and assigns it to the AttachGroups field.
-func (o *SecurityNetworkSecurityPolicySpec) SetAttachGroups(v []string) {
-	o.AttachGroups = &v
 }
 
 // GetAttachTenant returns the AttachTenant field value if set, zero value otherwise.
@@ -173,9 +143,6 @@ func (o *SecurityNetworkSecurityPolicySpec) SetRules(v []SecuritySGRule) {
 
 func (o SecurityNetworkSecurityPolicySpec) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AttachGroups != nil {
-		toSerialize["attach-groups"] = o.AttachGroups
-	}
 	if o.AttachTenant != nil {
 		toSerialize["attach-tenant"] = o.AttachTenant
 	}

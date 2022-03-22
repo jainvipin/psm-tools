@@ -213,110 +213,20 @@ type ApiDiagnosticsGetModuleRequest struct {
 	ApiService *DiagnosticsV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specLogLevel *string
-	specEnableTrace *bool
 	specArgs *[]string
-	statusNode *string
-	statusModule *string
-	statusCategory *string
-	statusLastStart *time.Time
-	statusRestartCount *int32
-	statusLastRestartReason *string
-	statusService *string
-	statusMacAddress *string
 }
 
 func (r ApiDiagnosticsGetModuleRequest) TKind(tKind string) ApiDiagnosticsGetModuleRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiDiagnosticsGetModuleRequest) TApiVersion(tApiVersion string) ApiDiagnosticsGetModuleRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiDiagnosticsGetModuleRequest) MetaTenant(metaTenant string) ApiDiagnosticsGetModuleRequest {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiDiagnosticsGetModuleRequest) MetaNamespace(metaNamespace string) ApiDiagnosticsGetModuleRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiDiagnosticsGetModuleRequest) MetaGenerationId(metaGenerationId string) ApiDiagnosticsGetModuleRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiDiagnosticsGetModuleRequest) MetaResourceVersion(metaResourceVersion string) ApiDiagnosticsGetModuleRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiDiagnosticsGetModuleRequest) MetaUuid(metaUuid string) ApiDiagnosticsGetModuleRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiDiagnosticsGetModuleRequest) MetaCreationTime(metaCreationTime time.Time) ApiDiagnosticsGetModuleRequest {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiDiagnosticsGetModuleRequest) MetaModTime(metaModTime time.Time) ApiDiagnosticsGetModuleRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiDiagnosticsGetModuleRequest) MetaSelfLink(metaSelfLink string) ApiDiagnosticsGetModuleRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiDiagnosticsGetModuleRequest) SpecLogLevel(specLogLevel string) ApiDiagnosticsGetModuleRequest {
-	r.specLogLevel = &specLogLevel
-	return r
-}
-func (r ApiDiagnosticsGetModuleRequest) SpecEnableTrace(specEnableTrace bool) ApiDiagnosticsGetModuleRequest {
-	r.specEnableTrace = &specEnableTrace
-	return r
-}
 func (r ApiDiagnosticsGetModuleRequest) SpecArgs(specArgs []string) ApiDiagnosticsGetModuleRequest {
 	r.specArgs = &specArgs
-	return r
-}
-func (r ApiDiagnosticsGetModuleRequest) StatusNode(statusNode string) ApiDiagnosticsGetModuleRequest {
-	r.statusNode = &statusNode
-	return r
-}
-func (r ApiDiagnosticsGetModuleRequest) StatusModule(statusModule string) ApiDiagnosticsGetModuleRequest {
-	r.statusModule = &statusModule
-	return r
-}
-func (r ApiDiagnosticsGetModuleRequest) StatusCategory(statusCategory string) ApiDiagnosticsGetModuleRequest {
-	r.statusCategory = &statusCategory
-	return r
-}
-func (r ApiDiagnosticsGetModuleRequest) StatusLastStart(statusLastStart time.Time) ApiDiagnosticsGetModuleRequest {
-	r.statusLastStart = &statusLastStart
-	return r
-}
-func (r ApiDiagnosticsGetModuleRequest) StatusRestartCount(statusRestartCount int32) ApiDiagnosticsGetModuleRequest {
-	r.statusRestartCount = &statusRestartCount
-	return r
-}
-func (r ApiDiagnosticsGetModuleRequest) StatusLastRestartReason(statusLastRestartReason string) ApiDiagnosticsGetModuleRequest {
-	r.statusLastRestartReason = &statusLastRestartReason
-	return r
-}
-func (r ApiDiagnosticsGetModuleRequest) StatusService(statusService string) ApiDiagnosticsGetModuleRequest {
-	r.statusService = &statusService
-	return r
-}
-func (r ApiDiagnosticsGetModuleRequest) StatusMacAddress(statusMacAddress string) ApiDiagnosticsGetModuleRequest {
-	r.statusMacAddress = &statusMacAddress
 	return r
 }
 
@@ -367,65 +277,11 @@ func (a *DiagnosticsV1ApiService) GetModuleExecute(r ApiDiagnosticsGetModuleRequ
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specLogLevel != nil {
-		localVarQueryParams.Add("spec.log-level", parameterToString(*r.specLogLevel, ""))
-	}
-	if r.specEnableTrace != nil {
-		localVarQueryParams.Add("spec.enable-trace", parameterToString(*r.specEnableTrace, ""))
-	}
 	if r.specArgs != nil {
 		localVarQueryParams.Add("spec.args", parameterToString(*r.specArgs, "csv"))
-	}
-	if r.statusNode != nil {
-		localVarQueryParams.Add("status.node", parameterToString(*r.statusNode, ""))
-	}
-	if r.statusModule != nil {
-		localVarQueryParams.Add("status.module", parameterToString(*r.statusModule, ""))
-	}
-	if r.statusCategory != nil {
-		localVarQueryParams.Add("status.category", parameterToString(*r.statusCategory, ""))
-	}
-	if r.statusLastStart != nil {
-		localVarQueryParams.Add("status.last-start", parameterToString(*r.statusLastStart, ""))
-	}
-	if r.statusRestartCount != nil {
-		localVarQueryParams.Add("status.restart-count", parameterToString(*r.statusRestartCount, ""))
-	}
-	if r.statusLastRestartReason != nil {
-		localVarQueryParams.Add("status.last-restart-reason", parameterToString(*r.statusLastRestartReason, ""))
-	}
-	if r.statusService != nil {
-		localVarQueryParams.Add("status.service", parameterToString(*r.statusService, ""))
-	}
-	if r.statusMacAddress != nil {
-		localVarQueryParams.Add("status.mac-address", parameterToString(*r.statusMacAddress, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -730,85 +586,20 @@ type ApiDiagnosticsListModuleRequest struct {
 	ctx _context.Context
 	ApiService *DiagnosticsV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiDiagnosticsListModuleRequest) OName(oName string) ApiDiagnosticsListModuleRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiDiagnosticsListModuleRequest) OTenant(oTenant string) ApiDiagnosticsListModuleRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiDiagnosticsListModuleRequest) ONamespace(oNamespace string) ApiDiagnosticsListModuleRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiDiagnosticsListModuleRequest) OGenerationId(oGenerationId string) ApiDiagnosticsListModuleRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiDiagnosticsListModuleRequest) OResourceVersion(oResourceVersion string) ApiDiagnosticsListModuleRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiDiagnosticsListModuleRequest) OUuid(oUuid string) ApiDiagnosticsListModuleRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiDiagnosticsListModuleRequest) OCreationTime(oCreationTime time.Time) ApiDiagnosticsListModuleRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiDiagnosticsListModuleRequest) OModTime(oModTime time.Time) ApiDiagnosticsListModuleRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiDiagnosticsListModuleRequest) OSelfLink(oSelfLink string) ApiDiagnosticsListModuleRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiDiagnosticsListModuleRequest) LabelSelector(labelSelector string) ApiDiagnosticsListModuleRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiDiagnosticsListModuleRequest) FieldSelector(fieldSelector string) ApiDiagnosticsListModuleRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiDiagnosticsListModuleRequest) FieldChangeSelector(fieldChangeSelector []string) ApiDiagnosticsListModuleRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiDiagnosticsListModuleRequest) From(from int32) ApiDiagnosticsListModuleRequest {
-	r.from = &from
-	return r
-}
-func (r ApiDiagnosticsListModuleRequest) MaxResults(maxResults int32) ApiDiagnosticsListModuleRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiDiagnosticsListModuleRequest) SortOrder(sortOrder string) ApiDiagnosticsListModuleRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiDiagnosticsListModuleRequest) MetaOnly(metaOnly bool) ApiDiagnosticsListModuleRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -856,50 +647,11 @@ func (a *DiagnosticsV1ApiService) ListModuleExecute(r ApiDiagnosticsListModuleRe
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1204,85 +956,20 @@ type ApiDiagnosticsWatchModuleRequest struct {
 	ctx _context.Context
 	ApiService *DiagnosticsV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiDiagnosticsWatchModuleRequest) OName(oName string) ApiDiagnosticsWatchModuleRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiDiagnosticsWatchModuleRequest) OTenant(oTenant string) ApiDiagnosticsWatchModuleRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiDiagnosticsWatchModuleRequest) ONamespace(oNamespace string) ApiDiagnosticsWatchModuleRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiDiagnosticsWatchModuleRequest) OGenerationId(oGenerationId string) ApiDiagnosticsWatchModuleRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiDiagnosticsWatchModuleRequest) OResourceVersion(oResourceVersion string) ApiDiagnosticsWatchModuleRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiDiagnosticsWatchModuleRequest) OUuid(oUuid string) ApiDiagnosticsWatchModuleRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiDiagnosticsWatchModuleRequest) OCreationTime(oCreationTime time.Time) ApiDiagnosticsWatchModuleRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiDiagnosticsWatchModuleRequest) OModTime(oModTime time.Time) ApiDiagnosticsWatchModuleRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiDiagnosticsWatchModuleRequest) OSelfLink(oSelfLink string) ApiDiagnosticsWatchModuleRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiDiagnosticsWatchModuleRequest) LabelSelector(labelSelector string) ApiDiagnosticsWatchModuleRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiDiagnosticsWatchModuleRequest) FieldSelector(fieldSelector string) ApiDiagnosticsWatchModuleRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiDiagnosticsWatchModuleRequest) FieldChangeSelector(fieldChangeSelector []string) ApiDiagnosticsWatchModuleRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiDiagnosticsWatchModuleRequest) From(from int32) ApiDiagnosticsWatchModuleRequest {
-	r.from = &from
-	return r
-}
-func (r ApiDiagnosticsWatchModuleRequest) MaxResults(maxResults int32) ApiDiagnosticsWatchModuleRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiDiagnosticsWatchModuleRequest) SortOrder(sortOrder string) ApiDiagnosticsWatchModuleRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiDiagnosticsWatchModuleRequest) MetaOnly(metaOnly bool) ApiDiagnosticsWatchModuleRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -1330,50 +1017,11 @@ func (a *DiagnosticsV1ApiService) WatchModuleExecute(r ApiDiagnosticsWatchModule
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

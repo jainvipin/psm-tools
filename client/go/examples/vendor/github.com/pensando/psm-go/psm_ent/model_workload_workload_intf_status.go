@@ -22,6 +22,7 @@ type WorkloadWorkloadIntfStatus struct {
 	Endpoint *string `json:"endpoint,omitempty"`
 	// External vlan assigned for this interface.
 	ExternalVlan *int64 `json:"external-vlan,omitempty"`
+	InterfaceMigrationStatus *WorkloadInterfaceMigrationStatus `json:"interface-migration-status,omitempty"`
 	// List of all IP addresses configured and discovered on a Workload Interface.
 	IpAddresses *[]string `json:"ip-addresses,omitempty"`
 	// MACAddress contains the MAC address of the interface as seen by the workload.
@@ -145,6 +146,38 @@ func (o *WorkloadWorkloadIntfStatus) HasExternalVlan() bool {
 // SetExternalVlan gets a reference to the given int64 and assigns it to the ExternalVlan field.
 func (o *WorkloadWorkloadIntfStatus) SetExternalVlan(v int64) {
 	o.ExternalVlan = &v
+}
+
+// GetInterfaceMigrationStatus returns the InterfaceMigrationStatus field value if set, zero value otherwise.
+func (o *WorkloadWorkloadIntfStatus) GetInterfaceMigrationStatus() WorkloadInterfaceMigrationStatus {
+	if o == nil || o.InterfaceMigrationStatus == nil {
+		var ret WorkloadInterfaceMigrationStatus
+		return ret
+	}
+	return *o.InterfaceMigrationStatus
+}
+
+// GetInterfaceMigrationStatusOk returns a tuple with the InterfaceMigrationStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkloadWorkloadIntfStatus) GetInterfaceMigrationStatusOk() (*WorkloadInterfaceMigrationStatus, bool) {
+	if o == nil || o.InterfaceMigrationStatus == nil {
+		return nil, false
+	}
+	return o.InterfaceMigrationStatus, true
+}
+
+// HasInterfaceMigrationStatus returns a boolean if a field has been set.
+func (o *WorkloadWorkloadIntfStatus) HasInterfaceMigrationStatus() bool {
+	if o != nil && o.InterfaceMigrationStatus != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetInterfaceMigrationStatus gets a reference to the given WorkloadInterfaceMigrationStatus and assigns it to the InterfaceMigrationStatus field.
+func (o *WorkloadWorkloadIntfStatus) SetInterfaceMigrationStatus(v WorkloadInterfaceMigrationStatus) {
+	o.InterfaceMigrationStatus = &v
 }
 
 // GetIpAddresses returns the IpAddresses field value if set, zero value otherwise.
@@ -317,6 +350,9 @@ func (o WorkloadWorkloadIntfStatus) MarshalJSON() ([]byte, error) {
 	}
 	if o.ExternalVlan != nil {
 		toSerialize["external-vlan"] = o.ExternalVlan
+	}
+	if o.InterfaceMigrationStatus != nil {
+		toSerialize["interface-migration-status"] = o.InterfaceMigrationStatus
 	}
 	if o.IpAddresses != nil {
 		toSerialize["ip-addresses"] = o.IpAddresses

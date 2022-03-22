@@ -20,6 +20,8 @@ type NetworkIPAMPoolInfo struct {
 	IpAddressEnd *string `json:"ip-address-end,omitempty"`
 	// starting IP address of the address pool range.
 	IpAddressStart *string `json:"ip-address-start,omitempty"`
+	// subnet, in CIDR format, to which the pool belongs.
+	Subnet *string `json:"subnet,omitempty"`
 }
 
 // NewNetworkIPAMPoolInfo instantiates a new NetworkIPAMPoolInfo object
@@ -103,6 +105,38 @@ func (o *NetworkIPAMPoolInfo) SetIpAddressStart(v string) {
 	o.IpAddressStart = &v
 }
 
+// GetSubnet returns the Subnet field value if set, zero value otherwise.
+func (o *NetworkIPAMPoolInfo) GetSubnet() string {
+	if o == nil || o.Subnet == nil {
+		var ret string
+		return ret
+	}
+	return *o.Subnet
+}
+
+// GetSubnetOk returns a tuple with the Subnet field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkIPAMPoolInfo) GetSubnetOk() (*string, bool) {
+	if o == nil || o.Subnet == nil {
+		return nil, false
+	}
+	return o.Subnet, true
+}
+
+// HasSubnet returns a boolean if a field has been set.
+func (o *NetworkIPAMPoolInfo) HasSubnet() bool {
+	if o != nil && o.Subnet != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSubnet gets a reference to the given string and assigns it to the Subnet field.
+func (o *NetworkIPAMPoolInfo) SetSubnet(v string) {
+	o.Subnet = &v
+}
+
 func (o NetworkIPAMPoolInfo) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.IpAddressEnd != nil {
@@ -110,6 +144,9 @@ func (o NetworkIPAMPoolInfo) MarshalJSON() ([]byte, error) {
 	}
 	if o.IpAddressStart != nil {
 		toSerialize["ip-address-start"] = o.IpAddressStart
+	}
+	if o.Subnet != nil {
+		toSerialize["subnet"] = o.Subnet
 	}
 	return json.Marshal(toSerialize)
 }

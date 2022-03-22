@@ -22,18 +22,20 @@ type SecuritySGRule struct {
 	Apps *[]string `json:"apps,omitempty"`
 	// describes rule. Length of string should be between 0 and 256.
 	Description *string `json:"description,omitempty"`
+	// is rule disabled.
+	Disable *bool `json:"disable,omitempty"`
 	// inbound rule from a given ip-address/ip-mask/ip-range. Use any to refer to all ipaddresses cli-tags: id=from-ip.
 	FromIpAddresses *[]string `json:"from-ip-addresses,omitempty"`
-	// inbound rule from a given security group.
-	FromSecurityGroups *[]string `json:"from-security-groups,omitempty"`
+	// inbound rule from a given workload group.
+	FromWorkloadGroups *[]string `json:"from-workload-groups,omitempty"`
 	// rule name. Must start and end with alpha numeric and can have alphanumeric, -, _, . Length of string should be between 0 and 64.
 	Name *string `json:"name,omitempty"`
 	// list of (protocol, ports) pairs to which the rule applies to, in addition to apps.
 	ProtoPorts *[]SecurityProtoPort `json:"proto-ports,omitempty"`
 	// outbound rule from a given ip-address/ip-mask/ip-range. Use any to refer to all ipaddresses cli-tags: id=to-ip.
 	ToIpAddresses *[]string `json:"to-ip-addresses,omitempty"`
-	// outbound rule from a given security group.
-	ToSecurityGroups *[]string `json:"to-security-groups,omitempty"`
+	// outbound rule from a given workload group.
+	ToWorkloadGroups *[]string `json:"to-workload-groups,omitempty"`
 }
 
 // NewSecuritySGRule instantiates a new SecuritySGRule object
@@ -153,6 +155,38 @@ func (o *SecuritySGRule) SetDescription(v string) {
 	o.Description = &v
 }
 
+// GetDisable returns the Disable field value if set, zero value otherwise.
+func (o *SecuritySGRule) GetDisable() bool {
+	if o == nil || o.Disable == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Disable
+}
+
+// GetDisableOk returns a tuple with the Disable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecuritySGRule) GetDisableOk() (*bool, bool) {
+	if o == nil || o.Disable == nil {
+		return nil, false
+	}
+	return o.Disable, true
+}
+
+// HasDisable returns a boolean if a field has been set.
+func (o *SecuritySGRule) HasDisable() bool {
+	if o != nil && o.Disable != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDisable gets a reference to the given bool and assigns it to the Disable field.
+func (o *SecuritySGRule) SetDisable(v bool) {
+	o.Disable = &v
+}
+
 // GetFromIpAddresses returns the FromIpAddresses field value if set, zero value otherwise.
 func (o *SecuritySGRule) GetFromIpAddresses() []string {
 	if o == nil || o.FromIpAddresses == nil {
@@ -185,36 +219,36 @@ func (o *SecuritySGRule) SetFromIpAddresses(v []string) {
 	o.FromIpAddresses = &v
 }
 
-// GetFromSecurityGroups returns the FromSecurityGroups field value if set, zero value otherwise.
-func (o *SecuritySGRule) GetFromSecurityGroups() []string {
-	if o == nil || o.FromSecurityGroups == nil {
+// GetFromWorkloadGroups returns the FromWorkloadGroups field value if set, zero value otherwise.
+func (o *SecuritySGRule) GetFromWorkloadGroups() []string {
+	if o == nil || o.FromWorkloadGroups == nil {
 		var ret []string
 		return ret
 	}
-	return *o.FromSecurityGroups
+	return *o.FromWorkloadGroups
 }
 
-// GetFromSecurityGroupsOk returns a tuple with the FromSecurityGroups field value if set, nil otherwise
+// GetFromWorkloadGroupsOk returns a tuple with the FromWorkloadGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SecuritySGRule) GetFromSecurityGroupsOk() (*[]string, bool) {
-	if o == nil || o.FromSecurityGroups == nil {
+func (o *SecuritySGRule) GetFromWorkloadGroupsOk() (*[]string, bool) {
+	if o == nil || o.FromWorkloadGroups == nil {
 		return nil, false
 	}
-	return o.FromSecurityGroups, true
+	return o.FromWorkloadGroups, true
 }
 
-// HasFromSecurityGroups returns a boolean if a field has been set.
-func (o *SecuritySGRule) HasFromSecurityGroups() bool {
-	if o != nil && o.FromSecurityGroups != nil {
+// HasFromWorkloadGroups returns a boolean if a field has been set.
+func (o *SecuritySGRule) HasFromWorkloadGroups() bool {
+	if o != nil && o.FromWorkloadGroups != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetFromSecurityGroups gets a reference to the given []string and assigns it to the FromSecurityGroups field.
-func (o *SecuritySGRule) SetFromSecurityGroups(v []string) {
-	o.FromSecurityGroups = &v
+// SetFromWorkloadGroups gets a reference to the given []string and assigns it to the FromWorkloadGroups field.
+func (o *SecuritySGRule) SetFromWorkloadGroups(v []string) {
+	o.FromWorkloadGroups = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -313,36 +347,36 @@ func (o *SecuritySGRule) SetToIpAddresses(v []string) {
 	o.ToIpAddresses = &v
 }
 
-// GetToSecurityGroups returns the ToSecurityGroups field value if set, zero value otherwise.
-func (o *SecuritySGRule) GetToSecurityGroups() []string {
-	if o == nil || o.ToSecurityGroups == nil {
+// GetToWorkloadGroups returns the ToWorkloadGroups field value if set, zero value otherwise.
+func (o *SecuritySGRule) GetToWorkloadGroups() []string {
+	if o == nil || o.ToWorkloadGroups == nil {
 		var ret []string
 		return ret
 	}
-	return *o.ToSecurityGroups
+	return *o.ToWorkloadGroups
 }
 
-// GetToSecurityGroupsOk returns a tuple with the ToSecurityGroups field value if set, nil otherwise
+// GetToWorkloadGroupsOk returns a tuple with the ToWorkloadGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SecuritySGRule) GetToSecurityGroupsOk() (*[]string, bool) {
-	if o == nil || o.ToSecurityGroups == nil {
+func (o *SecuritySGRule) GetToWorkloadGroupsOk() (*[]string, bool) {
+	if o == nil || o.ToWorkloadGroups == nil {
 		return nil, false
 	}
-	return o.ToSecurityGroups, true
+	return o.ToWorkloadGroups, true
 }
 
-// HasToSecurityGroups returns a boolean if a field has been set.
-func (o *SecuritySGRule) HasToSecurityGroups() bool {
-	if o != nil && o.ToSecurityGroups != nil {
+// HasToWorkloadGroups returns a boolean if a field has been set.
+func (o *SecuritySGRule) HasToWorkloadGroups() bool {
+	if o != nil && o.ToWorkloadGroups != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetToSecurityGroups gets a reference to the given []string and assigns it to the ToSecurityGroups field.
-func (o *SecuritySGRule) SetToSecurityGroups(v []string) {
-	o.ToSecurityGroups = &v
+// SetToWorkloadGroups gets a reference to the given []string and assigns it to the ToWorkloadGroups field.
+func (o *SecuritySGRule) SetToWorkloadGroups(v []string) {
+	o.ToWorkloadGroups = &v
 }
 
 func (o SecuritySGRule) MarshalJSON() ([]byte, error) {
@@ -356,11 +390,14 @@ func (o SecuritySGRule) MarshalJSON() ([]byte, error) {
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
+	if o.Disable != nil {
+		toSerialize["disable"] = o.Disable
+	}
 	if o.FromIpAddresses != nil {
 		toSerialize["from-ip-addresses"] = o.FromIpAddresses
 	}
-	if o.FromSecurityGroups != nil {
-		toSerialize["from-security-groups"] = o.FromSecurityGroups
+	if o.FromWorkloadGroups != nil {
+		toSerialize["from-workload-groups"] = o.FromWorkloadGroups
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
@@ -371,8 +408,8 @@ func (o SecuritySGRule) MarshalJSON() ([]byte, error) {
 	if o.ToIpAddresses != nil {
 		toSerialize["to-ip-addresses"] = o.ToIpAddresses
 	}
-	if o.ToSecurityGroups != nil {
-		toSerialize["to-security-groups"] = o.ToSecurityGroups
+	if o.ToWorkloadGroups != nil {
+		toSerialize["to-workload-groups"] = o.ToWorkloadGroups
 	}
 	return json.Marshal(toSerialize)
 }

@@ -22,6 +22,7 @@ type NetworkNetworkStatus struct {
 	Id *string `json:"id,omitempty"`
 	OperState *string `json:"oper-state,omitempty"`
 	PropagationStatus *SecurityPropagationStatus `json:"propagation-status,omitempty"`
+	SecurityPolicyStatus *NetworkSecurityPolicyStatus `json:"security-policy-status,omitempty"`
 	// list of all workloads in this network.
 	Workloads *[]string `json:"workloads,omitempty"`
 }
@@ -175,6 +176,38 @@ func (o *NetworkNetworkStatus) SetPropagationStatus(v SecurityPropagationStatus)
 	o.PropagationStatus = &v
 }
 
+// GetSecurityPolicyStatus returns the SecurityPolicyStatus field value if set, zero value otherwise.
+func (o *NetworkNetworkStatus) GetSecurityPolicyStatus() NetworkSecurityPolicyStatus {
+	if o == nil || o.SecurityPolicyStatus == nil {
+		var ret NetworkSecurityPolicyStatus
+		return ret
+	}
+	return *o.SecurityPolicyStatus
+}
+
+// GetSecurityPolicyStatusOk returns a tuple with the SecurityPolicyStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkNetworkStatus) GetSecurityPolicyStatusOk() (*NetworkSecurityPolicyStatus, bool) {
+	if o == nil || o.SecurityPolicyStatus == nil {
+		return nil, false
+	}
+	return o.SecurityPolicyStatus, true
+}
+
+// HasSecurityPolicyStatus returns a boolean if a field has been set.
+func (o *NetworkNetworkStatus) HasSecurityPolicyStatus() bool {
+	if o != nil && o.SecurityPolicyStatus != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSecurityPolicyStatus gets a reference to the given NetworkSecurityPolicyStatus and assigns it to the SecurityPolicyStatus field.
+func (o *NetworkNetworkStatus) SetSecurityPolicyStatus(v NetworkSecurityPolicyStatus) {
+	o.SecurityPolicyStatus = &v
+}
+
 // GetWorkloads returns the Workloads field value if set, zero value otherwise.
 func (o *NetworkNetworkStatus) GetWorkloads() []string {
 	if o == nil || o.Workloads == nil {
@@ -220,6 +253,9 @@ func (o NetworkNetworkStatus) MarshalJSON() ([]byte, error) {
 	}
 	if o.PropagationStatus != nil {
 		toSerialize["propagation-status"] = o.PropagationStatus
+	}
+	if o.SecurityPolicyStatus != nil {
+		toSerialize["security-policy-status"] = o.SecurityPolicyStatus
 	}
 	if o.Workloads != nil {
 		toSerialize["workloads"] = o.Workloads

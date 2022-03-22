@@ -16,7 +16,10 @@ import (
 
 // ClusterClusterProfileSpec ClusterProfileSpec contains the configuration options.
 type ClusterClusterProfileSpec struct {
+	OverlayForwarding *ClusterOverlayForwarding `json:"overlay-forwarding,omitempty"`
 	SearchOptions *ClusterSearchOptions `json:"search-options,omitempty"`
+	// SecurityPolicyRuleScaleTemplate provides options to configure security policy and rule scale for the cluster.
+	SecurityPolicyRuleScaleTemplate *string `json:"security-policy-rule-scale-template,omitempty"`
 }
 
 // NewClusterClusterProfileSpec instantiates a new ClusterClusterProfileSpec object
@@ -25,6 +28,8 @@ type ClusterClusterProfileSpec struct {
 // will change when the set of required properties is changed
 func NewClusterClusterProfileSpec() *ClusterClusterProfileSpec {
 	this := ClusterClusterProfileSpec{}
+	var securityPolicyRuleScaleTemplate string = "NONE"
+	this.SecurityPolicyRuleScaleTemplate = &securityPolicyRuleScaleTemplate
 	return &this
 }
 
@@ -33,7 +38,41 @@ func NewClusterClusterProfileSpec() *ClusterClusterProfileSpec {
 // but it doesn't guarantee that properties required by API are set
 func NewClusterClusterProfileSpecWithDefaults() *ClusterClusterProfileSpec {
 	this := ClusterClusterProfileSpec{}
+	var securityPolicyRuleScaleTemplate string = "NONE"
+	this.SecurityPolicyRuleScaleTemplate = &securityPolicyRuleScaleTemplate
 	return &this
+}
+
+// GetOverlayForwarding returns the OverlayForwarding field value if set, zero value otherwise.
+func (o *ClusterClusterProfileSpec) GetOverlayForwarding() ClusterOverlayForwarding {
+	if o == nil || o.OverlayForwarding == nil {
+		var ret ClusterOverlayForwarding
+		return ret
+	}
+	return *o.OverlayForwarding
+}
+
+// GetOverlayForwardingOk returns a tuple with the OverlayForwarding field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ClusterClusterProfileSpec) GetOverlayForwardingOk() (*ClusterOverlayForwarding, bool) {
+	if o == nil || o.OverlayForwarding == nil {
+		return nil, false
+	}
+	return o.OverlayForwarding, true
+}
+
+// HasOverlayForwarding returns a boolean if a field has been set.
+func (o *ClusterClusterProfileSpec) HasOverlayForwarding() bool {
+	if o != nil && o.OverlayForwarding != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOverlayForwarding gets a reference to the given ClusterOverlayForwarding and assigns it to the OverlayForwarding field.
+func (o *ClusterClusterProfileSpec) SetOverlayForwarding(v ClusterOverlayForwarding) {
+	o.OverlayForwarding = &v
 }
 
 // GetSearchOptions returns the SearchOptions field value if set, zero value otherwise.
@@ -68,10 +107,48 @@ func (o *ClusterClusterProfileSpec) SetSearchOptions(v ClusterSearchOptions) {
 	o.SearchOptions = &v
 }
 
+// GetSecurityPolicyRuleScaleTemplate returns the SecurityPolicyRuleScaleTemplate field value if set, zero value otherwise.
+func (o *ClusterClusterProfileSpec) GetSecurityPolicyRuleScaleTemplate() string {
+	if o == nil || o.SecurityPolicyRuleScaleTemplate == nil {
+		var ret string
+		return ret
+	}
+	return *o.SecurityPolicyRuleScaleTemplate
+}
+
+// GetSecurityPolicyRuleScaleTemplateOk returns a tuple with the SecurityPolicyRuleScaleTemplate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ClusterClusterProfileSpec) GetSecurityPolicyRuleScaleTemplateOk() (*string, bool) {
+	if o == nil || o.SecurityPolicyRuleScaleTemplate == nil {
+		return nil, false
+	}
+	return o.SecurityPolicyRuleScaleTemplate, true
+}
+
+// HasSecurityPolicyRuleScaleTemplate returns a boolean if a field has been set.
+func (o *ClusterClusterProfileSpec) HasSecurityPolicyRuleScaleTemplate() bool {
+	if o != nil && o.SecurityPolicyRuleScaleTemplate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSecurityPolicyRuleScaleTemplate gets a reference to the given string and assigns it to the SecurityPolicyRuleScaleTemplate field.
+func (o *ClusterClusterProfileSpec) SetSecurityPolicyRuleScaleTemplate(v string) {
+	o.SecurityPolicyRuleScaleTemplate = &v
+}
+
 func (o ClusterClusterProfileSpec) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.OverlayForwarding != nil {
+		toSerialize["overlay-forwarding"] = o.OverlayForwarding
+	}
 	if o.SearchOptions != nil {
 		toSerialize["search-options"] = o.SearchOptions
+	}
+	if o.SecurityPolicyRuleScaleTemplate != nil {
+		toSerialize["security-policy-rule-scale-template"] = o.SecurityPolicyRuleScaleTemplate
 	}
 	return json.Marshal(toSerialize)
 }

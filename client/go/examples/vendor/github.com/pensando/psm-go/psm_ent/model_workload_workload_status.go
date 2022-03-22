@@ -24,6 +24,8 @@ type WorkloadWorkloadStatus struct {
 	// MirrorSessions list of mirror sessions enabled on this workload.
 	MirrorSessions *[]string `json:"mirror-sessions,omitempty"`
 	PropagationStatus *SecurityPropagationStatus `json:"propagation-status,omitempty"`
+	// WorkloadGroups list of workload groups associated with this workload.
+	WorkloadGroups *[]string `json:"workload-groups,omitempty"`
 }
 
 // NewWorkloadWorkloadStatus instantiates a new WorkloadWorkloadStatus object
@@ -203,6 +205,38 @@ func (o *WorkloadWorkloadStatus) SetPropagationStatus(v SecurityPropagationStatu
 	o.PropagationStatus = &v
 }
 
+// GetWorkloadGroups returns the WorkloadGroups field value if set, zero value otherwise.
+func (o *WorkloadWorkloadStatus) GetWorkloadGroups() []string {
+	if o == nil || o.WorkloadGroups == nil {
+		var ret []string
+		return ret
+	}
+	return *o.WorkloadGroups
+}
+
+// GetWorkloadGroupsOk returns a tuple with the WorkloadGroups field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkloadWorkloadStatus) GetWorkloadGroupsOk() (*[]string, bool) {
+	if o == nil || o.WorkloadGroups == nil {
+		return nil, false
+	}
+	return o.WorkloadGroups, true
+}
+
+// HasWorkloadGroups returns a boolean if a field has been set.
+func (o *WorkloadWorkloadStatus) HasWorkloadGroups() bool {
+	if o != nil && o.WorkloadGroups != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetWorkloadGroups gets a reference to the given []string and assigns it to the WorkloadGroups field.
+func (o *WorkloadWorkloadStatus) SetWorkloadGroups(v []string) {
+	o.WorkloadGroups = &v
+}
+
 func (o WorkloadWorkloadStatus) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.HostName != nil {
@@ -219,6 +253,9 @@ func (o WorkloadWorkloadStatus) MarshalJSON() ([]byte, error) {
 	}
 	if o.PropagationStatus != nil {
 		toSerialize["propagation-status"] = o.PropagationStatus
+	}
+	if o.WorkloadGroups != nil {
+		toSerialize["workload-groups"] = o.WorkloadGroups
 	}
 	return json.Marshal(toSerialize)
 }

@@ -33,70 +33,15 @@ type ApiPreferencesGetUIGlobalSettingsRequest struct {
 	ApiService *PreferencesV1ApiService
 	oTenant string
 	tKind *string
-	tApiVersion *string
-	metaName *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specStyleOptions *string
-	idleTimeoutDuration *string
-	idleTimeoutWarningTime *string
 }
 
 func (r ApiPreferencesGetUIGlobalSettingsRequest) TKind(tKind string) ApiPreferencesGetUIGlobalSettingsRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiPreferencesGetUIGlobalSettingsRequest) TApiVersion(tApiVersion string) ApiPreferencesGetUIGlobalSettingsRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiPreferencesGetUIGlobalSettingsRequest) MetaName(metaName string) ApiPreferencesGetUIGlobalSettingsRequest {
-	r.metaName = &metaName
-	return r
-}
-func (r ApiPreferencesGetUIGlobalSettingsRequest) MetaNamespace(metaNamespace string) ApiPreferencesGetUIGlobalSettingsRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiPreferencesGetUIGlobalSettingsRequest) MetaGenerationId(metaGenerationId string) ApiPreferencesGetUIGlobalSettingsRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiPreferencesGetUIGlobalSettingsRequest) MetaResourceVersion(metaResourceVersion string) ApiPreferencesGetUIGlobalSettingsRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiPreferencesGetUIGlobalSettingsRequest) MetaUuid(metaUuid string) ApiPreferencesGetUIGlobalSettingsRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiPreferencesGetUIGlobalSettingsRequest) MetaCreationTime(metaCreationTime time.Time) ApiPreferencesGetUIGlobalSettingsRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiPreferencesGetUIGlobalSettingsRequest) MetaModTime(metaModTime time.Time) ApiPreferencesGetUIGlobalSettingsRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiPreferencesGetUIGlobalSettingsRequest) MetaSelfLink(metaSelfLink string) ApiPreferencesGetUIGlobalSettingsRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiPreferencesGetUIGlobalSettingsRequest) SpecStyleOptions(specStyleOptions string) ApiPreferencesGetUIGlobalSettingsRequest {
-	r.specStyleOptions = &specStyleOptions
-	return r
-}
-func (r ApiPreferencesGetUIGlobalSettingsRequest) IdleTimeoutDuration(idleTimeoutDuration string) ApiPreferencesGetUIGlobalSettingsRequest {
-	r.idleTimeoutDuration = &idleTimeoutDuration
-	return r
-}
-func (r ApiPreferencesGetUIGlobalSettingsRequest) IdleTimeoutWarningTime(idleTimeoutWarningTime string) ApiPreferencesGetUIGlobalSettingsRequest {
-	r.idleTimeoutWarningTime = &idleTimeoutWarningTime
 	return r
 }
 
@@ -147,41 +92,8 @@ func (a *PreferencesV1ApiService) GetUIGlobalSettingsExecute(r ApiPreferencesGet
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaName != nil {
-		localVarQueryParams.Add("meta.name", parameterToString(*r.metaName, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specStyleOptions != nil {
-		localVarQueryParams.Add("spec.style-options", parameterToString(*r.specStyleOptions, ""))
-	}
-	if r.idleTimeoutDuration != nil {
-		localVarQueryParams.Add("idle-timeout.duration", parameterToString(*r.idleTimeoutDuration, ""))
-	}
-	if r.idleTimeoutWarningTime != nil {
-		localVarQueryParams.Add("idle-timeout.warning-time", parameterToString(*r.idleTimeoutWarningTime, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -306,75 +218,15 @@ type ApiPreferencesGetUIGlobalSettings1Request struct {
 	ctx _context.Context
 	ApiService *PreferencesV1ApiService
 	tKind *string
-	tApiVersion *string
-	metaName *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specStyleOptions *string
-	idleTimeoutDuration *string
-	idleTimeoutWarningTime *string
 }
 
 func (r ApiPreferencesGetUIGlobalSettings1Request) TKind(tKind string) ApiPreferencesGetUIGlobalSettings1Request {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiPreferencesGetUIGlobalSettings1Request) TApiVersion(tApiVersion string) ApiPreferencesGetUIGlobalSettings1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiPreferencesGetUIGlobalSettings1Request) MetaName(metaName string) ApiPreferencesGetUIGlobalSettings1Request {
-	r.metaName = &metaName
-	return r
-}
-func (r ApiPreferencesGetUIGlobalSettings1Request) MetaTenant(metaTenant string) ApiPreferencesGetUIGlobalSettings1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiPreferencesGetUIGlobalSettings1Request) MetaNamespace(metaNamespace string) ApiPreferencesGetUIGlobalSettings1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiPreferencesGetUIGlobalSettings1Request) MetaGenerationId(metaGenerationId string) ApiPreferencesGetUIGlobalSettings1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiPreferencesGetUIGlobalSettings1Request) MetaResourceVersion(metaResourceVersion string) ApiPreferencesGetUIGlobalSettings1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiPreferencesGetUIGlobalSettings1Request) MetaUuid(metaUuid string) ApiPreferencesGetUIGlobalSettings1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiPreferencesGetUIGlobalSettings1Request) MetaCreationTime(metaCreationTime time.Time) ApiPreferencesGetUIGlobalSettings1Request {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiPreferencesGetUIGlobalSettings1Request) MetaModTime(metaModTime time.Time) ApiPreferencesGetUIGlobalSettings1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiPreferencesGetUIGlobalSettings1Request) MetaSelfLink(metaSelfLink string) ApiPreferencesGetUIGlobalSettings1Request {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiPreferencesGetUIGlobalSettings1Request) SpecStyleOptions(specStyleOptions string) ApiPreferencesGetUIGlobalSettings1Request {
-	r.specStyleOptions = &specStyleOptions
-	return r
-}
-func (r ApiPreferencesGetUIGlobalSettings1Request) IdleTimeoutDuration(idleTimeoutDuration string) ApiPreferencesGetUIGlobalSettings1Request {
-	r.idleTimeoutDuration = &idleTimeoutDuration
-	return r
-}
-func (r ApiPreferencesGetUIGlobalSettings1Request) IdleTimeoutWarningTime(idleTimeoutWarningTime string) ApiPreferencesGetUIGlobalSettings1Request {
-	r.idleTimeoutWarningTime = &idleTimeoutWarningTime
 	return r
 }
 
@@ -422,44 +274,8 @@ func (a *PreferencesV1ApiService) GetUIGlobalSettings1Execute(r ApiPreferencesGe
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaName != nil {
-		localVarQueryParams.Add("meta.name", parameterToString(*r.metaName, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specStyleOptions != nil {
-		localVarQueryParams.Add("spec.style-options", parameterToString(*r.specStyleOptions, ""))
-	}
-	if r.idleTimeoutDuration != nil {
-		localVarQueryParams.Add("idle-timeout.duration", parameterToString(*r.idleTimeoutDuration, ""))
-	}
-	if r.idleTimeoutWarningTime != nil {
-		localVarQueryParams.Add("idle-timeout.warning-time", parameterToString(*r.idleTimeoutWarningTime, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1297,80 +1113,20 @@ type ApiPreferencesWatchUIGlobalSettingsRequest struct {
 	ApiService *PreferencesV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiPreferencesWatchUIGlobalSettingsRequest) OName(oName string) ApiPreferencesWatchUIGlobalSettingsRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiPreferencesWatchUIGlobalSettingsRequest) ONamespace(oNamespace string) ApiPreferencesWatchUIGlobalSettingsRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiPreferencesWatchUIGlobalSettingsRequest) OGenerationId(oGenerationId string) ApiPreferencesWatchUIGlobalSettingsRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiPreferencesWatchUIGlobalSettingsRequest) OResourceVersion(oResourceVersion string) ApiPreferencesWatchUIGlobalSettingsRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiPreferencesWatchUIGlobalSettingsRequest) OUuid(oUuid string) ApiPreferencesWatchUIGlobalSettingsRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiPreferencesWatchUIGlobalSettingsRequest) OCreationTime(oCreationTime time.Time) ApiPreferencesWatchUIGlobalSettingsRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiPreferencesWatchUIGlobalSettingsRequest) OModTime(oModTime time.Time) ApiPreferencesWatchUIGlobalSettingsRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiPreferencesWatchUIGlobalSettingsRequest) OSelfLink(oSelfLink string) ApiPreferencesWatchUIGlobalSettingsRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiPreferencesWatchUIGlobalSettingsRequest) LabelSelector(labelSelector string) ApiPreferencesWatchUIGlobalSettingsRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiPreferencesWatchUIGlobalSettingsRequest) FieldSelector(fieldSelector string) ApiPreferencesWatchUIGlobalSettingsRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiPreferencesWatchUIGlobalSettingsRequest) FieldChangeSelector(fieldChangeSelector []string) ApiPreferencesWatchUIGlobalSettingsRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiPreferencesWatchUIGlobalSettingsRequest) From(from int32) ApiPreferencesWatchUIGlobalSettingsRequest {
-	r.from = &from
-	return r
-}
-func (r ApiPreferencesWatchUIGlobalSettingsRequest) MaxResults(maxResults int32) ApiPreferencesWatchUIGlobalSettingsRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiPreferencesWatchUIGlobalSettingsRequest) SortOrder(sortOrder string) ApiPreferencesWatchUIGlobalSettingsRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiPreferencesWatchUIGlobalSettingsRequest) MetaOnly(metaOnly bool) ApiPreferencesWatchUIGlobalSettingsRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -1421,47 +1177,11 @@ func (a *PreferencesV1ApiService) WatchUIGlobalSettingsExecute(r ApiPreferencesW
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1586,85 +1306,20 @@ type ApiPreferencesWatchUIGlobalSettings1Request struct {
 	ctx _context.Context
 	ApiService *PreferencesV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiPreferencesWatchUIGlobalSettings1Request) OName(oName string) ApiPreferencesWatchUIGlobalSettings1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiPreferencesWatchUIGlobalSettings1Request) OTenant(oTenant string) ApiPreferencesWatchUIGlobalSettings1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiPreferencesWatchUIGlobalSettings1Request) ONamespace(oNamespace string) ApiPreferencesWatchUIGlobalSettings1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiPreferencesWatchUIGlobalSettings1Request) OGenerationId(oGenerationId string) ApiPreferencesWatchUIGlobalSettings1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiPreferencesWatchUIGlobalSettings1Request) OResourceVersion(oResourceVersion string) ApiPreferencesWatchUIGlobalSettings1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiPreferencesWatchUIGlobalSettings1Request) OUuid(oUuid string) ApiPreferencesWatchUIGlobalSettings1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiPreferencesWatchUIGlobalSettings1Request) OCreationTime(oCreationTime time.Time) ApiPreferencesWatchUIGlobalSettings1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiPreferencesWatchUIGlobalSettings1Request) OModTime(oModTime time.Time) ApiPreferencesWatchUIGlobalSettings1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiPreferencesWatchUIGlobalSettings1Request) OSelfLink(oSelfLink string) ApiPreferencesWatchUIGlobalSettings1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiPreferencesWatchUIGlobalSettings1Request) LabelSelector(labelSelector string) ApiPreferencesWatchUIGlobalSettings1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiPreferencesWatchUIGlobalSettings1Request) FieldSelector(fieldSelector string) ApiPreferencesWatchUIGlobalSettings1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiPreferencesWatchUIGlobalSettings1Request) FieldChangeSelector(fieldChangeSelector []string) ApiPreferencesWatchUIGlobalSettings1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiPreferencesWatchUIGlobalSettings1Request) From(from int32) ApiPreferencesWatchUIGlobalSettings1Request {
-	r.from = &from
-	return r
-}
-func (r ApiPreferencesWatchUIGlobalSettings1Request) MaxResults(maxResults int32) ApiPreferencesWatchUIGlobalSettings1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiPreferencesWatchUIGlobalSettings1Request) SortOrder(sortOrder string) ApiPreferencesWatchUIGlobalSettings1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiPreferencesWatchUIGlobalSettings1Request) MetaOnly(metaOnly bool) ApiPreferencesWatchUIGlobalSettings1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -1712,50 +1367,11 @@ func (a *PreferencesV1ApiService) WatchUIGlobalSettings1Execute(r ApiPreferences
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

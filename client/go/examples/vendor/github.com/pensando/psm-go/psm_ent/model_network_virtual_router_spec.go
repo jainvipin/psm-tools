@@ -18,6 +18,16 @@ import (
 type NetworkVirtualRouterSpec struct {
 	// Default IPAM policy for networks belonging to this Virtual Router. Any IPAM Policy specified in the Network overrides this.
 	DefaultIpamPolicy *string `json:"default-ipam-policy,omitempty"`
+	// Security Policy to apply in the egress direction.
+	EgressSecurityPolicy *[]string `json:"egress-security-policy,omitempty"`
+	// FlowExportPolicy is the flow export policy associated to this virtual router.
+	FlowExportPolicy *[]string `json:"flow-export-policy,omitempty"`
+	// Security Policy to apply in the ingress direction.
+	IngressSecurityPolicy *[]string `json:"ingress-security-policy,omitempty"`
+	// Maximum Connections Per Second supported for any Network belonging to the Virtual Router within a Distributed Services Entity. The value configured here is the CPS limit enforced per Network within a Distributed Services Entity and is the same for all Networks within the Virtual Router. Value 0 means the CPS limit is not enforced and the CPS is limited only by the system capacity. Connections exceeding the CPS limit are dropped. Value should be between 0 and 409599.
+	MaximumCpsPerNetworkPerDistributedServicesEntity *int32 `json:"maximum-cps-per-network-per-distributed-services-entity,omitempty"`
+	// Maximum sessions supported in any Network belonging to the Virtual Router within a Distributed Services Entity. The value configured here is the sessions limit enforced per Network within a Distributed Services Entity and is the same for all Networks within the Virtual Router. Value 0 means the sessions limit is not enforced and the number of sessions is limited only by the system capacity. Sessions exceeding the sessions limit are dropped. Value should be between 0 and 16777215.
+	MaximumSessionsPerNetworkPerDistributedServicesEntity *int32 `json:"maximum-sessions-per-network-per-distributed-services-entity,omitempty"`
 	RouteImportExport *NetworkRDSpec `json:"route-import-export,omitempty"`
 	// Default Router MAC Address to use for this Virtual Router. Should be a valid MAC address.
 	RouterMacAddress *string `json:"router-mac-address,omitempty"`
@@ -77,6 +87,166 @@ func (o *NetworkVirtualRouterSpec) HasDefaultIpamPolicy() bool {
 // SetDefaultIpamPolicy gets a reference to the given string and assigns it to the DefaultIpamPolicy field.
 func (o *NetworkVirtualRouterSpec) SetDefaultIpamPolicy(v string) {
 	o.DefaultIpamPolicy = &v
+}
+
+// GetEgressSecurityPolicy returns the EgressSecurityPolicy field value if set, zero value otherwise.
+func (o *NetworkVirtualRouterSpec) GetEgressSecurityPolicy() []string {
+	if o == nil || o.EgressSecurityPolicy == nil {
+		var ret []string
+		return ret
+	}
+	return *o.EgressSecurityPolicy
+}
+
+// GetEgressSecurityPolicyOk returns a tuple with the EgressSecurityPolicy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkVirtualRouterSpec) GetEgressSecurityPolicyOk() (*[]string, bool) {
+	if o == nil || o.EgressSecurityPolicy == nil {
+		return nil, false
+	}
+	return o.EgressSecurityPolicy, true
+}
+
+// HasEgressSecurityPolicy returns a boolean if a field has been set.
+func (o *NetworkVirtualRouterSpec) HasEgressSecurityPolicy() bool {
+	if o != nil && o.EgressSecurityPolicy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEgressSecurityPolicy gets a reference to the given []string and assigns it to the EgressSecurityPolicy field.
+func (o *NetworkVirtualRouterSpec) SetEgressSecurityPolicy(v []string) {
+	o.EgressSecurityPolicy = &v
+}
+
+// GetFlowExportPolicy returns the FlowExportPolicy field value if set, zero value otherwise.
+func (o *NetworkVirtualRouterSpec) GetFlowExportPolicy() []string {
+	if o == nil || o.FlowExportPolicy == nil {
+		var ret []string
+		return ret
+	}
+	return *o.FlowExportPolicy
+}
+
+// GetFlowExportPolicyOk returns a tuple with the FlowExportPolicy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkVirtualRouterSpec) GetFlowExportPolicyOk() (*[]string, bool) {
+	if o == nil || o.FlowExportPolicy == nil {
+		return nil, false
+	}
+	return o.FlowExportPolicy, true
+}
+
+// HasFlowExportPolicy returns a boolean if a field has been set.
+func (o *NetworkVirtualRouterSpec) HasFlowExportPolicy() bool {
+	if o != nil && o.FlowExportPolicy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFlowExportPolicy gets a reference to the given []string and assigns it to the FlowExportPolicy field.
+func (o *NetworkVirtualRouterSpec) SetFlowExportPolicy(v []string) {
+	o.FlowExportPolicy = &v
+}
+
+// GetIngressSecurityPolicy returns the IngressSecurityPolicy field value if set, zero value otherwise.
+func (o *NetworkVirtualRouterSpec) GetIngressSecurityPolicy() []string {
+	if o == nil || o.IngressSecurityPolicy == nil {
+		var ret []string
+		return ret
+	}
+	return *o.IngressSecurityPolicy
+}
+
+// GetIngressSecurityPolicyOk returns a tuple with the IngressSecurityPolicy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkVirtualRouterSpec) GetIngressSecurityPolicyOk() (*[]string, bool) {
+	if o == nil || o.IngressSecurityPolicy == nil {
+		return nil, false
+	}
+	return o.IngressSecurityPolicy, true
+}
+
+// HasIngressSecurityPolicy returns a boolean if a field has been set.
+func (o *NetworkVirtualRouterSpec) HasIngressSecurityPolicy() bool {
+	if o != nil && o.IngressSecurityPolicy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIngressSecurityPolicy gets a reference to the given []string and assigns it to the IngressSecurityPolicy field.
+func (o *NetworkVirtualRouterSpec) SetIngressSecurityPolicy(v []string) {
+	o.IngressSecurityPolicy = &v
+}
+
+// GetMaximumCpsPerNetworkPerDistributedServicesEntity returns the MaximumCpsPerNetworkPerDistributedServicesEntity field value if set, zero value otherwise.
+func (o *NetworkVirtualRouterSpec) GetMaximumCpsPerNetworkPerDistributedServicesEntity() int32 {
+	if o == nil || o.MaximumCpsPerNetworkPerDistributedServicesEntity == nil {
+		var ret int32
+		return ret
+	}
+	return *o.MaximumCpsPerNetworkPerDistributedServicesEntity
+}
+
+// GetMaximumCpsPerNetworkPerDistributedServicesEntityOk returns a tuple with the MaximumCpsPerNetworkPerDistributedServicesEntity field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkVirtualRouterSpec) GetMaximumCpsPerNetworkPerDistributedServicesEntityOk() (*int32, bool) {
+	if o == nil || o.MaximumCpsPerNetworkPerDistributedServicesEntity == nil {
+		return nil, false
+	}
+	return o.MaximumCpsPerNetworkPerDistributedServicesEntity, true
+}
+
+// HasMaximumCpsPerNetworkPerDistributedServicesEntity returns a boolean if a field has been set.
+func (o *NetworkVirtualRouterSpec) HasMaximumCpsPerNetworkPerDistributedServicesEntity() bool {
+	if o != nil && o.MaximumCpsPerNetworkPerDistributedServicesEntity != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMaximumCpsPerNetworkPerDistributedServicesEntity gets a reference to the given int32 and assigns it to the MaximumCpsPerNetworkPerDistributedServicesEntity field.
+func (o *NetworkVirtualRouterSpec) SetMaximumCpsPerNetworkPerDistributedServicesEntity(v int32) {
+	o.MaximumCpsPerNetworkPerDistributedServicesEntity = &v
+}
+
+// GetMaximumSessionsPerNetworkPerDistributedServicesEntity returns the MaximumSessionsPerNetworkPerDistributedServicesEntity field value if set, zero value otherwise.
+func (o *NetworkVirtualRouterSpec) GetMaximumSessionsPerNetworkPerDistributedServicesEntity() int32 {
+	if o == nil || o.MaximumSessionsPerNetworkPerDistributedServicesEntity == nil {
+		var ret int32
+		return ret
+	}
+	return *o.MaximumSessionsPerNetworkPerDistributedServicesEntity
+}
+
+// GetMaximumSessionsPerNetworkPerDistributedServicesEntityOk returns a tuple with the MaximumSessionsPerNetworkPerDistributedServicesEntity field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkVirtualRouterSpec) GetMaximumSessionsPerNetworkPerDistributedServicesEntityOk() (*int32, bool) {
+	if o == nil || o.MaximumSessionsPerNetworkPerDistributedServicesEntity == nil {
+		return nil, false
+	}
+	return o.MaximumSessionsPerNetworkPerDistributedServicesEntity, true
+}
+
+// HasMaximumSessionsPerNetworkPerDistributedServicesEntity returns a boolean if a field has been set.
+func (o *NetworkVirtualRouterSpec) HasMaximumSessionsPerNetworkPerDistributedServicesEntity() bool {
+	if o != nil && o.MaximumSessionsPerNetworkPerDistributedServicesEntity != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMaximumSessionsPerNetworkPerDistributedServicesEntity gets a reference to the given int32 and assigns it to the MaximumSessionsPerNetworkPerDistributedServicesEntity field.
+func (o *NetworkVirtualRouterSpec) SetMaximumSessionsPerNetworkPerDistributedServicesEntity(v int32) {
+	o.MaximumSessionsPerNetworkPerDistributedServicesEntity = &v
 }
 
 // GetRouteImportExport returns the RouteImportExport field value if set, zero value otherwise.
@@ -211,6 +381,21 @@ func (o NetworkVirtualRouterSpec) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.DefaultIpamPolicy != nil {
 		toSerialize["default-ipam-policy"] = o.DefaultIpamPolicy
+	}
+	if o.EgressSecurityPolicy != nil {
+		toSerialize["egress-security-policy"] = o.EgressSecurityPolicy
+	}
+	if o.FlowExportPolicy != nil {
+		toSerialize["flow-export-policy"] = o.FlowExportPolicy
+	}
+	if o.IngressSecurityPolicy != nil {
+		toSerialize["ingress-security-policy"] = o.IngressSecurityPolicy
+	}
+	if o.MaximumCpsPerNetworkPerDistributedServicesEntity != nil {
+		toSerialize["maximum-cps-per-network-per-distributed-services-entity"] = o.MaximumCpsPerNetworkPerDistributedServicesEntity
+	}
+	if o.MaximumSessionsPerNetworkPerDistributedServicesEntity != nil {
+		toSerialize["maximum-sessions-per-network-per-distributed-services-entity"] = o.MaximumSessionsPerNetworkPerDistributedServicesEntity
 	}
 	if o.RouteImportExport != nil {
 		toSerialize["route-import-export"] = o.RouteImportExport

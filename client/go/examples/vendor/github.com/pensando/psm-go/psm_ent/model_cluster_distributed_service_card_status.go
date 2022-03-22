@@ -46,6 +46,8 @@ type ClusterDistributedServiceCardStatus struct {
 	PrimaryMac *string `json:"primary-mac,omitempty"`
 	// SecureBooted a true value indicates, secure boot is enabled.
 	SecureBooted *bool `json:"secure-booted,omitempty"`
+	// SecurityPolicyRuleScaleProfile is the active security policy rule scale profile in the DSE.
+	SecurityPolicyRuleScaleProfile *string `json:"security-policy-rule-scale-profile,omitempty"`
 	// Serial number.
 	SerialNum *string `json:"serial-num,omitempty"`
 	SystemInfo *ClusterDSCInfo `json:"system-info,omitempty"`
@@ -628,6 +630,38 @@ func (o *ClusterDistributedServiceCardStatus) SetSecureBooted(v bool) {
 	o.SecureBooted = &v
 }
 
+// GetSecurityPolicyRuleScaleProfile returns the SecurityPolicyRuleScaleProfile field value if set, zero value otherwise.
+func (o *ClusterDistributedServiceCardStatus) GetSecurityPolicyRuleScaleProfile() string {
+	if o == nil || o.SecurityPolicyRuleScaleProfile == nil {
+		var ret string
+		return ret
+	}
+	return *o.SecurityPolicyRuleScaleProfile
+}
+
+// GetSecurityPolicyRuleScaleProfileOk returns a tuple with the SecurityPolicyRuleScaleProfile field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ClusterDistributedServiceCardStatus) GetSecurityPolicyRuleScaleProfileOk() (*string, bool) {
+	if o == nil || o.SecurityPolicyRuleScaleProfile == nil {
+		return nil, false
+	}
+	return o.SecurityPolicyRuleScaleProfile, true
+}
+
+// HasSecurityPolicyRuleScaleProfile returns a boolean if a field has been set.
+func (o *ClusterDistributedServiceCardStatus) HasSecurityPolicyRuleScaleProfile() bool {
+	if o != nil && o.SecurityPolicyRuleScaleProfile != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSecurityPolicyRuleScaleProfile gets a reference to the given string and assigns it to the SecurityPolicyRuleScaleProfile field.
+func (o *ClusterDistributedServiceCardStatus) SetSecurityPolicyRuleScaleProfile(v string) {
+	o.SecurityPolicyRuleScaleProfile = &v
+}
+
 // GetSerialNum returns the SerialNum field value if set, zero value otherwise.
 func (o *ClusterDistributedServiceCardStatus) GetSerialNum() string {
 	if o == nil || o.SerialNum == nil {
@@ -808,6 +842,9 @@ func (o ClusterDistributedServiceCardStatus) MarshalJSON() ([]byte, error) {
 	}
 	if o.SecureBooted != nil {
 		toSerialize["secure-booted"] = o.SecureBooted
+	}
+	if o.SecurityPolicyRuleScaleProfile != nil {
+		toSerialize["security-policy-rule-scale-profile"] = o.SecurityPolicyRuleScaleProfile
 	}
 	if o.SerialNum != nil {
 		toSerialize["serial-num"] = o.SerialNum

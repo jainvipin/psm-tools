@@ -1,7 +1,7 @@
 /*
- * Security API reference
+ * Workload API reference
  *
- *  
+ * Service name  
  *
  * API version: 1.0.0
  */

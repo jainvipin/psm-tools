@@ -22,6 +22,8 @@ type MonitoringExportConfig struct {
 	Gateway *string `json:"gateway,omitempty"`
 	// protocol and Port number where an external collector is gathering the data example \"UDP/2055\". Should be a valid layer 3 or layer 4 protocol and port/type (only support UDP currently).
 	Transport *string `json:"transport,omitempty"`
+	// Destination Virtual Router.
+	VirtualRouter *string `json:"virtual-router,omitempty"`
 }
 
 // NewMonitoringExportConfig instantiates a new MonitoringExportConfig object
@@ -137,6 +139,38 @@ func (o *MonitoringExportConfig) SetTransport(v string) {
 	o.Transport = &v
 }
 
+// GetVirtualRouter returns the VirtualRouter field value if set, zero value otherwise.
+func (o *MonitoringExportConfig) GetVirtualRouter() string {
+	if o == nil || o.VirtualRouter == nil {
+		var ret string
+		return ret
+	}
+	return *o.VirtualRouter
+}
+
+// GetVirtualRouterOk returns a tuple with the VirtualRouter field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitoringExportConfig) GetVirtualRouterOk() (*string, bool) {
+	if o == nil || o.VirtualRouter == nil {
+		return nil, false
+	}
+	return o.VirtualRouter, true
+}
+
+// HasVirtualRouter returns a boolean if a field has been set.
+func (o *MonitoringExportConfig) HasVirtualRouter() bool {
+	if o != nil && o.VirtualRouter != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVirtualRouter gets a reference to the given string and assigns it to the VirtualRouter field.
+func (o *MonitoringExportConfig) SetVirtualRouter(v string) {
+	o.VirtualRouter = &v
+}
+
 func (o MonitoringExportConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Destination != nil {
@@ -147,6 +181,9 @@ func (o MonitoringExportConfig) MarshalJSON() ([]byte, error) {
 	}
 	if o.Transport != nil {
 		toSerialize["transport"] = o.Transport
+	}
+	if o.VirtualRouter != nil {
+		toSerialize["virtual-router"] = o.VirtualRouter
 	}
 	return json.Marshal(toSerialize)
 }

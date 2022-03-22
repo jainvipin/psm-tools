@@ -32,7 +32,6 @@ type ApiWorkloadAbortMigrationRequest struct {
 	ctx _context.Context
 	ApiService *WorkloadV1ApiService
 	oTenant string
-	oName string
 	body *WorkloadWorkload
 }
 
@@ -49,15 +48,13 @@ func (r ApiWorkloadAbortMigrationRequest) Execute() (WorkloadWorkload, *_nethttp
  * AbortMigration Abort Workload Migration operation
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiWorkloadAbortMigrationRequest
  */
-func (a *WorkloadV1ApiService) AbortMigration(ctx _context.Context, oTenant string, oName string) ApiWorkloadAbortMigrationRequest {
+func (a *WorkloadV1ApiService) AbortMigration(ctx _context.Context, oTenant string) ApiWorkloadAbortMigrationRequest {
 	return ApiWorkloadAbortMigrationRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -82,7 +79,6 @@ func (a *WorkloadV1ApiService) AbortMigrationExecute(r ApiWorkloadAbortMigration
 
 	localVarPath := localBasePath + "/configs/workload/v1/tenant/{O.Tenant}/workloads/{O.Name}/AbortMigration"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -748,11 +744,366 @@ func (a *WorkloadV1ApiService) AddWorkload1Execute(r ApiWorkloadAddWorkload1Requ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiWorkloadAddWorkloadGroupRequest struct {
+	ctx _context.Context
+	ApiService *WorkloadV1ApiService
+	oTenant string
+	body *WorkloadWorkloadGroup
+}
+
+func (r ApiWorkloadAddWorkloadGroupRequest) Body(body WorkloadWorkloadGroup) ApiWorkloadAddWorkloadGroupRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiWorkloadAddWorkloadGroupRequest) Execute() (WorkloadWorkloadGroup, *_nethttp.Response, error) {
+	return r.ApiService.AddWorkloadGroupExecute(r)
+}
+
+/*
+ * AddWorkloadGroup Create WorkloadGroup object
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param oTenant
+ * @return ApiWorkloadAddWorkloadGroupRequest
+ */
+func (a *WorkloadV1ApiService) AddWorkloadGroup(ctx _context.Context, oTenant string) ApiWorkloadAddWorkloadGroupRequest {
+	return ApiWorkloadAddWorkloadGroupRequest{
+		ApiService: a,
+		ctx: ctx,
+		oTenant: oTenant,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return WorkloadWorkloadGroup
+ */
+func (a *WorkloadV1ApiService) AddWorkloadGroupExecute(r ApiWorkloadAddWorkloadGroupRequest) (WorkloadWorkloadGroup, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  WorkloadWorkloadGroup
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadV1ApiService.AddWorkloadGroup")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/configs/workload/v1/tenant/{O.Tenant}/workloadgroups"
+	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode == 401 {
+		a.client.cfg.PSMCfg.Login()
+		a.client.cfg.PSMCfg.SaveConfig()
+		return a.AddWorkloadGroupExecute(r)
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiWorkloadAddWorkloadGroup1Request struct {
+	ctx _context.Context
+	ApiService *WorkloadV1ApiService
+	body *WorkloadWorkloadGroup
+}
+
+func (r ApiWorkloadAddWorkloadGroup1Request) Body(body WorkloadWorkloadGroup) ApiWorkloadAddWorkloadGroup1Request {
+	r.body = &body
+	return r
+}
+
+func (r ApiWorkloadAddWorkloadGroup1Request) Execute() (WorkloadWorkloadGroup, *_nethttp.Response, error) {
+	return r.ApiService.AddWorkloadGroup1Execute(r)
+}
+
+/*
+ * AddWorkloadGroup1 Create WorkloadGroup object
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return ApiWorkloadAddWorkloadGroup1Request
+ */
+func (a *WorkloadV1ApiService) AddWorkloadGroup1(ctx _context.Context) ApiWorkloadAddWorkloadGroup1Request {
+	return ApiWorkloadAddWorkloadGroup1Request{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return WorkloadWorkloadGroup
+ */
+func (a *WorkloadV1ApiService) AddWorkloadGroup1Execute(r ApiWorkloadAddWorkloadGroup1Request) (WorkloadWorkloadGroup, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  WorkloadWorkloadGroup
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadV1ApiService.AddWorkloadGroup1")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/configs/workload/v1/workloadgroups"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode == 401 {
+		a.client.cfg.PSMCfg.Login()
+		a.client.cfg.PSMCfg.SaveConfig()
+		return a.AddWorkloadGroup1Execute(r)
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiWorkloadDeleteWorkloadRequest struct {
 	ctx _context.Context
 	ApiService *WorkloadV1ApiService
 	oTenant string
-	oName string
 }
 
 
@@ -764,15 +1115,13 @@ func (r ApiWorkloadDeleteWorkloadRequest) Execute() (WorkloadWorkload, *_nethttp
  * DeleteWorkload Delete Workload object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiWorkloadDeleteWorkloadRequest
  */
-func (a *WorkloadV1ApiService) DeleteWorkload(ctx _context.Context, oTenant string, oName string) ApiWorkloadDeleteWorkloadRequest {
+func (a *WorkloadV1ApiService) DeleteWorkload(ctx _context.Context, oTenant string) ApiWorkloadDeleteWorkloadRequest {
 	return ApiWorkloadDeleteWorkloadRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -797,7 +1146,6 @@ func (a *WorkloadV1ApiService) DeleteWorkloadExecute(r ApiWorkloadDeleteWorkload
 
 	localVarPath := localBasePath + "/configs/workload/v1/tenant/{O.Tenant}/workloads/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1092,11 +1440,350 @@ func (a *WorkloadV1ApiService) DeleteWorkload1Execute(r ApiWorkloadDeleteWorkloa
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiWorkloadDeleteWorkloadGroupRequest struct {
+	ctx _context.Context
+	ApiService *WorkloadV1ApiService
+	oTenant string
+}
+
+
+func (r ApiWorkloadDeleteWorkloadGroupRequest) Execute() (WorkloadWorkloadGroup, *_nethttp.Response, error) {
+	return r.ApiService.DeleteWorkloadGroupExecute(r)
+}
+
+/*
+ * DeleteWorkloadGroup Delete WorkloadGroup object
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param oTenant
+ * @return ApiWorkloadDeleteWorkloadGroupRequest
+ */
+func (a *WorkloadV1ApiService) DeleteWorkloadGroup(ctx _context.Context, oTenant string) ApiWorkloadDeleteWorkloadGroupRequest {
+	return ApiWorkloadDeleteWorkloadGroupRequest{
+		ApiService: a,
+		ctx: ctx,
+		oTenant: oTenant,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return WorkloadWorkloadGroup
+ */
+func (a *WorkloadV1ApiService) DeleteWorkloadGroupExecute(r ApiWorkloadDeleteWorkloadGroupRequest) (WorkloadWorkloadGroup, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  WorkloadWorkloadGroup
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadV1ApiService.DeleteWorkloadGroup")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/configs/workload/v1/tenant/{O.Tenant}/workloadgroups/{O.Name}"
+	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode == 401 {
+		a.client.cfg.PSMCfg.Login()
+		a.client.cfg.PSMCfg.SaveConfig()
+		return a.DeleteWorkloadGroupExecute(r)
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiWorkloadDeleteWorkloadGroup1Request struct {
+	ctx _context.Context
+	ApiService *WorkloadV1ApiService
+	oName string
+}
+
+
+func (r ApiWorkloadDeleteWorkloadGroup1Request) Execute() (WorkloadWorkloadGroup, *_nethttp.Response, error) {
+	return r.ApiService.DeleteWorkloadGroup1Execute(r)
+}
+
+/*
+ * DeleteWorkloadGroup1 Delete WorkloadGroup object
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param oName
+ * @return ApiWorkloadDeleteWorkloadGroup1Request
+ */
+func (a *WorkloadV1ApiService) DeleteWorkloadGroup1(ctx _context.Context, oName string) ApiWorkloadDeleteWorkloadGroup1Request {
+	return ApiWorkloadDeleteWorkloadGroup1Request{
+		ApiService: a,
+		ctx: ctx,
+		oName: oName,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return WorkloadWorkloadGroup
+ */
+func (a *WorkloadV1ApiService) DeleteWorkloadGroup1Execute(r ApiWorkloadDeleteWorkloadGroup1Request) (WorkloadWorkloadGroup, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  WorkloadWorkloadGroup
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadV1ApiService.DeleteWorkloadGroup1")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/configs/workload/v1/workloadgroups/{O.Name}"
+	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode == 401 {
+		a.client.cfg.PSMCfg.Login()
+		a.client.cfg.PSMCfg.SaveConfig()
+		return a.DeleteWorkloadGroup1Execute(r)
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiWorkloadFinalSyncMigrationRequest struct {
 	ctx _context.Context
 	ApiService *WorkloadV1ApiService
 	oTenant string
-	oName string
 	body *WorkloadWorkload
 }
 
@@ -1113,15 +1800,13 @@ func (r ApiWorkloadFinalSyncMigrationRequest) Execute() (WorkloadWorkload, *_net
  * FinalSyncMigration Initiates the final sync for the Workload Migration operation
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiWorkloadFinalSyncMigrationRequest
  */
-func (a *WorkloadV1ApiService) FinalSyncMigration(ctx _context.Context, oTenant string, oName string) ApiWorkloadFinalSyncMigrationRequest {
+func (a *WorkloadV1ApiService) FinalSyncMigration(ctx _context.Context, oTenant string) ApiWorkloadFinalSyncMigrationRequest {
 	return ApiWorkloadFinalSyncMigrationRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -1146,7 +1831,6 @@ func (a *WorkloadV1ApiService) FinalSyncMigrationExecute(r ApiWorkloadFinalSyncM
 
 	localVarPath := localBasePath + "/configs/workload/v1/tenant/{O.Tenant}/workloads/{O.Name}/FinalSyncMigration"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1460,7 +2144,6 @@ type ApiWorkloadFinishMigrationRequest struct {
 	ctx _context.Context
 	ApiService *WorkloadV1ApiService
 	oTenant string
-	oName string
 	body *WorkloadWorkload
 }
 
@@ -1477,15 +2160,13 @@ func (r ApiWorkloadFinishMigrationRequest) Execute() (WorkloadWorkload, *_nethtt
  * FinishMigration Finish Workload Migration operation
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiWorkloadFinishMigrationRequest
  */
-func (a *WorkloadV1ApiService) FinishMigration(ctx _context.Context, oTenant string, oName string) ApiWorkloadFinishMigrationRequest {
+func (a *WorkloadV1ApiService) FinishMigration(ctx _context.Context, oTenant string) ApiWorkloadFinishMigrationRequest {
 	return ApiWorkloadFinishMigrationRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -1510,7 +2191,6 @@ func (a *WorkloadV1ApiService) FinishMigrationExecute(r ApiWorkloadFinishMigrati
 
 	localVarPath := localBasePath + "/configs/workload/v1/tenant/{O.Tenant}/workloads/{O.Name}/FinishMigration"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1824,202 +2504,21 @@ type ApiWorkloadGetEndpointRequest struct {
 	ctx _context.Context
 	ApiService *WorkloadV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specNodeUuid *string
-	specHomingHostAddr *string
-	specMicroSegmentVlan *int64
 	specNodeUuidList *[]string
-	specType *string
-	statusWorkloadName *string
-	statusNetwork *string
-	statusHomingHostAddr *string
-	statusHomingHostName *string
-	statusIpv4Address *string
-	statusIpv4Gateway *string
-	statusIpv6Address *string
-	statusIpv6Gateway *string
-	statusMacAddress *string
-	statusNodeUuid *string
-	statusEndpointState *string
-	statusSecurityGroups *[]string
-	statusMicroSegmentVlan *int64
-	migrationStatus *string
-	sourceMacAddress *string
-	ipConfigIpAddress *string
-	ipConfigDefaultGw *string
-	ipConfigDnsServers *[]string
-	statusIpv4Addresses *[]string
-	statusIpv4Gateways *[]string
-	statusIpv6Addresses *[]string
-	statusIpv6Gateways *[]string
-	statusMirrorSessions *[]string
-	statusNodeUuidList *[]string
-	statusWorkloadNames *[]string
 }
 
 func (r ApiWorkloadGetEndpointRequest) TKind(tKind string) ApiWorkloadGetEndpointRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiWorkloadGetEndpointRequest) TApiVersion(tApiVersion string) ApiWorkloadGetEndpointRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) MetaNamespace(metaNamespace string) ApiWorkloadGetEndpointRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) MetaGenerationId(metaGenerationId string) ApiWorkloadGetEndpointRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) MetaResourceVersion(metaResourceVersion string) ApiWorkloadGetEndpointRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) MetaUuid(metaUuid string) ApiWorkloadGetEndpointRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiWorkloadGetEndpointRequest) MetaCreationTime(metaCreationTime time.Time) ApiWorkloadGetEndpointRequest {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiWorkloadGetEndpointRequest) MetaModTime(metaModTime time.Time) ApiWorkloadGetEndpointRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) MetaSelfLink(metaSelfLink string) ApiWorkloadGetEndpointRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) SpecNodeUuid(specNodeUuid string) ApiWorkloadGetEndpointRequest {
-	r.specNodeUuid = &specNodeUuid
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) SpecHomingHostAddr(specHomingHostAddr string) ApiWorkloadGetEndpointRequest {
-	r.specHomingHostAddr = &specHomingHostAddr
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) SpecMicroSegmentVlan(specMicroSegmentVlan int64) ApiWorkloadGetEndpointRequest {
-	r.specMicroSegmentVlan = &specMicroSegmentVlan
-	return r
-}
 func (r ApiWorkloadGetEndpointRequest) SpecNodeUuidList(specNodeUuidList []string) ApiWorkloadGetEndpointRequest {
 	r.specNodeUuidList = &specNodeUuidList
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) SpecType(specType string) ApiWorkloadGetEndpointRequest {
-	r.specType = &specType
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) StatusWorkloadName(statusWorkloadName string) ApiWorkloadGetEndpointRequest {
-	r.statusWorkloadName = &statusWorkloadName
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) StatusNetwork(statusNetwork string) ApiWorkloadGetEndpointRequest {
-	r.statusNetwork = &statusNetwork
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) StatusHomingHostAddr(statusHomingHostAddr string) ApiWorkloadGetEndpointRequest {
-	r.statusHomingHostAddr = &statusHomingHostAddr
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) StatusHomingHostName(statusHomingHostName string) ApiWorkloadGetEndpointRequest {
-	r.statusHomingHostName = &statusHomingHostName
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) StatusIpv4Address(statusIpv4Address string) ApiWorkloadGetEndpointRequest {
-	r.statusIpv4Address = &statusIpv4Address
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) StatusIpv4Gateway(statusIpv4Gateway string) ApiWorkloadGetEndpointRequest {
-	r.statusIpv4Gateway = &statusIpv4Gateway
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) StatusIpv6Address(statusIpv6Address string) ApiWorkloadGetEndpointRequest {
-	r.statusIpv6Address = &statusIpv6Address
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) StatusIpv6Gateway(statusIpv6Gateway string) ApiWorkloadGetEndpointRequest {
-	r.statusIpv6Gateway = &statusIpv6Gateway
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) StatusMacAddress(statusMacAddress string) ApiWorkloadGetEndpointRequest {
-	r.statusMacAddress = &statusMacAddress
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) StatusNodeUuid(statusNodeUuid string) ApiWorkloadGetEndpointRequest {
-	r.statusNodeUuid = &statusNodeUuid
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) StatusEndpointState(statusEndpointState string) ApiWorkloadGetEndpointRequest {
-	r.statusEndpointState = &statusEndpointState
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) StatusSecurityGroups(statusSecurityGroups []string) ApiWorkloadGetEndpointRequest {
-	r.statusSecurityGroups = &statusSecurityGroups
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) StatusMicroSegmentVlan(statusMicroSegmentVlan int64) ApiWorkloadGetEndpointRequest {
-	r.statusMicroSegmentVlan = &statusMicroSegmentVlan
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) MigrationStatus(migrationStatus string) ApiWorkloadGetEndpointRequest {
-	r.migrationStatus = &migrationStatus
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) SourceMacAddress(sourceMacAddress string) ApiWorkloadGetEndpointRequest {
-	r.sourceMacAddress = &sourceMacAddress
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) IpConfigIpAddress(ipConfigIpAddress string) ApiWorkloadGetEndpointRequest {
-	r.ipConfigIpAddress = &ipConfigIpAddress
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) IpConfigDefaultGw(ipConfigDefaultGw string) ApiWorkloadGetEndpointRequest {
-	r.ipConfigDefaultGw = &ipConfigDefaultGw
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) IpConfigDnsServers(ipConfigDnsServers []string) ApiWorkloadGetEndpointRequest {
-	r.ipConfigDnsServers = &ipConfigDnsServers
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) StatusIpv4Addresses(statusIpv4Addresses []string) ApiWorkloadGetEndpointRequest {
-	r.statusIpv4Addresses = &statusIpv4Addresses
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) StatusIpv4Gateways(statusIpv4Gateways []string) ApiWorkloadGetEndpointRequest {
-	r.statusIpv4Gateways = &statusIpv4Gateways
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) StatusIpv6Addresses(statusIpv6Addresses []string) ApiWorkloadGetEndpointRequest {
-	r.statusIpv6Addresses = &statusIpv6Addresses
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) StatusIpv6Gateways(statusIpv6Gateways []string) ApiWorkloadGetEndpointRequest {
-	r.statusIpv6Gateways = &statusIpv6Gateways
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) StatusMirrorSessions(statusMirrorSessions []string) ApiWorkloadGetEndpointRequest {
-	r.statusMirrorSessions = &statusMirrorSessions
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) StatusNodeUuidList(statusNodeUuidList []string) ApiWorkloadGetEndpointRequest {
-	r.statusNodeUuidList = &statusNodeUuidList
-	return r
-}
-func (r ApiWorkloadGetEndpointRequest) StatusWorkloadNames(statusWorkloadNames []string) ApiWorkloadGetEndpointRequest {
-	r.statusWorkloadNames = &statusWorkloadNames
 	return r
 }
 
@@ -2031,15 +2530,13 @@ func (r ApiWorkloadGetEndpointRequest) Execute() (WorkloadEndpoint, *_nethttp.Re
  * GetEndpoint Get Endpoint object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiWorkloadGetEndpointRequest
  */
-func (a *WorkloadV1ApiService) GetEndpoint(ctx _context.Context, oTenant string, oName string) ApiWorkloadGetEndpointRequest {
+func (a *WorkloadV1ApiService) GetEndpoint(ctx _context.Context, oTenant string) ApiWorkloadGetEndpointRequest {
 	return ApiWorkloadGetEndpointRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -2064,7 +2561,6 @@ func (a *WorkloadV1ApiService) GetEndpointExecute(r ApiWorkloadGetEndpointReques
 
 	localVarPath := localBasePath + "/configs/workload/v1/tenant/{O.Tenant}/endpoints/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -2073,119 +2569,11 @@ func (a *WorkloadV1ApiService) GetEndpointExecute(r ApiWorkloadGetEndpointReques
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specNodeUuid != nil {
-		localVarQueryParams.Add("spec.node-uuid", parameterToString(*r.specNodeUuid, ""))
-	}
-	if r.specHomingHostAddr != nil {
-		localVarQueryParams.Add("spec.homing-host-addr", parameterToString(*r.specHomingHostAddr, ""))
-	}
-	if r.specMicroSegmentVlan != nil {
-		localVarQueryParams.Add("spec.micro-segment-vlan", parameterToString(*r.specMicroSegmentVlan, ""))
-	}
 	if r.specNodeUuidList != nil {
 		localVarQueryParams.Add("spec.node-uuid-list", parameterToString(*r.specNodeUuidList, "csv"))
-	}
-	if r.specType != nil {
-		localVarQueryParams.Add("spec.type", parameterToString(*r.specType, ""))
-	}
-	if r.statusWorkloadName != nil {
-		localVarQueryParams.Add("status.workload-name", parameterToString(*r.statusWorkloadName, ""))
-	}
-	if r.statusNetwork != nil {
-		localVarQueryParams.Add("status.network", parameterToString(*r.statusNetwork, ""))
-	}
-	if r.statusHomingHostAddr != nil {
-		localVarQueryParams.Add("status.homing-host-addr", parameterToString(*r.statusHomingHostAddr, ""))
-	}
-	if r.statusHomingHostName != nil {
-		localVarQueryParams.Add("status.homing-host-name", parameterToString(*r.statusHomingHostName, ""))
-	}
-	if r.statusIpv4Address != nil {
-		localVarQueryParams.Add("status.ipv4-address", parameterToString(*r.statusIpv4Address, ""))
-	}
-	if r.statusIpv4Gateway != nil {
-		localVarQueryParams.Add("status.ipv4-gateway", parameterToString(*r.statusIpv4Gateway, ""))
-	}
-	if r.statusIpv6Address != nil {
-		localVarQueryParams.Add("status.ipv6-address", parameterToString(*r.statusIpv6Address, ""))
-	}
-	if r.statusIpv6Gateway != nil {
-		localVarQueryParams.Add("status.ipv6-gateway", parameterToString(*r.statusIpv6Gateway, ""))
-	}
-	if r.statusMacAddress != nil {
-		localVarQueryParams.Add("status.mac-address", parameterToString(*r.statusMacAddress, ""))
-	}
-	if r.statusNodeUuid != nil {
-		localVarQueryParams.Add("status.node-uuid", parameterToString(*r.statusNodeUuid, ""))
-	}
-	if r.statusEndpointState != nil {
-		localVarQueryParams.Add("status.EndpointState", parameterToString(*r.statusEndpointState, ""))
-	}
-	if r.statusSecurityGroups != nil {
-		localVarQueryParams.Add("status.SecurityGroups", parameterToString(*r.statusSecurityGroups, "csv"))
-	}
-	if r.statusMicroSegmentVlan != nil {
-		localVarQueryParams.Add("status.micro-segment-vlan", parameterToString(*r.statusMicroSegmentVlan, ""))
-	}
-	if r.migrationStatus != nil {
-		localVarQueryParams.Add("migration.status", parameterToString(*r.migrationStatus, ""))
-	}
-	if r.sourceMacAddress != nil {
-		localVarQueryParams.Add("source.mac-address", parameterToString(*r.sourceMacAddress, ""))
-	}
-	if r.ipConfigIpAddress != nil {
-		localVarQueryParams.Add("ip-config.ip-address", parameterToString(*r.ipConfigIpAddress, ""))
-	}
-	if r.ipConfigDefaultGw != nil {
-		localVarQueryParams.Add("ip-config.default-gw", parameterToString(*r.ipConfigDefaultGw, ""))
-	}
-	if r.ipConfigDnsServers != nil {
-		localVarQueryParams.Add("ip-config.dns-servers", parameterToString(*r.ipConfigDnsServers, "csv"))
-	}
-	if r.statusIpv4Addresses != nil {
-		localVarQueryParams.Add("status.ipv4-addresses", parameterToString(*r.statusIpv4Addresses, "csv"))
-	}
-	if r.statusIpv4Gateways != nil {
-		localVarQueryParams.Add("status.ipv4-gateways", parameterToString(*r.statusIpv4Gateways, "csv"))
-	}
-	if r.statusIpv6Addresses != nil {
-		localVarQueryParams.Add("status.ipv6-addresses", parameterToString(*r.statusIpv6Addresses, "csv"))
-	}
-	if r.statusIpv6Gateways != nil {
-		localVarQueryParams.Add("status.ipv6-gateways", parameterToString(*r.statusIpv6Gateways, "csv"))
-	}
-	if r.statusMirrorSessions != nil {
-		localVarQueryParams.Add("status.mirror-sessions", parameterToString(*r.statusMirrorSessions, "csv"))
-	}
-	if r.statusNodeUuidList != nil {
-		localVarQueryParams.Add("status.node-uuid-list", parameterToString(*r.statusNodeUuidList, "csv"))
-	}
-	if r.statusWorkloadNames != nil {
-		localVarQueryParams.Add("status.workload-names", parameterToString(*r.statusWorkloadNames, "csv"))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2311,205 +2699,20 @@ type ApiWorkloadGetEndpoint1Request struct {
 	ApiService *WorkloadV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specNodeUuid *string
-	specHomingHostAddr *string
-	specMicroSegmentVlan *int64
 	specNodeUuidList *[]string
-	specType *string
-	statusWorkloadName *string
-	statusNetwork *string
-	statusHomingHostAddr *string
-	statusHomingHostName *string
-	statusIpv4Address *string
-	statusIpv4Gateway *string
-	statusIpv6Address *string
-	statusIpv6Gateway *string
-	statusMacAddress *string
-	statusNodeUuid *string
-	statusEndpointState *string
-	statusSecurityGroups *[]string
-	statusMicroSegmentVlan *int64
-	migrationStatus *string
-	sourceMacAddress *string
-	ipConfigIpAddress *string
-	ipConfigDefaultGw *string
-	ipConfigDnsServers *[]string
-	statusIpv4Addresses *[]string
-	statusIpv4Gateways *[]string
-	statusIpv6Addresses *[]string
-	statusIpv6Gateways *[]string
-	statusMirrorSessions *[]string
-	statusNodeUuidList *[]string
-	statusWorkloadNames *[]string
 }
 
 func (r ApiWorkloadGetEndpoint1Request) TKind(tKind string) ApiWorkloadGetEndpoint1Request {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiWorkloadGetEndpoint1Request) TApiVersion(tApiVersion string) ApiWorkloadGetEndpoint1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) MetaTenant(metaTenant string) ApiWorkloadGetEndpoint1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) MetaNamespace(metaNamespace string) ApiWorkloadGetEndpoint1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) MetaGenerationId(metaGenerationId string) ApiWorkloadGetEndpoint1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) MetaResourceVersion(metaResourceVersion string) ApiWorkloadGetEndpoint1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) MetaUuid(metaUuid string) ApiWorkloadGetEndpoint1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiWorkloadGetEndpoint1Request) MetaCreationTime(metaCreationTime time.Time) ApiWorkloadGetEndpoint1Request {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiWorkloadGetEndpoint1Request) MetaModTime(metaModTime time.Time) ApiWorkloadGetEndpoint1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) MetaSelfLink(metaSelfLink string) ApiWorkloadGetEndpoint1Request {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) SpecNodeUuid(specNodeUuid string) ApiWorkloadGetEndpoint1Request {
-	r.specNodeUuid = &specNodeUuid
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) SpecHomingHostAddr(specHomingHostAddr string) ApiWorkloadGetEndpoint1Request {
-	r.specHomingHostAddr = &specHomingHostAddr
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) SpecMicroSegmentVlan(specMicroSegmentVlan int64) ApiWorkloadGetEndpoint1Request {
-	r.specMicroSegmentVlan = &specMicroSegmentVlan
-	return r
-}
 func (r ApiWorkloadGetEndpoint1Request) SpecNodeUuidList(specNodeUuidList []string) ApiWorkloadGetEndpoint1Request {
 	r.specNodeUuidList = &specNodeUuidList
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) SpecType(specType string) ApiWorkloadGetEndpoint1Request {
-	r.specType = &specType
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) StatusWorkloadName(statusWorkloadName string) ApiWorkloadGetEndpoint1Request {
-	r.statusWorkloadName = &statusWorkloadName
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) StatusNetwork(statusNetwork string) ApiWorkloadGetEndpoint1Request {
-	r.statusNetwork = &statusNetwork
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) StatusHomingHostAddr(statusHomingHostAddr string) ApiWorkloadGetEndpoint1Request {
-	r.statusHomingHostAddr = &statusHomingHostAddr
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) StatusHomingHostName(statusHomingHostName string) ApiWorkloadGetEndpoint1Request {
-	r.statusHomingHostName = &statusHomingHostName
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) StatusIpv4Address(statusIpv4Address string) ApiWorkloadGetEndpoint1Request {
-	r.statusIpv4Address = &statusIpv4Address
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) StatusIpv4Gateway(statusIpv4Gateway string) ApiWorkloadGetEndpoint1Request {
-	r.statusIpv4Gateway = &statusIpv4Gateway
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) StatusIpv6Address(statusIpv6Address string) ApiWorkloadGetEndpoint1Request {
-	r.statusIpv6Address = &statusIpv6Address
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) StatusIpv6Gateway(statusIpv6Gateway string) ApiWorkloadGetEndpoint1Request {
-	r.statusIpv6Gateway = &statusIpv6Gateway
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) StatusMacAddress(statusMacAddress string) ApiWorkloadGetEndpoint1Request {
-	r.statusMacAddress = &statusMacAddress
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) StatusNodeUuid(statusNodeUuid string) ApiWorkloadGetEndpoint1Request {
-	r.statusNodeUuid = &statusNodeUuid
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) StatusEndpointState(statusEndpointState string) ApiWorkloadGetEndpoint1Request {
-	r.statusEndpointState = &statusEndpointState
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) StatusSecurityGroups(statusSecurityGroups []string) ApiWorkloadGetEndpoint1Request {
-	r.statusSecurityGroups = &statusSecurityGroups
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) StatusMicroSegmentVlan(statusMicroSegmentVlan int64) ApiWorkloadGetEndpoint1Request {
-	r.statusMicroSegmentVlan = &statusMicroSegmentVlan
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) MigrationStatus(migrationStatus string) ApiWorkloadGetEndpoint1Request {
-	r.migrationStatus = &migrationStatus
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) SourceMacAddress(sourceMacAddress string) ApiWorkloadGetEndpoint1Request {
-	r.sourceMacAddress = &sourceMacAddress
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) IpConfigIpAddress(ipConfigIpAddress string) ApiWorkloadGetEndpoint1Request {
-	r.ipConfigIpAddress = &ipConfigIpAddress
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) IpConfigDefaultGw(ipConfigDefaultGw string) ApiWorkloadGetEndpoint1Request {
-	r.ipConfigDefaultGw = &ipConfigDefaultGw
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) IpConfigDnsServers(ipConfigDnsServers []string) ApiWorkloadGetEndpoint1Request {
-	r.ipConfigDnsServers = &ipConfigDnsServers
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) StatusIpv4Addresses(statusIpv4Addresses []string) ApiWorkloadGetEndpoint1Request {
-	r.statusIpv4Addresses = &statusIpv4Addresses
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) StatusIpv4Gateways(statusIpv4Gateways []string) ApiWorkloadGetEndpoint1Request {
-	r.statusIpv4Gateways = &statusIpv4Gateways
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) StatusIpv6Addresses(statusIpv6Addresses []string) ApiWorkloadGetEndpoint1Request {
-	r.statusIpv6Addresses = &statusIpv6Addresses
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) StatusIpv6Gateways(statusIpv6Gateways []string) ApiWorkloadGetEndpoint1Request {
-	r.statusIpv6Gateways = &statusIpv6Gateways
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) StatusMirrorSessions(statusMirrorSessions []string) ApiWorkloadGetEndpoint1Request {
-	r.statusMirrorSessions = &statusMirrorSessions
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) StatusNodeUuidList(statusNodeUuidList []string) ApiWorkloadGetEndpoint1Request {
-	r.statusNodeUuidList = &statusNodeUuidList
-	return r
-}
-func (r ApiWorkloadGetEndpoint1Request) StatusWorkloadNames(statusWorkloadNames []string) ApiWorkloadGetEndpoint1Request {
-	r.statusWorkloadNames = &statusWorkloadNames
 	return r
 }
 
@@ -2560,122 +2763,11 @@ func (a *WorkloadV1ApiService) GetEndpoint1Execute(r ApiWorkloadGetEndpoint1Requ
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specNodeUuid != nil {
-		localVarQueryParams.Add("spec.node-uuid", parameterToString(*r.specNodeUuid, ""))
-	}
-	if r.specHomingHostAddr != nil {
-		localVarQueryParams.Add("spec.homing-host-addr", parameterToString(*r.specHomingHostAddr, ""))
-	}
-	if r.specMicroSegmentVlan != nil {
-		localVarQueryParams.Add("spec.micro-segment-vlan", parameterToString(*r.specMicroSegmentVlan, ""))
-	}
 	if r.specNodeUuidList != nil {
 		localVarQueryParams.Add("spec.node-uuid-list", parameterToString(*r.specNodeUuidList, "csv"))
-	}
-	if r.specType != nil {
-		localVarQueryParams.Add("spec.type", parameterToString(*r.specType, ""))
-	}
-	if r.statusWorkloadName != nil {
-		localVarQueryParams.Add("status.workload-name", parameterToString(*r.statusWorkloadName, ""))
-	}
-	if r.statusNetwork != nil {
-		localVarQueryParams.Add("status.network", parameterToString(*r.statusNetwork, ""))
-	}
-	if r.statusHomingHostAddr != nil {
-		localVarQueryParams.Add("status.homing-host-addr", parameterToString(*r.statusHomingHostAddr, ""))
-	}
-	if r.statusHomingHostName != nil {
-		localVarQueryParams.Add("status.homing-host-name", parameterToString(*r.statusHomingHostName, ""))
-	}
-	if r.statusIpv4Address != nil {
-		localVarQueryParams.Add("status.ipv4-address", parameterToString(*r.statusIpv4Address, ""))
-	}
-	if r.statusIpv4Gateway != nil {
-		localVarQueryParams.Add("status.ipv4-gateway", parameterToString(*r.statusIpv4Gateway, ""))
-	}
-	if r.statusIpv6Address != nil {
-		localVarQueryParams.Add("status.ipv6-address", parameterToString(*r.statusIpv6Address, ""))
-	}
-	if r.statusIpv6Gateway != nil {
-		localVarQueryParams.Add("status.ipv6-gateway", parameterToString(*r.statusIpv6Gateway, ""))
-	}
-	if r.statusMacAddress != nil {
-		localVarQueryParams.Add("status.mac-address", parameterToString(*r.statusMacAddress, ""))
-	}
-	if r.statusNodeUuid != nil {
-		localVarQueryParams.Add("status.node-uuid", parameterToString(*r.statusNodeUuid, ""))
-	}
-	if r.statusEndpointState != nil {
-		localVarQueryParams.Add("status.EndpointState", parameterToString(*r.statusEndpointState, ""))
-	}
-	if r.statusSecurityGroups != nil {
-		localVarQueryParams.Add("status.SecurityGroups", parameterToString(*r.statusSecurityGroups, "csv"))
-	}
-	if r.statusMicroSegmentVlan != nil {
-		localVarQueryParams.Add("status.micro-segment-vlan", parameterToString(*r.statusMicroSegmentVlan, ""))
-	}
-	if r.migrationStatus != nil {
-		localVarQueryParams.Add("migration.status", parameterToString(*r.migrationStatus, ""))
-	}
-	if r.sourceMacAddress != nil {
-		localVarQueryParams.Add("source.mac-address", parameterToString(*r.sourceMacAddress, ""))
-	}
-	if r.ipConfigIpAddress != nil {
-		localVarQueryParams.Add("ip-config.ip-address", parameterToString(*r.ipConfigIpAddress, ""))
-	}
-	if r.ipConfigDefaultGw != nil {
-		localVarQueryParams.Add("ip-config.default-gw", parameterToString(*r.ipConfigDefaultGw, ""))
-	}
-	if r.ipConfigDnsServers != nil {
-		localVarQueryParams.Add("ip-config.dns-servers", parameterToString(*r.ipConfigDnsServers, "csv"))
-	}
-	if r.statusIpv4Addresses != nil {
-		localVarQueryParams.Add("status.ipv4-addresses", parameterToString(*r.statusIpv4Addresses, "csv"))
-	}
-	if r.statusIpv4Gateways != nil {
-		localVarQueryParams.Add("status.ipv4-gateways", parameterToString(*r.statusIpv4Gateways, "csv"))
-	}
-	if r.statusIpv6Addresses != nil {
-		localVarQueryParams.Add("status.ipv6-addresses", parameterToString(*r.statusIpv6Addresses, "csv"))
-	}
-	if r.statusIpv6Gateways != nil {
-		localVarQueryParams.Add("status.ipv6-gateways", parameterToString(*r.statusIpv6Gateways, "csv"))
-	}
-	if r.statusMirrorSessions != nil {
-		localVarQueryParams.Add("status.mirror-sessions", parameterToString(*r.statusMirrorSessions, "csv"))
-	}
-	if r.statusNodeUuidList != nil {
-		localVarQueryParams.Add("status.node-uuid-list", parameterToString(*r.statusNodeUuidList, "csv"))
-	}
-	if r.statusWorkloadNames != nil {
-		localVarQueryParams.Add("status.workload-names", parameterToString(*r.statusWorkloadNames, "csv"))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2800,122 +2892,21 @@ type ApiWorkloadGetWorkloadRequest struct {
 	ctx _context.Context
 	ApiService *WorkloadV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specHostName *string
-	specMigrationTimeout *string
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
 	propagationStatusPendingDscs *[]string
-	statusHostName *string
-	migrationStatusStage *string
-	migrationStatusStartedAt *time.Time
-	migrationStatusStatus *string
-	migrationStatusCompletedAt *time.Time
-	statusMirrorSessions *[]string
 }
 
 func (r ApiWorkloadGetWorkloadRequest) TKind(tKind string) ApiWorkloadGetWorkloadRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiWorkloadGetWorkloadRequest) TApiVersion(tApiVersion string) ApiWorkloadGetWorkloadRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiWorkloadGetWorkloadRequest) MetaNamespace(metaNamespace string) ApiWorkloadGetWorkloadRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiWorkloadGetWorkloadRequest) MetaGenerationId(metaGenerationId string) ApiWorkloadGetWorkloadRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiWorkloadGetWorkloadRequest) MetaResourceVersion(metaResourceVersion string) ApiWorkloadGetWorkloadRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiWorkloadGetWorkloadRequest) MetaUuid(metaUuid string) ApiWorkloadGetWorkloadRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiWorkloadGetWorkloadRequest) MetaCreationTime(metaCreationTime time.Time) ApiWorkloadGetWorkloadRequest {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiWorkloadGetWorkloadRequest) MetaModTime(metaModTime time.Time) ApiWorkloadGetWorkloadRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiWorkloadGetWorkloadRequest) MetaSelfLink(metaSelfLink string) ApiWorkloadGetWorkloadRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiWorkloadGetWorkloadRequest) SpecHostName(specHostName string) ApiWorkloadGetWorkloadRequest {
-	r.specHostName = &specHostName
-	return r
-}
-func (r ApiWorkloadGetWorkloadRequest) SpecMigrationTimeout(specMigrationTimeout string) ApiWorkloadGetWorkloadRequest {
-	r.specMigrationTimeout = &specMigrationTimeout
-	return r
-}
-func (r ApiWorkloadGetWorkloadRequest) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiWorkloadGetWorkloadRequest {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiWorkloadGetWorkloadRequest) PropagationStatusUpdated(propagationStatusUpdated int32) ApiWorkloadGetWorkloadRequest {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiWorkloadGetWorkloadRequest) PropagationStatusPending(propagationStatusPending int32) ApiWorkloadGetWorkloadRequest {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiWorkloadGetWorkloadRequest) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiWorkloadGetWorkloadRequest {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiWorkloadGetWorkloadRequest) PropagationStatusStatus(propagationStatusStatus string) ApiWorkloadGetWorkloadRequest {
-	r.propagationStatusStatus = &propagationStatusStatus
-	return r
-}
 func (r ApiWorkloadGetWorkloadRequest) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiWorkloadGetWorkloadRequest {
 	r.propagationStatusPendingDscs = &propagationStatusPendingDscs
-	return r
-}
-func (r ApiWorkloadGetWorkloadRequest) StatusHostName(statusHostName string) ApiWorkloadGetWorkloadRequest {
-	r.statusHostName = &statusHostName
-	return r
-}
-func (r ApiWorkloadGetWorkloadRequest) MigrationStatusStage(migrationStatusStage string) ApiWorkloadGetWorkloadRequest {
-	r.migrationStatusStage = &migrationStatusStage
-	return r
-}
-func (r ApiWorkloadGetWorkloadRequest) MigrationStatusStartedAt(migrationStatusStartedAt time.Time) ApiWorkloadGetWorkloadRequest {
-	r.migrationStatusStartedAt = &migrationStatusStartedAt
-	return r
-}
-func (r ApiWorkloadGetWorkloadRequest) MigrationStatusStatus(migrationStatusStatus string) ApiWorkloadGetWorkloadRequest {
-	r.migrationStatusStatus = &migrationStatusStatus
-	return r
-}
-func (r ApiWorkloadGetWorkloadRequest) MigrationStatusCompletedAt(migrationStatusCompletedAt time.Time) ApiWorkloadGetWorkloadRequest {
-	r.migrationStatusCompletedAt = &migrationStatusCompletedAt
-	return r
-}
-func (r ApiWorkloadGetWorkloadRequest) StatusMirrorSessions(statusMirrorSessions []string) ApiWorkloadGetWorkloadRequest {
-	r.statusMirrorSessions = &statusMirrorSessions
 	return r
 }
 
@@ -2927,15 +2918,13 @@ func (r ApiWorkloadGetWorkloadRequest) Execute() (WorkloadWorkload, *_nethttp.Re
  * GetWorkload Get Workload object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiWorkloadGetWorkloadRequest
  */
-func (a *WorkloadV1ApiService) GetWorkload(ctx _context.Context, oTenant string, oName string) ApiWorkloadGetWorkloadRequest {
+func (a *WorkloadV1ApiService) GetWorkload(ctx _context.Context, oTenant string) ApiWorkloadGetWorkloadRequest {
 	return ApiWorkloadGetWorkloadRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -2960,7 +2949,6 @@ func (a *WorkloadV1ApiService) GetWorkloadExecute(r ApiWorkloadGetWorkloadReques
 
 	localVarPath := localBasePath + "/configs/workload/v1/tenant/{O.Tenant}/workloads/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -2969,71 +2957,11 @@ func (a *WorkloadV1ApiService) GetWorkloadExecute(r ApiWorkloadGetWorkloadReques
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specHostName != nil {
-		localVarQueryParams.Add("spec.host-name", parameterToString(*r.specHostName, ""))
-	}
-	if r.specMigrationTimeout != nil {
-		localVarQueryParams.Add("spec.migration-timeout", parameterToString(*r.specMigrationTimeout, ""))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
-	}
 	if r.propagationStatusPendingDscs != nil {
 		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
-	}
-	if r.statusHostName != nil {
-		localVarQueryParams.Add("status.host-name", parameterToString(*r.statusHostName, ""))
-	}
-	if r.migrationStatusStage != nil {
-		localVarQueryParams.Add("migration-status.stage", parameterToString(*r.migrationStatusStage, ""))
-	}
-	if r.migrationStatusStartedAt != nil {
-		localVarQueryParams.Add("migration-status.started-at", parameterToString(*r.migrationStatusStartedAt, ""))
-	}
-	if r.migrationStatusStatus != nil {
-		localVarQueryParams.Add("migration-status.status", parameterToString(*r.migrationStatusStatus, ""))
-	}
-	if r.migrationStatusCompletedAt != nil {
-		localVarQueryParams.Add("migration-status.completed-at", parameterToString(*r.migrationStatusCompletedAt, ""))
-	}
-	if r.statusMirrorSessions != nil {
-		localVarQueryParams.Add("status.mirror-sessions", parameterToString(*r.statusMirrorSessions, "csv"))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3159,125 +3087,20 @@ type ApiWorkloadGetWorkload1Request struct {
 	ApiService *WorkloadV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specHostName *string
-	specMigrationTimeout *string
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
 	propagationStatusPendingDscs *[]string
-	statusHostName *string
-	migrationStatusStage *string
-	migrationStatusStartedAt *time.Time
-	migrationStatusStatus *string
-	migrationStatusCompletedAt *time.Time
-	statusMirrorSessions *[]string
 }
 
 func (r ApiWorkloadGetWorkload1Request) TKind(tKind string) ApiWorkloadGetWorkload1Request {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiWorkloadGetWorkload1Request) TApiVersion(tApiVersion string) ApiWorkloadGetWorkload1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiWorkloadGetWorkload1Request) MetaTenant(metaTenant string) ApiWorkloadGetWorkload1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiWorkloadGetWorkload1Request) MetaNamespace(metaNamespace string) ApiWorkloadGetWorkload1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiWorkloadGetWorkload1Request) MetaGenerationId(metaGenerationId string) ApiWorkloadGetWorkload1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiWorkloadGetWorkload1Request) MetaResourceVersion(metaResourceVersion string) ApiWorkloadGetWorkload1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiWorkloadGetWorkload1Request) MetaUuid(metaUuid string) ApiWorkloadGetWorkload1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiWorkloadGetWorkload1Request) MetaCreationTime(metaCreationTime time.Time) ApiWorkloadGetWorkload1Request {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiWorkloadGetWorkload1Request) MetaModTime(metaModTime time.Time) ApiWorkloadGetWorkload1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiWorkloadGetWorkload1Request) MetaSelfLink(metaSelfLink string) ApiWorkloadGetWorkload1Request {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiWorkloadGetWorkload1Request) SpecHostName(specHostName string) ApiWorkloadGetWorkload1Request {
-	r.specHostName = &specHostName
-	return r
-}
-func (r ApiWorkloadGetWorkload1Request) SpecMigrationTimeout(specMigrationTimeout string) ApiWorkloadGetWorkload1Request {
-	r.specMigrationTimeout = &specMigrationTimeout
-	return r
-}
-func (r ApiWorkloadGetWorkload1Request) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiWorkloadGetWorkload1Request {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiWorkloadGetWorkload1Request) PropagationStatusUpdated(propagationStatusUpdated int32) ApiWorkloadGetWorkload1Request {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiWorkloadGetWorkload1Request) PropagationStatusPending(propagationStatusPending int32) ApiWorkloadGetWorkload1Request {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiWorkloadGetWorkload1Request) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiWorkloadGetWorkload1Request {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiWorkloadGetWorkload1Request) PropagationStatusStatus(propagationStatusStatus string) ApiWorkloadGetWorkload1Request {
-	r.propagationStatusStatus = &propagationStatusStatus
-	return r
-}
 func (r ApiWorkloadGetWorkload1Request) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiWorkloadGetWorkload1Request {
 	r.propagationStatusPendingDscs = &propagationStatusPendingDscs
-	return r
-}
-func (r ApiWorkloadGetWorkload1Request) StatusHostName(statusHostName string) ApiWorkloadGetWorkload1Request {
-	r.statusHostName = &statusHostName
-	return r
-}
-func (r ApiWorkloadGetWorkload1Request) MigrationStatusStage(migrationStatusStage string) ApiWorkloadGetWorkload1Request {
-	r.migrationStatusStage = &migrationStatusStage
-	return r
-}
-func (r ApiWorkloadGetWorkload1Request) MigrationStatusStartedAt(migrationStatusStartedAt time.Time) ApiWorkloadGetWorkload1Request {
-	r.migrationStatusStartedAt = &migrationStatusStartedAt
-	return r
-}
-func (r ApiWorkloadGetWorkload1Request) MigrationStatusStatus(migrationStatusStatus string) ApiWorkloadGetWorkload1Request {
-	r.migrationStatusStatus = &migrationStatusStatus
-	return r
-}
-func (r ApiWorkloadGetWorkload1Request) MigrationStatusCompletedAt(migrationStatusCompletedAt time.Time) ApiWorkloadGetWorkload1Request {
-	r.migrationStatusCompletedAt = &migrationStatusCompletedAt
-	return r
-}
-func (r ApiWorkloadGetWorkload1Request) StatusMirrorSessions(statusMirrorSessions []string) ApiWorkloadGetWorkload1Request {
-	r.statusMirrorSessions = &statusMirrorSessions
 	return r
 }
 
@@ -3328,74 +3151,11 @@ func (a *WorkloadV1ApiService) GetWorkload1Execute(r ApiWorkloadGetWorkload1Requ
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specHostName != nil {
-		localVarQueryParams.Add("spec.host-name", parameterToString(*r.specHostName, ""))
-	}
-	if r.specMigrationTimeout != nil {
-		localVarQueryParams.Add("spec.migration-timeout", parameterToString(*r.specMigrationTimeout, ""))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
-	}
 	if r.propagationStatusPendingDscs != nil {
 		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
-	}
-	if r.statusHostName != nil {
-		localVarQueryParams.Add("status.host-name", parameterToString(*r.statusHostName, ""))
-	}
-	if r.migrationStatusStage != nil {
-		localVarQueryParams.Add("migration-status.stage", parameterToString(*r.migrationStatusStage, ""))
-	}
-	if r.migrationStatusStartedAt != nil {
-		localVarQueryParams.Add("migration-status.started-at", parameterToString(*r.migrationStatusStartedAt, ""))
-	}
-	if r.migrationStatusStatus != nil {
-		localVarQueryParams.Add("migration-status.status", parameterToString(*r.migrationStatusStatus, ""))
-	}
-	if r.migrationStatusCompletedAt != nil {
-		localVarQueryParams.Add("migration-status.completed-at", parameterToString(*r.migrationStatusCompletedAt, ""))
-	}
-	if r.statusMirrorSessions != nil {
-		localVarQueryParams.Add("status.mirror-sessions", parameterToString(*r.statusMirrorSessions, "csv"))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3516,11 +3276,382 @@ func (a *WorkloadV1ApiService) GetWorkload1Execute(r ApiWorkloadGetWorkload1Requ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiWorkloadGetWorkloadGroupRequest struct {
+	ctx _context.Context
+	ApiService *WorkloadV1ApiService
+	oTenant string
+	tKind *string
+	metaCreationTime *time.Time
+}
+
+func (r ApiWorkloadGetWorkloadGroupRequest) TKind(tKind string) ApiWorkloadGetWorkloadGroupRequest {
+	r.tKind = &tKind
+	return r
+}
+func (r ApiWorkloadGetWorkloadGroupRequest) MetaCreationTime(metaCreationTime time.Time) ApiWorkloadGetWorkloadGroupRequest {
+	r.metaCreationTime = &metaCreationTime
+	return r
+}
+
+func (r ApiWorkloadGetWorkloadGroupRequest) Execute() (WorkloadWorkloadGroup, *_nethttp.Response, error) {
+	return r.ApiService.GetWorkloadGroupExecute(r)
+}
+
+/*
+ * GetWorkloadGroup Get WorkloadGroup object
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param oTenant
+ * @return ApiWorkloadGetWorkloadGroupRequest
+ */
+func (a *WorkloadV1ApiService) GetWorkloadGroup(ctx _context.Context, oTenant string) ApiWorkloadGetWorkloadGroupRequest {
+	return ApiWorkloadGetWorkloadGroupRequest{
+		ApiService: a,
+		ctx: ctx,
+		oTenant: oTenant,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return WorkloadWorkloadGroup
+ */
+func (a *WorkloadV1ApiService) GetWorkloadGroupExecute(r ApiWorkloadGetWorkloadGroupRequest) (WorkloadWorkloadGroup, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  WorkloadWorkloadGroup
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadV1ApiService.GetWorkloadGroup")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/configs/workload/v1/tenant/{O.Tenant}/workloadgroups/{O.Name}"
+	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.tKind != nil {
+		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
+	}
+	if r.metaCreationTime != nil {
+		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode == 401 {
+		a.client.cfg.PSMCfg.Login()
+		a.client.cfg.PSMCfg.SaveConfig()
+		return a.GetWorkloadGroupExecute(r)
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiWorkloadGetWorkloadGroup1Request struct {
+	ctx _context.Context
+	ApiService *WorkloadV1ApiService
+	oName string
+	tKind *string
+	metaCreationTime *time.Time
+}
+
+func (r ApiWorkloadGetWorkloadGroup1Request) TKind(tKind string) ApiWorkloadGetWorkloadGroup1Request {
+	r.tKind = &tKind
+	return r
+}
+func (r ApiWorkloadGetWorkloadGroup1Request) MetaCreationTime(metaCreationTime time.Time) ApiWorkloadGetWorkloadGroup1Request {
+	r.metaCreationTime = &metaCreationTime
+	return r
+}
+
+func (r ApiWorkloadGetWorkloadGroup1Request) Execute() (WorkloadWorkloadGroup, *_nethttp.Response, error) {
+	return r.ApiService.GetWorkloadGroup1Execute(r)
+}
+
+/*
+ * GetWorkloadGroup1 Get WorkloadGroup object
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param oName
+ * @return ApiWorkloadGetWorkloadGroup1Request
+ */
+func (a *WorkloadV1ApiService) GetWorkloadGroup1(ctx _context.Context, oName string) ApiWorkloadGetWorkloadGroup1Request {
+	return ApiWorkloadGetWorkloadGroup1Request{
+		ApiService: a,
+		ctx: ctx,
+		oName: oName,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return WorkloadWorkloadGroup
+ */
+func (a *WorkloadV1ApiService) GetWorkloadGroup1Execute(r ApiWorkloadGetWorkloadGroup1Request) (WorkloadWorkloadGroup, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  WorkloadWorkloadGroup
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadV1ApiService.GetWorkloadGroup1")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/configs/workload/v1/workloadgroups/{O.Name}"
+	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.tKind != nil {
+		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
+	}
+	if r.metaCreationTime != nil {
+		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode == 401 {
+		a.client.cfg.PSMCfg.Login()
+		a.client.cfg.PSMCfg.SaveConfig()
+		return a.GetWorkloadGroup1Execute(r)
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiWorkloadLabelWorkloadRequest struct {
 	ctx _context.Context
 	ApiService *WorkloadV1ApiService
 	oTenant string
-	oName string
 	body *ApiLabel
 }
 
@@ -3537,15 +3668,13 @@ func (r ApiWorkloadLabelWorkloadRequest) Execute() (WorkloadWorkload, *_nethttp.
  * LabelWorkload Label Workload object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiWorkloadLabelWorkloadRequest
  */
-func (a *WorkloadV1ApiService) LabelWorkload(ctx _context.Context, oTenant string, oName string) ApiWorkloadLabelWorkloadRequest {
+func (a *WorkloadV1ApiService) LabelWorkload(ctx _context.Context, oTenant string) ApiWorkloadLabelWorkloadRequest {
 	return ApiWorkloadLabelWorkloadRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -3570,7 +3699,6 @@ func (a *WorkloadV1ApiService) LabelWorkloadExecute(r ApiWorkloadLabelWorkloadRe
 
 	localVarPath := localBasePath + "/configs/workload/v1/tenant/{O.Tenant}/workloads/{O.Name}/label"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -3880,85 +4008,385 @@ func (a *WorkloadV1ApiService) LabelWorkload1Execute(r ApiWorkloadLabelWorkload1
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiWorkloadLabelWorkloadGroupRequest struct {
+	ctx _context.Context
+	ApiService *WorkloadV1ApiService
+	oTenant string
+	body *ApiLabel
+}
+
+func (r ApiWorkloadLabelWorkloadGroupRequest) Body(body ApiLabel) ApiWorkloadLabelWorkloadGroupRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiWorkloadLabelWorkloadGroupRequest) Execute() (WorkloadWorkloadGroup, *_nethttp.Response, error) {
+	return r.ApiService.LabelWorkloadGroupExecute(r)
+}
+
+/*
+ * LabelWorkloadGroup Label WorkloadGroup object
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param oTenant
+ * @return ApiWorkloadLabelWorkloadGroupRequest
+ */
+func (a *WorkloadV1ApiService) LabelWorkloadGroup(ctx _context.Context, oTenant string) ApiWorkloadLabelWorkloadGroupRequest {
+	return ApiWorkloadLabelWorkloadGroupRequest{
+		ApiService: a,
+		ctx: ctx,
+		oTenant: oTenant,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return WorkloadWorkloadGroup
+ */
+func (a *WorkloadV1ApiService) LabelWorkloadGroupExecute(r ApiWorkloadLabelWorkloadGroupRequest) (WorkloadWorkloadGroup, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  WorkloadWorkloadGroup
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadV1ApiService.LabelWorkloadGroup")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/configs/workload/v1/tenant/{O.Tenant}/workloadgroups/{O.Name}/label"
+	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode == 401 {
+		a.client.cfg.PSMCfg.Login()
+		a.client.cfg.PSMCfg.SaveConfig()
+		return a.LabelWorkloadGroupExecute(r)
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiWorkloadLabelWorkloadGroup1Request struct {
+	ctx _context.Context
+	ApiService *WorkloadV1ApiService
+	oName string
+	body *ApiLabel
+}
+
+func (r ApiWorkloadLabelWorkloadGroup1Request) Body(body ApiLabel) ApiWorkloadLabelWorkloadGroup1Request {
+	r.body = &body
+	return r
+}
+
+func (r ApiWorkloadLabelWorkloadGroup1Request) Execute() (WorkloadWorkloadGroup, *_nethttp.Response, error) {
+	return r.ApiService.LabelWorkloadGroup1Execute(r)
+}
+
+/*
+ * LabelWorkloadGroup1 Label WorkloadGroup object
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param oName
+ * @return ApiWorkloadLabelWorkloadGroup1Request
+ */
+func (a *WorkloadV1ApiService) LabelWorkloadGroup1(ctx _context.Context, oName string) ApiWorkloadLabelWorkloadGroup1Request {
+	return ApiWorkloadLabelWorkloadGroup1Request{
+		ApiService: a,
+		ctx: ctx,
+		oName: oName,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return WorkloadWorkloadGroup
+ */
+func (a *WorkloadV1ApiService) LabelWorkloadGroup1Execute(r ApiWorkloadLabelWorkloadGroup1Request) (WorkloadWorkloadGroup, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  WorkloadWorkloadGroup
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadV1ApiService.LabelWorkloadGroup1")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/configs/workload/v1/workloadgroups/{O.Name}/label"
+	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode == 401 {
+		a.client.cfg.PSMCfg.Login()
+		a.client.cfg.PSMCfg.SaveConfig()
+		return a.LabelWorkloadGroup1Execute(r)
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiWorkloadListEndpointRequest struct {
 	ctx _context.Context
 	ApiService *WorkloadV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiWorkloadListEndpointRequest) OName(oName string) ApiWorkloadListEndpointRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiWorkloadListEndpointRequest) ONamespace(oNamespace string) ApiWorkloadListEndpointRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiWorkloadListEndpointRequest) OGenerationId(oGenerationId string) ApiWorkloadListEndpointRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiWorkloadListEndpointRequest) OResourceVersion(oResourceVersion string) ApiWorkloadListEndpointRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiWorkloadListEndpointRequest) OUuid(oUuid string) ApiWorkloadListEndpointRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiWorkloadListEndpointRequest) OCreationTime(oCreationTime time.Time) ApiWorkloadListEndpointRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiWorkloadListEndpointRequest) OModTime(oModTime time.Time) ApiWorkloadListEndpointRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiWorkloadListEndpointRequest) OSelfLink(oSelfLink string) ApiWorkloadListEndpointRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiWorkloadListEndpointRequest) LabelSelector(labelSelector string) ApiWorkloadListEndpointRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiWorkloadListEndpointRequest) FieldSelector(fieldSelector string) ApiWorkloadListEndpointRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiWorkloadListEndpointRequest) FieldChangeSelector(fieldChangeSelector []string) ApiWorkloadListEndpointRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiWorkloadListEndpointRequest) From(from int32) ApiWorkloadListEndpointRequest {
-	r.from = &from
-	return r
-}
-func (r ApiWorkloadListEndpointRequest) MaxResults(maxResults int32) ApiWorkloadListEndpointRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiWorkloadListEndpointRequest) SortOrder(sortOrder string) ApiWorkloadListEndpointRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiWorkloadListEndpointRequest) MetaOnly(metaOnly bool) ApiWorkloadListEndpointRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -4009,47 +4437,11 @@ func (a *WorkloadV1ApiService) ListEndpointExecute(r ApiWorkloadListEndpointRequ
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -4174,85 +4566,20 @@ type ApiWorkloadListEndpoint1Request struct {
 	ctx _context.Context
 	ApiService *WorkloadV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiWorkloadListEndpoint1Request) OName(oName string) ApiWorkloadListEndpoint1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiWorkloadListEndpoint1Request) OTenant(oTenant string) ApiWorkloadListEndpoint1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiWorkloadListEndpoint1Request) ONamespace(oNamespace string) ApiWorkloadListEndpoint1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiWorkloadListEndpoint1Request) OGenerationId(oGenerationId string) ApiWorkloadListEndpoint1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiWorkloadListEndpoint1Request) OResourceVersion(oResourceVersion string) ApiWorkloadListEndpoint1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiWorkloadListEndpoint1Request) OUuid(oUuid string) ApiWorkloadListEndpoint1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiWorkloadListEndpoint1Request) OCreationTime(oCreationTime time.Time) ApiWorkloadListEndpoint1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiWorkloadListEndpoint1Request) OModTime(oModTime time.Time) ApiWorkloadListEndpoint1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiWorkloadListEndpoint1Request) OSelfLink(oSelfLink string) ApiWorkloadListEndpoint1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiWorkloadListEndpoint1Request) LabelSelector(labelSelector string) ApiWorkloadListEndpoint1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiWorkloadListEndpoint1Request) FieldSelector(fieldSelector string) ApiWorkloadListEndpoint1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiWorkloadListEndpoint1Request) FieldChangeSelector(fieldChangeSelector []string) ApiWorkloadListEndpoint1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiWorkloadListEndpoint1Request) From(from int32) ApiWorkloadListEndpoint1Request {
-	r.from = &from
-	return r
-}
-func (r ApiWorkloadListEndpoint1Request) MaxResults(maxResults int32) ApiWorkloadListEndpoint1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiWorkloadListEndpoint1Request) SortOrder(sortOrder string) ApiWorkloadListEndpoint1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiWorkloadListEndpoint1Request) MetaOnly(metaOnly bool) ApiWorkloadListEndpoint1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -4300,50 +4627,11 @@ func (a *WorkloadV1ApiService) ListEndpoint1Execute(r ApiWorkloadListEndpoint1Re
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -4469,80 +4757,20 @@ type ApiWorkloadListWorkloadRequest struct {
 	ApiService *WorkloadV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiWorkloadListWorkloadRequest) OName(oName string) ApiWorkloadListWorkloadRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiWorkloadListWorkloadRequest) ONamespace(oNamespace string) ApiWorkloadListWorkloadRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiWorkloadListWorkloadRequest) OGenerationId(oGenerationId string) ApiWorkloadListWorkloadRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiWorkloadListWorkloadRequest) OResourceVersion(oResourceVersion string) ApiWorkloadListWorkloadRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiWorkloadListWorkloadRequest) OUuid(oUuid string) ApiWorkloadListWorkloadRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiWorkloadListWorkloadRequest) OCreationTime(oCreationTime time.Time) ApiWorkloadListWorkloadRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiWorkloadListWorkloadRequest) OModTime(oModTime time.Time) ApiWorkloadListWorkloadRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiWorkloadListWorkloadRequest) OSelfLink(oSelfLink string) ApiWorkloadListWorkloadRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiWorkloadListWorkloadRequest) LabelSelector(labelSelector string) ApiWorkloadListWorkloadRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiWorkloadListWorkloadRequest) FieldSelector(fieldSelector string) ApiWorkloadListWorkloadRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiWorkloadListWorkloadRequest) FieldChangeSelector(fieldChangeSelector []string) ApiWorkloadListWorkloadRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiWorkloadListWorkloadRequest) From(from int32) ApiWorkloadListWorkloadRequest {
-	r.from = &from
-	return r
-}
-func (r ApiWorkloadListWorkloadRequest) MaxResults(maxResults int32) ApiWorkloadListWorkloadRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiWorkloadListWorkloadRequest) SortOrder(sortOrder string) ApiWorkloadListWorkloadRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiWorkloadListWorkloadRequest) MetaOnly(metaOnly bool) ApiWorkloadListWorkloadRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -4593,47 +4821,11 @@ func (a *WorkloadV1ApiService) ListWorkloadExecute(r ApiWorkloadListWorkloadRequ
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -4758,85 +4950,20 @@ type ApiWorkloadListWorkload1Request struct {
 	ctx _context.Context
 	ApiService *WorkloadV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiWorkloadListWorkload1Request) OName(oName string) ApiWorkloadListWorkload1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiWorkloadListWorkload1Request) OTenant(oTenant string) ApiWorkloadListWorkload1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiWorkloadListWorkload1Request) ONamespace(oNamespace string) ApiWorkloadListWorkload1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiWorkloadListWorkload1Request) OGenerationId(oGenerationId string) ApiWorkloadListWorkload1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiWorkloadListWorkload1Request) OResourceVersion(oResourceVersion string) ApiWorkloadListWorkload1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiWorkloadListWorkload1Request) OUuid(oUuid string) ApiWorkloadListWorkload1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiWorkloadListWorkload1Request) OCreationTime(oCreationTime time.Time) ApiWorkloadListWorkload1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiWorkloadListWorkload1Request) OModTime(oModTime time.Time) ApiWorkloadListWorkload1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiWorkloadListWorkload1Request) OSelfLink(oSelfLink string) ApiWorkloadListWorkload1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiWorkloadListWorkload1Request) LabelSelector(labelSelector string) ApiWorkloadListWorkload1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiWorkloadListWorkload1Request) FieldSelector(fieldSelector string) ApiWorkloadListWorkload1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiWorkloadListWorkload1Request) FieldChangeSelector(fieldChangeSelector []string) ApiWorkloadListWorkload1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiWorkloadListWorkload1Request) From(from int32) ApiWorkloadListWorkload1Request {
-	r.from = &from
-	return r
-}
-func (r ApiWorkloadListWorkload1Request) MaxResults(maxResults int32) ApiWorkloadListWorkload1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiWorkloadListWorkload1Request) SortOrder(sortOrder string) ApiWorkloadListWorkload1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiWorkloadListWorkload1Request) MetaOnly(metaOnly bool) ApiWorkloadListWorkload1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -4884,50 +5011,11 @@ func (a *WorkloadV1ApiService) ListWorkload1Execute(r ApiWorkloadListWorkload1Re
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -5048,11 +5136,394 @@ func (a *WorkloadV1ApiService) ListWorkload1Execute(r ApiWorkloadListWorkload1Re
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiWorkloadListWorkloadGroupRequest struct {
+	ctx _context.Context
+	ApiService *WorkloadV1ApiService
+	oTenant string
+	oName *string
+	oCreationTime *time.Time
+	fieldChangeSelector *[]string
+}
+
+func (r ApiWorkloadListWorkloadGroupRequest) OName(oName string) ApiWorkloadListWorkloadGroupRequest {
+	r.oName = &oName
+	return r
+}
+func (r ApiWorkloadListWorkloadGroupRequest) OCreationTime(oCreationTime time.Time) ApiWorkloadListWorkloadGroupRequest {
+	r.oCreationTime = &oCreationTime
+	return r
+}
+func (r ApiWorkloadListWorkloadGroupRequest) FieldChangeSelector(fieldChangeSelector []string) ApiWorkloadListWorkloadGroupRequest {
+	r.fieldChangeSelector = &fieldChangeSelector
+	return r
+}
+
+func (r ApiWorkloadListWorkloadGroupRequest) Execute() (WorkloadWorkloadGroupList, *_nethttp.Response, error) {
+	return r.ApiService.ListWorkloadGroupExecute(r)
+}
+
+/*
+ * ListWorkloadGroup List WorkloadGroup objects
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param oTenant
+ * @return ApiWorkloadListWorkloadGroupRequest
+ */
+func (a *WorkloadV1ApiService) ListWorkloadGroup(ctx _context.Context, oTenant string) ApiWorkloadListWorkloadGroupRequest {
+	return ApiWorkloadListWorkloadGroupRequest{
+		ApiService: a,
+		ctx: ctx,
+		oTenant: oTenant,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return WorkloadWorkloadGroupList
+ */
+func (a *WorkloadV1ApiService) ListWorkloadGroupExecute(r ApiWorkloadListWorkloadGroupRequest) (WorkloadWorkloadGroupList, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  WorkloadWorkloadGroupList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadV1ApiService.ListWorkloadGroup")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/configs/workload/v1/tenant/{O.Tenant}/workloadgroups"
+	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.oName != nil {
+		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
+	}
+	if r.oCreationTime != nil {
+		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
+	}
+	if r.fieldChangeSelector != nil {
+		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode == 401 {
+		a.client.cfg.PSMCfg.Login()
+		a.client.cfg.PSMCfg.SaveConfig()
+		return a.ListWorkloadGroupExecute(r)
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiWorkloadListWorkloadGroup1Request struct {
+	ctx _context.Context
+	ApiService *WorkloadV1ApiService
+	oName *string
+	oCreationTime *time.Time
+	fieldChangeSelector *[]string
+}
+
+func (r ApiWorkloadListWorkloadGroup1Request) OName(oName string) ApiWorkloadListWorkloadGroup1Request {
+	r.oName = &oName
+	return r
+}
+func (r ApiWorkloadListWorkloadGroup1Request) OCreationTime(oCreationTime time.Time) ApiWorkloadListWorkloadGroup1Request {
+	r.oCreationTime = &oCreationTime
+	return r
+}
+func (r ApiWorkloadListWorkloadGroup1Request) FieldChangeSelector(fieldChangeSelector []string) ApiWorkloadListWorkloadGroup1Request {
+	r.fieldChangeSelector = &fieldChangeSelector
+	return r
+}
+
+func (r ApiWorkloadListWorkloadGroup1Request) Execute() (WorkloadWorkloadGroupList, *_nethttp.Response, error) {
+	return r.ApiService.ListWorkloadGroup1Execute(r)
+}
+
+/*
+ * ListWorkloadGroup1 List WorkloadGroup objects
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return ApiWorkloadListWorkloadGroup1Request
+ */
+func (a *WorkloadV1ApiService) ListWorkloadGroup1(ctx _context.Context) ApiWorkloadListWorkloadGroup1Request {
+	return ApiWorkloadListWorkloadGroup1Request{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return WorkloadWorkloadGroupList
+ */
+func (a *WorkloadV1ApiService) ListWorkloadGroup1Execute(r ApiWorkloadListWorkloadGroup1Request) (WorkloadWorkloadGroupList, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  WorkloadWorkloadGroupList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadV1ApiService.ListWorkloadGroup1")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/configs/workload/v1/workloadgroups"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.oName != nil {
+		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
+	}
+	if r.oCreationTime != nil {
+		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
+	}
+	if r.fieldChangeSelector != nil {
+		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode == 401 {
+		a.client.cfg.PSMCfg.Login()
+		a.client.cfg.PSMCfg.SaveConfig()
+		return a.ListWorkloadGroup1Execute(r)
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiWorkloadStartMigrationRequest struct {
 	ctx _context.Context
 	ApiService *WorkloadV1ApiService
 	oTenant string
-	oName string
 	body *WorkloadWorkload
 }
 
@@ -5069,15 +5540,13 @@ func (r ApiWorkloadStartMigrationRequest) Execute() (WorkloadWorkload, *_nethttp
  * StartMigration Start Workload Migration operation
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiWorkloadStartMigrationRequest
  */
-func (a *WorkloadV1ApiService) StartMigration(ctx _context.Context, oTenant string, oName string) ApiWorkloadStartMigrationRequest {
+func (a *WorkloadV1ApiService) StartMigration(ctx _context.Context, oTenant string) ApiWorkloadStartMigrationRequest {
 	return ApiWorkloadStartMigrationRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -5102,7 +5571,6 @@ func (a *WorkloadV1ApiService) StartMigrationExecute(r ApiWorkloadStartMigration
 
 	localVarPath := localBasePath + "/configs/workload/v1/tenant/{O.Tenant}/workloads/{O.Name}/StartMigration"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -5416,7 +5884,6 @@ type ApiWorkloadUpdateWorkloadRequest struct {
 	ctx _context.Context
 	ApiService *WorkloadV1ApiService
 	oTenant string
-	oName string
 	body *WorkloadWorkload
 }
 
@@ -5433,15 +5900,13 @@ func (r ApiWorkloadUpdateWorkloadRequest) Execute() (WorkloadWorkload, *_nethttp
  * UpdateWorkload Update Workload object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiWorkloadUpdateWorkloadRequest
  */
-func (a *WorkloadV1ApiService) UpdateWorkload(ctx _context.Context, oTenant string, oName string) ApiWorkloadUpdateWorkloadRequest {
+func (a *WorkloadV1ApiService) UpdateWorkload(ctx _context.Context, oTenant string) ApiWorkloadUpdateWorkloadRequest {
 	return ApiWorkloadUpdateWorkloadRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -5466,7 +5931,6 @@ func (a *WorkloadV1ApiService) UpdateWorkloadExecute(r ApiWorkloadUpdateWorkload
 
 	localVarPath := localBasePath + "/configs/workload/v1/tenant/{O.Tenant}/workloads/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -5776,85 +6240,385 @@ func (a *WorkloadV1ApiService) UpdateWorkload1Execute(r ApiWorkloadUpdateWorkloa
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiWorkloadUpdateWorkloadGroupRequest struct {
+	ctx _context.Context
+	ApiService *WorkloadV1ApiService
+	oTenant string
+	body *WorkloadWorkloadGroup
+}
+
+func (r ApiWorkloadUpdateWorkloadGroupRequest) Body(body WorkloadWorkloadGroup) ApiWorkloadUpdateWorkloadGroupRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiWorkloadUpdateWorkloadGroupRequest) Execute() (WorkloadWorkloadGroup, *_nethttp.Response, error) {
+	return r.ApiService.UpdateWorkloadGroupExecute(r)
+}
+
+/*
+ * UpdateWorkloadGroup Update WorkloadGroup object
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param oTenant
+ * @return ApiWorkloadUpdateWorkloadGroupRequest
+ */
+func (a *WorkloadV1ApiService) UpdateWorkloadGroup(ctx _context.Context, oTenant string) ApiWorkloadUpdateWorkloadGroupRequest {
+	return ApiWorkloadUpdateWorkloadGroupRequest{
+		ApiService: a,
+		ctx: ctx,
+		oTenant: oTenant,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return WorkloadWorkloadGroup
+ */
+func (a *WorkloadV1ApiService) UpdateWorkloadGroupExecute(r ApiWorkloadUpdateWorkloadGroupRequest) (WorkloadWorkloadGroup, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  WorkloadWorkloadGroup
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadV1ApiService.UpdateWorkloadGroup")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/configs/workload/v1/tenant/{O.Tenant}/workloadgroups/{O.Name}"
+	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode == 401 {
+		a.client.cfg.PSMCfg.Login()
+		a.client.cfg.PSMCfg.SaveConfig()
+		return a.UpdateWorkloadGroupExecute(r)
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiWorkloadUpdateWorkloadGroup1Request struct {
+	ctx _context.Context
+	ApiService *WorkloadV1ApiService
+	oName string
+	body *WorkloadWorkloadGroup
+}
+
+func (r ApiWorkloadUpdateWorkloadGroup1Request) Body(body WorkloadWorkloadGroup) ApiWorkloadUpdateWorkloadGroup1Request {
+	r.body = &body
+	return r
+}
+
+func (r ApiWorkloadUpdateWorkloadGroup1Request) Execute() (WorkloadWorkloadGroup, *_nethttp.Response, error) {
+	return r.ApiService.UpdateWorkloadGroup1Execute(r)
+}
+
+/*
+ * UpdateWorkloadGroup1 Update WorkloadGroup object
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param oName
+ * @return ApiWorkloadUpdateWorkloadGroup1Request
+ */
+func (a *WorkloadV1ApiService) UpdateWorkloadGroup1(ctx _context.Context, oName string) ApiWorkloadUpdateWorkloadGroup1Request {
+	return ApiWorkloadUpdateWorkloadGroup1Request{
+		ApiService: a,
+		ctx: ctx,
+		oName: oName,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return WorkloadWorkloadGroup
+ */
+func (a *WorkloadV1ApiService) UpdateWorkloadGroup1Execute(r ApiWorkloadUpdateWorkloadGroup1Request) (WorkloadWorkloadGroup, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  WorkloadWorkloadGroup
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadV1ApiService.UpdateWorkloadGroup1")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/configs/workload/v1/workloadgroups/{O.Name}"
+	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode == 401 {
+		a.client.cfg.PSMCfg.Login()
+		a.client.cfg.PSMCfg.SaveConfig()
+		return a.UpdateWorkloadGroup1Execute(r)
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiWorkloadWatchEndpointRequest struct {
 	ctx _context.Context
 	ApiService *WorkloadV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiWorkloadWatchEndpointRequest) OName(oName string) ApiWorkloadWatchEndpointRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiWorkloadWatchEndpointRequest) ONamespace(oNamespace string) ApiWorkloadWatchEndpointRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiWorkloadWatchEndpointRequest) OGenerationId(oGenerationId string) ApiWorkloadWatchEndpointRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiWorkloadWatchEndpointRequest) OResourceVersion(oResourceVersion string) ApiWorkloadWatchEndpointRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiWorkloadWatchEndpointRequest) OUuid(oUuid string) ApiWorkloadWatchEndpointRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiWorkloadWatchEndpointRequest) OCreationTime(oCreationTime time.Time) ApiWorkloadWatchEndpointRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiWorkloadWatchEndpointRequest) OModTime(oModTime time.Time) ApiWorkloadWatchEndpointRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiWorkloadWatchEndpointRequest) OSelfLink(oSelfLink string) ApiWorkloadWatchEndpointRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiWorkloadWatchEndpointRequest) LabelSelector(labelSelector string) ApiWorkloadWatchEndpointRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiWorkloadWatchEndpointRequest) FieldSelector(fieldSelector string) ApiWorkloadWatchEndpointRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiWorkloadWatchEndpointRequest) FieldChangeSelector(fieldChangeSelector []string) ApiWorkloadWatchEndpointRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiWorkloadWatchEndpointRequest) From(from int32) ApiWorkloadWatchEndpointRequest {
-	r.from = &from
-	return r
-}
-func (r ApiWorkloadWatchEndpointRequest) MaxResults(maxResults int32) ApiWorkloadWatchEndpointRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiWorkloadWatchEndpointRequest) SortOrder(sortOrder string) ApiWorkloadWatchEndpointRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiWorkloadWatchEndpointRequest) MetaOnly(metaOnly bool) ApiWorkloadWatchEndpointRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -5905,47 +6669,11 @@ func (a *WorkloadV1ApiService) WatchEndpointExecute(r ApiWorkloadWatchEndpointRe
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -6070,85 +6798,20 @@ type ApiWorkloadWatchEndpoint1Request struct {
 	ctx _context.Context
 	ApiService *WorkloadV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiWorkloadWatchEndpoint1Request) OName(oName string) ApiWorkloadWatchEndpoint1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiWorkloadWatchEndpoint1Request) OTenant(oTenant string) ApiWorkloadWatchEndpoint1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiWorkloadWatchEndpoint1Request) ONamespace(oNamespace string) ApiWorkloadWatchEndpoint1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiWorkloadWatchEndpoint1Request) OGenerationId(oGenerationId string) ApiWorkloadWatchEndpoint1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiWorkloadWatchEndpoint1Request) OResourceVersion(oResourceVersion string) ApiWorkloadWatchEndpoint1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiWorkloadWatchEndpoint1Request) OUuid(oUuid string) ApiWorkloadWatchEndpoint1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiWorkloadWatchEndpoint1Request) OCreationTime(oCreationTime time.Time) ApiWorkloadWatchEndpoint1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiWorkloadWatchEndpoint1Request) OModTime(oModTime time.Time) ApiWorkloadWatchEndpoint1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiWorkloadWatchEndpoint1Request) OSelfLink(oSelfLink string) ApiWorkloadWatchEndpoint1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiWorkloadWatchEndpoint1Request) LabelSelector(labelSelector string) ApiWorkloadWatchEndpoint1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiWorkloadWatchEndpoint1Request) FieldSelector(fieldSelector string) ApiWorkloadWatchEndpoint1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiWorkloadWatchEndpoint1Request) FieldChangeSelector(fieldChangeSelector []string) ApiWorkloadWatchEndpoint1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiWorkloadWatchEndpoint1Request) From(from int32) ApiWorkloadWatchEndpoint1Request {
-	r.from = &from
-	return r
-}
-func (r ApiWorkloadWatchEndpoint1Request) MaxResults(maxResults int32) ApiWorkloadWatchEndpoint1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiWorkloadWatchEndpoint1Request) SortOrder(sortOrder string) ApiWorkloadWatchEndpoint1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiWorkloadWatchEndpoint1Request) MetaOnly(metaOnly bool) ApiWorkloadWatchEndpoint1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -6196,50 +6859,11 @@ func (a *WorkloadV1ApiService) WatchEndpoint1Execute(r ApiWorkloadWatchEndpoint1
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -6365,80 +6989,20 @@ type ApiWorkloadWatchWorkloadRequest struct {
 	ApiService *WorkloadV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiWorkloadWatchWorkloadRequest) OName(oName string) ApiWorkloadWatchWorkloadRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiWorkloadWatchWorkloadRequest) ONamespace(oNamespace string) ApiWorkloadWatchWorkloadRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiWorkloadWatchWorkloadRequest) OGenerationId(oGenerationId string) ApiWorkloadWatchWorkloadRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiWorkloadWatchWorkloadRequest) OResourceVersion(oResourceVersion string) ApiWorkloadWatchWorkloadRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiWorkloadWatchWorkloadRequest) OUuid(oUuid string) ApiWorkloadWatchWorkloadRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiWorkloadWatchWorkloadRequest) OCreationTime(oCreationTime time.Time) ApiWorkloadWatchWorkloadRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiWorkloadWatchWorkloadRequest) OModTime(oModTime time.Time) ApiWorkloadWatchWorkloadRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiWorkloadWatchWorkloadRequest) OSelfLink(oSelfLink string) ApiWorkloadWatchWorkloadRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiWorkloadWatchWorkloadRequest) LabelSelector(labelSelector string) ApiWorkloadWatchWorkloadRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiWorkloadWatchWorkloadRequest) FieldSelector(fieldSelector string) ApiWorkloadWatchWorkloadRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiWorkloadWatchWorkloadRequest) FieldChangeSelector(fieldChangeSelector []string) ApiWorkloadWatchWorkloadRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiWorkloadWatchWorkloadRequest) From(from int32) ApiWorkloadWatchWorkloadRequest {
-	r.from = &from
-	return r
-}
-func (r ApiWorkloadWatchWorkloadRequest) MaxResults(maxResults int32) ApiWorkloadWatchWorkloadRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiWorkloadWatchWorkloadRequest) SortOrder(sortOrder string) ApiWorkloadWatchWorkloadRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiWorkloadWatchWorkloadRequest) MetaOnly(metaOnly bool) ApiWorkloadWatchWorkloadRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -6489,47 +7053,11 @@ func (a *WorkloadV1ApiService) WatchWorkloadExecute(r ApiWorkloadWatchWorkloadRe
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -6654,85 +7182,20 @@ type ApiWorkloadWatchWorkload1Request struct {
 	ctx _context.Context
 	ApiService *WorkloadV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiWorkloadWatchWorkload1Request) OName(oName string) ApiWorkloadWatchWorkload1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiWorkloadWatchWorkload1Request) OTenant(oTenant string) ApiWorkloadWatchWorkload1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiWorkloadWatchWorkload1Request) ONamespace(oNamespace string) ApiWorkloadWatchWorkload1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiWorkloadWatchWorkload1Request) OGenerationId(oGenerationId string) ApiWorkloadWatchWorkload1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiWorkloadWatchWorkload1Request) OResourceVersion(oResourceVersion string) ApiWorkloadWatchWorkload1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiWorkloadWatchWorkload1Request) OUuid(oUuid string) ApiWorkloadWatchWorkload1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiWorkloadWatchWorkload1Request) OCreationTime(oCreationTime time.Time) ApiWorkloadWatchWorkload1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiWorkloadWatchWorkload1Request) OModTime(oModTime time.Time) ApiWorkloadWatchWorkload1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiWorkloadWatchWorkload1Request) OSelfLink(oSelfLink string) ApiWorkloadWatchWorkload1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiWorkloadWatchWorkload1Request) LabelSelector(labelSelector string) ApiWorkloadWatchWorkload1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiWorkloadWatchWorkload1Request) FieldSelector(fieldSelector string) ApiWorkloadWatchWorkload1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiWorkloadWatchWorkload1Request) FieldChangeSelector(fieldChangeSelector []string) ApiWorkloadWatchWorkload1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiWorkloadWatchWorkload1Request) From(from int32) ApiWorkloadWatchWorkload1Request {
-	r.from = &from
-	return r
-}
-func (r ApiWorkloadWatchWorkload1Request) MaxResults(maxResults int32) ApiWorkloadWatchWorkload1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiWorkloadWatchWorkload1Request) SortOrder(sortOrder string) ApiWorkloadWatchWorkload1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiWorkloadWatchWorkload1Request) MetaOnly(metaOnly bool) ApiWorkloadWatchWorkload1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -6780,50 +7243,11 @@ func (a *WorkloadV1ApiService) WatchWorkload1Execute(r ApiWorkloadWatchWorkload1
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -6863,6 +7287,390 @@ func (a *WorkloadV1ApiService) WatchWorkload1Execute(r ApiWorkloadWatchWorkload1
 		a.client.cfg.PSMCfg.Login()
 		a.client.cfg.PSMCfg.SaveConfig()
 		return a.WatchWorkload1Execute(r)
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiWorkloadWatchWorkloadGroupRequest struct {
+	ctx _context.Context
+	ApiService *WorkloadV1ApiService
+	oTenant string
+	oName *string
+	oCreationTime *time.Time
+	fieldChangeSelector *[]string
+}
+
+func (r ApiWorkloadWatchWorkloadGroupRequest) OName(oName string) ApiWorkloadWatchWorkloadGroupRequest {
+	r.oName = &oName
+	return r
+}
+func (r ApiWorkloadWatchWorkloadGroupRequest) OCreationTime(oCreationTime time.Time) ApiWorkloadWatchWorkloadGroupRequest {
+	r.oCreationTime = &oCreationTime
+	return r
+}
+func (r ApiWorkloadWatchWorkloadGroupRequest) FieldChangeSelector(fieldChangeSelector []string) ApiWorkloadWatchWorkloadGroupRequest {
+	r.fieldChangeSelector = &fieldChangeSelector
+	return r
+}
+
+func (r ApiWorkloadWatchWorkloadGroupRequest) Execute() (WorkloadAutoMsgWorkloadGroupWatchHelper, *_nethttp.Response, error) {
+	return r.ApiService.WatchWorkloadGroupExecute(r)
+}
+
+/*
+ * WatchWorkloadGroup Watch WorkloadGroup objects. Supports WebSockets or HTTP long poll
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param oTenant
+ * @return ApiWorkloadWatchWorkloadGroupRequest
+ */
+func (a *WorkloadV1ApiService) WatchWorkloadGroup(ctx _context.Context, oTenant string) ApiWorkloadWatchWorkloadGroupRequest {
+	return ApiWorkloadWatchWorkloadGroupRequest{
+		ApiService: a,
+		ctx: ctx,
+		oTenant: oTenant,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return WorkloadAutoMsgWorkloadGroupWatchHelper
+ */
+func (a *WorkloadV1ApiService) WatchWorkloadGroupExecute(r ApiWorkloadWatchWorkloadGroupRequest) (WorkloadAutoMsgWorkloadGroupWatchHelper, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  WorkloadAutoMsgWorkloadGroupWatchHelper
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadV1ApiService.WatchWorkloadGroup")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/configs/workload/v1/watch/tenant/{O.Tenant}/workloadgroups"
+	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.oName != nil {
+		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
+	}
+	if r.oCreationTime != nil {
+		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
+	}
+	if r.fieldChangeSelector != nil {
+		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode == 401 {
+		a.client.cfg.PSMCfg.Login()
+		a.client.cfg.PSMCfg.SaveConfig()
+		return a.WatchWorkloadGroupExecute(r)
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiWorkloadWatchWorkloadGroup1Request struct {
+	ctx _context.Context
+	ApiService *WorkloadV1ApiService
+	oName *string
+	oCreationTime *time.Time
+	fieldChangeSelector *[]string
+}
+
+func (r ApiWorkloadWatchWorkloadGroup1Request) OName(oName string) ApiWorkloadWatchWorkloadGroup1Request {
+	r.oName = &oName
+	return r
+}
+func (r ApiWorkloadWatchWorkloadGroup1Request) OCreationTime(oCreationTime time.Time) ApiWorkloadWatchWorkloadGroup1Request {
+	r.oCreationTime = &oCreationTime
+	return r
+}
+func (r ApiWorkloadWatchWorkloadGroup1Request) FieldChangeSelector(fieldChangeSelector []string) ApiWorkloadWatchWorkloadGroup1Request {
+	r.fieldChangeSelector = &fieldChangeSelector
+	return r
+}
+
+func (r ApiWorkloadWatchWorkloadGroup1Request) Execute() (WorkloadAutoMsgWorkloadGroupWatchHelper, *_nethttp.Response, error) {
+	return r.ApiService.WatchWorkloadGroup1Execute(r)
+}
+
+/*
+ * WatchWorkloadGroup1 Watch WorkloadGroup objects. Supports WebSockets or HTTP long poll
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return ApiWorkloadWatchWorkloadGroup1Request
+ */
+func (a *WorkloadV1ApiService) WatchWorkloadGroup1(ctx _context.Context) ApiWorkloadWatchWorkloadGroup1Request {
+	return ApiWorkloadWatchWorkloadGroup1Request{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return WorkloadAutoMsgWorkloadGroupWatchHelper
+ */
+func (a *WorkloadV1ApiService) WatchWorkloadGroup1Execute(r ApiWorkloadWatchWorkloadGroup1Request) (WorkloadAutoMsgWorkloadGroupWatchHelper, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  WorkloadAutoMsgWorkloadGroupWatchHelper
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadV1ApiService.WatchWorkloadGroup1")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/configs/workload/v1/watch/workloadgroups"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.oName != nil {
+		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
+	}
+	if r.oCreationTime != nil {
+		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
+	}
+	if r.fieldChangeSelector != nil {
+		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode == 401 {
+		a.client.cfg.PSMCfg.Login()
+		a.client.cfg.PSMCfg.SaveConfig()
+		return a.WatchWorkloadGroup1Execute(r)
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {

@@ -144,16 +144,7 @@ type ApiRoutingGetListNeighborsRequest struct {
 	ApiService *RoutingV1ApiService
 	instance string
 	tKind *string
-	tApiVersion *string
-	metaName *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	neighbor *string
 }
 
@@ -161,44 +152,8 @@ func (r ApiRoutingGetListNeighborsRequest) TKind(tKind string) ApiRoutingGetList
 	r.tKind = &tKind
 	return r
 }
-func (r ApiRoutingGetListNeighborsRequest) TApiVersion(tApiVersion string) ApiRoutingGetListNeighborsRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiRoutingGetListNeighborsRequest) MetaName(metaName string) ApiRoutingGetListNeighborsRequest {
-	r.metaName = &metaName
-	return r
-}
-func (r ApiRoutingGetListNeighborsRequest) MetaTenant(metaTenant string) ApiRoutingGetListNeighborsRequest {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiRoutingGetListNeighborsRequest) MetaNamespace(metaNamespace string) ApiRoutingGetListNeighborsRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiRoutingGetListNeighborsRequest) MetaGenerationId(metaGenerationId string) ApiRoutingGetListNeighborsRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiRoutingGetListNeighborsRequest) MetaResourceVersion(metaResourceVersion string) ApiRoutingGetListNeighborsRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiRoutingGetListNeighborsRequest) MetaUuid(metaUuid string) ApiRoutingGetListNeighborsRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiRoutingGetListNeighborsRequest) MetaCreationTime(metaCreationTime time.Time) ApiRoutingGetListNeighborsRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiRoutingGetListNeighborsRequest) MetaModTime(metaModTime time.Time) ApiRoutingGetListNeighborsRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiRoutingGetListNeighborsRequest) MetaSelfLink(metaSelfLink string) ApiRoutingGetListNeighborsRequest {
-	r.metaSelfLink = &metaSelfLink
 	return r
 }
 func (r ApiRoutingGetListNeighborsRequest) Neighbor(neighbor string) ApiRoutingGetListNeighborsRequest {
@@ -253,35 +208,8 @@ func (a *RoutingV1ApiService) GetListNeighborsExecute(r ApiRoutingGetListNeighbo
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaName != nil {
-		localVarQueryParams.Add("meta.name", parameterToString(*r.metaName, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
 	}
 	if r.neighbor != nil {
 		localVarQueryParams.Add("neighbor", parameterToString(*r.neighbor, ""))
@@ -351,100 +279,25 @@ type ApiRoutingGetListRoutes1Request struct {
 	ApiService *RoutingV1ApiService
 	instance string
 	tKind *string
-	tApiVersion *string
-	metaName *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	ipaddress *string
-	type_ *string
-	extcomm *string
-	vnid *string
-	rtype *string
-	nhop *string
 	pageNumber *int64
-	allRoutes *bool
 }
 
 func (r ApiRoutingGetListRoutes1Request) TKind(tKind string) ApiRoutingGetListRoutes1Request {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiRoutingGetListRoutes1Request) TApiVersion(tApiVersion string) ApiRoutingGetListRoutes1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiRoutingGetListRoutes1Request) MetaName(metaName string) ApiRoutingGetListRoutes1Request {
-	r.metaName = &metaName
-	return r
-}
-func (r ApiRoutingGetListRoutes1Request) MetaTenant(metaTenant string) ApiRoutingGetListRoutes1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiRoutingGetListRoutes1Request) MetaNamespace(metaNamespace string) ApiRoutingGetListRoutes1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiRoutingGetListRoutes1Request) MetaGenerationId(metaGenerationId string) ApiRoutingGetListRoutes1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiRoutingGetListRoutes1Request) MetaResourceVersion(metaResourceVersion string) ApiRoutingGetListRoutes1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiRoutingGetListRoutes1Request) MetaUuid(metaUuid string) ApiRoutingGetListRoutes1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiRoutingGetListRoutes1Request) MetaCreationTime(metaCreationTime time.Time) ApiRoutingGetListRoutes1Request {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiRoutingGetListRoutes1Request) MetaModTime(metaModTime time.Time) ApiRoutingGetListRoutes1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiRoutingGetListRoutes1Request) MetaSelfLink(metaSelfLink string) ApiRoutingGetListRoutes1Request {
-	r.metaSelfLink = &metaSelfLink
 	return r
 }
 func (r ApiRoutingGetListRoutes1Request) Ipaddress(ipaddress string) ApiRoutingGetListRoutes1Request {
 	r.ipaddress = &ipaddress
 	return r
 }
-func (r ApiRoutingGetListRoutes1Request) Type_(type_ string) ApiRoutingGetListRoutes1Request {
-	r.type_ = &type_
-	return r
-}
-func (r ApiRoutingGetListRoutes1Request) Extcomm(extcomm string) ApiRoutingGetListRoutes1Request {
-	r.extcomm = &extcomm
-	return r
-}
-func (r ApiRoutingGetListRoutes1Request) Vnid(vnid string) ApiRoutingGetListRoutes1Request {
-	r.vnid = &vnid
-	return r
-}
-func (r ApiRoutingGetListRoutes1Request) Rtype(rtype string) ApiRoutingGetListRoutes1Request {
-	r.rtype = &rtype
-	return r
-}
-func (r ApiRoutingGetListRoutes1Request) Nhop(nhop string) ApiRoutingGetListRoutes1Request {
-	r.nhop = &nhop
-	return r
-}
 func (r ApiRoutingGetListRoutes1Request) PageNumber(pageNumber int64) ApiRoutingGetListRoutes1Request {
 	r.pageNumber = &pageNumber
-	return r
-}
-func (r ApiRoutingGetListRoutes1Request) AllRoutes(allRoutes bool) ApiRoutingGetListRoutes1Request {
-	r.allRoutes = &allRoutes
 	return r
 }
 
@@ -495,59 +348,14 @@ func (a *RoutingV1ApiService) GetListRoutes1Execute(r ApiRoutingGetListRoutes1Re
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaName != nil {
-		localVarQueryParams.Add("meta.name", parameterToString(*r.metaName, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
 	}
 	if r.ipaddress != nil {
 		localVarQueryParams.Add("ipaddress", parameterToString(*r.ipaddress, ""))
 	}
-	if r.type_ != nil {
-		localVarQueryParams.Add("type", parameterToString(*r.type_, ""))
-	}
-	if r.extcomm != nil {
-		localVarQueryParams.Add("extcomm", parameterToString(*r.extcomm, ""))
-	}
-	if r.vnid != nil {
-		localVarQueryParams.Add("vnid", parameterToString(*r.vnid, ""))
-	}
-	if r.rtype != nil {
-		localVarQueryParams.Add("rtype", parameterToString(*r.rtype, ""))
-	}
-	if r.nhop != nil {
-		localVarQueryParams.Add("nhop", parameterToString(*r.nhop, ""))
-	}
 	if r.pageNumber != nil {
 		localVarQueryParams.Add("page-number", parameterToString(*r.pageNumber, ""))
-	}
-	if r.allRoutes != nil {
-		localVarQueryParams.Add("all-routes", parameterToString(*r.allRoutes, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

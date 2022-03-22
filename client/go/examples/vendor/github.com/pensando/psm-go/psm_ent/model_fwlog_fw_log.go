@@ -59,6 +59,8 @@ type FwlogFwLog struct {
 	Protocol *string `json:"protocol,omitempty"`
 	// Reporter ID.
 	ReporterId *string `json:"reporter-id,omitempty"`
+	// ReporterName represents the name or hostname of the DSM that generated the log.
+	ReporterName *string `json:"reporter-name,omitempty"`
 	// Rule ID.
 	RuleId *string `json:"rule-id,omitempty"`
 	// Rule Name represents the name of the firewall rule that was hit by this session.
@@ -840,6 +842,38 @@ func (o *FwlogFwLog) SetReporterId(v string) {
 	o.ReporterId = &v
 }
 
+// GetReporterName returns the ReporterName field value if set, zero value otherwise.
+func (o *FwlogFwLog) GetReporterName() string {
+	if o == nil || o.ReporterName == nil {
+		var ret string
+		return ret
+	}
+	return *o.ReporterName
+}
+
+// GetReporterNameOk returns a tuple with the ReporterName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FwlogFwLog) GetReporterNameOk() (*string, bool) {
+	if o == nil || o.ReporterName == nil {
+		return nil, false
+	}
+	return o.ReporterName, true
+}
+
+// HasReporterName returns a boolean if a field has been set.
+func (o *FwlogFwLog) HasReporterName() bool {
+	if o != nil && o.ReporterName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetReporterName gets a reference to the given string and assigns it to the ReporterName field.
+func (o *FwlogFwLog) SetReporterName(v string) {
+	o.ReporterName = &v
+}
+
 // GetRuleId returns the RuleId field value if set, zero value otherwise.
 func (o *FwlogFwLog) GetRuleId() string {
 	if o == nil || o.RuleId == nil {
@@ -1198,6 +1232,9 @@ func (o FwlogFwLog) MarshalJSON() ([]byte, error) {
 	}
 	if o.ReporterId != nil {
 		toSerialize["reporter-id"] = o.ReporterId
+	}
+	if o.ReporterName != nil {
+		toSerialize["reporter-name"] = o.ReporterName
 	}
 	if o.RuleId != nil {
 		toSerialize["rule-id"] = o.RuleId

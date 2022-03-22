@@ -18,6 +18,8 @@ import (
 type ClusterHostSpec struct {
 	// DSCs contains the information about all DistributedServiceCards on a host.
 	Dscs *[]ClusterDistributedServiceCardID `json:"dscs,omitempty"`
+	// information of the pnics associated with this host.
+	PnicInfo *[]ClusterPnicInfo `json:"pnic-info,omitempty"`
 }
 
 // NewClusterHostSpec instantiates a new ClusterHostSpec object
@@ -69,10 +71,45 @@ func (o *ClusterHostSpec) SetDscs(v []ClusterDistributedServiceCardID) {
 	o.Dscs = &v
 }
 
+// GetPnicInfo returns the PnicInfo field value if set, zero value otherwise.
+func (o *ClusterHostSpec) GetPnicInfo() []ClusterPnicInfo {
+	if o == nil || o.PnicInfo == nil {
+		var ret []ClusterPnicInfo
+		return ret
+	}
+	return *o.PnicInfo
+}
+
+// GetPnicInfoOk returns a tuple with the PnicInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ClusterHostSpec) GetPnicInfoOk() (*[]ClusterPnicInfo, bool) {
+	if o == nil || o.PnicInfo == nil {
+		return nil, false
+	}
+	return o.PnicInfo, true
+}
+
+// HasPnicInfo returns a boolean if a field has been set.
+func (o *ClusterHostSpec) HasPnicInfo() bool {
+	if o != nil && o.PnicInfo != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPnicInfo gets a reference to the given []ClusterPnicInfo and assigns it to the PnicInfo field.
+func (o *ClusterHostSpec) SetPnicInfo(v []ClusterPnicInfo) {
+	o.PnicInfo = &v
+}
+
 func (o ClusterHostSpec) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Dscs != nil {
 		toSerialize["dscs"] = o.Dscs
+	}
+	if o.PnicInfo != nil {
+		toSerialize["pnic-info"] = o.PnicInfo
 	}
 	return json.Marshal(toSerialize)
 }

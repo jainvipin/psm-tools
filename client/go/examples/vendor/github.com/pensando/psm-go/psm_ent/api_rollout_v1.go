@@ -209,140 +209,20 @@ type ApiRolloutGetRolloutRequest struct {
 	ApiService *RolloutV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specVersion *string
-	specScheduledStartTime *time.Time
-	specScheduledEndTime *time.Time
 	specStrategy *string
-	specMaxParallel *int64
-	specMaxNicFailuresBeforeAbort *int64
-	specSuspend *bool
-	specDscsOnly *bool
-	specDscMustMatchConstraint *bool
-	specUpgradeType *string
-	specRetry *bool
-	statusState *string
-	statusCompletionPercent *int64
-	statusStartTime *time.Time
-	statusEndTime *time.Time
-	statusPrevVersion *string
-	statusReason *string
 }
 
 func (r ApiRolloutGetRolloutRequest) TKind(tKind string) ApiRolloutGetRolloutRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiRolloutGetRolloutRequest) TApiVersion(tApiVersion string) ApiRolloutGetRolloutRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiRolloutGetRolloutRequest) MetaTenant(metaTenant string) ApiRolloutGetRolloutRequest {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiRolloutGetRolloutRequest) MetaNamespace(metaNamespace string) ApiRolloutGetRolloutRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiRolloutGetRolloutRequest) MetaGenerationId(metaGenerationId string) ApiRolloutGetRolloutRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiRolloutGetRolloutRequest) MetaResourceVersion(metaResourceVersion string) ApiRolloutGetRolloutRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiRolloutGetRolloutRequest) MetaUuid(metaUuid string) ApiRolloutGetRolloutRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiRolloutGetRolloutRequest) MetaCreationTime(metaCreationTime time.Time) ApiRolloutGetRolloutRequest {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiRolloutGetRolloutRequest) MetaModTime(metaModTime time.Time) ApiRolloutGetRolloutRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiRolloutGetRolloutRequest) MetaSelfLink(metaSelfLink string) ApiRolloutGetRolloutRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiRolloutGetRolloutRequest) SpecVersion(specVersion string) ApiRolloutGetRolloutRequest {
-	r.specVersion = &specVersion
-	return r
-}
-func (r ApiRolloutGetRolloutRequest) SpecScheduledStartTime(specScheduledStartTime time.Time) ApiRolloutGetRolloutRequest {
-	r.specScheduledStartTime = &specScheduledStartTime
-	return r
-}
-func (r ApiRolloutGetRolloutRequest) SpecScheduledEndTime(specScheduledEndTime time.Time) ApiRolloutGetRolloutRequest {
-	r.specScheduledEndTime = &specScheduledEndTime
-	return r
-}
 func (r ApiRolloutGetRolloutRequest) SpecStrategy(specStrategy string) ApiRolloutGetRolloutRequest {
 	r.specStrategy = &specStrategy
-	return r
-}
-func (r ApiRolloutGetRolloutRequest) SpecMaxParallel(specMaxParallel int64) ApiRolloutGetRolloutRequest {
-	r.specMaxParallel = &specMaxParallel
-	return r
-}
-func (r ApiRolloutGetRolloutRequest) SpecMaxNicFailuresBeforeAbort(specMaxNicFailuresBeforeAbort int64) ApiRolloutGetRolloutRequest {
-	r.specMaxNicFailuresBeforeAbort = &specMaxNicFailuresBeforeAbort
-	return r
-}
-func (r ApiRolloutGetRolloutRequest) SpecSuspend(specSuspend bool) ApiRolloutGetRolloutRequest {
-	r.specSuspend = &specSuspend
-	return r
-}
-func (r ApiRolloutGetRolloutRequest) SpecDscsOnly(specDscsOnly bool) ApiRolloutGetRolloutRequest {
-	r.specDscsOnly = &specDscsOnly
-	return r
-}
-func (r ApiRolloutGetRolloutRequest) SpecDscMustMatchConstraint(specDscMustMatchConstraint bool) ApiRolloutGetRolloutRequest {
-	r.specDscMustMatchConstraint = &specDscMustMatchConstraint
-	return r
-}
-func (r ApiRolloutGetRolloutRequest) SpecUpgradeType(specUpgradeType string) ApiRolloutGetRolloutRequest {
-	r.specUpgradeType = &specUpgradeType
-	return r
-}
-func (r ApiRolloutGetRolloutRequest) SpecRetry(specRetry bool) ApiRolloutGetRolloutRequest {
-	r.specRetry = &specRetry
-	return r
-}
-func (r ApiRolloutGetRolloutRequest) StatusState(statusState string) ApiRolloutGetRolloutRequest {
-	r.statusState = &statusState
-	return r
-}
-func (r ApiRolloutGetRolloutRequest) StatusCompletionPercent(statusCompletionPercent int64) ApiRolloutGetRolloutRequest {
-	r.statusCompletionPercent = &statusCompletionPercent
-	return r
-}
-func (r ApiRolloutGetRolloutRequest) StatusStartTime(statusStartTime time.Time) ApiRolloutGetRolloutRequest {
-	r.statusStartTime = &statusStartTime
-	return r
-}
-func (r ApiRolloutGetRolloutRequest) StatusEndTime(statusEndTime time.Time) ApiRolloutGetRolloutRequest {
-	r.statusEndTime = &statusEndTime
-	return r
-}
-func (r ApiRolloutGetRolloutRequest) StatusPrevVersion(statusPrevVersion string) ApiRolloutGetRolloutRequest {
-	r.statusPrevVersion = &statusPrevVersion
-	return r
-}
-func (r ApiRolloutGetRolloutRequest) StatusReason(statusReason string) ApiRolloutGetRolloutRequest {
-	r.statusReason = &statusReason
 	return r
 }
 
@@ -393,83 +273,11 @@ func (a *RolloutV1ApiService) GetRolloutExecute(r ApiRolloutGetRolloutRequest) (
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specVersion != nil {
-		localVarQueryParams.Add("spec.version", parameterToString(*r.specVersion, ""))
-	}
-	if r.specScheduledStartTime != nil {
-		localVarQueryParams.Add("spec.scheduled-start-time", parameterToString(*r.specScheduledStartTime, ""))
-	}
-	if r.specScheduledEndTime != nil {
-		localVarQueryParams.Add("spec.scheduled-end-time", parameterToString(*r.specScheduledEndTime, ""))
-	}
 	if r.specStrategy != nil {
 		localVarQueryParams.Add("spec.strategy", parameterToString(*r.specStrategy, ""))
-	}
-	if r.specMaxParallel != nil {
-		localVarQueryParams.Add("spec.max-parallel", parameterToString(*r.specMaxParallel, ""))
-	}
-	if r.specMaxNicFailuresBeforeAbort != nil {
-		localVarQueryParams.Add("spec.max-nic-failures-before-abort", parameterToString(*r.specMaxNicFailuresBeforeAbort, ""))
-	}
-	if r.specSuspend != nil {
-		localVarQueryParams.Add("spec.suspend", parameterToString(*r.specSuspend, ""))
-	}
-	if r.specDscsOnly != nil {
-		localVarQueryParams.Add("spec.dscs-only", parameterToString(*r.specDscsOnly, ""))
-	}
-	if r.specDscMustMatchConstraint != nil {
-		localVarQueryParams.Add("spec.dsc-must-match-constraint", parameterToString(*r.specDscMustMatchConstraint, ""))
-	}
-	if r.specUpgradeType != nil {
-		localVarQueryParams.Add("spec.upgrade-type", parameterToString(*r.specUpgradeType, ""))
-	}
-	if r.specRetry != nil {
-		localVarQueryParams.Add("spec.retry", parameterToString(*r.specRetry, ""))
-	}
-	if r.statusState != nil {
-		localVarQueryParams.Add("status.state", parameterToString(*r.statusState, ""))
-	}
-	if r.statusCompletionPercent != nil {
-		localVarQueryParams.Add("status.completion-percent", parameterToString(*r.statusCompletionPercent, ""))
-	}
-	if r.statusStartTime != nil {
-		localVarQueryParams.Add("status.start-time", parameterToString(*r.statusStartTime, ""))
-	}
-	if r.statusEndTime != nil {
-		localVarQueryParams.Add("status.end-time", parameterToString(*r.statusEndTime, ""))
-	}
-	if r.statusPrevVersion != nil {
-		localVarQueryParams.Add("status.prev-version", parameterToString(*r.statusPrevVersion, ""))
-	}
-	if r.statusReason != nil {
-		localVarQueryParams.Add("status.reason", parameterToString(*r.statusReason, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -594,85 +402,20 @@ type ApiRolloutListRolloutRequest struct {
 	ctx _context.Context
 	ApiService *RolloutV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiRolloutListRolloutRequest) OName(oName string) ApiRolloutListRolloutRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiRolloutListRolloutRequest) OTenant(oTenant string) ApiRolloutListRolloutRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiRolloutListRolloutRequest) ONamespace(oNamespace string) ApiRolloutListRolloutRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiRolloutListRolloutRequest) OGenerationId(oGenerationId string) ApiRolloutListRolloutRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiRolloutListRolloutRequest) OResourceVersion(oResourceVersion string) ApiRolloutListRolloutRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiRolloutListRolloutRequest) OUuid(oUuid string) ApiRolloutListRolloutRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiRolloutListRolloutRequest) OCreationTime(oCreationTime time.Time) ApiRolloutListRolloutRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiRolloutListRolloutRequest) OModTime(oModTime time.Time) ApiRolloutListRolloutRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiRolloutListRolloutRequest) OSelfLink(oSelfLink string) ApiRolloutListRolloutRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiRolloutListRolloutRequest) LabelSelector(labelSelector string) ApiRolloutListRolloutRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiRolloutListRolloutRequest) FieldSelector(fieldSelector string) ApiRolloutListRolloutRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiRolloutListRolloutRequest) FieldChangeSelector(fieldChangeSelector []string) ApiRolloutListRolloutRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiRolloutListRolloutRequest) From(from int32) ApiRolloutListRolloutRequest {
-	r.from = &from
-	return r
-}
-func (r ApiRolloutListRolloutRequest) MaxResults(maxResults int32) ApiRolloutListRolloutRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiRolloutListRolloutRequest) SortOrder(sortOrder string) ApiRolloutListRolloutRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiRolloutListRolloutRequest) MetaOnly(metaOnly bool) ApiRolloutListRolloutRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -720,50 +463,11 @@ func (a *RolloutV1ApiService) ListRolloutExecute(r ApiRolloutListRolloutRequest)
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1416,85 +1120,20 @@ type ApiRolloutWatchRolloutRequest struct {
 	ctx _context.Context
 	ApiService *RolloutV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiRolloutWatchRolloutRequest) OName(oName string) ApiRolloutWatchRolloutRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiRolloutWatchRolloutRequest) OTenant(oTenant string) ApiRolloutWatchRolloutRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiRolloutWatchRolloutRequest) ONamespace(oNamespace string) ApiRolloutWatchRolloutRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiRolloutWatchRolloutRequest) OGenerationId(oGenerationId string) ApiRolloutWatchRolloutRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiRolloutWatchRolloutRequest) OResourceVersion(oResourceVersion string) ApiRolloutWatchRolloutRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiRolloutWatchRolloutRequest) OUuid(oUuid string) ApiRolloutWatchRolloutRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiRolloutWatchRolloutRequest) OCreationTime(oCreationTime time.Time) ApiRolloutWatchRolloutRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiRolloutWatchRolloutRequest) OModTime(oModTime time.Time) ApiRolloutWatchRolloutRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiRolloutWatchRolloutRequest) OSelfLink(oSelfLink string) ApiRolloutWatchRolloutRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiRolloutWatchRolloutRequest) LabelSelector(labelSelector string) ApiRolloutWatchRolloutRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiRolloutWatchRolloutRequest) FieldSelector(fieldSelector string) ApiRolloutWatchRolloutRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiRolloutWatchRolloutRequest) FieldChangeSelector(fieldChangeSelector []string) ApiRolloutWatchRolloutRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiRolloutWatchRolloutRequest) From(from int32) ApiRolloutWatchRolloutRequest {
-	r.from = &from
-	return r
-}
-func (r ApiRolloutWatchRolloutRequest) MaxResults(maxResults int32) ApiRolloutWatchRolloutRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiRolloutWatchRolloutRequest) SortOrder(sortOrder string) ApiRolloutWatchRolloutRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiRolloutWatchRolloutRequest) MetaOnly(metaOnly bool) ApiRolloutWatchRolloutRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -1542,50 +1181,11 @@ func (a *RolloutV1ApiService) WatchRolloutExecute(r ApiRolloutWatchRolloutReques
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

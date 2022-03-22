@@ -33,6 +33,8 @@ type FwlogFwLogQuery struct {
 	EndTime *time.Time `json:"end-time,omitempty"`
 	// MaxResults is the max-count of search results Default value is 50 and valid range is 0..8192. Value should be between 0 and 8192.
 	MaxResults *int32 `json:"max-results,omitempty"`
+	// OR of policy names to be matched. Only one policy name is allowed.
+	PolicyNames *[]string `json:"policy-names,omitempty"`
 	// OR of protocols to be matched. Only one protocol can be specified and can only be specified if either source IP or destination IP is present.
 	Protocols *[]string `json:"protocols,omitempty"`
 	// OR of reporter names to be matched. Only one reporter ID can be specified.
@@ -53,6 +55,8 @@ type FwlogFwLogQuery struct {
 	StartTime *time.Time `json:"start-time,omitempty"`
 	// OR of tenants within the scope of which search needs to be performed. If not specified, it will be set to tenant of the logged in user. Also users in non default tenant can search fwlogs in their tenant scope only.
 	Tenants *[]string `json:"tenants,omitempty"`
+	// OR of vlan ids to be matched. Only one vlan id is allowed.
+	Vlans *[]string `json:"vlans,omitempty"`
 	// OR of vpc names to be matched. Only one vpc name is allowed.
 	VpcNames *[]string `json:"vpc-names,omitempty"`
 }
@@ -352,6 +356,38 @@ func (o *FwlogFwLogQuery) HasMaxResults() bool {
 // SetMaxResults gets a reference to the given int32 and assigns it to the MaxResults field.
 func (o *FwlogFwLogQuery) SetMaxResults(v int32) {
 	o.MaxResults = &v
+}
+
+// GetPolicyNames returns the PolicyNames field value if set, zero value otherwise.
+func (o *FwlogFwLogQuery) GetPolicyNames() []string {
+	if o == nil || o.PolicyNames == nil {
+		var ret []string
+		return ret
+	}
+	return *o.PolicyNames
+}
+
+// GetPolicyNamesOk returns a tuple with the PolicyNames field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FwlogFwLogQuery) GetPolicyNamesOk() (*[]string, bool) {
+	if o == nil || o.PolicyNames == nil {
+		return nil, false
+	}
+	return o.PolicyNames, true
+}
+
+// HasPolicyNames returns a boolean if a field has been set.
+func (o *FwlogFwLogQuery) HasPolicyNames() bool {
+	if o != nil && o.PolicyNames != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPolicyNames gets a reference to the given []string and assigns it to the PolicyNames field.
+func (o *FwlogFwLogQuery) SetPolicyNames(v []string) {
+	o.PolicyNames = &v
 }
 
 // GetProtocols returns the Protocols field value if set, zero value otherwise.
@@ -674,6 +710,38 @@ func (o *FwlogFwLogQuery) SetTenants(v []string) {
 	o.Tenants = &v
 }
 
+// GetVlans returns the Vlans field value if set, zero value otherwise.
+func (o *FwlogFwLogQuery) GetVlans() []string {
+	if o == nil || o.Vlans == nil {
+		var ret []string
+		return ret
+	}
+	return *o.Vlans
+}
+
+// GetVlansOk returns a tuple with the Vlans field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FwlogFwLogQuery) GetVlansOk() (*[]string, bool) {
+	if o == nil || o.Vlans == nil {
+		return nil, false
+	}
+	return o.Vlans, true
+}
+
+// HasVlans returns a boolean if a field has been set.
+func (o *FwlogFwLogQuery) HasVlans() bool {
+	if o != nil && o.Vlans != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVlans gets a reference to the given []string and assigns it to the Vlans field.
+func (o *FwlogFwLogQuery) SetVlans(v []string) {
+	o.Vlans = &v
+}
+
 // GetVpcNames returns the VpcNames field value if set, zero value otherwise.
 func (o *FwlogFwLogQuery) GetVpcNames() []string {
 	if o == nil || o.VpcNames == nil {
@@ -732,6 +800,9 @@ func (o FwlogFwLogQuery) MarshalJSON() ([]byte, error) {
 	if o.MaxResults != nil {
 		toSerialize["max-results"] = o.MaxResults
 	}
+	if o.PolicyNames != nil {
+		toSerialize["policy-names"] = o.PolicyNames
+	}
 	if o.Protocols != nil {
 		toSerialize["protocols"] = o.Protocols
 	}
@@ -761,6 +832,9 @@ func (o FwlogFwLogQuery) MarshalJSON() ([]byte, error) {
 	}
 	if o.Tenants != nil {
 		toSerialize["tenants"] = o.Tenants
+	}
+	if o.Vlans != nil {
+		toSerialize["vlans"] = o.Vlans
 	}
 	if o.VpcNames != nil {
 		toSerialize["vpc-names"] = o.VpcNames

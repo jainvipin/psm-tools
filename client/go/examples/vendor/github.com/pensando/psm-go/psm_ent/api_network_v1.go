@@ -1276,7 +1276,6 @@ type ApiNetworkAddStaticBindingsRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oTenant string
-	oName string
 	body *NetworkAddStaticBindingsRequest
 }
 
@@ -1293,15 +1292,13 @@ func (r ApiNetworkAddStaticBindingsRequest) Execute() (NetworkIPAMPolicy, *_neth
  * AddStaticBindings Add static bindings
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiNetworkAddStaticBindingsRequest
  */
-func (a *NetworkV1ApiService) AddStaticBindings(ctx _context.Context, oTenant string, oName string) ApiNetworkAddStaticBindingsRequest {
+func (a *NetworkV1ApiService) AddStaticBindings(ctx _context.Context, oTenant string) ApiNetworkAddStaticBindingsRequest {
 	return ApiNetworkAddStaticBindingsRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -1326,7 +1323,6 @@ func (a *NetworkV1ApiService) AddStaticBindingsExecute(r ApiNetworkAddStaticBind
 
 	localVarPath := localBasePath + "/configs/network/v1/tenant/{O.Tenant}/ipam-policies/{O.Name}/AddStaticBindings"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -2352,7 +2348,6 @@ type ApiNetworkDeleteIPAMPolicyRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oTenant string
-	oName string
 }
 
 
@@ -2364,15 +2359,13 @@ func (r ApiNetworkDeleteIPAMPolicyRequest) Execute() (NetworkIPAMPolicy, *_netht
  * DeleteIPAMPolicy Delete IPAMPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiNetworkDeleteIPAMPolicyRequest
  */
-func (a *NetworkV1ApiService) DeleteIPAMPolicy(ctx _context.Context, oTenant string, oName string) ApiNetworkDeleteIPAMPolicyRequest {
+func (a *NetworkV1ApiService) DeleteIPAMPolicy(ctx _context.Context, oTenant string) ApiNetworkDeleteIPAMPolicyRequest {
 	return ApiNetworkDeleteIPAMPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -2397,7 +2390,6 @@ func (a *NetworkV1ApiService) DeleteIPAMPolicyExecute(r ApiNetworkDeleteIPAMPoli
 
 	localVarPath := localBasePath + "/configs/network/v1/tenant/{O.Tenant}/ipam-policies/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -2696,7 +2688,6 @@ type ApiNetworkDeleteNetworkRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oTenant string
-	oName string
 }
 
 
@@ -2708,15 +2699,13 @@ func (r ApiNetworkDeleteNetworkRequest) Execute() (NetworkNetwork, *_nethttp.Res
  * DeleteNetwork Delete Network object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiNetworkDeleteNetworkRequest
  */
-func (a *NetworkV1ApiService) DeleteNetwork(ctx _context.Context, oTenant string, oName string) ApiNetworkDeleteNetworkRequest {
+func (a *NetworkV1ApiService) DeleteNetwork(ctx _context.Context, oTenant string) ApiNetworkDeleteNetworkRequest {
 	return ApiNetworkDeleteNetworkRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -2741,7 +2730,6 @@ func (a *NetworkV1ApiService) DeleteNetworkExecute(r ApiNetworkDeleteNetworkRequ
 
 	localVarPath := localBasePath + "/configs/network/v1/tenant/{O.Tenant}/networks/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -3040,7 +3028,6 @@ type ApiNetworkDeletePolicerProfileRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oTenant string
-	oName string
 }
 
 
@@ -3052,15 +3039,13 @@ func (r ApiNetworkDeletePolicerProfileRequest) Execute() (NetworkPolicerProfile,
  * DeletePolicerProfile Delete PolicerProfile object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiNetworkDeletePolicerProfileRequest
  */
-func (a *NetworkV1ApiService) DeletePolicerProfile(ctx _context.Context, oTenant string, oName string) ApiNetworkDeletePolicerProfileRequest {
+func (a *NetworkV1ApiService) DeletePolicerProfile(ctx _context.Context, oTenant string) ApiNetworkDeletePolicerProfileRequest {
 	return ApiNetworkDeletePolicerProfileRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -3085,7 +3070,6 @@ func (a *NetworkV1ApiService) DeletePolicerProfileExecute(r ApiNetworkDeletePoli
 
 	localVarPath := localBasePath + "/configs/network/v1/tenant/{O.Tenant}/policer-profile/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -3554,7 +3538,6 @@ type ApiNetworkDeleteVirtualRouterRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oTenant string
-	oName string
 }
 
 
@@ -3566,15 +3549,13 @@ func (r ApiNetworkDeleteVirtualRouterRequest) Execute() (NetworkVirtualRouter, *
  * DeleteVirtualRouter Delete VirtualRouter object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiNetworkDeleteVirtualRouterRequest
  */
-func (a *NetworkV1ApiService) DeleteVirtualRouter(ctx _context.Context, oTenant string, oName string) ApiNetworkDeleteVirtualRouterRequest {
+func (a *NetworkV1ApiService) DeleteVirtualRouter(ctx _context.Context, oTenant string) ApiNetworkDeleteVirtualRouterRequest {
 	return ApiNetworkDeleteVirtualRouterRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -3599,7 +3580,6 @@ func (a *NetworkV1ApiService) DeleteVirtualRouterExecute(r ApiNetworkDeleteVirtu
 
 	localVarPath := localBasePath + "/configs/network/v1/tenant/{O.Tenant}/virtualrouters/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -3898,7 +3878,6 @@ type ApiNetworkDeleteVirtualRouterPeeringGroupRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oTenant string
-	oName string
 }
 
 
@@ -3910,15 +3889,13 @@ func (r ApiNetworkDeleteVirtualRouterPeeringGroupRequest) Execute() (NetworkVirt
  * DeleteVirtualRouterPeeringGroup Delete VirtualRouterPeeringGroup object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiNetworkDeleteVirtualRouterPeeringGroupRequest
  */
-func (a *NetworkV1ApiService) DeleteVirtualRouterPeeringGroup(ctx _context.Context, oTenant string, oName string) ApiNetworkDeleteVirtualRouterPeeringGroupRequest {
+func (a *NetworkV1ApiService) DeleteVirtualRouterPeeringGroup(ctx _context.Context, oTenant string) ApiNetworkDeleteVirtualRouterPeeringGroupRequest {
 	return ApiNetworkDeleteVirtualRouterPeeringGroupRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -3943,7 +3920,6 @@ func (a *NetworkV1ApiService) DeleteVirtualRouterPeeringGroupExecute(r ApiNetwor
 
 	localVarPath := localBasePath + "/configs/network/v1/tenant/{O.Tenant}/virtual-router-peering-groups/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -4242,25 +4218,11 @@ type ApiNetworkGetIPAMPolicyRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	specType *string
 	ipamOptionsLease *int64
 	ipamOptionsRouters *[]string
-	bootstrapIpamOptionsControllers *[]string
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
 	propagationStatusPendingDscs *[]string
 }
 
@@ -4268,36 +4230,8 @@ func (r ApiNetworkGetIPAMPolicyRequest) TKind(tKind string) ApiNetworkGetIPAMPol
 	r.tKind = &tKind
 	return r
 }
-func (r ApiNetworkGetIPAMPolicyRequest) TApiVersion(tApiVersion string) ApiNetworkGetIPAMPolicyRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiNetworkGetIPAMPolicyRequest) MetaNamespace(metaNamespace string) ApiNetworkGetIPAMPolicyRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiNetworkGetIPAMPolicyRequest) MetaGenerationId(metaGenerationId string) ApiNetworkGetIPAMPolicyRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiNetworkGetIPAMPolicyRequest) MetaResourceVersion(metaResourceVersion string) ApiNetworkGetIPAMPolicyRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiNetworkGetIPAMPolicyRequest) MetaUuid(metaUuid string) ApiNetworkGetIPAMPolicyRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiNetworkGetIPAMPolicyRequest) MetaCreationTime(metaCreationTime time.Time) ApiNetworkGetIPAMPolicyRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiNetworkGetIPAMPolicyRequest) MetaModTime(metaModTime time.Time) ApiNetworkGetIPAMPolicyRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiNetworkGetIPAMPolicyRequest) MetaSelfLink(metaSelfLink string) ApiNetworkGetIPAMPolicyRequest {
-	r.metaSelfLink = &metaSelfLink
 	return r
 }
 func (r ApiNetworkGetIPAMPolicyRequest) SpecType(specType string) ApiNetworkGetIPAMPolicyRequest {
@@ -4310,30 +4244,6 @@ func (r ApiNetworkGetIPAMPolicyRequest) IpamOptionsLease(ipamOptionsLease int64)
 }
 func (r ApiNetworkGetIPAMPolicyRequest) IpamOptionsRouters(ipamOptionsRouters []string) ApiNetworkGetIPAMPolicyRequest {
 	r.ipamOptionsRouters = &ipamOptionsRouters
-	return r
-}
-func (r ApiNetworkGetIPAMPolicyRequest) BootstrapIpamOptionsControllers(bootstrapIpamOptionsControllers []string) ApiNetworkGetIPAMPolicyRequest {
-	r.bootstrapIpamOptionsControllers = &bootstrapIpamOptionsControllers
-	return r
-}
-func (r ApiNetworkGetIPAMPolicyRequest) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiNetworkGetIPAMPolicyRequest {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiNetworkGetIPAMPolicyRequest) PropagationStatusUpdated(propagationStatusUpdated int32) ApiNetworkGetIPAMPolicyRequest {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiNetworkGetIPAMPolicyRequest) PropagationStatusPending(propagationStatusPending int32) ApiNetworkGetIPAMPolicyRequest {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiNetworkGetIPAMPolicyRequest) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiNetworkGetIPAMPolicyRequest {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiNetworkGetIPAMPolicyRequest) PropagationStatusStatus(propagationStatusStatus string) ApiNetworkGetIPAMPolicyRequest {
-	r.propagationStatusStatus = &propagationStatusStatus
 	return r
 }
 func (r ApiNetworkGetIPAMPolicyRequest) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiNetworkGetIPAMPolicyRequest {
@@ -4349,15 +4259,13 @@ func (r ApiNetworkGetIPAMPolicyRequest) Execute() (NetworkIPAMPolicy, *_nethttp.
  * GetIPAMPolicy Get IPAMPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiNetworkGetIPAMPolicyRequest
  */
-func (a *NetworkV1ApiService) GetIPAMPolicy(ctx _context.Context, oTenant string, oName string) ApiNetworkGetIPAMPolicyRequest {
+func (a *NetworkV1ApiService) GetIPAMPolicy(ctx _context.Context, oTenant string) ApiNetworkGetIPAMPolicyRequest {
 	return ApiNetworkGetIPAMPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -4382,7 +4290,6 @@ func (a *NetworkV1ApiService) GetIPAMPolicyExecute(r ApiNetworkGetIPAMPolicyRequ
 
 	localVarPath := localBasePath + "/configs/network/v1/tenant/{O.Tenant}/ipam-policies/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -4391,29 +4298,8 @@ func (a *NetworkV1ApiService) GetIPAMPolicyExecute(r ApiNetworkGetIPAMPolicyRequ
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
 	}
 	if r.specType != nil {
 		localVarQueryParams.Add("spec.type", parameterToString(*r.specType, ""))
@@ -4423,24 +4309,6 @@ func (a *NetworkV1ApiService) GetIPAMPolicyExecute(r ApiNetworkGetIPAMPolicyRequ
 	}
 	if r.ipamOptionsRouters != nil {
 		localVarQueryParams.Add("ipam-options.routers", parameterToString(*r.ipamOptionsRouters, "csv"))
-	}
-	if r.bootstrapIpamOptionsControllers != nil {
-		localVarQueryParams.Add("bootstrap-ipam-options.controllers", parameterToString(*r.bootstrapIpamOptionsControllers, "csv"))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
 	}
 	if r.propagationStatusPendingDscs != nil {
 		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
@@ -4569,24 +4437,10 @@ type ApiNetworkGetIPAMPolicy1Request struct {
 	ApiService *NetworkV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	specType *string
 	ipamOptionsLease *int64
 	ipamOptionsRouters *[]string
-	bootstrapIpamOptionsControllers *[]string
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
 	propagationStatusPendingDscs *[]string
 }
 
@@ -4594,40 +4448,8 @@ func (r ApiNetworkGetIPAMPolicy1Request) TKind(tKind string) ApiNetworkGetIPAMPo
 	r.tKind = &tKind
 	return r
 }
-func (r ApiNetworkGetIPAMPolicy1Request) TApiVersion(tApiVersion string) ApiNetworkGetIPAMPolicy1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiNetworkGetIPAMPolicy1Request) MetaTenant(metaTenant string) ApiNetworkGetIPAMPolicy1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiNetworkGetIPAMPolicy1Request) MetaNamespace(metaNamespace string) ApiNetworkGetIPAMPolicy1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiNetworkGetIPAMPolicy1Request) MetaGenerationId(metaGenerationId string) ApiNetworkGetIPAMPolicy1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiNetworkGetIPAMPolicy1Request) MetaResourceVersion(metaResourceVersion string) ApiNetworkGetIPAMPolicy1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiNetworkGetIPAMPolicy1Request) MetaUuid(metaUuid string) ApiNetworkGetIPAMPolicy1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiNetworkGetIPAMPolicy1Request) MetaCreationTime(metaCreationTime time.Time) ApiNetworkGetIPAMPolicy1Request {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiNetworkGetIPAMPolicy1Request) MetaModTime(metaModTime time.Time) ApiNetworkGetIPAMPolicy1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiNetworkGetIPAMPolicy1Request) MetaSelfLink(metaSelfLink string) ApiNetworkGetIPAMPolicy1Request {
-	r.metaSelfLink = &metaSelfLink
 	return r
 }
 func (r ApiNetworkGetIPAMPolicy1Request) SpecType(specType string) ApiNetworkGetIPAMPolicy1Request {
@@ -4640,30 +4462,6 @@ func (r ApiNetworkGetIPAMPolicy1Request) IpamOptionsLease(ipamOptionsLease int64
 }
 func (r ApiNetworkGetIPAMPolicy1Request) IpamOptionsRouters(ipamOptionsRouters []string) ApiNetworkGetIPAMPolicy1Request {
 	r.ipamOptionsRouters = &ipamOptionsRouters
-	return r
-}
-func (r ApiNetworkGetIPAMPolicy1Request) BootstrapIpamOptionsControllers(bootstrapIpamOptionsControllers []string) ApiNetworkGetIPAMPolicy1Request {
-	r.bootstrapIpamOptionsControllers = &bootstrapIpamOptionsControllers
-	return r
-}
-func (r ApiNetworkGetIPAMPolicy1Request) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiNetworkGetIPAMPolicy1Request {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiNetworkGetIPAMPolicy1Request) PropagationStatusUpdated(propagationStatusUpdated int32) ApiNetworkGetIPAMPolicy1Request {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiNetworkGetIPAMPolicy1Request) PropagationStatusPending(propagationStatusPending int32) ApiNetworkGetIPAMPolicy1Request {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiNetworkGetIPAMPolicy1Request) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiNetworkGetIPAMPolicy1Request {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiNetworkGetIPAMPolicy1Request) PropagationStatusStatus(propagationStatusStatus string) ApiNetworkGetIPAMPolicy1Request {
-	r.propagationStatusStatus = &propagationStatusStatus
 	return r
 }
 func (r ApiNetworkGetIPAMPolicy1Request) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiNetworkGetIPAMPolicy1Request {
@@ -4718,32 +4516,8 @@ func (a *NetworkV1ApiService) GetIPAMPolicy1Execute(r ApiNetworkGetIPAMPolicy1Re
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
 	}
 	if r.specType != nil {
 		localVarQueryParams.Add("spec.type", parameterToString(*r.specType, ""))
@@ -4753,24 +4527,6 @@ func (a *NetworkV1ApiService) GetIPAMPolicy1Execute(r ApiNetworkGetIPAMPolicy1Re
 	}
 	if r.ipamOptionsRouters != nil {
 		localVarQueryParams.Add("ipam-options.routers", parameterToString(*r.ipamOptionsRouters, "csv"))
-	}
-	if r.bootstrapIpamOptionsControllers != nil {
-		localVarQueryParams.Add("bootstrap-ipam-options.controllers", parameterToString(*r.bootstrapIpamOptionsControllers, "csv"))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
 	}
 	if r.propagationStatusPendingDscs != nil {
 		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
@@ -4898,128 +4654,19 @@ type ApiNetworkGetNetworkRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specType *string
-	specIpv4Subnet *string
-	specIpv4Gateway *string
-	specIpv6Subnet *string
-	specIpv6Gateway *string
-	specVlanId *int64
-	specVxlanVni *int64
-	specVirtualRouter *string
-	specIpamPolicy *string
-	routeImportExportAddressFamily *string
-	routeImportExportRdAuto *bool
-	rdType *string
 	adminValueFormat *string
 	adminValueValue *int64
-	rdAssignedValue *int64
 	specIngressSecurityPolicy *[]string
-	specEgressSecurityPolicy *[]string
-	firewallProfileEnableFwLogging *bool
-	statusWorkloads *[]string
-	statusAllocatedIpv4Addrs *string
-	statusId *string
-	statusOperState *string
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
-	propagationStatusPendingDscs *[]string
 }
 
 func (r ApiNetworkGetNetworkRequest) TKind(tKind string) ApiNetworkGetNetworkRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiNetworkGetNetworkRequest) TApiVersion(tApiVersion string) ApiNetworkGetNetworkRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) MetaNamespace(metaNamespace string) ApiNetworkGetNetworkRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) MetaGenerationId(metaGenerationId string) ApiNetworkGetNetworkRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) MetaResourceVersion(metaResourceVersion string) ApiNetworkGetNetworkRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) MetaUuid(metaUuid string) ApiNetworkGetNetworkRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiNetworkGetNetworkRequest) MetaCreationTime(metaCreationTime time.Time) ApiNetworkGetNetworkRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) MetaModTime(metaModTime time.Time) ApiNetworkGetNetworkRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) MetaSelfLink(metaSelfLink string) ApiNetworkGetNetworkRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) SpecType(specType string) ApiNetworkGetNetworkRequest {
-	r.specType = &specType
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) SpecIpv4Subnet(specIpv4Subnet string) ApiNetworkGetNetworkRequest {
-	r.specIpv4Subnet = &specIpv4Subnet
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) SpecIpv4Gateway(specIpv4Gateway string) ApiNetworkGetNetworkRequest {
-	r.specIpv4Gateway = &specIpv4Gateway
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) SpecIpv6Subnet(specIpv6Subnet string) ApiNetworkGetNetworkRequest {
-	r.specIpv6Subnet = &specIpv6Subnet
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) SpecIpv6Gateway(specIpv6Gateway string) ApiNetworkGetNetworkRequest {
-	r.specIpv6Gateway = &specIpv6Gateway
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) SpecVlanId(specVlanId int64) ApiNetworkGetNetworkRequest {
-	r.specVlanId = &specVlanId
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) SpecVxlanVni(specVxlanVni int64) ApiNetworkGetNetworkRequest {
-	r.specVxlanVni = &specVxlanVni
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) SpecVirtualRouter(specVirtualRouter string) ApiNetworkGetNetworkRequest {
-	r.specVirtualRouter = &specVirtualRouter
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) SpecIpamPolicy(specIpamPolicy string) ApiNetworkGetNetworkRequest {
-	r.specIpamPolicy = &specIpamPolicy
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) RouteImportExportAddressFamily(routeImportExportAddressFamily string) ApiNetworkGetNetworkRequest {
-	r.routeImportExportAddressFamily = &routeImportExportAddressFamily
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) RouteImportExportRdAuto(routeImportExportRdAuto bool) ApiNetworkGetNetworkRequest {
-	r.routeImportExportRdAuto = &routeImportExportRdAuto
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) RdType(rdType string) ApiNetworkGetNetworkRequest {
-	r.rdType = &rdType
 	return r
 }
 func (r ApiNetworkGetNetworkRequest) AdminValueFormat(adminValueFormat string) ApiNetworkGetNetworkRequest {
@@ -5030,60 +4677,8 @@ func (r ApiNetworkGetNetworkRequest) AdminValueValue(adminValueValue int64) ApiN
 	r.adminValueValue = &adminValueValue
 	return r
 }
-func (r ApiNetworkGetNetworkRequest) RdAssignedValue(rdAssignedValue int64) ApiNetworkGetNetworkRequest {
-	r.rdAssignedValue = &rdAssignedValue
-	return r
-}
 func (r ApiNetworkGetNetworkRequest) SpecIngressSecurityPolicy(specIngressSecurityPolicy []string) ApiNetworkGetNetworkRequest {
 	r.specIngressSecurityPolicy = &specIngressSecurityPolicy
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) SpecEgressSecurityPolicy(specEgressSecurityPolicy []string) ApiNetworkGetNetworkRequest {
-	r.specEgressSecurityPolicy = &specEgressSecurityPolicy
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) FirewallProfileEnableFwLogging(firewallProfileEnableFwLogging bool) ApiNetworkGetNetworkRequest {
-	r.firewallProfileEnableFwLogging = &firewallProfileEnableFwLogging
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) StatusWorkloads(statusWorkloads []string) ApiNetworkGetNetworkRequest {
-	r.statusWorkloads = &statusWorkloads
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) StatusAllocatedIpv4Addrs(statusAllocatedIpv4Addrs string) ApiNetworkGetNetworkRequest {
-	r.statusAllocatedIpv4Addrs = &statusAllocatedIpv4Addrs
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) StatusId(statusId string) ApiNetworkGetNetworkRequest {
-	r.statusId = &statusId
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) StatusOperState(statusOperState string) ApiNetworkGetNetworkRequest {
-	r.statusOperState = &statusOperState
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiNetworkGetNetworkRequest {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) PropagationStatusUpdated(propagationStatusUpdated int32) ApiNetworkGetNetworkRequest {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) PropagationStatusPending(propagationStatusPending int32) ApiNetworkGetNetworkRequest {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiNetworkGetNetworkRequest {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) PropagationStatusStatus(propagationStatusStatus string) ApiNetworkGetNetworkRequest {
-	r.propagationStatusStatus = &propagationStatusStatus
-	return r
-}
-func (r ApiNetworkGetNetworkRequest) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiNetworkGetNetworkRequest {
-	r.propagationStatusPendingDscs = &propagationStatusPendingDscs
 	return r
 }
 
@@ -5095,15 +4690,13 @@ func (r ApiNetworkGetNetworkRequest) Execute() (NetworkNetwork, *_nethttp.Respon
  * GetNetwork Get Network object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiNetworkGetNetworkRequest
  */
-func (a *NetworkV1ApiService) GetNetwork(ctx _context.Context, oTenant string, oName string) ApiNetworkGetNetworkRequest {
+func (a *NetworkV1ApiService) GetNetwork(ctx _context.Context, oTenant string) ApiNetworkGetNetworkRequest {
 	return ApiNetworkGetNetworkRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -5128,7 +4721,6 @@ func (a *NetworkV1ApiService) GetNetworkExecute(r ApiNetworkGetNetworkRequest) (
 
 	localVarPath := localBasePath + "/configs/network/v1/tenant/{O.Tenant}/networks/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -5137,65 +4729,8 @@ func (a *NetworkV1ApiService) GetNetworkExecute(r ApiNetworkGetNetworkRequest) (
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specType != nil {
-		localVarQueryParams.Add("spec.type", parameterToString(*r.specType, ""))
-	}
-	if r.specIpv4Subnet != nil {
-		localVarQueryParams.Add("spec.ipv4-subnet", parameterToString(*r.specIpv4Subnet, ""))
-	}
-	if r.specIpv4Gateway != nil {
-		localVarQueryParams.Add("spec.ipv4-gateway", parameterToString(*r.specIpv4Gateway, ""))
-	}
-	if r.specIpv6Subnet != nil {
-		localVarQueryParams.Add("spec.ipv6-subnet", parameterToString(*r.specIpv6Subnet, ""))
-	}
-	if r.specIpv6Gateway != nil {
-		localVarQueryParams.Add("spec.ipv6-gateway", parameterToString(*r.specIpv6Gateway, ""))
-	}
-	if r.specVlanId != nil {
-		localVarQueryParams.Add("spec.vlan-id", parameterToString(*r.specVlanId, ""))
-	}
-	if r.specVxlanVni != nil {
-		localVarQueryParams.Add("spec.vxlan-vni", parameterToString(*r.specVxlanVni, ""))
-	}
-	if r.specVirtualRouter != nil {
-		localVarQueryParams.Add("spec.virtual-router", parameterToString(*r.specVirtualRouter, ""))
-	}
-	if r.specIpamPolicy != nil {
-		localVarQueryParams.Add("spec.ipam-policy", parameterToString(*r.specIpamPolicy, ""))
-	}
-	if r.routeImportExportAddressFamily != nil {
-		localVarQueryParams.Add("route-import-export.address-family", parameterToString(*r.routeImportExportAddressFamily, ""))
-	}
-	if r.routeImportExportRdAuto != nil {
-		localVarQueryParams.Add("route-import-export.rd-auto", parameterToString(*r.routeImportExportRdAuto, ""))
-	}
-	if r.rdType != nil {
-		localVarQueryParams.Add("rd.type", parameterToString(*r.rdType, ""))
 	}
 	if r.adminValueFormat != nil {
 		localVarQueryParams.Add("admin-value.Format", parameterToString(*r.adminValueFormat, ""))
@@ -5203,47 +4738,8 @@ func (a *NetworkV1ApiService) GetNetworkExecute(r ApiNetworkGetNetworkRequest) (
 	if r.adminValueValue != nil {
 		localVarQueryParams.Add("admin-value.Value", parameterToString(*r.adminValueValue, ""))
 	}
-	if r.rdAssignedValue != nil {
-		localVarQueryParams.Add("rd.assigned-value", parameterToString(*r.rdAssignedValue, ""))
-	}
 	if r.specIngressSecurityPolicy != nil {
 		localVarQueryParams.Add("spec.ingress-security-policy", parameterToString(*r.specIngressSecurityPolicy, "csv"))
-	}
-	if r.specEgressSecurityPolicy != nil {
-		localVarQueryParams.Add("spec.egress-security-policy", parameterToString(*r.specEgressSecurityPolicy, "csv"))
-	}
-	if r.firewallProfileEnableFwLogging != nil {
-		localVarQueryParams.Add("firewall-profile.enable-fw-logging", parameterToString(*r.firewallProfileEnableFwLogging, ""))
-	}
-	if r.statusWorkloads != nil {
-		localVarQueryParams.Add("status.workloads", parameterToString(*r.statusWorkloads, "csv"))
-	}
-	if r.statusAllocatedIpv4Addrs != nil {
-		localVarQueryParams.Add("status.allocated-ipv4-addrs", parameterToString(*r.statusAllocatedIpv4Addrs, ""))
-	}
-	if r.statusId != nil {
-		localVarQueryParams.Add("status.id", parameterToString(*r.statusId, ""))
-	}
-	if r.statusOperState != nil {
-		localVarQueryParams.Add("status.oper-state", parameterToString(*r.statusOperState, ""))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
-	}
-	if r.propagationStatusPendingDscs != nil {
-		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -5369,131 +4865,18 @@ type ApiNetworkGetNetwork1Request struct {
 	ApiService *NetworkV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specType *string
-	specIpv4Subnet *string
-	specIpv4Gateway *string
-	specIpv6Subnet *string
-	specIpv6Gateway *string
-	specVlanId *int64
-	specVxlanVni *int64
-	specVirtualRouter *string
-	specIpamPolicy *string
-	routeImportExportAddressFamily *string
-	routeImportExportRdAuto *bool
-	rdType *string
 	adminValueFormat *string
 	adminValueValue *int64
-	rdAssignedValue *int64
 	specIngressSecurityPolicy *[]string
-	specEgressSecurityPolicy *[]string
-	firewallProfileEnableFwLogging *bool
-	statusWorkloads *[]string
-	statusAllocatedIpv4Addrs *string
-	statusId *string
-	statusOperState *string
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
-	propagationStatusPendingDscs *[]string
 }
 
 func (r ApiNetworkGetNetwork1Request) TKind(tKind string) ApiNetworkGetNetwork1Request {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiNetworkGetNetwork1Request) TApiVersion(tApiVersion string) ApiNetworkGetNetwork1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) MetaTenant(metaTenant string) ApiNetworkGetNetwork1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) MetaNamespace(metaNamespace string) ApiNetworkGetNetwork1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) MetaGenerationId(metaGenerationId string) ApiNetworkGetNetwork1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) MetaResourceVersion(metaResourceVersion string) ApiNetworkGetNetwork1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) MetaUuid(metaUuid string) ApiNetworkGetNetwork1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiNetworkGetNetwork1Request) MetaCreationTime(metaCreationTime time.Time) ApiNetworkGetNetwork1Request {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) MetaModTime(metaModTime time.Time) ApiNetworkGetNetwork1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) MetaSelfLink(metaSelfLink string) ApiNetworkGetNetwork1Request {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) SpecType(specType string) ApiNetworkGetNetwork1Request {
-	r.specType = &specType
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) SpecIpv4Subnet(specIpv4Subnet string) ApiNetworkGetNetwork1Request {
-	r.specIpv4Subnet = &specIpv4Subnet
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) SpecIpv4Gateway(specIpv4Gateway string) ApiNetworkGetNetwork1Request {
-	r.specIpv4Gateway = &specIpv4Gateway
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) SpecIpv6Subnet(specIpv6Subnet string) ApiNetworkGetNetwork1Request {
-	r.specIpv6Subnet = &specIpv6Subnet
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) SpecIpv6Gateway(specIpv6Gateway string) ApiNetworkGetNetwork1Request {
-	r.specIpv6Gateway = &specIpv6Gateway
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) SpecVlanId(specVlanId int64) ApiNetworkGetNetwork1Request {
-	r.specVlanId = &specVlanId
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) SpecVxlanVni(specVxlanVni int64) ApiNetworkGetNetwork1Request {
-	r.specVxlanVni = &specVxlanVni
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) SpecVirtualRouter(specVirtualRouter string) ApiNetworkGetNetwork1Request {
-	r.specVirtualRouter = &specVirtualRouter
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) SpecIpamPolicy(specIpamPolicy string) ApiNetworkGetNetwork1Request {
-	r.specIpamPolicy = &specIpamPolicy
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) RouteImportExportAddressFamily(routeImportExportAddressFamily string) ApiNetworkGetNetwork1Request {
-	r.routeImportExportAddressFamily = &routeImportExportAddressFamily
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) RouteImportExportRdAuto(routeImportExportRdAuto bool) ApiNetworkGetNetwork1Request {
-	r.routeImportExportRdAuto = &routeImportExportRdAuto
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) RdType(rdType string) ApiNetworkGetNetwork1Request {
-	r.rdType = &rdType
 	return r
 }
 func (r ApiNetworkGetNetwork1Request) AdminValueFormat(adminValueFormat string) ApiNetworkGetNetwork1Request {
@@ -5504,60 +4887,8 @@ func (r ApiNetworkGetNetwork1Request) AdminValueValue(adminValueValue int64) Api
 	r.adminValueValue = &adminValueValue
 	return r
 }
-func (r ApiNetworkGetNetwork1Request) RdAssignedValue(rdAssignedValue int64) ApiNetworkGetNetwork1Request {
-	r.rdAssignedValue = &rdAssignedValue
-	return r
-}
 func (r ApiNetworkGetNetwork1Request) SpecIngressSecurityPolicy(specIngressSecurityPolicy []string) ApiNetworkGetNetwork1Request {
 	r.specIngressSecurityPolicy = &specIngressSecurityPolicy
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) SpecEgressSecurityPolicy(specEgressSecurityPolicy []string) ApiNetworkGetNetwork1Request {
-	r.specEgressSecurityPolicy = &specEgressSecurityPolicy
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) FirewallProfileEnableFwLogging(firewallProfileEnableFwLogging bool) ApiNetworkGetNetwork1Request {
-	r.firewallProfileEnableFwLogging = &firewallProfileEnableFwLogging
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) StatusWorkloads(statusWorkloads []string) ApiNetworkGetNetwork1Request {
-	r.statusWorkloads = &statusWorkloads
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) StatusAllocatedIpv4Addrs(statusAllocatedIpv4Addrs string) ApiNetworkGetNetwork1Request {
-	r.statusAllocatedIpv4Addrs = &statusAllocatedIpv4Addrs
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) StatusId(statusId string) ApiNetworkGetNetwork1Request {
-	r.statusId = &statusId
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) StatusOperState(statusOperState string) ApiNetworkGetNetwork1Request {
-	r.statusOperState = &statusOperState
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiNetworkGetNetwork1Request {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) PropagationStatusUpdated(propagationStatusUpdated int32) ApiNetworkGetNetwork1Request {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) PropagationStatusPending(propagationStatusPending int32) ApiNetworkGetNetwork1Request {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiNetworkGetNetwork1Request {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) PropagationStatusStatus(propagationStatusStatus string) ApiNetworkGetNetwork1Request {
-	r.propagationStatusStatus = &propagationStatusStatus
-	return r
-}
-func (r ApiNetworkGetNetwork1Request) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiNetworkGetNetwork1Request {
-	r.propagationStatusPendingDscs = &propagationStatusPendingDscs
 	return r
 }
 
@@ -5608,68 +4939,8 @@ func (a *NetworkV1ApiService) GetNetwork1Execute(r ApiNetworkGetNetwork1Request)
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specType != nil {
-		localVarQueryParams.Add("spec.type", parameterToString(*r.specType, ""))
-	}
-	if r.specIpv4Subnet != nil {
-		localVarQueryParams.Add("spec.ipv4-subnet", parameterToString(*r.specIpv4Subnet, ""))
-	}
-	if r.specIpv4Gateway != nil {
-		localVarQueryParams.Add("spec.ipv4-gateway", parameterToString(*r.specIpv4Gateway, ""))
-	}
-	if r.specIpv6Subnet != nil {
-		localVarQueryParams.Add("spec.ipv6-subnet", parameterToString(*r.specIpv6Subnet, ""))
-	}
-	if r.specIpv6Gateway != nil {
-		localVarQueryParams.Add("spec.ipv6-gateway", parameterToString(*r.specIpv6Gateway, ""))
-	}
-	if r.specVlanId != nil {
-		localVarQueryParams.Add("spec.vlan-id", parameterToString(*r.specVlanId, ""))
-	}
-	if r.specVxlanVni != nil {
-		localVarQueryParams.Add("spec.vxlan-vni", parameterToString(*r.specVxlanVni, ""))
-	}
-	if r.specVirtualRouter != nil {
-		localVarQueryParams.Add("spec.virtual-router", parameterToString(*r.specVirtualRouter, ""))
-	}
-	if r.specIpamPolicy != nil {
-		localVarQueryParams.Add("spec.ipam-policy", parameterToString(*r.specIpamPolicy, ""))
-	}
-	if r.routeImportExportAddressFamily != nil {
-		localVarQueryParams.Add("route-import-export.address-family", parameterToString(*r.routeImportExportAddressFamily, ""))
-	}
-	if r.routeImportExportRdAuto != nil {
-		localVarQueryParams.Add("route-import-export.rd-auto", parameterToString(*r.routeImportExportRdAuto, ""))
-	}
-	if r.rdType != nil {
-		localVarQueryParams.Add("rd.type", parameterToString(*r.rdType, ""))
 	}
 	if r.adminValueFormat != nil {
 		localVarQueryParams.Add("admin-value.Format", parameterToString(*r.adminValueFormat, ""))
@@ -5677,47 +4948,8 @@ func (a *NetworkV1ApiService) GetNetwork1Execute(r ApiNetworkGetNetwork1Request)
 	if r.adminValueValue != nil {
 		localVarQueryParams.Add("admin-value.Value", parameterToString(*r.adminValueValue, ""))
 	}
-	if r.rdAssignedValue != nil {
-		localVarQueryParams.Add("rd.assigned-value", parameterToString(*r.rdAssignedValue, ""))
-	}
 	if r.specIngressSecurityPolicy != nil {
 		localVarQueryParams.Add("spec.ingress-security-policy", parameterToString(*r.specIngressSecurityPolicy, "csv"))
-	}
-	if r.specEgressSecurityPolicy != nil {
-		localVarQueryParams.Add("spec.egress-security-policy", parameterToString(*r.specEgressSecurityPolicy, "csv"))
-	}
-	if r.firewallProfileEnableFwLogging != nil {
-		localVarQueryParams.Add("firewall-profile.enable-fw-logging", parameterToString(*r.firewallProfileEnableFwLogging, ""))
-	}
-	if r.statusWorkloads != nil {
-		localVarQueryParams.Add("status.workloads", parameterToString(*r.statusWorkloads, "csv"))
-	}
-	if r.statusAllocatedIpv4Addrs != nil {
-		localVarQueryParams.Add("status.allocated-ipv4-addrs", parameterToString(*r.statusAllocatedIpv4Addrs, ""))
-	}
-	if r.statusId != nil {
-		localVarQueryParams.Add("status.id", parameterToString(*r.statusId, ""))
-	}
-	if r.statusOperState != nil {
-		localVarQueryParams.Add("status.oper-state", parameterToString(*r.statusOperState, ""))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
-	}
-	if r.propagationStatusPendingDscs != nil {
-		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -5843,295 +5075,30 @@ type ApiNetworkGetNetworkInterfaceRequest struct {
 	ApiService *NetworkV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specAdminStatus *string
-	specSpeed *string
-	specMtu *int64
-	pauseType *string
-	pauseTxPauseEnabled *bool
-	pauseRxPauseEnabled *bool
-	specType *string
 	specAttachTenant *string
-	specAttachNetwork *string
-	specIpAllocType *string
-	ipConfigIpAddress *string
-	ipConfigDefaultGw *string
 	ipConfigDnsServers *[]string
-	specMacAddress *string
-	specConnectionTracking *bool
-	specTxPolicer *string
-	specEnableFwLogging *bool
-	specVnfAttached *bool
-	statusName *string
-	statusDsc *string
-	statusType *string
-	statusOperStatus *string
-	statusPrimaryMac *string
-	ifHostStatusHostIfname *string
-	ifHostStatusDeviceId *string
-	ifHostStatusMacAddress *string
-	ifUplinkStatusLinkSpeed *string
-	transceiverStatusState *string
-	transceiverStatusCableType *string
-	transceiverStatusPid *string
-	ipConfigIpAddress2 *string
-	ipConfigDefaultGw2 *string
-	ipConfigDnsServers2 *[]string
-	lldpNeighborChassisId *string
-	lldpNeighborSysName *string
-	lldpNeighborSysDescription *string
-	lldpNeighborPortId *string
-	lldpNeighborPortDescription *string
-	lldpNeighborMgmtAddress *string
 	statusMirrorSessions *[]string
-	statusClusterNode *string
-	statusDscId *string
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
-	propagationStatusPendingDscs *[]string
 }
 
 func (r ApiNetworkGetNetworkInterfaceRequest) TKind(tKind string) ApiNetworkGetNetworkInterfaceRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiNetworkGetNetworkInterfaceRequest) TApiVersion(tApiVersion string) ApiNetworkGetNetworkInterfaceRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) MetaTenant(metaTenant string) ApiNetworkGetNetworkInterfaceRequest {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) MetaNamespace(metaNamespace string) ApiNetworkGetNetworkInterfaceRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) MetaGenerationId(metaGenerationId string) ApiNetworkGetNetworkInterfaceRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) MetaResourceVersion(metaResourceVersion string) ApiNetworkGetNetworkInterfaceRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) MetaUuid(metaUuid string) ApiNetworkGetNetworkInterfaceRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiNetworkGetNetworkInterfaceRequest) MetaCreationTime(metaCreationTime time.Time) ApiNetworkGetNetworkInterfaceRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) MetaModTime(metaModTime time.Time) ApiNetworkGetNetworkInterfaceRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) MetaSelfLink(metaSelfLink string) ApiNetworkGetNetworkInterfaceRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) SpecAdminStatus(specAdminStatus string) ApiNetworkGetNetworkInterfaceRequest {
-	r.specAdminStatus = &specAdminStatus
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) SpecSpeed(specSpeed string) ApiNetworkGetNetworkInterfaceRequest {
-	r.specSpeed = &specSpeed
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) SpecMtu(specMtu int64) ApiNetworkGetNetworkInterfaceRequest {
-	r.specMtu = &specMtu
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) PauseType(pauseType string) ApiNetworkGetNetworkInterfaceRequest {
-	r.pauseType = &pauseType
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) PauseTxPauseEnabled(pauseTxPauseEnabled bool) ApiNetworkGetNetworkInterfaceRequest {
-	r.pauseTxPauseEnabled = &pauseTxPauseEnabled
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) PauseRxPauseEnabled(pauseRxPauseEnabled bool) ApiNetworkGetNetworkInterfaceRequest {
-	r.pauseRxPauseEnabled = &pauseRxPauseEnabled
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) SpecType(specType string) ApiNetworkGetNetworkInterfaceRequest {
-	r.specType = &specType
 	return r
 }
 func (r ApiNetworkGetNetworkInterfaceRequest) SpecAttachTenant(specAttachTenant string) ApiNetworkGetNetworkInterfaceRequest {
 	r.specAttachTenant = &specAttachTenant
 	return r
 }
-func (r ApiNetworkGetNetworkInterfaceRequest) SpecAttachNetwork(specAttachNetwork string) ApiNetworkGetNetworkInterfaceRequest {
-	r.specAttachNetwork = &specAttachNetwork
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) SpecIpAllocType(specIpAllocType string) ApiNetworkGetNetworkInterfaceRequest {
-	r.specIpAllocType = &specIpAllocType
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) IpConfigIpAddress(ipConfigIpAddress string) ApiNetworkGetNetworkInterfaceRequest {
-	r.ipConfigIpAddress = &ipConfigIpAddress
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) IpConfigDefaultGw(ipConfigDefaultGw string) ApiNetworkGetNetworkInterfaceRequest {
-	r.ipConfigDefaultGw = &ipConfigDefaultGw
-	return r
-}
 func (r ApiNetworkGetNetworkInterfaceRequest) IpConfigDnsServers(ipConfigDnsServers []string) ApiNetworkGetNetworkInterfaceRequest {
 	r.ipConfigDnsServers = &ipConfigDnsServers
 	return r
 }
-func (r ApiNetworkGetNetworkInterfaceRequest) SpecMacAddress(specMacAddress string) ApiNetworkGetNetworkInterfaceRequest {
-	r.specMacAddress = &specMacAddress
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) SpecConnectionTracking(specConnectionTracking bool) ApiNetworkGetNetworkInterfaceRequest {
-	r.specConnectionTracking = &specConnectionTracking
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) SpecTxPolicer(specTxPolicer string) ApiNetworkGetNetworkInterfaceRequest {
-	r.specTxPolicer = &specTxPolicer
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) SpecEnableFwLogging(specEnableFwLogging bool) ApiNetworkGetNetworkInterfaceRequest {
-	r.specEnableFwLogging = &specEnableFwLogging
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) SpecVnfAttached(specVnfAttached bool) ApiNetworkGetNetworkInterfaceRequest {
-	r.specVnfAttached = &specVnfAttached
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) StatusName(statusName string) ApiNetworkGetNetworkInterfaceRequest {
-	r.statusName = &statusName
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) StatusDsc(statusDsc string) ApiNetworkGetNetworkInterfaceRequest {
-	r.statusDsc = &statusDsc
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) StatusType(statusType string) ApiNetworkGetNetworkInterfaceRequest {
-	r.statusType = &statusType
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) StatusOperStatus(statusOperStatus string) ApiNetworkGetNetworkInterfaceRequest {
-	r.statusOperStatus = &statusOperStatus
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) StatusPrimaryMac(statusPrimaryMac string) ApiNetworkGetNetworkInterfaceRequest {
-	r.statusPrimaryMac = &statusPrimaryMac
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) IfHostStatusHostIfname(ifHostStatusHostIfname string) ApiNetworkGetNetworkInterfaceRequest {
-	r.ifHostStatusHostIfname = &ifHostStatusHostIfname
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) IfHostStatusDeviceId(ifHostStatusDeviceId string) ApiNetworkGetNetworkInterfaceRequest {
-	r.ifHostStatusDeviceId = &ifHostStatusDeviceId
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) IfHostStatusMacAddress(ifHostStatusMacAddress string) ApiNetworkGetNetworkInterfaceRequest {
-	r.ifHostStatusMacAddress = &ifHostStatusMacAddress
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) IfUplinkStatusLinkSpeed(ifUplinkStatusLinkSpeed string) ApiNetworkGetNetworkInterfaceRequest {
-	r.ifUplinkStatusLinkSpeed = &ifUplinkStatusLinkSpeed
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) TransceiverStatusState(transceiverStatusState string) ApiNetworkGetNetworkInterfaceRequest {
-	r.transceiverStatusState = &transceiverStatusState
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) TransceiverStatusCableType(transceiverStatusCableType string) ApiNetworkGetNetworkInterfaceRequest {
-	r.transceiverStatusCableType = &transceiverStatusCableType
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) TransceiverStatusPid(transceiverStatusPid string) ApiNetworkGetNetworkInterfaceRequest {
-	r.transceiverStatusPid = &transceiverStatusPid
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) IpConfigIpAddress2(ipConfigIpAddress2 string) ApiNetworkGetNetworkInterfaceRequest {
-	r.ipConfigIpAddress2 = &ipConfigIpAddress2
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) IpConfigDefaultGw2(ipConfigDefaultGw2 string) ApiNetworkGetNetworkInterfaceRequest {
-	r.ipConfigDefaultGw2 = &ipConfigDefaultGw2
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) IpConfigDnsServers2(ipConfigDnsServers2 []string) ApiNetworkGetNetworkInterfaceRequest {
-	r.ipConfigDnsServers2 = &ipConfigDnsServers2
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) LldpNeighborChassisId(lldpNeighborChassisId string) ApiNetworkGetNetworkInterfaceRequest {
-	r.lldpNeighborChassisId = &lldpNeighborChassisId
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) LldpNeighborSysName(lldpNeighborSysName string) ApiNetworkGetNetworkInterfaceRequest {
-	r.lldpNeighborSysName = &lldpNeighborSysName
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) LldpNeighborSysDescription(lldpNeighborSysDescription string) ApiNetworkGetNetworkInterfaceRequest {
-	r.lldpNeighborSysDescription = &lldpNeighborSysDescription
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) LldpNeighborPortId(lldpNeighborPortId string) ApiNetworkGetNetworkInterfaceRequest {
-	r.lldpNeighborPortId = &lldpNeighborPortId
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) LldpNeighborPortDescription(lldpNeighborPortDescription string) ApiNetworkGetNetworkInterfaceRequest {
-	r.lldpNeighborPortDescription = &lldpNeighborPortDescription
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) LldpNeighborMgmtAddress(lldpNeighborMgmtAddress string) ApiNetworkGetNetworkInterfaceRequest {
-	r.lldpNeighborMgmtAddress = &lldpNeighborMgmtAddress
-	return r
-}
 func (r ApiNetworkGetNetworkInterfaceRequest) StatusMirrorSessions(statusMirrorSessions []string) ApiNetworkGetNetworkInterfaceRequest {
 	r.statusMirrorSessions = &statusMirrorSessions
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) StatusClusterNode(statusClusterNode string) ApiNetworkGetNetworkInterfaceRequest {
-	r.statusClusterNode = &statusClusterNode
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) StatusDscId(statusDscId string) ApiNetworkGetNetworkInterfaceRequest {
-	r.statusDscId = &statusDscId
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiNetworkGetNetworkInterfaceRequest {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) PropagationStatusUpdated(propagationStatusUpdated int32) ApiNetworkGetNetworkInterfaceRequest {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) PropagationStatusPending(propagationStatusPending int32) ApiNetworkGetNetworkInterfaceRequest {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiNetworkGetNetworkInterfaceRequest {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) PropagationStatusStatus(propagationStatusStatus string) ApiNetworkGetNetworkInterfaceRequest {
-	r.propagationStatusStatus = &propagationStatusStatus
-	return r
-}
-func (r ApiNetworkGetNetworkInterfaceRequest) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiNetworkGetNetworkInterfaceRequest {
-	r.propagationStatusPendingDscs = &propagationStatusPendingDscs
 	return r
 }
 
@@ -6182,176 +5149,17 @@ func (a *NetworkV1ApiService) GetNetworkInterfaceExecute(r ApiNetworkGetNetworkI
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specAdminStatus != nil {
-		localVarQueryParams.Add("spec.admin-status", parameterToString(*r.specAdminStatus, ""))
-	}
-	if r.specSpeed != nil {
-		localVarQueryParams.Add("spec.speed", parameterToString(*r.specSpeed, ""))
-	}
-	if r.specMtu != nil {
-		localVarQueryParams.Add("spec.mtu", parameterToString(*r.specMtu, ""))
-	}
-	if r.pauseType != nil {
-		localVarQueryParams.Add("pause.type", parameterToString(*r.pauseType, ""))
-	}
-	if r.pauseTxPauseEnabled != nil {
-		localVarQueryParams.Add("pause.tx-pause-enabled", parameterToString(*r.pauseTxPauseEnabled, ""))
-	}
-	if r.pauseRxPauseEnabled != nil {
-		localVarQueryParams.Add("pause.rx-pause-enabled", parameterToString(*r.pauseRxPauseEnabled, ""))
-	}
-	if r.specType != nil {
-		localVarQueryParams.Add("spec.type", parameterToString(*r.specType, ""))
 	}
 	if r.specAttachTenant != nil {
 		localVarQueryParams.Add("spec.attach-tenant", parameterToString(*r.specAttachTenant, ""))
 	}
-	if r.specAttachNetwork != nil {
-		localVarQueryParams.Add("spec.attach-network", parameterToString(*r.specAttachNetwork, ""))
-	}
-	if r.specIpAllocType != nil {
-		localVarQueryParams.Add("spec.ip-alloc-type", parameterToString(*r.specIpAllocType, ""))
-	}
-	if r.ipConfigIpAddress != nil {
-		localVarQueryParams.Add("ip-config.ip-address", parameterToString(*r.ipConfigIpAddress, ""))
-	}
-	if r.ipConfigDefaultGw != nil {
-		localVarQueryParams.Add("ip-config.default-gw", parameterToString(*r.ipConfigDefaultGw, ""))
-	}
 	if r.ipConfigDnsServers != nil {
 		localVarQueryParams.Add("ip-config.dns-servers", parameterToString(*r.ipConfigDnsServers, "csv"))
 	}
-	if r.specMacAddress != nil {
-		localVarQueryParams.Add("spec.mac-address", parameterToString(*r.specMacAddress, ""))
-	}
-	if r.specConnectionTracking != nil {
-		localVarQueryParams.Add("spec.connection-tracking", parameterToString(*r.specConnectionTracking, ""))
-	}
-	if r.specTxPolicer != nil {
-		localVarQueryParams.Add("spec.tx-policer", parameterToString(*r.specTxPolicer, ""))
-	}
-	if r.specEnableFwLogging != nil {
-		localVarQueryParams.Add("spec.enable-fw-logging", parameterToString(*r.specEnableFwLogging, ""))
-	}
-	if r.specVnfAttached != nil {
-		localVarQueryParams.Add("spec.vnf-attached", parameterToString(*r.specVnfAttached, ""))
-	}
-	if r.statusName != nil {
-		localVarQueryParams.Add("status.name", parameterToString(*r.statusName, ""))
-	}
-	if r.statusDsc != nil {
-		localVarQueryParams.Add("status.dsc", parameterToString(*r.statusDsc, ""))
-	}
-	if r.statusType != nil {
-		localVarQueryParams.Add("status.type", parameterToString(*r.statusType, ""))
-	}
-	if r.statusOperStatus != nil {
-		localVarQueryParams.Add("status.oper-status", parameterToString(*r.statusOperStatus, ""))
-	}
-	if r.statusPrimaryMac != nil {
-		localVarQueryParams.Add("status.primary-mac", parameterToString(*r.statusPrimaryMac, ""))
-	}
-	if r.ifHostStatusHostIfname != nil {
-		localVarQueryParams.Add("if-host-status.host-ifname", parameterToString(*r.ifHostStatusHostIfname, ""))
-	}
-	if r.ifHostStatusDeviceId != nil {
-		localVarQueryParams.Add("if-host-status.device-id", parameterToString(*r.ifHostStatusDeviceId, ""))
-	}
-	if r.ifHostStatusMacAddress != nil {
-		localVarQueryParams.Add("if-host-status.mac-address", parameterToString(*r.ifHostStatusMacAddress, ""))
-	}
-	if r.ifUplinkStatusLinkSpeed != nil {
-		localVarQueryParams.Add("if-uplink-status.link-speed", parameterToString(*r.ifUplinkStatusLinkSpeed, ""))
-	}
-	if r.transceiverStatusState != nil {
-		localVarQueryParams.Add("transceiver-status.state", parameterToString(*r.transceiverStatusState, ""))
-	}
-	if r.transceiverStatusCableType != nil {
-		localVarQueryParams.Add("transceiver-status.cable-type", parameterToString(*r.transceiverStatusCableType, ""))
-	}
-	if r.transceiverStatusPid != nil {
-		localVarQueryParams.Add("transceiver-status.pid", parameterToString(*r.transceiverStatusPid, ""))
-	}
-	if r.ipConfigIpAddress2 != nil {
-		localVarQueryParams.Add("ip-config.ip-address", parameterToString(*r.ipConfigIpAddress2, ""))
-	}
-	if r.ipConfigDefaultGw2 != nil {
-		localVarQueryParams.Add("ip-config.default-gw", parameterToString(*r.ipConfigDefaultGw2, ""))
-	}
-	if r.ipConfigDnsServers2 != nil {
-		localVarQueryParams.Add("ip-config.dns-servers", parameterToString(*r.ipConfigDnsServers2, "csv"))
-	}
-	if r.lldpNeighborChassisId != nil {
-		localVarQueryParams.Add("lldp-neighbor.chassis-id", parameterToString(*r.lldpNeighborChassisId, ""))
-	}
-	if r.lldpNeighborSysName != nil {
-		localVarQueryParams.Add("lldp-neighbor.sys-name", parameterToString(*r.lldpNeighborSysName, ""))
-	}
-	if r.lldpNeighborSysDescription != nil {
-		localVarQueryParams.Add("lldp-neighbor.sys-description", parameterToString(*r.lldpNeighborSysDescription, ""))
-	}
-	if r.lldpNeighborPortId != nil {
-		localVarQueryParams.Add("lldp-neighbor.port-id", parameterToString(*r.lldpNeighborPortId, ""))
-	}
-	if r.lldpNeighborPortDescription != nil {
-		localVarQueryParams.Add("lldp-neighbor.port-description", parameterToString(*r.lldpNeighborPortDescription, ""))
-	}
-	if r.lldpNeighborMgmtAddress != nil {
-		localVarQueryParams.Add("lldp-neighbor.mgmt-address", parameterToString(*r.lldpNeighborMgmtAddress, ""))
-	}
 	if r.statusMirrorSessions != nil {
 		localVarQueryParams.Add("status.mirror-sessions", parameterToString(*r.statusMirrorSessions, "csv"))
-	}
-	if r.statusClusterNode != nil {
-		localVarQueryParams.Add("status.cluster-node", parameterToString(*r.statusClusterNode, ""))
-	}
-	if r.statusDscId != nil {
-		localVarQueryParams.Add("status.dsc-id", parameterToString(*r.statusDscId, ""))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
-	}
-	if r.propagationStatusPendingDscs != nil {
-		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -6476,25 +5284,9 @@ type ApiNetworkGetPolicerProfileRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	criteriaBytesPerSecond *string
-	criteriaPacketsPerSecond *string
-	criteriaBurstSize *string
 	exceedActionPolicerAction *string
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
 	propagationStatusPendingDscs *[]string
 }
 
@@ -6502,72 +5294,12 @@ func (r ApiNetworkGetPolicerProfileRequest) TKind(tKind string) ApiNetworkGetPol
 	r.tKind = &tKind
 	return r
 }
-func (r ApiNetworkGetPolicerProfileRequest) TApiVersion(tApiVersion string) ApiNetworkGetPolicerProfileRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiNetworkGetPolicerProfileRequest) MetaNamespace(metaNamespace string) ApiNetworkGetPolicerProfileRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiNetworkGetPolicerProfileRequest) MetaGenerationId(metaGenerationId string) ApiNetworkGetPolicerProfileRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiNetworkGetPolicerProfileRequest) MetaResourceVersion(metaResourceVersion string) ApiNetworkGetPolicerProfileRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiNetworkGetPolicerProfileRequest) MetaUuid(metaUuid string) ApiNetworkGetPolicerProfileRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiNetworkGetPolicerProfileRequest) MetaCreationTime(metaCreationTime time.Time) ApiNetworkGetPolicerProfileRequest {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiNetworkGetPolicerProfileRequest) MetaModTime(metaModTime time.Time) ApiNetworkGetPolicerProfileRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiNetworkGetPolicerProfileRequest) MetaSelfLink(metaSelfLink string) ApiNetworkGetPolicerProfileRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiNetworkGetPolicerProfileRequest) CriteriaBytesPerSecond(criteriaBytesPerSecond string) ApiNetworkGetPolicerProfileRequest {
-	r.criteriaBytesPerSecond = &criteriaBytesPerSecond
-	return r
-}
-func (r ApiNetworkGetPolicerProfileRequest) CriteriaPacketsPerSecond(criteriaPacketsPerSecond string) ApiNetworkGetPolicerProfileRequest {
-	r.criteriaPacketsPerSecond = &criteriaPacketsPerSecond
-	return r
-}
-func (r ApiNetworkGetPolicerProfileRequest) CriteriaBurstSize(criteriaBurstSize string) ApiNetworkGetPolicerProfileRequest {
-	r.criteriaBurstSize = &criteriaBurstSize
-	return r
-}
 func (r ApiNetworkGetPolicerProfileRequest) ExceedActionPolicerAction(exceedActionPolicerAction string) ApiNetworkGetPolicerProfileRequest {
 	r.exceedActionPolicerAction = &exceedActionPolicerAction
-	return r
-}
-func (r ApiNetworkGetPolicerProfileRequest) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiNetworkGetPolicerProfileRequest {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiNetworkGetPolicerProfileRequest) PropagationStatusUpdated(propagationStatusUpdated int32) ApiNetworkGetPolicerProfileRequest {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiNetworkGetPolicerProfileRequest) PropagationStatusPending(propagationStatusPending int32) ApiNetworkGetPolicerProfileRequest {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiNetworkGetPolicerProfileRequest) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiNetworkGetPolicerProfileRequest {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiNetworkGetPolicerProfileRequest) PropagationStatusStatus(propagationStatusStatus string) ApiNetworkGetPolicerProfileRequest {
-	r.propagationStatusStatus = &propagationStatusStatus
 	return r
 }
 func (r ApiNetworkGetPolicerProfileRequest) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiNetworkGetPolicerProfileRequest {
@@ -6583,15 +5315,13 @@ func (r ApiNetworkGetPolicerProfileRequest) Execute() (NetworkPolicerProfile, *_
  * GetPolicerProfile Get PolicerProfile object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiNetworkGetPolicerProfileRequest
  */
-func (a *NetworkV1ApiService) GetPolicerProfile(ctx _context.Context, oTenant string, oName string) ApiNetworkGetPolicerProfileRequest {
+func (a *NetworkV1ApiService) GetPolicerProfile(ctx _context.Context, oTenant string) ApiNetworkGetPolicerProfileRequest {
 	return ApiNetworkGetPolicerProfileRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -6616,7 +5346,6 @@ func (a *NetworkV1ApiService) GetPolicerProfileExecute(r ApiNetworkGetPolicerPro
 
 	localVarPath := localBasePath + "/configs/network/v1/tenant/{O.Tenant}/policer-profile/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -6625,56 +5354,11 @@ func (a *NetworkV1ApiService) GetPolicerProfileExecute(r ApiNetworkGetPolicerPro
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.criteriaBytesPerSecond != nil {
-		localVarQueryParams.Add("criteria.bytes-per-second", parameterToString(*r.criteriaBytesPerSecond, ""))
-	}
-	if r.criteriaPacketsPerSecond != nil {
-		localVarQueryParams.Add("criteria.packets-per-second", parameterToString(*r.criteriaPacketsPerSecond, ""))
-	}
-	if r.criteriaBurstSize != nil {
-		localVarQueryParams.Add("criteria.burst-size", parameterToString(*r.criteriaBurstSize, ""))
-	}
 	if r.exceedActionPolicerAction != nil {
 		localVarQueryParams.Add("exceed-action.policer-action", parameterToString(*r.exceedActionPolicerAction, ""))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
 	}
 	if r.propagationStatusPendingDscs != nil {
 		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
@@ -6803,24 +5487,8 @@ type ApiNetworkGetPolicerProfile1Request struct {
 	ApiService *NetworkV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	criteriaBytesPerSecond *string
-	criteriaPacketsPerSecond *string
-	criteriaBurstSize *string
 	exceedActionPolicerAction *string
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
 	propagationStatusPendingDscs *[]string
 }
 
@@ -6828,76 +5496,12 @@ func (r ApiNetworkGetPolicerProfile1Request) TKind(tKind string) ApiNetworkGetPo
 	r.tKind = &tKind
 	return r
 }
-func (r ApiNetworkGetPolicerProfile1Request) TApiVersion(tApiVersion string) ApiNetworkGetPolicerProfile1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiNetworkGetPolicerProfile1Request) MetaTenant(metaTenant string) ApiNetworkGetPolicerProfile1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiNetworkGetPolicerProfile1Request) MetaNamespace(metaNamespace string) ApiNetworkGetPolicerProfile1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiNetworkGetPolicerProfile1Request) MetaGenerationId(metaGenerationId string) ApiNetworkGetPolicerProfile1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiNetworkGetPolicerProfile1Request) MetaResourceVersion(metaResourceVersion string) ApiNetworkGetPolicerProfile1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiNetworkGetPolicerProfile1Request) MetaUuid(metaUuid string) ApiNetworkGetPolicerProfile1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiNetworkGetPolicerProfile1Request) MetaCreationTime(metaCreationTime time.Time) ApiNetworkGetPolicerProfile1Request {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiNetworkGetPolicerProfile1Request) MetaModTime(metaModTime time.Time) ApiNetworkGetPolicerProfile1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiNetworkGetPolicerProfile1Request) MetaSelfLink(metaSelfLink string) ApiNetworkGetPolicerProfile1Request {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiNetworkGetPolicerProfile1Request) CriteriaBytesPerSecond(criteriaBytesPerSecond string) ApiNetworkGetPolicerProfile1Request {
-	r.criteriaBytesPerSecond = &criteriaBytesPerSecond
-	return r
-}
-func (r ApiNetworkGetPolicerProfile1Request) CriteriaPacketsPerSecond(criteriaPacketsPerSecond string) ApiNetworkGetPolicerProfile1Request {
-	r.criteriaPacketsPerSecond = &criteriaPacketsPerSecond
-	return r
-}
-func (r ApiNetworkGetPolicerProfile1Request) CriteriaBurstSize(criteriaBurstSize string) ApiNetworkGetPolicerProfile1Request {
-	r.criteriaBurstSize = &criteriaBurstSize
-	return r
-}
 func (r ApiNetworkGetPolicerProfile1Request) ExceedActionPolicerAction(exceedActionPolicerAction string) ApiNetworkGetPolicerProfile1Request {
 	r.exceedActionPolicerAction = &exceedActionPolicerAction
-	return r
-}
-func (r ApiNetworkGetPolicerProfile1Request) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiNetworkGetPolicerProfile1Request {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiNetworkGetPolicerProfile1Request) PropagationStatusUpdated(propagationStatusUpdated int32) ApiNetworkGetPolicerProfile1Request {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiNetworkGetPolicerProfile1Request) PropagationStatusPending(propagationStatusPending int32) ApiNetworkGetPolicerProfile1Request {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiNetworkGetPolicerProfile1Request) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiNetworkGetPolicerProfile1Request {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiNetworkGetPolicerProfile1Request) PropagationStatusStatus(propagationStatusStatus string) ApiNetworkGetPolicerProfile1Request {
-	r.propagationStatusStatus = &propagationStatusStatus
 	return r
 }
 func (r ApiNetworkGetPolicerProfile1Request) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiNetworkGetPolicerProfile1Request {
@@ -6952,59 +5556,11 @@ func (a *NetworkV1ApiService) GetPolicerProfile1Execute(r ApiNetworkGetPolicerPr
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.criteriaBytesPerSecond != nil {
-		localVarQueryParams.Add("criteria.bytes-per-second", parameterToString(*r.criteriaBytesPerSecond, ""))
-	}
-	if r.criteriaPacketsPerSecond != nil {
-		localVarQueryParams.Add("criteria.packets-per-second", parameterToString(*r.criteriaPacketsPerSecond, ""))
-	}
-	if r.criteriaBurstSize != nil {
-		localVarQueryParams.Add("criteria.burst-size", parameterToString(*r.criteriaBurstSize, ""))
-	}
 	if r.exceedActionPolicerAction != nil {
 		localVarQueryParams.Add("exceed-action.policer-action", parameterToString(*r.exceedActionPolicerAction, ""))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
 	}
 	if r.propagationStatusPendingDscs != nil {
 		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
@@ -7132,52 +5688,16 @@ type ApiNetworkGetRouteTableRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 }
 
 func (r ApiNetworkGetRouteTableRequest) TKind(tKind string) ApiNetworkGetRouteTableRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiNetworkGetRouteTableRequest) TApiVersion(tApiVersion string) ApiNetworkGetRouteTableRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiNetworkGetRouteTableRequest) MetaNamespace(metaNamespace string) ApiNetworkGetRouteTableRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiNetworkGetRouteTableRequest) MetaGenerationId(metaGenerationId string) ApiNetworkGetRouteTableRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiNetworkGetRouteTableRequest) MetaResourceVersion(metaResourceVersion string) ApiNetworkGetRouteTableRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiNetworkGetRouteTableRequest) MetaUuid(metaUuid string) ApiNetworkGetRouteTableRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiNetworkGetRouteTableRequest) MetaCreationTime(metaCreationTime time.Time) ApiNetworkGetRouteTableRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiNetworkGetRouteTableRequest) MetaModTime(metaModTime time.Time) ApiNetworkGetRouteTableRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiNetworkGetRouteTableRequest) MetaSelfLink(metaSelfLink string) ApiNetworkGetRouteTableRequest {
-	r.metaSelfLink = &metaSelfLink
 	return r
 }
 
@@ -7189,15 +5709,13 @@ func (r ApiNetworkGetRouteTableRequest) Execute() (NetworkRouteTable, *_nethttp.
  * GetRouteTable Get RouteTable object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiNetworkGetRouteTableRequest
  */
-func (a *NetworkV1ApiService) GetRouteTable(ctx _context.Context, oTenant string, oName string) ApiNetworkGetRouteTableRequest {
+func (a *NetworkV1ApiService) GetRouteTable(ctx _context.Context, oTenant string) ApiNetworkGetRouteTableRequest {
 	return ApiNetworkGetRouteTableRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -7222,7 +5740,6 @@ func (a *NetworkV1ApiService) GetRouteTableExecute(r ApiNetworkGetRouteTableRequ
 
 	localVarPath := localBasePath + "/configs/network/v1/tenant/{O.Tenant}/route-tables/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -7231,29 +5748,8 @@ func (a *NetworkV1ApiService) GetRouteTableExecute(r ApiNetworkGetRouteTableRequ
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -7379,55 +5875,15 @@ type ApiNetworkGetRouteTable1Request struct {
 	ApiService *NetworkV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 }
 
 func (r ApiNetworkGetRouteTable1Request) TKind(tKind string) ApiNetworkGetRouteTable1Request {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiNetworkGetRouteTable1Request) TApiVersion(tApiVersion string) ApiNetworkGetRouteTable1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiNetworkGetRouteTable1Request) MetaTenant(metaTenant string) ApiNetworkGetRouteTable1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiNetworkGetRouteTable1Request) MetaNamespace(metaNamespace string) ApiNetworkGetRouteTable1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiNetworkGetRouteTable1Request) MetaGenerationId(metaGenerationId string) ApiNetworkGetRouteTable1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiNetworkGetRouteTable1Request) MetaResourceVersion(metaResourceVersion string) ApiNetworkGetRouteTable1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiNetworkGetRouteTable1Request) MetaUuid(metaUuid string) ApiNetworkGetRouteTable1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiNetworkGetRouteTable1Request) MetaCreationTime(metaCreationTime time.Time) ApiNetworkGetRouteTable1Request {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiNetworkGetRouteTable1Request) MetaModTime(metaModTime time.Time) ApiNetworkGetRouteTable1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiNetworkGetRouteTable1Request) MetaSelfLink(metaSelfLink string) ApiNetworkGetRouteTable1Request {
-	r.metaSelfLink = &metaSelfLink
 	return r
 }
 
@@ -7478,32 +5934,8 @@ func (a *NetworkV1ApiService) GetRouteTable1Execute(r ApiNetworkGetRouteTable1Re
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -7629,26 +6061,8 @@ type ApiNetworkGetRoutingConfigRequest struct {
 	ApiService *NetworkV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	bgpConfigRouterId *string
 	asNumberASNumber *int64
-	bgpConfigKeepaliveInterval *int64
-	bgpConfigHoldtime *int64
-	bgpConfigDscAutoConfig *bool
-	bgpConfigSuppressDefaultResolution *bool
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
 	propagationStatusPendingDscs *[]string
 }
 
@@ -7656,84 +6070,12 @@ func (r ApiNetworkGetRoutingConfigRequest) TKind(tKind string) ApiNetworkGetRout
 	r.tKind = &tKind
 	return r
 }
-func (r ApiNetworkGetRoutingConfigRequest) TApiVersion(tApiVersion string) ApiNetworkGetRoutingConfigRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiNetworkGetRoutingConfigRequest) MetaTenant(metaTenant string) ApiNetworkGetRoutingConfigRequest {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiNetworkGetRoutingConfigRequest) MetaNamespace(metaNamespace string) ApiNetworkGetRoutingConfigRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiNetworkGetRoutingConfigRequest) MetaGenerationId(metaGenerationId string) ApiNetworkGetRoutingConfigRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiNetworkGetRoutingConfigRequest) MetaResourceVersion(metaResourceVersion string) ApiNetworkGetRoutingConfigRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiNetworkGetRoutingConfigRequest) MetaUuid(metaUuid string) ApiNetworkGetRoutingConfigRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiNetworkGetRoutingConfigRequest) MetaCreationTime(metaCreationTime time.Time) ApiNetworkGetRoutingConfigRequest {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiNetworkGetRoutingConfigRequest) MetaModTime(metaModTime time.Time) ApiNetworkGetRoutingConfigRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiNetworkGetRoutingConfigRequest) MetaSelfLink(metaSelfLink string) ApiNetworkGetRoutingConfigRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiNetworkGetRoutingConfigRequest) BgpConfigRouterId(bgpConfigRouterId string) ApiNetworkGetRoutingConfigRequest {
-	r.bgpConfigRouterId = &bgpConfigRouterId
-	return r
-}
 func (r ApiNetworkGetRoutingConfigRequest) AsNumberASNumber(asNumberASNumber int64) ApiNetworkGetRoutingConfigRequest {
 	r.asNumberASNumber = &asNumberASNumber
-	return r
-}
-func (r ApiNetworkGetRoutingConfigRequest) BgpConfigKeepaliveInterval(bgpConfigKeepaliveInterval int64) ApiNetworkGetRoutingConfigRequest {
-	r.bgpConfigKeepaliveInterval = &bgpConfigKeepaliveInterval
-	return r
-}
-func (r ApiNetworkGetRoutingConfigRequest) BgpConfigHoldtime(bgpConfigHoldtime int64) ApiNetworkGetRoutingConfigRequest {
-	r.bgpConfigHoldtime = &bgpConfigHoldtime
-	return r
-}
-func (r ApiNetworkGetRoutingConfigRequest) BgpConfigDscAutoConfig(bgpConfigDscAutoConfig bool) ApiNetworkGetRoutingConfigRequest {
-	r.bgpConfigDscAutoConfig = &bgpConfigDscAutoConfig
-	return r
-}
-func (r ApiNetworkGetRoutingConfigRequest) BgpConfigSuppressDefaultResolution(bgpConfigSuppressDefaultResolution bool) ApiNetworkGetRoutingConfigRequest {
-	r.bgpConfigSuppressDefaultResolution = &bgpConfigSuppressDefaultResolution
-	return r
-}
-func (r ApiNetworkGetRoutingConfigRequest) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiNetworkGetRoutingConfigRequest {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiNetworkGetRoutingConfigRequest) PropagationStatusUpdated(propagationStatusUpdated int32) ApiNetworkGetRoutingConfigRequest {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiNetworkGetRoutingConfigRequest) PropagationStatusPending(propagationStatusPending int32) ApiNetworkGetRoutingConfigRequest {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiNetworkGetRoutingConfigRequest) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiNetworkGetRoutingConfigRequest {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiNetworkGetRoutingConfigRequest) PropagationStatusStatus(propagationStatusStatus string) ApiNetworkGetRoutingConfigRequest {
-	r.propagationStatusStatus = &propagationStatusStatus
 	return r
 }
 func (r ApiNetworkGetRoutingConfigRequest) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiNetworkGetRoutingConfigRequest {
@@ -7788,65 +6130,11 @@ func (a *NetworkV1ApiService) GetRoutingConfigExecute(r ApiNetworkGetRoutingConf
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.bgpConfigRouterId != nil {
-		localVarQueryParams.Add("bgp-config.router-id", parameterToString(*r.bgpConfigRouterId, ""))
-	}
 	if r.asNumberASNumber != nil {
 		localVarQueryParams.Add("as-number.ASNumber", parameterToString(*r.asNumberASNumber, ""))
-	}
-	if r.bgpConfigKeepaliveInterval != nil {
-		localVarQueryParams.Add("bgp-config.keepalive-interval", parameterToString(*r.bgpConfigKeepaliveInterval, ""))
-	}
-	if r.bgpConfigHoldtime != nil {
-		localVarQueryParams.Add("bgp-config.holdtime", parameterToString(*r.bgpConfigHoldtime, ""))
-	}
-	if r.bgpConfigDscAutoConfig != nil {
-		localVarQueryParams.Add("bgp-config.dsc-auto-config", parameterToString(*r.bgpConfigDscAutoConfig, ""))
-	}
-	if r.bgpConfigSuppressDefaultResolution != nil {
-		localVarQueryParams.Add("bgp-config.suppress-default-resolution", parameterToString(*r.bgpConfigSuppressDefaultResolution, ""))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
 	}
 	if r.propagationStatusPendingDscs != nil {
 		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
@@ -7974,162 +6262,31 @@ type ApiNetworkGetVirtualRouterRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	specType *string
-	specRouterMacAddress *string
-	specVxlanVni *int64
-	routeImportExportAddressFamily *string
-	routeImportExportRdAuto *bool
-	rdType *string
-	adminValueFormat *string
 	adminValueValue *int64
-	rdAssignedValue *int64
-	specDefaultIpamPolicy *string
-	statusId *string
-	statusRouteTable *string
-	rdType2 *string
-	adminValueFormat2 *string
-	adminValueValue2 *int64
-	rdAssignedValue2 *int64
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
-	propagationStatusPendingDscs *[]string
+	specIngressSecurityPolicy *[]string
 }
 
 func (r ApiNetworkGetVirtualRouterRequest) TKind(tKind string) ApiNetworkGetVirtualRouterRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiNetworkGetVirtualRouterRequest) TApiVersion(tApiVersion string) ApiNetworkGetVirtualRouterRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiNetworkGetVirtualRouterRequest) MetaNamespace(metaNamespace string) ApiNetworkGetVirtualRouterRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiNetworkGetVirtualRouterRequest) MetaGenerationId(metaGenerationId string) ApiNetworkGetVirtualRouterRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiNetworkGetVirtualRouterRequest) MetaResourceVersion(metaResourceVersion string) ApiNetworkGetVirtualRouterRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiNetworkGetVirtualRouterRequest) MetaUuid(metaUuid string) ApiNetworkGetVirtualRouterRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiNetworkGetVirtualRouterRequest) MetaCreationTime(metaCreationTime time.Time) ApiNetworkGetVirtualRouterRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiNetworkGetVirtualRouterRequest) MetaModTime(metaModTime time.Time) ApiNetworkGetVirtualRouterRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiNetworkGetVirtualRouterRequest) MetaSelfLink(metaSelfLink string) ApiNetworkGetVirtualRouterRequest {
-	r.metaSelfLink = &metaSelfLink
 	return r
 }
 func (r ApiNetworkGetVirtualRouterRequest) SpecType(specType string) ApiNetworkGetVirtualRouterRequest {
 	r.specType = &specType
 	return r
 }
-func (r ApiNetworkGetVirtualRouterRequest) SpecRouterMacAddress(specRouterMacAddress string) ApiNetworkGetVirtualRouterRequest {
-	r.specRouterMacAddress = &specRouterMacAddress
-	return r
-}
-func (r ApiNetworkGetVirtualRouterRequest) SpecVxlanVni(specVxlanVni int64) ApiNetworkGetVirtualRouterRequest {
-	r.specVxlanVni = &specVxlanVni
-	return r
-}
-func (r ApiNetworkGetVirtualRouterRequest) RouteImportExportAddressFamily(routeImportExportAddressFamily string) ApiNetworkGetVirtualRouterRequest {
-	r.routeImportExportAddressFamily = &routeImportExportAddressFamily
-	return r
-}
-func (r ApiNetworkGetVirtualRouterRequest) RouteImportExportRdAuto(routeImportExportRdAuto bool) ApiNetworkGetVirtualRouterRequest {
-	r.routeImportExportRdAuto = &routeImportExportRdAuto
-	return r
-}
-func (r ApiNetworkGetVirtualRouterRequest) RdType(rdType string) ApiNetworkGetVirtualRouterRequest {
-	r.rdType = &rdType
-	return r
-}
-func (r ApiNetworkGetVirtualRouterRequest) AdminValueFormat(adminValueFormat string) ApiNetworkGetVirtualRouterRequest {
-	r.adminValueFormat = &adminValueFormat
-	return r
-}
 func (r ApiNetworkGetVirtualRouterRequest) AdminValueValue(adminValueValue int64) ApiNetworkGetVirtualRouterRequest {
 	r.adminValueValue = &adminValueValue
 	return r
 }
-func (r ApiNetworkGetVirtualRouterRequest) RdAssignedValue(rdAssignedValue int64) ApiNetworkGetVirtualRouterRequest {
-	r.rdAssignedValue = &rdAssignedValue
-	return r
-}
-func (r ApiNetworkGetVirtualRouterRequest) SpecDefaultIpamPolicy(specDefaultIpamPolicy string) ApiNetworkGetVirtualRouterRequest {
-	r.specDefaultIpamPolicy = &specDefaultIpamPolicy
-	return r
-}
-func (r ApiNetworkGetVirtualRouterRequest) StatusId(statusId string) ApiNetworkGetVirtualRouterRequest {
-	r.statusId = &statusId
-	return r
-}
-func (r ApiNetworkGetVirtualRouterRequest) StatusRouteTable(statusRouteTable string) ApiNetworkGetVirtualRouterRequest {
-	r.statusRouteTable = &statusRouteTable
-	return r
-}
-func (r ApiNetworkGetVirtualRouterRequest) RdType2(rdType2 string) ApiNetworkGetVirtualRouterRequest {
-	r.rdType2 = &rdType2
-	return r
-}
-func (r ApiNetworkGetVirtualRouterRequest) AdminValueFormat2(adminValueFormat2 string) ApiNetworkGetVirtualRouterRequest {
-	r.adminValueFormat2 = &adminValueFormat2
-	return r
-}
-func (r ApiNetworkGetVirtualRouterRequest) AdminValueValue2(adminValueValue2 int64) ApiNetworkGetVirtualRouterRequest {
-	r.adminValueValue2 = &adminValueValue2
-	return r
-}
-func (r ApiNetworkGetVirtualRouterRequest) RdAssignedValue2(rdAssignedValue2 int64) ApiNetworkGetVirtualRouterRequest {
-	r.rdAssignedValue2 = &rdAssignedValue2
-	return r
-}
-func (r ApiNetworkGetVirtualRouterRequest) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiNetworkGetVirtualRouterRequest {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiNetworkGetVirtualRouterRequest) PropagationStatusUpdated(propagationStatusUpdated int32) ApiNetworkGetVirtualRouterRequest {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiNetworkGetVirtualRouterRequest) PropagationStatusPending(propagationStatusPending int32) ApiNetworkGetVirtualRouterRequest {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiNetworkGetVirtualRouterRequest) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiNetworkGetVirtualRouterRequest {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiNetworkGetVirtualRouterRequest) PropagationStatusStatus(propagationStatusStatus string) ApiNetworkGetVirtualRouterRequest {
-	r.propagationStatusStatus = &propagationStatusStatus
-	return r
-}
-func (r ApiNetworkGetVirtualRouterRequest) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiNetworkGetVirtualRouterRequest {
-	r.propagationStatusPendingDscs = &propagationStatusPendingDscs
+func (r ApiNetworkGetVirtualRouterRequest) SpecIngressSecurityPolicy(specIngressSecurityPolicy []string) ApiNetworkGetVirtualRouterRequest {
+	r.specIngressSecurityPolicy = &specIngressSecurityPolicy
 	return r
 }
 
@@ -8141,15 +6298,13 @@ func (r ApiNetworkGetVirtualRouterRequest) Execute() (NetworkVirtualRouter, *_ne
  * GetVirtualRouter Get VirtualRouter object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiNetworkGetVirtualRouterRequest
  */
-func (a *NetworkV1ApiService) GetVirtualRouter(ctx _context.Context, oTenant string, oName string) ApiNetworkGetVirtualRouterRequest {
+func (a *NetworkV1ApiService) GetVirtualRouter(ctx _context.Context, oTenant string) ApiNetworkGetVirtualRouterRequest {
 	return ApiNetworkGetVirtualRouterRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -8174,7 +6329,6 @@ func (a *NetworkV1ApiService) GetVirtualRouterExecute(r ApiNetworkGetVirtualRout
 
 	localVarPath := localBasePath + "/configs/network/v1/tenant/{O.Tenant}/virtualrouters/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -8183,95 +6337,17 @@ func (a *NetworkV1ApiService) GetVirtualRouterExecute(r ApiNetworkGetVirtualRout
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
 	}
 	if r.specType != nil {
 		localVarQueryParams.Add("spec.type", parameterToString(*r.specType, ""))
 	}
-	if r.specRouterMacAddress != nil {
-		localVarQueryParams.Add("spec.router-mac-address", parameterToString(*r.specRouterMacAddress, ""))
-	}
-	if r.specVxlanVni != nil {
-		localVarQueryParams.Add("spec.vxlan-vni", parameterToString(*r.specVxlanVni, ""))
-	}
-	if r.routeImportExportAddressFamily != nil {
-		localVarQueryParams.Add("route-import-export.address-family", parameterToString(*r.routeImportExportAddressFamily, ""))
-	}
-	if r.routeImportExportRdAuto != nil {
-		localVarQueryParams.Add("route-import-export.rd-auto", parameterToString(*r.routeImportExportRdAuto, ""))
-	}
-	if r.rdType != nil {
-		localVarQueryParams.Add("rd.type", parameterToString(*r.rdType, ""))
-	}
-	if r.adminValueFormat != nil {
-		localVarQueryParams.Add("admin-value.Format", parameterToString(*r.adminValueFormat, ""))
-	}
 	if r.adminValueValue != nil {
 		localVarQueryParams.Add("admin-value.Value", parameterToString(*r.adminValueValue, ""))
 	}
-	if r.rdAssignedValue != nil {
-		localVarQueryParams.Add("rd.assigned-value", parameterToString(*r.rdAssignedValue, ""))
-	}
-	if r.specDefaultIpamPolicy != nil {
-		localVarQueryParams.Add("spec.default-ipam-policy", parameterToString(*r.specDefaultIpamPolicy, ""))
-	}
-	if r.statusId != nil {
-		localVarQueryParams.Add("status.id", parameterToString(*r.statusId, ""))
-	}
-	if r.statusRouteTable != nil {
-		localVarQueryParams.Add("status.route-table", parameterToString(*r.statusRouteTable, ""))
-	}
-	if r.rdType2 != nil {
-		localVarQueryParams.Add("rd.type", parameterToString(*r.rdType2, ""))
-	}
-	if r.adminValueFormat2 != nil {
-		localVarQueryParams.Add("admin-value.Format", parameterToString(*r.adminValueFormat2, ""))
-	}
-	if r.adminValueValue2 != nil {
-		localVarQueryParams.Add("admin-value.Value", parameterToString(*r.adminValueValue2, ""))
-	}
-	if r.rdAssignedValue2 != nil {
-		localVarQueryParams.Add("rd.assigned-value", parameterToString(*r.rdAssignedValue2, ""))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
-	}
-	if r.propagationStatusPendingDscs != nil {
-		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
+	if r.specIngressSecurityPolicy != nil {
+		localVarQueryParams.Add("spec.ingress-security-policy", parameterToString(*r.specIngressSecurityPolicy, "csv"))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -8397,165 +6473,30 @@ type ApiNetworkGetVirtualRouter1Request struct {
 	ApiService *NetworkV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	specType *string
-	specRouterMacAddress *string
-	specVxlanVni *int64
-	routeImportExportAddressFamily *string
-	routeImportExportRdAuto *bool
-	rdType *string
-	adminValueFormat *string
 	adminValueValue *int64
-	rdAssignedValue *int64
-	specDefaultIpamPolicy *string
-	statusId *string
-	statusRouteTable *string
-	rdType2 *string
-	adminValueFormat2 *string
-	adminValueValue2 *int64
-	rdAssignedValue2 *int64
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
-	propagationStatusPendingDscs *[]string
+	specIngressSecurityPolicy *[]string
 }
 
 func (r ApiNetworkGetVirtualRouter1Request) TKind(tKind string) ApiNetworkGetVirtualRouter1Request {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiNetworkGetVirtualRouter1Request) TApiVersion(tApiVersion string) ApiNetworkGetVirtualRouter1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) MetaTenant(metaTenant string) ApiNetworkGetVirtualRouter1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) MetaNamespace(metaNamespace string) ApiNetworkGetVirtualRouter1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) MetaGenerationId(metaGenerationId string) ApiNetworkGetVirtualRouter1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) MetaResourceVersion(metaResourceVersion string) ApiNetworkGetVirtualRouter1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) MetaUuid(metaUuid string) ApiNetworkGetVirtualRouter1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiNetworkGetVirtualRouter1Request) MetaCreationTime(metaCreationTime time.Time) ApiNetworkGetVirtualRouter1Request {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) MetaModTime(metaModTime time.Time) ApiNetworkGetVirtualRouter1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) MetaSelfLink(metaSelfLink string) ApiNetworkGetVirtualRouter1Request {
-	r.metaSelfLink = &metaSelfLink
 	return r
 }
 func (r ApiNetworkGetVirtualRouter1Request) SpecType(specType string) ApiNetworkGetVirtualRouter1Request {
 	r.specType = &specType
 	return r
 }
-func (r ApiNetworkGetVirtualRouter1Request) SpecRouterMacAddress(specRouterMacAddress string) ApiNetworkGetVirtualRouter1Request {
-	r.specRouterMacAddress = &specRouterMacAddress
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) SpecVxlanVni(specVxlanVni int64) ApiNetworkGetVirtualRouter1Request {
-	r.specVxlanVni = &specVxlanVni
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) RouteImportExportAddressFamily(routeImportExportAddressFamily string) ApiNetworkGetVirtualRouter1Request {
-	r.routeImportExportAddressFamily = &routeImportExportAddressFamily
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) RouteImportExportRdAuto(routeImportExportRdAuto bool) ApiNetworkGetVirtualRouter1Request {
-	r.routeImportExportRdAuto = &routeImportExportRdAuto
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) RdType(rdType string) ApiNetworkGetVirtualRouter1Request {
-	r.rdType = &rdType
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) AdminValueFormat(adminValueFormat string) ApiNetworkGetVirtualRouter1Request {
-	r.adminValueFormat = &adminValueFormat
-	return r
-}
 func (r ApiNetworkGetVirtualRouter1Request) AdminValueValue(adminValueValue int64) ApiNetworkGetVirtualRouter1Request {
 	r.adminValueValue = &adminValueValue
 	return r
 }
-func (r ApiNetworkGetVirtualRouter1Request) RdAssignedValue(rdAssignedValue int64) ApiNetworkGetVirtualRouter1Request {
-	r.rdAssignedValue = &rdAssignedValue
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) SpecDefaultIpamPolicy(specDefaultIpamPolicy string) ApiNetworkGetVirtualRouter1Request {
-	r.specDefaultIpamPolicy = &specDefaultIpamPolicy
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) StatusId(statusId string) ApiNetworkGetVirtualRouter1Request {
-	r.statusId = &statusId
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) StatusRouteTable(statusRouteTable string) ApiNetworkGetVirtualRouter1Request {
-	r.statusRouteTable = &statusRouteTable
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) RdType2(rdType2 string) ApiNetworkGetVirtualRouter1Request {
-	r.rdType2 = &rdType2
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) AdminValueFormat2(adminValueFormat2 string) ApiNetworkGetVirtualRouter1Request {
-	r.adminValueFormat2 = &adminValueFormat2
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) AdminValueValue2(adminValueValue2 int64) ApiNetworkGetVirtualRouter1Request {
-	r.adminValueValue2 = &adminValueValue2
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) RdAssignedValue2(rdAssignedValue2 int64) ApiNetworkGetVirtualRouter1Request {
-	r.rdAssignedValue2 = &rdAssignedValue2
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiNetworkGetVirtualRouter1Request {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) PropagationStatusUpdated(propagationStatusUpdated int32) ApiNetworkGetVirtualRouter1Request {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) PropagationStatusPending(propagationStatusPending int32) ApiNetworkGetVirtualRouter1Request {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiNetworkGetVirtualRouter1Request {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) PropagationStatusStatus(propagationStatusStatus string) ApiNetworkGetVirtualRouter1Request {
-	r.propagationStatusStatus = &propagationStatusStatus
-	return r
-}
-func (r ApiNetworkGetVirtualRouter1Request) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiNetworkGetVirtualRouter1Request {
-	r.propagationStatusPendingDscs = &propagationStatusPendingDscs
+func (r ApiNetworkGetVirtualRouter1Request) SpecIngressSecurityPolicy(specIngressSecurityPolicy []string) ApiNetworkGetVirtualRouter1Request {
+	r.specIngressSecurityPolicy = &specIngressSecurityPolicy
 	return r
 }
 
@@ -8606,98 +6547,17 @@ func (a *NetworkV1ApiService) GetVirtualRouter1Execute(r ApiNetworkGetVirtualRou
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
 	}
 	if r.specType != nil {
 		localVarQueryParams.Add("spec.type", parameterToString(*r.specType, ""))
 	}
-	if r.specRouterMacAddress != nil {
-		localVarQueryParams.Add("spec.router-mac-address", parameterToString(*r.specRouterMacAddress, ""))
-	}
-	if r.specVxlanVni != nil {
-		localVarQueryParams.Add("spec.vxlan-vni", parameterToString(*r.specVxlanVni, ""))
-	}
-	if r.routeImportExportAddressFamily != nil {
-		localVarQueryParams.Add("route-import-export.address-family", parameterToString(*r.routeImportExportAddressFamily, ""))
-	}
-	if r.routeImportExportRdAuto != nil {
-		localVarQueryParams.Add("route-import-export.rd-auto", parameterToString(*r.routeImportExportRdAuto, ""))
-	}
-	if r.rdType != nil {
-		localVarQueryParams.Add("rd.type", parameterToString(*r.rdType, ""))
-	}
-	if r.adminValueFormat != nil {
-		localVarQueryParams.Add("admin-value.Format", parameterToString(*r.adminValueFormat, ""))
-	}
 	if r.adminValueValue != nil {
 		localVarQueryParams.Add("admin-value.Value", parameterToString(*r.adminValueValue, ""))
 	}
-	if r.rdAssignedValue != nil {
-		localVarQueryParams.Add("rd.assigned-value", parameterToString(*r.rdAssignedValue, ""))
-	}
-	if r.specDefaultIpamPolicy != nil {
-		localVarQueryParams.Add("spec.default-ipam-policy", parameterToString(*r.specDefaultIpamPolicy, ""))
-	}
-	if r.statusId != nil {
-		localVarQueryParams.Add("status.id", parameterToString(*r.statusId, ""))
-	}
-	if r.statusRouteTable != nil {
-		localVarQueryParams.Add("status.route-table", parameterToString(*r.statusRouteTable, ""))
-	}
-	if r.rdType2 != nil {
-		localVarQueryParams.Add("rd.type", parameterToString(*r.rdType2, ""))
-	}
-	if r.adminValueFormat2 != nil {
-		localVarQueryParams.Add("admin-value.Format", parameterToString(*r.adminValueFormat2, ""))
-	}
-	if r.adminValueValue2 != nil {
-		localVarQueryParams.Add("admin-value.Value", parameterToString(*r.adminValueValue2, ""))
-	}
-	if r.rdAssignedValue2 != nil {
-		localVarQueryParams.Add("rd.assigned-value", parameterToString(*r.rdAssignedValue2, ""))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
-	}
-	if r.propagationStatusPendingDscs != nil {
-		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
+	if r.specIngressSecurityPolicy != nil {
+		localVarQueryParams.Add("spec.ingress-security-policy", parameterToString(*r.specIngressSecurityPolicy, "csv"))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -8822,21 +6682,8 @@ type ApiNetworkGetVirtualRouterPeeringGroupRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
 	propagationStatusPendingDscs *[]string
 }
 
@@ -8844,56 +6691,8 @@ func (r ApiNetworkGetVirtualRouterPeeringGroupRequest) TKind(tKind string) ApiNe
 	r.tKind = &tKind
 	return r
 }
-func (r ApiNetworkGetVirtualRouterPeeringGroupRequest) TApiVersion(tApiVersion string) ApiNetworkGetVirtualRouterPeeringGroupRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiNetworkGetVirtualRouterPeeringGroupRequest) MetaNamespace(metaNamespace string) ApiNetworkGetVirtualRouterPeeringGroupRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiNetworkGetVirtualRouterPeeringGroupRequest) MetaGenerationId(metaGenerationId string) ApiNetworkGetVirtualRouterPeeringGroupRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiNetworkGetVirtualRouterPeeringGroupRequest) MetaResourceVersion(metaResourceVersion string) ApiNetworkGetVirtualRouterPeeringGroupRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiNetworkGetVirtualRouterPeeringGroupRequest) MetaUuid(metaUuid string) ApiNetworkGetVirtualRouterPeeringGroupRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiNetworkGetVirtualRouterPeeringGroupRequest) MetaCreationTime(metaCreationTime time.Time) ApiNetworkGetVirtualRouterPeeringGroupRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiNetworkGetVirtualRouterPeeringGroupRequest) MetaModTime(metaModTime time.Time) ApiNetworkGetVirtualRouterPeeringGroupRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiNetworkGetVirtualRouterPeeringGroupRequest) MetaSelfLink(metaSelfLink string) ApiNetworkGetVirtualRouterPeeringGroupRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiNetworkGetVirtualRouterPeeringGroupRequest) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiNetworkGetVirtualRouterPeeringGroupRequest {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiNetworkGetVirtualRouterPeeringGroupRequest) PropagationStatusUpdated(propagationStatusUpdated int32) ApiNetworkGetVirtualRouterPeeringGroupRequest {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiNetworkGetVirtualRouterPeeringGroupRequest) PropagationStatusPending(propagationStatusPending int32) ApiNetworkGetVirtualRouterPeeringGroupRequest {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiNetworkGetVirtualRouterPeeringGroupRequest) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiNetworkGetVirtualRouterPeeringGroupRequest {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiNetworkGetVirtualRouterPeeringGroupRequest) PropagationStatusStatus(propagationStatusStatus string) ApiNetworkGetVirtualRouterPeeringGroupRequest {
-	r.propagationStatusStatus = &propagationStatusStatus
 	return r
 }
 func (r ApiNetworkGetVirtualRouterPeeringGroupRequest) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiNetworkGetVirtualRouterPeeringGroupRequest {
@@ -8909,15 +6708,13 @@ func (r ApiNetworkGetVirtualRouterPeeringGroupRequest) Execute() (NetworkVirtual
  * GetVirtualRouterPeeringGroup Get VirtualRouterPeeringGroup object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiNetworkGetVirtualRouterPeeringGroupRequest
  */
-func (a *NetworkV1ApiService) GetVirtualRouterPeeringGroup(ctx _context.Context, oTenant string, oName string) ApiNetworkGetVirtualRouterPeeringGroupRequest {
+func (a *NetworkV1ApiService) GetVirtualRouterPeeringGroup(ctx _context.Context, oTenant string) ApiNetworkGetVirtualRouterPeeringGroupRequest {
 	return ApiNetworkGetVirtualRouterPeeringGroupRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -8942,7 +6739,6 @@ func (a *NetworkV1ApiService) GetVirtualRouterPeeringGroupExecute(r ApiNetworkGe
 
 	localVarPath := localBasePath + "/configs/network/v1/tenant/{O.Tenant}/virtual-router-peering-groups/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -8951,44 +6747,8 @@ func (a *NetworkV1ApiService) GetVirtualRouterPeeringGroupExecute(r ApiNetworkGe
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
 	}
 	if r.propagationStatusPendingDscs != nil {
 		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
@@ -9117,20 +6877,7 @@ type ApiNetworkGetVirtualRouterPeeringGroup1Request struct {
 	ApiService *NetworkV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
 	propagationStatusPendingDscs *[]string
 }
 
@@ -9138,60 +6885,8 @@ func (r ApiNetworkGetVirtualRouterPeeringGroup1Request) TKind(tKind string) ApiN
 	r.tKind = &tKind
 	return r
 }
-func (r ApiNetworkGetVirtualRouterPeeringGroup1Request) TApiVersion(tApiVersion string) ApiNetworkGetVirtualRouterPeeringGroup1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiNetworkGetVirtualRouterPeeringGroup1Request) MetaTenant(metaTenant string) ApiNetworkGetVirtualRouterPeeringGroup1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiNetworkGetVirtualRouterPeeringGroup1Request) MetaNamespace(metaNamespace string) ApiNetworkGetVirtualRouterPeeringGroup1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiNetworkGetVirtualRouterPeeringGroup1Request) MetaGenerationId(metaGenerationId string) ApiNetworkGetVirtualRouterPeeringGroup1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiNetworkGetVirtualRouterPeeringGroup1Request) MetaResourceVersion(metaResourceVersion string) ApiNetworkGetVirtualRouterPeeringGroup1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiNetworkGetVirtualRouterPeeringGroup1Request) MetaUuid(metaUuid string) ApiNetworkGetVirtualRouterPeeringGroup1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiNetworkGetVirtualRouterPeeringGroup1Request) MetaCreationTime(metaCreationTime time.Time) ApiNetworkGetVirtualRouterPeeringGroup1Request {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiNetworkGetVirtualRouterPeeringGroup1Request) MetaModTime(metaModTime time.Time) ApiNetworkGetVirtualRouterPeeringGroup1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiNetworkGetVirtualRouterPeeringGroup1Request) MetaSelfLink(metaSelfLink string) ApiNetworkGetVirtualRouterPeeringGroup1Request {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiNetworkGetVirtualRouterPeeringGroup1Request) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiNetworkGetVirtualRouterPeeringGroup1Request {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiNetworkGetVirtualRouterPeeringGroup1Request) PropagationStatusUpdated(propagationStatusUpdated int32) ApiNetworkGetVirtualRouterPeeringGroup1Request {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiNetworkGetVirtualRouterPeeringGroup1Request) PropagationStatusPending(propagationStatusPending int32) ApiNetworkGetVirtualRouterPeeringGroup1Request {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiNetworkGetVirtualRouterPeeringGroup1Request) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiNetworkGetVirtualRouterPeeringGroup1Request {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiNetworkGetVirtualRouterPeeringGroup1Request) PropagationStatusStatus(propagationStatusStatus string) ApiNetworkGetVirtualRouterPeeringGroup1Request {
-	r.propagationStatusStatus = &propagationStatusStatus
 	return r
 }
 func (r ApiNetworkGetVirtualRouterPeeringGroup1Request) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiNetworkGetVirtualRouterPeeringGroup1Request {
@@ -9246,47 +6941,8 @@ func (a *NetworkV1ApiService) GetVirtualRouterPeeringGroup1Execute(r ApiNetworkG
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
 	}
 	if r.propagationStatusPendingDscs != nil {
 		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
@@ -9414,7 +7070,6 @@ type ApiNetworkLabelIPAMPolicyRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oTenant string
-	oName string
 	body *ApiLabel
 }
 
@@ -9431,15 +7086,13 @@ func (r ApiNetworkLabelIPAMPolicyRequest) Execute() (NetworkIPAMPolicy, *_nethtt
  * LabelIPAMPolicy Label IPAMPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiNetworkLabelIPAMPolicyRequest
  */
-func (a *NetworkV1ApiService) LabelIPAMPolicy(ctx _context.Context, oTenant string, oName string) ApiNetworkLabelIPAMPolicyRequest {
+func (a *NetworkV1ApiService) LabelIPAMPolicy(ctx _context.Context, oTenant string) ApiNetworkLabelIPAMPolicyRequest {
 	return ApiNetworkLabelIPAMPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -9464,7 +7117,6 @@ func (a *NetworkV1ApiService) LabelIPAMPolicyExecute(r ApiNetworkLabelIPAMPolicy
 
 	localVarPath := localBasePath + "/configs/network/v1/tenant/{O.Tenant}/ipam-policies/{O.Name}/label"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -9778,7 +7430,6 @@ type ApiNetworkLabelNetworkRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oTenant string
-	oName string
 	body *ApiLabel
 }
 
@@ -9795,15 +7446,13 @@ func (r ApiNetworkLabelNetworkRequest) Execute() (NetworkNetwork, *_nethttp.Resp
  * LabelNetwork Label Network object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiNetworkLabelNetworkRequest
  */
-func (a *NetworkV1ApiService) LabelNetwork(ctx _context.Context, oTenant string, oName string) ApiNetworkLabelNetworkRequest {
+func (a *NetworkV1ApiService) LabelNetwork(ctx _context.Context, oTenant string) ApiNetworkLabelNetworkRequest {
 	return ApiNetworkLabelNetworkRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -9828,7 +7477,6 @@ func (a *NetworkV1ApiService) LabelNetworkExecute(r ApiNetworkLabelNetworkReques
 
 	localVarPath := localBasePath + "/configs/network/v1/tenant/{O.Tenant}/networks/{O.Name}/label"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -10322,7 +7970,6 @@ type ApiNetworkLabelPolicerProfileRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oTenant string
-	oName string
 	body *ApiLabel
 }
 
@@ -10339,15 +7986,13 @@ func (r ApiNetworkLabelPolicerProfileRequest) Execute() (NetworkPolicerProfile, 
  * LabelPolicerProfile Label PolicerProfile object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiNetworkLabelPolicerProfileRequest
  */
-func (a *NetworkV1ApiService) LabelPolicerProfile(ctx _context.Context, oTenant string, oName string) ApiNetworkLabelPolicerProfileRequest {
+func (a *NetworkV1ApiService) LabelPolicerProfile(ctx _context.Context, oTenant string) ApiNetworkLabelPolicerProfileRequest {
 	return ApiNetworkLabelPolicerProfileRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -10372,7 +8017,6 @@ func (a *NetworkV1ApiService) LabelPolicerProfileExecute(r ApiNetworkLabelPolice
 
 	localVarPath := localBasePath + "/configs/network/v1/tenant/{O.Tenant}/policer-profile/{O.Name}/label"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -10866,7 +8510,6 @@ type ApiNetworkLabelVirtualRouterRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oTenant string
-	oName string
 	body *ApiLabel
 }
 
@@ -10883,15 +8526,13 @@ func (r ApiNetworkLabelVirtualRouterRequest) Execute() (NetworkVirtualRouter, *_
  * LabelVirtualRouter Label VirtualRouter object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiNetworkLabelVirtualRouterRequest
  */
-func (a *NetworkV1ApiService) LabelVirtualRouter(ctx _context.Context, oTenant string, oName string) ApiNetworkLabelVirtualRouterRequest {
+func (a *NetworkV1ApiService) LabelVirtualRouter(ctx _context.Context, oTenant string) ApiNetworkLabelVirtualRouterRequest {
 	return ApiNetworkLabelVirtualRouterRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -10916,7 +8557,6 @@ func (a *NetworkV1ApiService) LabelVirtualRouterExecute(r ApiNetworkLabelVirtual
 
 	localVarPath := localBasePath + "/configs/network/v1/tenant/{O.Tenant}/virtualrouters/{O.Name}/label"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -11230,7 +8870,6 @@ type ApiNetworkLabelVirtualRouterPeeringGroupRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oTenant string
-	oName string
 	body *ApiLabel
 }
 
@@ -11247,15 +8886,13 @@ func (r ApiNetworkLabelVirtualRouterPeeringGroupRequest) Execute() (NetworkVirtu
  * LabelVirtualRouterPeeringGroup Label VirtualRouterPeeringGroup object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiNetworkLabelVirtualRouterPeeringGroupRequest
  */
-func (a *NetworkV1ApiService) LabelVirtualRouterPeeringGroup(ctx _context.Context, oTenant string, oName string) ApiNetworkLabelVirtualRouterPeeringGroupRequest {
+func (a *NetworkV1ApiService) LabelVirtualRouterPeeringGroup(ctx _context.Context, oTenant string) ApiNetworkLabelVirtualRouterPeeringGroupRequest {
 	return ApiNetworkLabelVirtualRouterPeeringGroupRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -11280,7 +8917,6 @@ func (a *NetworkV1ApiService) LabelVirtualRouterPeeringGroupExecute(r ApiNetwork
 
 	localVarPath := localBasePath + "/configs/network/v1/tenant/{O.Tenant}/virtual-router-peering-groups/{O.Name}/label"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -11595,80 +9231,20 @@ type ApiNetworkListIPAMPolicyRequest struct {
 	ApiService *NetworkV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkListIPAMPolicyRequest) OName(oName string) ApiNetworkListIPAMPolicyRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkListIPAMPolicyRequest) ONamespace(oNamespace string) ApiNetworkListIPAMPolicyRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkListIPAMPolicyRequest) OGenerationId(oGenerationId string) ApiNetworkListIPAMPolicyRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkListIPAMPolicyRequest) OResourceVersion(oResourceVersion string) ApiNetworkListIPAMPolicyRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkListIPAMPolicyRequest) OUuid(oUuid string) ApiNetworkListIPAMPolicyRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkListIPAMPolicyRequest) OCreationTime(oCreationTime time.Time) ApiNetworkListIPAMPolicyRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkListIPAMPolicyRequest) OModTime(oModTime time.Time) ApiNetworkListIPAMPolicyRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkListIPAMPolicyRequest) OSelfLink(oSelfLink string) ApiNetworkListIPAMPolicyRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkListIPAMPolicyRequest) LabelSelector(labelSelector string) ApiNetworkListIPAMPolicyRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkListIPAMPolicyRequest) FieldSelector(fieldSelector string) ApiNetworkListIPAMPolicyRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkListIPAMPolicyRequest) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkListIPAMPolicyRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkListIPAMPolicyRequest) From(from int32) ApiNetworkListIPAMPolicyRequest {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkListIPAMPolicyRequest) MaxResults(maxResults int32) ApiNetworkListIPAMPolicyRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkListIPAMPolicyRequest) SortOrder(sortOrder string) ApiNetworkListIPAMPolicyRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkListIPAMPolicyRequest) MetaOnly(metaOnly bool) ApiNetworkListIPAMPolicyRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -11719,47 +9295,11 @@ func (a *NetworkV1ApiService) ListIPAMPolicyExecute(r ApiNetworkListIPAMPolicyRe
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -11884,85 +9424,20 @@ type ApiNetworkListIPAMPolicy1Request struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkListIPAMPolicy1Request) OName(oName string) ApiNetworkListIPAMPolicy1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkListIPAMPolicy1Request) OTenant(oTenant string) ApiNetworkListIPAMPolicy1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiNetworkListIPAMPolicy1Request) ONamespace(oNamespace string) ApiNetworkListIPAMPolicy1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkListIPAMPolicy1Request) OGenerationId(oGenerationId string) ApiNetworkListIPAMPolicy1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkListIPAMPolicy1Request) OResourceVersion(oResourceVersion string) ApiNetworkListIPAMPolicy1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkListIPAMPolicy1Request) OUuid(oUuid string) ApiNetworkListIPAMPolicy1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkListIPAMPolicy1Request) OCreationTime(oCreationTime time.Time) ApiNetworkListIPAMPolicy1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkListIPAMPolicy1Request) OModTime(oModTime time.Time) ApiNetworkListIPAMPolicy1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkListIPAMPolicy1Request) OSelfLink(oSelfLink string) ApiNetworkListIPAMPolicy1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkListIPAMPolicy1Request) LabelSelector(labelSelector string) ApiNetworkListIPAMPolicy1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkListIPAMPolicy1Request) FieldSelector(fieldSelector string) ApiNetworkListIPAMPolicy1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkListIPAMPolicy1Request) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkListIPAMPolicy1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkListIPAMPolicy1Request) From(from int32) ApiNetworkListIPAMPolicy1Request {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkListIPAMPolicy1Request) MaxResults(maxResults int32) ApiNetworkListIPAMPolicy1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkListIPAMPolicy1Request) SortOrder(sortOrder string) ApiNetworkListIPAMPolicy1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkListIPAMPolicy1Request) MetaOnly(metaOnly bool) ApiNetworkListIPAMPolicy1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -12010,50 +9485,11 @@ func (a *NetworkV1ApiService) ListIPAMPolicy1Execute(r ApiNetworkListIPAMPolicy1
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -12179,80 +9615,20 @@ type ApiNetworkListNetworkRequest struct {
 	ApiService *NetworkV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkListNetworkRequest) OName(oName string) ApiNetworkListNetworkRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkListNetworkRequest) ONamespace(oNamespace string) ApiNetworkListNetworkRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkListNetworkRequest) OGenerationId(oGenerationId string) ApiNetworkListNetworkRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkListNetworkRequest) OResourceVersion(oResourceVersion string) ApiNetworkListNetworkRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkListNetworkRequest) OUuid(oUuid string) ApiNetworkListNetworkRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkListNetworkRequest) OCreationTime(oCreationTime time.Time) ApiNetworkListNetworkRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkListNetworkRequest) OModTime(oModTime time.Time) ApiNetworkListNetworkRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkListNetworkRequest) OSelfLink(oSelfLink string) ApiNetworkListNetworkRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkListNetworkRequest) LabelSelector(labelSelector string) ApiNetworkListNetworkRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkListNetworkRequest) FieldSelector(fieldSelector string) ApiNetworkListNetworkRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkListNetworkRequest) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkListNetworkRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkListNetworkRequest) From(from int32) ApiNetworkListNetworkRequest {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkListNetworkRequest) MaxResults(maxResults int32) ApiNetworkListNetworkRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkListNetworkRequest) SortOrder(sortOrder string) ApiNetworkListNetworkRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkListNetworkRequest) MetaOnly(metaOnly bool) ApiNetworkListNetworkRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -12303,47 +9679,11 @@ func (a *NetworkV1ApiService) ListNetworkExecute(r ApiNetworkListNetworkRequest)
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -12468,85 +9808,20 @@ type ApiNetworkListNetwork1Request struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkListNetwork1Request) OName(oName string) ApiNetworkListNetwork1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkListNetwork1Request) OTenant(oTenant string) ApiNetworkListNetwork1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiNetworkListNetwork1Request) ONamespace(oNamespace string) ApiNetworkListNetwork1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkListNetwork1Request) OGenerationId(oGenerationId string) ApiNetworkListNetwork1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkListNetwork1Request) OResourceVersion(oResourceVersion string) ApiNetworkListNetwork1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkListNetwork1Request) OUuid(oUuid string) ApiNetworkListNetwork1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkListNetwork1Request) OCreationTime(oCreationTime time.Time) ApiNetworkListNetwork1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkListNetwork1Request) OModTime(oModTime time.Time) ApiNetworkListNetwork1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkListNetwork1Request) OSelfLink(oSelfLink string) ApiNetworkListNetwork1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkListNetwork1Request) LabelSelector(labelSelector string) ApiNetworkListNetwork1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkListNetwork1Request) FieldSelector(fieldSelector string) ApiNetworkListNetwork1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkListNetwork1Request) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkListNetwork1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkListNetwork1Request) From(from int32) ApiNetworkListNetwork1Request {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkListNetwork1Request) MaxResults(maxResults int32) ApiNetworkListNetwork1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkListNetwork1Request) SortOrder(sortOrder string) ApiNetworkListNetwork1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkListNetwork1Request) MetaOnly(metaOnly bool) ApiNetworkListNetwork1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -12594,50 +9869,11 @@ func (a *NetworkV1ApiService) ListNetwork1Execute(r ApiNetworkListNetwork1Reques
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -12762,85 +9998,20 @@ type ApiNetworkListNetworkInterfaceRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkListNetworkInterfaceRequest) OName(oName string) ApiNetworkListNetworkInterfaceRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkListNetworkInterfaceRequest) OTenant(oTenant string) ApiNetworkListNetworkInterfaceRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiNetworkListNetworkInterfaceRequest) ONamespace(oNamespace string) ApiNetworkListNetworkInterfaceRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkListNetworkInterfaceRequest) OGenerationId(oGenerationId string) ApiNetworkListNetworkInterfaceRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkListNetworkInterfaceRequest) OResourceVersion(oResourceVersion string) ApiNetworkListNetworkInterfaceRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkListNetworkInterfaceRequest) OUuid(oUuid string) ApiNetworkListNetworkInterfaceRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkListNetworkInterfaceRequest) OCreationTime(oCreationTime time.Time) ApiNetworkListNetworkInterfaceRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkListNetworkInterfaceRequest) OModTime(oModTime time.Time) ApiNetworkListNetworkInterfaceRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkListNetworkInterfaceRequest) OSelfLink(oSelfLink string) ApiNetworkListNetworkInterfaceRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkListNetworkInterfaceRequest) LabelSelector(labelSelector string) ApiNetworkListNetworkInterfaceRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkListNetworkInterfaceRequest) FieldSelector(fieldSelector string) ApiNetworkListNetworkInterfaceRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkListNetworkInterfaceRequest) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkListNetworkInterfaceRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkListNetworkInterfaceRequest) From(from int32) ApiNetworkListNetworkInterfaceRequest {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkListNetworkInterfaceRequest) MaxResults(maxResults int32) ApiNetworkListNetworkInterfaceRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkListNetworkInterfaceRequest) SortOrder(sortOrder string) ApiNetworkListNetworkInterfaceRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkListNetworkInterfaceRequest) MetaOnly(metaOnly bool) ApiNetworkListNetworkInterfaceRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -12888,50 +10059,11 @@ func (a *NetworkV1ApiService) ListNetworkInterfaceExecute(r ApiNetworkListNetwor
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -13057,80 +10189,20 @@ type ApiNetworkListPolicerProfileRequest struct {
 	ApiService *NetworkV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkListPolicerProfileRequest) OName(oName string) ApiNetworkListPolicerProfileRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkListPolicerProfileRequest) ONamespace(oNamespace string) ApiNetworkListPolicerProfileRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkListPolicerProfileRequest) OGenerationId(oGenerationId string) ApiNetworkListPolicerProfileRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkListPolicerProfileRequest) OResourceVersion(oResourceVersion string) ApiNetworkListPolicerProfileRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkListPolicerProfileRequest) OUuid(oUuid string) ApiNetworkListPolicerProfileRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkListPolicerProfileRequest) OCreationTime(oCreationTime time.Time) ApiNetworkListPolicerProfileRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkListPolicerProfileRequest) OModTime(oModTime time.Time) ApiNetworkListPolicerProfileRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkListPolicerProfileRequest) OSelfLink(oSelfLink string) ApiNetworkListPolicerProfileRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkListPolicerProfileRequest) LabelSelector(labelSelector string) ApiNetworkListPolicerProfileRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkListPolicerProfileRequest) FieldSelector(fieldSelector string) ApiNetworkListPolicerProfileRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkListPolicerProfileRequest) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkListPolicerProfileRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkListPolicerProfileRequest) From(from int32) ApiNetworkListPolicerProfileRequest {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkListPolicerProfileRequest) MaxResults(maxResults int32) ApiNetworkListPolicerProfileRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkListPolicerProfileRequest) SortOrder(sortOrder string) ApiNetworkListPolicerProfileRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkListPolicerProfileRequest) MetaOnly(metaOnly bool) ApiNetworkListPolicerProfileRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -13181,47 +10253,11 @@ func (a *NetworkV1ApiService) ListPolicerProfileExecute(r ApiNetworkListPolicerP
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -13346,85 +10382,20 @@ type ApiNetworkListPolicerProfile1Request struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkListPolicerProfile1Request) OName(oName string) ApiNetworkListPolicerProfile1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkListPolicerProfile1Request) OTenant(oTenant string) ApiNetworkListPolicerProfile1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiNetworkListPolicerProfile1Request) ONamespace(oNamespace string) ApiNetworkListPolicerProfile1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkListPolicerProfile1Request) OGenerationId(oGenerationId string) ApiNetworkListPolicerProfile1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkListPolicerProfile1Request) OResourceVersion(oResourceVersion string) ApiNetworkListPolicerProfile1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkListPolicerProfile1Request) OUuid(oUuid string) ApiNetworkListPolicerProfile1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkListPolicerProfile1Request) OCreationTime(oCreationTime time.Time) ApiNetworkListPolicerProfile1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkListPolicerProfile1Request) OModTime(oModTime time.Time) ApiNetworkListPolicerProfile1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkListPolicerProfile1Request) OSelfLink(oSelfLink string) ApiNetworkListPolicerProfile1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkListPolicerProfile1Request) LabelSelector(labelSelector string) ApiNetworkListPolicerProfile1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkListPolicerProfile1Request) FieldSelector(fieldSelector string) ApiNetworkListPolicerProfile1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkListPolicerProfile1Request) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkListPolicerProfile1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkListPolicerProfile1Request) From(from int32) ApiNetworkListPolicerProfile1Request {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkListPolicerProfile1Request) MaxResults(maxResults int32) ApiNetworkListPolicerProfile1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkListPolicerProfile1Request) SortOrder(sortOrder string) ApiNetworkListPolicerProfile1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkListPolicerProfile1Request) MetaOnly(metaOnly bool) ApiNetworkListPolicerProfile1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -13472,50 +10443,11 @@ func (a *NetworkV1ApiService) ListPolicerProfile1Execute(r ApiNetworkListPolicer
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -13641,80 +10573,20 @@ type ApiNetworkListRouteTableRequest struct {
 	ApiService *NetworkV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkListRouteTableRequest) OName(oName string) ApiNetworkListRouteTableRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkListRouteTableRequest) ONamespace(oNamespace string) ApiNetworkListRouteTableRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkListRouteTableRequest) OGenerationId(oGenerationId string) ApiNetworkListRouteTableRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkListRouteTableRequest) OResourceVersion(oResourceVersion string) ApiNetworkListRouteTableRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkListRouteTableRequest) OUuid(oUuid string) ApiNetworkListRouteTableRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkListRouteTableRequest) OCreationTime(oCreationTime time.Time) ApiNetworkListRouteTableRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkListRouteTableRequest) OModTime(oModTime time.Time) ApiNetworkListRouteTableRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkListRouteTableRequest) OSelfLink(oSelfLink string) ApiNetworkListRouteTableRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkListRouteTableRequest) LabelSelector(labelSelector string) ApiNetworkListRouteTableRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkListRouteTableRequest) FieldSelector(fieldSelector string) ApiNetworkListRouteTableRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkListRouteTableRequest) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkListRouteTableRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkListRouteTableRequest) From(from int32) ApiNetworkListRouteTableRequest {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkListRouteTableRequest) MaxResults(maxResults int32) ApiNetworkListRouteTableRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkListRouteTableRequest) SortOrder(sortOrder string) ApiNetworkListRouteTableRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkListRouteTableRequest) MetaOnly(metaOnly bool) ApiNetworkListRouteTableRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -13765,47 +10637,11 @@ func (a *NetworkV1ApiService) ListRouteTableExecute(r ApiNetworkListRouteTableRe
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -13930,85 +10766,20 @@ type ApiNetworkListRouteTable1Request struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkListRouteTable1Request) OName(oName string) ApiNetworkListRouteTable1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkListRouteTable1Request) OTenant(oTenant string) ApiNetworkListRouteTable1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiNetworkListRouteTable1Request) ONamespace(oNamespace string) ApiNetworkListRouteTable1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkListRouteTable1Request) OGenerationId(oGenerationId string) ApiNetworkListRouteTable1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkListRouteTable1Request) OResourceVersion(oResourceVersion string) ApiNetworkListRouteTable1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkListRouteTable1Request) OUuid(oUuid string) ApiNetworkListRouteTable1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkListRouteTable1Request) OCreationTime(oCreationTime time.Time) ApiNetworkListRouteTable1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkListRouteTable1Request) OModTime(oModTime time.Time) ApiNetworkListRouteTable1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkListRouteTable1Request) OSelfLink(oSelfLink string) ApiNetworkListRouteTable1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkListRouteTable1Request) LabelSelector(labelSelector string) ApiNetworkListRouteTable1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkListRouteTable1Request) FieldSelector(fieldSelector string) ApiNetworkListRouteTable1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkListRouteTable1Request) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkListRouteTable1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkListRouteTable1Request) From(from int32) ApiNetworkListRouteTable1Request {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkListRouteTable1Request) MaxResults(maxResults int32) ApiNetworkListRouteTable1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkListRouteTable1Request) SortOrder(sortOrder string) ApiNetworkListRouteTable1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkListRouteTable1Request) MetaOnly(metaOnly bool) ApiNetworkListRouteTable1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -14056,50 +10827,11 @@ func (a *NetworkV1ApiService) ListRouteTable1Execute(r ApiNetworkListRouteTable1
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -14224,85 +10956,20 @@ type ApiNetworkListRoutingConfigRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkListRoutingConfigRequest) OName(oName string) ApiNetworkListRoutingConfigRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkListRoutingConfigRequest) OTenant(oTenant string) ApiNetworkListRoutingConfigRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiNetworkListRoutingConfigRequest) ONamespace(oNamespace string) ApiNetworkListRoutingConfigRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkListRoutingConfigRequest) OGenerationId(oGenerationId string) ApiNetworkListRoutingConfigRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkListRoutingConfigRequest) OResourceVersion(oResourceVersion string) ApiNetworkListRoutingConfigRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkListRoutingConfigRequest) OUuid(oUuid string) ApiNetworkListRoutingConfigRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkListRoutingConfigRequest) OCreationTime(oCreationTime time.Time) ApiNetworkListRoutingConfigRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkListRoutingConfigRequest) OModTime(oModTime time.Time) ApiNetworkListRoutingConfigRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkListRoutingConfigRequest) OSelfLink(oSelfLink string) ApiNetworkListRoutingConfigRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkListRoutingConfigRequest) LabelSelector(labelSelector string) ApiNetworkListRoutingConfigRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkListRoutingConfigRequest) FieldSelector(fieldSelector string) ApiNetworkListRoutingConfigRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkListRoutingConfigRequest) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkListRoutingConfigRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkListRoutingConfigRequest) From(from int32) ApiNetworkListRoutingConfigRequest {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkListRoutingConfigRequest) MaxResults(maxResults int32) ApiNetworkListRoutingConfigRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkListRoutingConfigRequest) SortOrder(sortOrder string) ApiNetworkListRoutingConfigRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkListRoutingConfigRequest) MetaOnly(metaOnly bool) ApiNetworkListRoutingConfigRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -14350,50 +11017,11 @@ func (a *NetworkV1ApiService) ListRoutingConfigExecute(r ApiNetworkListRoutingCo
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -14519,80 +11147,20 @@ type ApiNetworkListVirtualRouterRequest struct {
 	ApiService *NetworkV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkListVirtualRouterRequest) OName(oName string) ApiNetworkListVirtualRouterRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkListVirtualRouterRequest) ONamespace(oNamespace string) ApiNetworkListVirtualRouterRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkListVirtualRouterRequest) OGenerationId(oGenerationId string) ApiNetworkListVirtualRouterRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkListVirtualRouterRequest) OResourceVersion(oResourceVersion string) ApiNetworkListVirtualRouterRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkListVirtualRouterRequest) OUuid(oUuid string) ApiNetworkListVirtualRouterRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkListVirtualRouterRequest) OCreationTime(oCreationTime time.Time) ApiNetworkListVirtualRouterRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkListVirtualRouterRequest) OModTime(oModTime time.Time) ApiNetworkListVirtualRouterRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkListVirtualRouterRequest) OSelfLink(oSelfLink string) ApiNetworkListVirtualRouterRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkListVirtualRouterRequest) LabelSelector(labelSelector string) ApiNetworkListVirtualRouterRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkListVirtualRouterRequest) FieldSelector(fieldSelector string) ApiNetworkListVirtualRouterRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkListVirtualRouterRequest) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkListVirtualRouterRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkListVirtualRouterRequest) From(from int32) ApiNetworkListVirtualRouterRequest {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkListVirtualRouterRequest) MaxResults(maxResults int32) ApiNetworkListVirtualRouterRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkListVirtualRouterRequest) SortOrder(sortOrder string) ApiNetworkListVirtualRouterRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkListVirtualRouterRequest) MetaOnly(metaOnly bool) ApiNetworkListVirtualRouterRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -14643,47 +11211,11 @@ func (a *NetworkV1ApiService) ListVirtualRouterExecute(r ApiNetworkListVirtualRo
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -14808,85 +11340,20 @@ type ApiNetworkListVirtualRouter1Request struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkListVirtualRouter1Request) OName(oName string) ApiNetworkListVirtualRouter1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkListVirtualRouter1Request) OTenant(oTenant string) ApiNetworkListVirtualRouter1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiNetworkListVirtualRouter1Request) ONamespace(oNamespace string) ApiNetworkListVirtualRouter1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkListVirtualRouter1Request) OGenerationId(oGenerationId string) ApiNetworkListVirtualRouter1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkListVirtualRouter1Request) OResourceVersion(oResourceVersion string) ApiNetworkListVirtualRouter1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkListVirtualRouter1Request) OUuid(oUuid string) ApiNetworkListVirtualRouter1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkListVirtualRouter1Request) OCreationTime(oCreationTime time.Time) ApiNetworkListVirtualRouter1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkListVirtualRouter1Request) OModTime(oModTime time.Time) ApiNetworkListVirtualRouter1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkListVirtualRouter1Request) OSelfLink(oSelfLink string) ApiNetworkListVirtualRouter1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkListVirtualRouter1Request) LabelSelector(labelSelector string) ApiNetworkListVirtualRouter1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkListVirtualRouter1Request) FieldSelector(fieldSelector string) ApiNetworkListVirtualRouter1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkListVirtualRouter1Request) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkListVirtualRouter1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkListVirtualRouter1Request) From(from int32) ApiNetworkListVirtualRouter1Request {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkListVirtualRouter1Request) MaxResults(maxResults int32) ApiNetworkListVirtualRouter1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkListVirtualRouter1Request) SortOrder(sortOrder string) ApiNetworkListVirtualRouter1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkListVirtualRouter1Request) MetaOnly(metaOnly bool) ApiNetworkListVirtualRouter1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -14934,50 +11401,11 @@ func (a *NetworkV1ApiService) ListVirtualRouter1Execute(r ApiNetworkListVirtualR
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -15103,80 +11531,20 @@ type ApiNetworkListVirtualRouterPeeringGroupRequest struct {
 	ApiService *NetworkV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkListVirtualRouterPeeringGroupRequest) OName(oName string) ApiNetworkListVirtualRouterPeeringGroupRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkListVirtualRouterPeeringGroupRequest) ONamespace(oNamespace string) ApiNetworkListVirtualRouterPeeringGroupRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkListVirtualRouterPeeringGroupRequest) OGenerationId(oGenerationId string) ApiNetworkListVirtualRouterPeeringGroupRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkListVirtualRouterPeeringGroupRequest) OResourceVersion(oResourceVersion string) ApiNetworkListVirtualRouterPeeringGroupRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkListVirtualRouterPeeringGroupRequest) OUuid(oUuid string) ApiNetworkListVirtualRouterPeeringGroupRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkListVirtualRouterPeeringGroupRequest) OCreationTime(oCreationTime time.Time) ApiNetworkListVirtualRouterPeeringGroupRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkListVirtualRouterPeeringGroupRequest) OModTime(oModTime time.Time) ApiNetworkListVirtualRouterPeeringGroupRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkListVirtualRouterPeeringGroupRequest) OSelfLink(oSelfLink string) ApiNetworkListVirtualRouterPeeringGroupRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkListVirtualRouterPeeringGroupRequest) LabelSelector(labelSelector string) ApiNetworkListVirtualRouterPeeringGroupRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkListVirtualRouterPeeringGroupRequest) FieldSelector(fieldSelector string) ApiNetworkListVirtualRouterPeeringGroupRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkListVirtualRouterPeeringGroupRequest) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkListVirtualRouterPeeringGroupRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkListVirtualRouterPeeringGroupRequest) From(from int32) ApiNetworkListVirtualRouterPeeringGroupRequest {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkListVirtualRouterPeeringGroupRequest) MaxResults(maxResults int32) ApiNetworkListVirtualRouterPeeringGroupRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkListVirtualRouterPeeringGroupRequest) SortOrder(sortOrder string) ApiNetworkListVirtualRouterPeeringGroupRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkListVirtualRouterPeeringGroupRequest) MetaOnly(metaOnly bool) ApiNetworkListVirtualRouterPeeringGroupRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -15227,47 +11595,11 @@ func (a *NetworkV1ApiService) ListVirtualRouterPeeringGroupExecute(r ApiNetworkL
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -15392,85 +11724,20 @@ type ApiNetworkListVirtualRouterPeeringGroup1Request struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkListVirtualRouterPeeringGroup1Request) OName(oName string) ApiNetworkListVirtualRouterPeeringGroup1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkListVirtualRouterPeeringGroup1Request) OTenant(oTenant string) ApiNetworkListVirtualRouterPeeringGroup1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiNetworkListVirtualRouterPeeringGroup1Request) ONamespace(oNamespace string) ApiNetworkListVirtualRouterPeeringGroup1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkListVirtualRouterPeeringGroup1Request) OGenerationId(oGenerationId string) ApiNetworkListVirtualRouterPeeringGroup1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkListVirtualRouterPeeringGroup1Request) OResourceVersion(oResourceVersion string) ApiNetworkListVirtualRouterPeeringGroup1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkListVirtualRouterPeeringGroup1Request) OUuid(oUuid string) ApiNetworkListVirtualRouterPeeringGroup1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkListVirtualRouterPeeringGroup1Request) OCreationTime(oCreationTime time.Time) ApiNetworkListVirtualRouterPeeringGroup1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkListVirtualRouterPeeringGroup1Request) OModTime(oModTime time.Time) ApiNetworkListVirtualRouterPeeringGroup1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkListVirtualRouterPeeringGroup1Request) OSelfLink(oSelfLink string) ApiNetworkListVirtualRouterPeeringGroup1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkListVirtualRouterPeeringGroup1Request) LabelSelector(labelSelector string) ApiNetworkListVirtualRouterPeeringGroup1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkListVirtualRouterPeeringGroup1Request) FieldSelector(fieldSelector string) ApiNetworkListVirtualRouterPeeringGroup1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkListVirtualRouterPeeringGroup1Request) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkListVirtualRouterPeeringGroup1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkListVirtualRouterPeeringGroup1Request) From(from int32) ApiNetworkListVirtualRouterPeeringGroup1Request {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkListVirtualRouterPeeringGroup1Request) MaxResults(maxResults int32) ApiNetworkListVirtualRouterPeeringGroup1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkListVirtualRouterPeeringGroup1Request) SortOrder(sortOrder string) ApiNetworkListVirtualRouterPeeringGroup1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkListVirtualRouterPeeringGroup1Request) MetaOnly(metaOnly bool) ApiNetworkListVirtualRouterPeeringGroup1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -15518,50 +11785,11 @@ func (a *NetworkV1ApiService) ListVirtualRouterPeeringGroup1Execute(r ApiNetwork
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -15686,7 +11914,6 @@ type ApiNetworkUpdateIPAMPolicyRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oTenant string
-	oName string
 	body *NetworkIPAMPolicy
 }
 
@@ -15703,15 +11930,13 @@ func (r ApiNetworkUpdateIPAMPolicyRequest) Execute() (NetworkIPAMPolicy, *_netht
  * UpdateIPAMPolicy Update IPAMPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiNetworkUpdateIPAMPolicyRequest
  */
-func (a *NetworkV1ApiService) UpdateIPAMPolicy(ctx _context.Context, oTenant string, oName string) ApiNetworkUpdateIPAMPolicyRequest {
+func (a *NetworkV1ApiService) UpdateIPAMPolicy(ctx _context.Context, oTenant string) ApiNetworkUpdateIPAMPolicyRequest {
 	return ApiNetworkUpdateIPAMPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -15736,7 +11961,6 @@ func (a *NetworkV1ApiService) UpdateIPAMPolicyExecute(r ApiNetworkUpdateIPAMPoli
 
 	localVarPath := localBasePath + "/configs/network/v1/tenant/{O.Tenant}/ipam-policies/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -16050,7 +12274,6 @@ type ApiNetworkUpdateNetworkRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oTenant string
-	oName string
 	body *NetworkNetwork
 }
 
@@ -16067,15 +12290,13 @@ func (r ApiNetworkUpdateNetworkRequest) Execute() (NetworkNetwork, *_nethttp.Res
  * UpdateNetwork Update Network object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiNetworkUpdateNetworkRequest
  */
-func (a *NetworkV1ApiService) UpdateNetwork(ctx _context.Context, oTenant string, oName string) ApiNetworkUpdateNetworkRequest {
+func (a *NetworkV1ApiService) UpdateNetwork(ctx _context.Context, oTenant string) ApiNetworkUpdateNetworkRequest {
 	return ApiNetworkUpdateNetworkRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -16100,7 +12321,6 @@ func (a *NetworkV1ApiService) UpdateNetworkExecute(r ApiNetworkUpdateNetworkRequ
 
 	localVarPath := localBasePath + "/configs/network/v1/tenant/{O.Tenant}/networks/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -16594,7 +12814,6 @@ type ApiNetworkUpdatePolicerProfileRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oTenant string
-	oName string
 	body *NetworkPolicerProfile
 }
 
@@ -16611,15 +12830,13 @@ func (r ApiNetworkUpdatePolicerProfileRequest) Execute() (NetworkPolicerProfile,
  * UpdatePolicerProfile Update PolicerProfile object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiNetworkUpdatePolicerProfileRequest
  */
-func (a *NetworkV1ApiService) UpdatePolicerProfile(ctx _context.Context, oTenant string, oName string) ApiNetworkUpdatePolicerProfileRequest {
+func (a *NetworkV1ApiService) UpdatePolicerProfile(ctx _context.Context, oTenant string) ApiNetworkUpdatePolicerProfileRequest {
 	return ApiNetworkUpdatePolicerProfileRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -16644,7 +12861,6 @@ func (a *NetworkV1ApiService) UpdatePolicerProfileExecute(r ApiNetworkUpdatePoli
 
 	localVarPath := localBasePath + "/configs/network/v1/tenant/{O.Tenant}/policer-profile/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -17138,7 +13354,6 @@ type ApiNetworkUpdateVirtualRouterRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oTenant string
-	oName string
 	body *NetworkVirtualRouter
 }
 
@@ -17155,15 +13370,13 @@ func (r ApiNetworkUpdateVirtualRouterRequest) Execute() (NetworkVirtualRouter, *
  * UpdateVirtualRouter Update VirtualRouter object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiNetworkUpdateVirtualRouterRequest
  */
-func (a *NetworkV1ApiService) UpdateVirtualRouter(ctx _context.Context, oTenant string, oName string) ApiNetworkUpdateVirtualRouterRequest {
+func (a *NetworkV1ApiService) UpdateVirtualRouter(ctx _context.Context, oTenant string) ApiNetworkUpdateVirtualRouterRequest {
 	return ApiNetworkUpdateVirtualRouterRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -17188,7 +13401,6 @@ func (a *NetworkV1ApiService) UpdateVirtualRouterExecute(r ApiNetworkUpdateVirtu
 
 	localVarPath := localBasePath + "/configs/network/v1/tenant/{O.Tenant}/virtualrouters/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -17502,7 +13714,6 @@ type ApiNetworkUpdateVirtualRouterPeeringGroupRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oTenant string
-	oName string
 	body *NetworkVirtualRouterPeeringGroup
 }
 
@@ -17519,15 +13730,13 @@ func (r ApiNetworkUpdateVirtualRouterPeeringGroupRequest) Execute() (NetworkVirt
  * UpdateVirtualRouterPeeringGroup Update VirtualRouterPeeringGroup object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiNetworkUpdateVirtualRouterPeeringGroupRequest
  */
-func (a *NetworkV1ApiService) UpdateVirtualRouterPeeringGroup(ctx _context.Context, oTenant string, oName string) ApiNetworkUpdateVirtualRouterPeeringGroupRequest {
+func (a *NetworkV1ApiService) UpdateVirtualRouterPeeringGroup(ctx _context.Context, oTenant string) ApiNetworkUpdateVirtualRouterPeeringGroupRequest {
 	return ApiNetworkUpdateVirtualRouterPeeringGroupRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -17552,7 +13761,6 @@ func (a *NetworkV1ApiService) UpdateVirtualRouterPeeringGroupExecute(r ApiNetwor
 
 	localVarPath := localBasePath + "/configs/network/v1/tenant/{O.Tenant}/virtual-router-peering-groups/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -17867,80 +14075,20 @@ type ApiNetworkWatchIPAMPolicyRequest struct {
 	ApiService *NetworkV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkWatchIPAMPolicyRequest) OName(oName string) ApiNetworkWatchIPAMPolicyRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkWatchIPAMPolicyRequest) ONamespace(oNamespace string) ApiNetworkWatchIPAMPolicyRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkWatchIPAMPolicyRequest) OGenerationId(oGenerationId string) ApiNetworkWatchIPAMPolicyRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkWatchIPAMPolicyRequest) OResourceVersion(oResourceVersion string) ApiNetworkWatchIPAMPolicyRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkWatchIPAMPolicyRequest) OUuid(oUuid string) ApiNetworkWatchIPAMPolicyRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkWatchIPAMPolicyRequest) OCreationTime(oCreationTime time.Time) ApiNetworkWatchIPAMPolicyRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkWatchIPAMPolicyRequest) OModTime(oModTime time.Time) ApiNetworkWatchIPAMPolicyRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkWatchIPAMPolicyRequest) OSelfLink(oSelfLink string) ApiNetworkWatchIPAMPolicyRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkWatchIPAMPolicyRequest) LabelSelector(labelSelector string) ApiNetworkWatchIPAMPolicyRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkWatchIPAMPolicyRequest) FieldSelector(fieldSelector string) ApiNetworkWatchIPAMPolicyRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkWatchIPAMPolicyRequest) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkWatchIPAMPolicyRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkWatchIPAMPolicyRequest) From(from int32) ApiNetworkWatchIPAMPolicyRequest {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkWatchIPAMPolicyRequest) MaxResults(maxResults int32) ApiNetworkWatchIPAMPolicyRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkWatchIPAMPolicyRequest) SortOrder(sortOrder string) ApiNetworkWatchIPAMPolicyRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkWatchIPAMPolicyRequest) MetaOnly(metaOnly bool) ApiNetworkWatchIPAMPolicyRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -17991,47 +14139,11 @@ func (a *NetworkV1ApiService) WatchIPAMPolicyExecute(r ApiNetworkWatchIPAMPolicy
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -18156,85 +14268,20 @@ type ApiNetworkWatchIPAMPolicy1Request struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkWatchIPAMPolicy1Request) OName(oName string) ApiNetworkWatchIPAMPolicy1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkWatchIPAMPolicy1Request) OTenant(oTenant string) ApiNetworkWatchIPAMPolicy1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiNetworkWatchIPAMPolicy1Request) ONamespace(oNamespace string) ApiNetworkWatchIPAMPolicy1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkWatchIPAMPolicy1Request) OGenerationId(oGenerationId string) ApiNetworkWatchIPAMPolicy1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkWatchIPAMPolicy1Request) OResourceVersion(oResourceVersion string) ApiNetworkWatchIPAMPolicy1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkWatchIPAMPolicy1Request) OUuid(oUuid string) ApiNetworkWatchIPAMPolicy1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkWatchIPAMPolicy1Request) OCreationTime(oCreationTime time.Time) ApiNetworkWatchIPAMPolicy1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkWatchIPAMPolicy1Request) OModTime(oModTime time.Time) ApiNetworkWatchIPAMPolicy1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkWatchIPAMPolicy1Request) OSelfLink(oSelfLink string) ApiNetworkWatchIPAMPolicy1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkWatchIPAMPolicy1Request) LabelSelector(labelSelector string) ApiNetworkWatchIPAMPolicy1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkWatchIPAMPolicy1Request) FieldSelector(fieldSelector string) ApiNetworkWatchIPAMPolicy1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkWatchIPAMPolicy1Request) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkWatchIPAMPolicy1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkWatchIPAMPolicy1Request) From(from int32) ApiNetworkWatchIPAMPolicy1Request {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkWatchIPAMPolicy1Request) MaxResults(maxResults int32) ApiNetworkWatchIPAMPolicy1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkWatchIPAMPolicy1Request) SortOrder(sortOrder string) ApiNetworkWatchIPAMPolicy1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkWatchIPAMPolicy1Request) MetaOnly(metaOnly bool) ApiNetworkWatchIPAMPolicy1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -18282,50 +14329,11 @@ func (a *NetworkV1ApiService) WatchIPAMPolicy1Execute(r ApiNetworkWatchIPAMPolic
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -18451,80 +14459,20 @@ type ApiNetworkWatchNetworkRequest struct {
 	ApiService *NetworkV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkWatchNetworkRequest) OName(oName string) ApiNetworkWatchNetworkRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkWatchNetworkRequest) ONamespace(oNamespace string) ApiNetworkWatchNetworkRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkWatchNetworkRequest) OGenerationId(oGenerationId string) ApiNetworkWatchNetworkRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkWatchNetworkRequest) OResourceVersion(oResourceVersion string) ApiNetworkWatchNetworkRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkWatchNetworkRequest) OUuid(oUuid string) ApiNetworkWatchNetworkRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkWatchNetworkRequest) OCreationTime(oCreationTime time.Time) ApiNetworkWatchNetworkRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkWatchNetworkRequest) OModTime(oModTime time.Time) ApiNetworkWatchNetworkRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkWatchNetworkRequest) OSelfLink(oSelfLink string) ApiNetworkWatchNetworkRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkWatchNetworkRequest) LabelSelector(labelSelector string) ApiNetworkWatchNetworkRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkWatchNetworkRequest) FieldSelector(fieldSelector string) ApiNetworkWatchNetworkRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkWatchNetworkRequest) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkWatchNetworkRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkWatchNetworkRequest) From(from int32) ApiNetworkWatchNetworkRequest {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkWatchNetworkRequest) MaxResults(maxResults int32) ApiNetworkWatchNetworkRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkWatchNetworkRequest) SortOrder(sortOrder string) ApiNetworkWatchNetworkRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkWatchNetworkRequest) MetaOnly(metaOnly bool) ApiNetworkWatchNetworkRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -18575,47 +14523,11 @@ func (a *NetworkV1ApiService) WatchNetworkExecute(r ApiNetworkWatchNetworkReques
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -18740,85 +14652,20 @@ type ApiNetworkWatchNetwork1Request struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkWatchNetwork1Request) OName(oName string) ApiNetworkWatchNetwork1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkWatchNetwork1Request) OTenant(oTenant string) ApiNetworkWatchNetwork1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiNetworkWatchNetwork1Request) ONamespace(oNamespace string) ApiNetworkWatchNetwork1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkWatchNetwork1Request) OGenerationId(oGenerationId string) ApiNetworkWatchNetwork1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkWatchNetwork1Request) OResourceVersion(oResourceVersion string) ApiNetworkWatchNetwork1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkWatchNetwork1Request) OUuid(oUuid string) ApiNetworkWatchNetwork1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkWatchNetwork1Request) OCreationTime(oCreationTime time.Time) ApiNetworkWatchNetwork1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkWatchNetwork1Request) OModTime(oModTime time.Time) ApiNetworkWatchNetwork1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkWatchNetwork1Request) OSelfLink(oSelfLink string) ApiNetworkWatchNetwork1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkWatchNetwork1Request) LabelSelector(labelSelector string) ApiNetworkWatchNetwork1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkWatchNetwork1Request) FieldSelector(fieldSelector string) ApiNetworkWatchNetwork1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkWatchNetwork1Request) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkWatchNetwork1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkWatchNetwork1Request) From(from int32) ApiNetworkWatchNetwork1Request {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkWatchNetwork1Request) MaxResults(maxResults int32) ApiNetworkWatchNetwork1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkWatchNetwork1Request) SortOrder(sortOrder string) ApiNetworkWatchNetwork1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkWatchNetwork1Request) MetaOnly(metaOnly bool) ApiNetworkWatchNetwork1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -18866,50 +14713,11 @@ func (a *NetworkV1ApiService) WatchNetwork1Execute(r ApiNetworkWatchNetwork1Requ
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -19034,85 +14842,20 @@ type ApiNetworkWatchNetworkInterfaceRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkWatchNetworkInterfaceRequest) OName(oName string) ApiNetworkWatchNetworkInterfaceRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkWatchNetworkInterfaceRequest) OTenant(oTenant string) ApiNetworkWatchNetworkInterfaceRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiNetworkWatchNetworkInterfaceRequest) ONamespace(oNamespace string) ApiNetworkWatchNetworkInterfaceRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkWatchNetworkInterfaceRequest) OGenerationId(oGenerationId string) ApiNetworkWatchNetworkInterfaceRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkWatchNetworkInterfaceRequest) OResourceVersion(oResourceVersion string) ApiNetworkWatchNetworkInterfaceRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkWatchNetworkInterfaceRequest) OUuid(oUuid string) ApiNetworkWatchNetworkInterfaceRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkWatchNetworkInterfaceRequest) OCreationTime(oCreationTime time.Time) ApiNetworkWatchNetworkInterfaceRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkWatchNetworkInterfaceRequest) OModTime(oModTime time.Time) ApiNetworkWatchNetworkInterfaceRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkWatchNetworkInterfaceRequest) OSelfLink(oSelfLink string) ApiNetworkWatchNetworkInterfaceRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkWatchNetworkInterfaceRequest) LabelSelector(labelSelector string) ApiNetworkWatchNetworkInterfaceRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkWatchNetworkInterfaceRequest) FieldSelector(fieldSelector string) ApiNetworkWatchNetworkInterfaceRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkWatchNetworkInterfaceRequest) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkWatchNetworkInterfaceRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkWatchNetworkInterfaceRequest) From(from int32) ApiNetworkWatchNetworkInterfaceRequest {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkWatchNetworkInterfaceRequest) MaxResults(maxResults int32) ApiNetworkWatchNetworkInterfaceRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkWatchNetworkInterfaceRequest) SortOrder(sortOrder string) ApiNetworkWatchNetworkInterfaceRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkWatchNetworkInterfaceRequest) MetaOnly(metaOnly bool) ApiNetworkWatchNetworkInterfaceRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -19160,50 +14903,11 @@ func (a *NetworkV1ApiService) WatchNetworkInterfaceExecute(r ApiNetworkWatchNetw
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -19329,80 +15033,20 @@ type ApiNetworkWatchPolicerProfileRequest struct {
 	ApiService *NetworkV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkWatchPolicerProfileRequest) OName(oName string) ApiNetworkWatchPolicerProfileRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkWatchPolicerProfileRequest) ONamespace(oNamespace string) ApiNetworkWatchPolicerProfileRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkWatchPolicerProfileRequest) OGenerationId(oGenerationId string) ApiNetworkWatchPolicerProfileRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkWatchPolicerProfileRequest) OResourceVersion(oResourceVersion string) ApiNetworkWatchPolicerProfileRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkWatchPolicerProfileRequest) OUuid(oUuid string) ApiNetworkWatchPolicerProfileRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkWatchPolicerProfileRequest) OCreationTime(oCreationTime time.Time) ApiNetworkWatchPolicerProfileRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkWatchPolicerProfileRequest) OModTime(oModTime time.Time) ApiNetworkWatchPolicerProfileRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkWatchPolicerProfileRequest) OSelfLink(oSelfLink string) ApiNetworkWatchPolicerProfileRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkWatchPolicerProfileRequest) LabelSelector(labelSelector string) ApiNetworkWatchPolicerProfileRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkWatchPolicerProfileRequest) FieldSelector(fieldSelector string) ApiNetworkWatchPolicerProfileRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkWatchPolicerProfileRequest) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkWatchPolicerProfileRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkWatchPolicerProfileRequest) From(from int32) ApiNetworkWatchPolicerProfileRequest {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkWatchPolicerProfileRequest) MaxResults(maxResults int32) ApiNetworkWatchPolicerProfileRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkWatchPolicerProfileRequest) SortOrder(sortOrder string) ApiNetworkWatchPolicerProfileRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkWatchPolicerProfileRequest) MetaOnly(metaOnly bool) ApiNetworkWatchPolicerProfileRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -19453,47 +15097,11 @@ func (a *NetworkV1ApiService) WatchPolicerProfileExecute(r ApiNetworkWatchPolice
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -19618,85 +15226,20 @@ type ApiNetworkWatchPolicerProfile1Request struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkWatchPolicerProfile1Request) OName(oName string) ApiNetworkWatchPolicerProfile1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkWatchPolicerProfile1Request) OTenant(oTenant string) ApiNetworkWatchPolicerProfile1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiNetworkWatchPolicerProfile1Request) ONamespace(oNamespace string) ApiNetworkWatchPolicerProfile1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkWatchPolicerProfile1Request) OGenerationId(oGenerationId string) ApiNetworkWatchPolicerProfile1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkWatchPolicerProfile1Request) OResourceVersion(oResourceVersion string) ApiNetworkWatchPolicerProfile1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkWatchPolicerProfile1Request) OUuid(oUuid string) ApiNetworkWatchPolicerProfile1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkWatchPolicerProfile1Request) OCreationTime(oCreationTime time.Time) ApiNetworkWatchPolicerProfile1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkWatchPolicerProfile1Request) OModTime(oModTime time.Time) ApiNetworkWatchPolicerProfile1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkWatchPolicerProfile1Request) OSelfLink(oSelfLink string) ApiNetworkWatchPolicerProfile1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkWatchPolicerProfile1Request) LabelSelector(labelSelector string) ApiNetworkWatchPolicerProfile1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkWatchPolicerProfile1Request) FieldSelector(fieldSelector string) ApiNetworkWatchPolicerProfile1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkWatchPolicerProfile1Request) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkWatchPolicerProfile1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkWatchPolicerProfile1Request) From(from int32) ApiNetworkWatchPolicerProfile1Request {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkWatchPolicerProfile1Request) MaxResults(maxResults int32) ApiNetworkWatchPolicerProfile1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkWatchPolicerProfile1Request) SortOrder(sortOrder string) ApiNetworkWatchPolicerProfile1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkWatchPolicerProfile1Request) MetaOnly(metaOnly bool) ApiNetworkWatchPolicerProfile1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -19744,50 +15287,11 @@ func (a *NetworkV1ApiService) WatchPolicerProfile1Execute(r ApiNetworkWatchPolic
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -19913,80 +15417,20 @@ type ApiNetworkWatchRouteTableRequest struct {
 	ApiService *NetworkV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkWatchRouteTableRequest) OName(oName string) ApiNetworkWatchRouteTableRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkWatchRouteTableRequest) ONamespace(oNamespace string) ApiNetworkWatchRouteTableRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkWatchRouteTableRequest) OGenerationId(oGenerationId string) ApiNetworkWatchRouteTableRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkWatchRouteTableRequest) OResourceVersion(oResourceVersion string) ApiNetworkWatchRouteTableRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkWatchRouteTableRequest) OUuid(oUuid string) ApiNetworkWatchRouteTableRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkWatchRouteTableRequest) OCreationTime(oCreationTime time.Time) ApiNetworkWatchRouteTableRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkWatchRouteTableRequest) OModTime(oModTime time.Time) ApiNetworkWatchRouteTableRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkWatchRouteTableRequest) OSelfLink(oSelfLink string) ApiNetworkWatchRouteTableRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkWatchRouteTableRequest) LabelSelector(labelSelector string) ApiNetworkWatchRouteTableRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkWatchRouteTableRequest) FieldSelector(fieldSelector string) ApiNetworkWatchRouteTableRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkWatchRouteTableRequest) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkWatchRouteTableRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkWatchRouteTableRequest) From(from int32) ApiNetworkWatchRouteTableRequest {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkWatchRouteTableRequest) MaxResults(maxResults int32) ApiNetworkWatchRouteTableRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkWatchRouteTableRequest) SortOrder(sortOrder string) ApiNetworkWatchRouteTableRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkWatchRouteTableRequest) MetaOnly(metaOnly bool) ApiNetworkWatchRouteTableRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -20037,47 +15481,11 @@ func (a *NetworkV1ApiService) WatchRouteTableExecute(r ApiNetworkWatchRouteTable
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -20202,85 +15610,20 @@ type ApiNetworkWatchRouteTable1Request struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkWatchRouteTable1Request) OName(oName string) ApiNetworkWatchRouteTable1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkWatchRouteTable1Request) OTenant(oTenant string) ApiNetworkWatchRouteTable1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiNetworkWatchRouteTable1Request) ONamespace(oNamespace string) ApiNetworkWatchRouteTable1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkWatchRouteTable1Request) OGenerationId(oGenerationId string) ApiNetworkWatchRouteTable1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkWatchRouteTable1Request) OResourceVersion(oResourceVersion string) ApiNetworkWatchRouteTable1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkWatchRouteTable1Request) OUuid(oUuid string) ApiNetworkWatchRouteTable1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkWatchRouteTable1Request) OCreationTime(oCreationTime time.Time) ApiNetworkWatchRouteTable1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkWatchRouteTable1Request) OModTime(oModTime time.Time) ApiNetworkWatchRouteTable1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkWatchRouteTable1Request) OSelfLink(oSelfLink string) ApiNetworkWatchRouteTable1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkWatchRouteTable1Request) LabelSelector(labelSelector string) ApiNetworkWatchRouteTable1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkWatchRouteTable1Request) FieldSelector(fieldSelector string) ApiNetworkWatchRouteTable1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkWatchRouteTable1Request) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkWatchRouteTable1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkWatchRouteTable1Request) From(from int32) ApiNetworkWatchRouteTable1Request {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkWatchRouteTable1Request) MaxResults(maxResults int32) ApiNetworkWatchRouteTable1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkWatchRouteTable1Request) SortOrder(sortOrder string) ApiNetworkWatchRouteTable1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkWatchRouteTable1Request) MetaOnly(metaOnly bool) ApiNetworkWatchRouteTable1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -20328,50 +15671,11 @@ func (a *NetworkV1ApiService) WatchRouteTable1Execute(r ApiNetworkWatchRouteTabl
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -20496,85 +15800,20 @@ type ApiNetworkWatchRoutingConfigRequest struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkWatchRoutingConfigRequest) OName(oName string) ApiNetworkWatchRoutingConfigRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkWatchRoutingConfigRequest) OTenant(oTenant string) ApiNetworkWatchRoutingConfigRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiNetworkWatchRoutingConfigRequest) ONamespace(oNamespace string) ApiNetworkWatchRoutingConfigRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkWatchRoutingConfigRequest) OGenerationId(oGenerationId string) ApiNetworkWatchRoutingConfigRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkWatchRoutingConfigRequest) OResourceVersion(oResourceVersion string) ApiNetworkWatchRoutingConfigRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkWatchRoutingConfigRequest) OUuid(oUuid string) ApiNetworkWatchRoutingConfigRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkWatchRoutingConfigRequest) OCreationTime(oCreationTime time.Time) ApiNetworkWatchRoutingConfigRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkWatchRoutingConfigRequest) OModTime(oModTime time.Time) ApiNetworkWatchRoutingConfigRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkWatchRoutingConfigRequest) OSelfLink(oSelfLink string) ApiNetworkWatchRoutingConfigRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkWatchRoutingConfigRequest) LabelSelector(labelSelector string) ApiNetworkWatchRoutingConfigRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkWatchRoutingConfigRequest) FieldSelector(fieldSelector string) ApiNetworkWatchRoutingConfigRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkWatchRoutingConfigRequest) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkWatchRoutingConfigRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkWatchRoutingConfigRequest) From(from int32) ApiNetworkWatchRoutingConfigRequest {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkWatchRoutingConfigRequest) MaxResults(maxResults int32) ApiNetworkWatchRoutingConfigRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkWatchRoutingConfigRequest) SortOrder(sortOrder string) ApiNetworkWatchRoutingConfigRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkWatchRoutingConfigRequest) MetaOnly(metaOnly bool) ApiNetworkWatchRoutingConfigRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -20622,50 +15861,11 @@ func (a *NetworkV1ApiService) WatchRoutingConfigExecute(r ApiNetworkWatchRouting
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -20791,80 +15991,20 @@ type ApiNetworkWatchVirtualRouterRequest struct {
 	ApiService *NetworkV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkWatchVirtualRouterRequest) OName(oName string) ApiNetworkWatchVirtualRouterRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkWatchVirtualRouterRequest) ONamespace(oNamespace string) ApiNetworkWatchVirtualRouterRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterRequest) OGenerationId(oGenerationId string) ApiNetworkWatchVirtualRouterRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterRequest) OResourceVersion(oResourceVersion string) ApiNetworkWatchVirtualRouterRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterRequest) OUuid(oUuid string) ApiNetworkWatchVirtualRouterRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkWatchVirtualRouterRequest) OCreationTime(oCreationTime time.Time) ApiNetworkWatchVirtualRouterRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkWatchVirtualRouterRequest) OModTime(oModTime time.Time) ApiNetworkWatchVirtualRouterRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterRequest) OSelfLink(oSelfLink string) ApiNetworkWatchVirtualRouterRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterRequest) LabelSelector(labelSelector string) ApiNetworkWatchVirtualRouterRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterRequest) FieldSelector(fieldSelector string) ApiNetworkWatchVirtualRouterRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkWatchVirtualRouterRequest) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkWatchVirtualRouterRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterRequest) From(from int32) ApiNetworkWatchVirtualRouterRequest {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterRequest) MaxResults(maxResults int32) ApiNetworkWatchVirtualRouterRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterRequest) SortOrder(sortOrder string) ApiNetworkWatchVirtualRouterRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterRequest) MetaOnly(metaOnly bool) ApiNetworkWatchVirtualRouterRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -20915,47 +16055,11 @@ func (a *NetworkV1ApiService) WatchVirtualRouterExecute(r ApiNetworkWatchVirtual
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -21080,85 +16184,20 @@ type ApiNetworkWatchVirtualRouter1Request struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkWatchVirtualRouter1Request) OName(oName string) ApiNetworkWatchVirtualRouter1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkWatchVirtualRouter1Request) OTenant(oTenant string) ApiNetworkWatchVirtualRouter1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiNetworkWatchVirtualRouter1Request) ONamespace(oNamespace string) ApiNetworkWatchVirtualRouter1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkWatchVirtualRouter1Request) OGenerationId(oGenerationId string) ApiNetworkWatchVirtualRouter1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkWatchVirtualRouter1Request) OResourceVersion(oResourceVersion string) ApiNetworkWatchVirtualRouter1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkWatchVirtualRouter1Request) OUuid(oUuid string) ApiNetworkWatchVirtualRouter1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkWatchVirtualRouter1Request) OCreationTime(oCreationTime time.Time) ApiNetworkWatchVirtualRouter1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkWatchVirtualRouter1Request) OModTime(oModTime time.Time) ApiNetworkWatchVirtualRouter1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkWatchVirtualRouter1Request) OSelfLink(oSelfLink string) ApiNetworkWatchVirtualRouter1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkWatchVirtualRouter1Request) LabelSelector(labelSelector string) ApiNetworkWatchVirtualRouter1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkWatchVirtualRouter1Request) FieldSelector(fieldSelector string) ApiNetworkWatchVirtualRouter1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkWatchVirtualRouter1Request) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkWatchVirtualRouter1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkWatchVirtualRouter1Request) From(from int32) ApiNetworkWatchVirtualRouter1Request {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkWatchVirtualRouter1Request) MaxResults(maxResults int32) ApiNetworkWatchVirtualRouter1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkWatchVirtualRouter1Request) SortOrder(sortOrder string) ApiNetworkWatchVirtualRouter1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkWatchVirtualRouter1Request) MetaOnly(metaOnly bool) ApiNetworkWatchVirtualRouter1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -21206,50 +16245,11 @@ func (a *NetworkV1ApiService) WatchVirtualRouter1Execute(r ApiNetworkWatchVirtua
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -21375,80 +16375,20 @@ type ApiNetworkWatchVirtualRouterPeeringGroupRequest struct {
 	ApiService *NetworkV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkWatchVirtualRouterPeeringGroupRequest) OName(oName string) ApiNetworkWatchVirtualRouterPeeringGroupRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkWatchVirtualRouterPeeringGroupRequest) ONamespace(oNamespace string) ApiNetworkWatchVirtualRouterPeeringGroupRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterPeeringGroupRequest) OGenerationId(oGenerationId string) ApiNetworkWatchVirtualRouterPeeringGroupRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterPeeringGroupRequest) OResourceVersion(oResourceVersion string) ApiNetworkWatchVirtualRouterPeeringGroupRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterPeeringGroupRequest) OUuid(oUuid string) ApiNetworkWatchVirtualRouterPeeringGroupRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkWatchVirtualRouterPeeringGroupRequest) OCreationTime(oCreationTime time.Time) ApiNetworkWatchVirtualRouterPeeringGroupRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkWatchVirtualRouterPeeringGroupRequest) OModTime(oModTime time.Time) ApiNetworkWatchVirtualRouterPeeringGroupRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterPeeringGroupRequest) OSelfLink(oSelfLink string) ApiNetworkWatchVirtualRouterPeeringGroupRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterPeeringGroupRequest) LabelSelector(labelSelector string) ApiNetworkWatchVirtualRouterPeeringGroupRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterPeeringGroupRequest) FieldSelector(fieldSelector string) ApiNetworkWatchVirtualRouterPeeringGroupRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkWatchVirtualRouterPeeringGroupRequest) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkWatchVirtualRouterPeeringGroupRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterPeeringGroupRequest) From(from int32) ApiNetworkWatchVirtualRouterPeeringGroupRequest {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterPeeringGroupRequest) MaxResults(maxResults int32) ApiNetworkWatchVirtualRouterPeeringGroupRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterPeeringGroupRequest) SortOrder(sortOrder string) ApiNetworkWatchVirtualRouterPeeringGroupRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterPeeringGroupRequest) MetaOnly(metaOnly bool) ApiNetworkWatchVirtualRouterPeeringGroupRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -21499,47 +16439,11 @@ func (a *NetworkV1ApiService) WatchVirtualRouterPeeringGroupExecute(r ApiNetwork
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -21664,85 +16568,20 @@ type ApiNetworkWatchVirtualRouterPeeringGroup1Request struct {
 	ctx _context.Context
 	ApiService *NetworkV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiNetworkWatchVirtualRouterPeeringGroup1Request) OName(oName string) ApiNetworkWatchVirtualRouterPeeringGroup1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiNetworkWatchVirtualRouterPeeringGroup1Request) OTenant(oTenant string) ApiNetworkWatchVirtualRouterPeeringGroup1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterPeeringGroup1Request) ONamespace(oNamespace string) ApiNetworkWatchVirtualRouterPeeringGroup1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterPeeringGroup1Request) OGenerationId(oGenerationId string) ApiNetworkWatchVirtualRouterPeeringGroup1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterPeeringGroup1Request) OResourceVersion(oResourceVersion string) ApiNetworkWatchVirtualRouterPeeringGroup1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterPeeringGroup1Request) OUuid(oUuid string) ApiNetworkWatchVirtualRouterPeeringGroup1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiNetworkWatchVirtualRouterPeeringGroup1Request) OCreationTime(oCreationTime time.Time) ApiNetworkWatchVirtualRouterPeeringGroup1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiNetworkWatchVirtualRouterPeeringGroup1Request) OModTime(oModTime time.Time) ApiNetworkWatchVirtualRouterPeeringGroup1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterPeeringGroup1Request) OSelfLink(oSelfLink string) ApiNetworkWatchVirtualRouterPeeringGroup1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterPeeringGroup1Request) LabelSelector(labelSelector string) ApiNetworkWatchVirtualRouterPeeringGroup1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterPeeringGroup1Request) FieldSelector(fieldSelector string) ApiNetworkWatchVirtualRouterPeeringGroup1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiNetworkWatchVirtualRouterPeeringGroup1Request) FieldChangeSelector(fieldChangeSelector []string) ApiNetworkWatchVirtualRouterPeeringGroup1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterPeeringGroup1Request) From(from int32) ApiNetworkWatchVirtualRouterPeeringGroup1Request {
-	r.from = &from
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterPeeringGroup1Request) MaxResults(maxResults int32) ApiNetworkWatchVirtualRouterPeeringGroup1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterPeeringGroup1Request) SortOrder(sortOrder string) ApiNetworkWatchVirtualRouterPeeringGroup1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiNetworkWatchVirtualRouterPeeringGroup1Request) MetaOnly(metaOnly bool) ApiNetworkWatchVirtualRouterPeeringGroup1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -21790,50 +16629,11 @@ func (a *NetworkV1ApiService) WatchVirtualRouterPeeringGroup1Execute(r ApiNetwor
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

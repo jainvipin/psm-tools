@@ -143,85 +143,20 @@ type ApiEventsGetGetEvents1Request struct {
 	ctx _context.Context
 	ApiService *EventsV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiEventsGetGetEvents1Request) OName(oName string) ApiEventsGetGetEvents1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiEventsGetGetEvents1Request) OTenant(oTenant string) ApiEventsGetGetEvents1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiEventsGetGetEvents1Request) ONamespace(oNamespace string) ApiEventsGetGetEvents1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiEventsGetGetEvents1Request) OGenerationId(oGenerationId string) ApiEventsGetGetEvents1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiEventsGetGetEvents1Request) OResourceVersion(oResourceVersion string) ApiEventsGetGetEvents1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiEventsGetGetEvents1Request) OUuid(oUuid string) ApiEventsGetGetEvents1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiEventsGetGetEvents1Request) OCreationTime(oCreationTime time.Time) ApiEventsGetGetEvents1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiEventsGetGetEvents1Request) OModTime(oModTime time.Time) ApiEventsGetGetEvents1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiEventsGetGetEvents1Request) OSelfLink(oSelfLink string) ApiEventsGetGetEvents1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiEventsGetGetEvents1Request) LabelSelector(labelSelector string) ApiEventsGetGetEvents1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiEventsGetGetEvents1Request) FieldSelector(fieldSelector string) ApiEventsGetGetEvents1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiEventsGetGetEvents1Request) FieldChangeSelector(fieldChangeSelector []string) ApiEventsGetGetEvents1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiEventsGetGetEvents1Request) From(from int32) ApiEventsGetGetEvents1Request {
-	r.from = &from
-	return r
-}
-func (r ApiEventsGetGetEvents1Request) MaxResults(maxResults int32) ApiEventsGetGetEvents1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiEventsGetGetEvents1Request) SortOrder(sortOrder string) ApiEventsGetGetEvents1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiEventsGetGetEvents1Request) MetaOnly(metaOnly bool) ApiEventsGetGetEvents1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -269,50 +204,11 @@ func (a *EventsV1ApiService) GetGetEvents1Execute(r ApiEventsGetGetEvents1Reques
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

@@ -23,3 +23,6 @@ swagger_cloud/
 swagger_dss/
 swagger_ent/
 generated/
+go/examples/vendor/*
+go/generated
+go/generated/*

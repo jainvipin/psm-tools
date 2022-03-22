@@ -31,60 +31,15 @@ type ApiBrowserGetQuery1Request struct {
 	ctx _context.Context
 	ApiService *BrowserV1ApiService
 	tKind *string
-	tApiVersion *string
-	metaName *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 }
 
 func (r ApiBrowserGetQuery1Request) TKind(tKind string) ApiBrowserGetQuery1Request {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiBrowserGetQuery1Request) TApiVersion(tApiVersion string) ApiBrowserGetQuery1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiBrowserGetQuery1Request) MetaName(metaName string) ApiBrowserGetQuery1Request {
-	r.metaName = &metaName
-	return r
-}
-func (r ApiBrowserGetQuery1Request) MetaTenant(metaTenant string) ApiBrowserGetQuery1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiBrowserGetQuery1Request) MetaNamespace(metaNamespace string) ApiBrowserGetQuery1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiBrowserGetQuery1Request) MetaGenerationId(metaGenerationId string) ApiBrowserGetQuery1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiBrowserGetQuery1Request) MetaResourceVersion(metaResourceVersion string) ApiBrowserGetQuery1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiBrowserGetQuery1Request) MetaUuid(metaUuid string) ApiBrowserGetQuery1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiBrowserGetQuery1Request) MetaCreationTime(metaCreationTime time.Time) ApiBrowserGetQuery1Request {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiBrowserGetQuery1Request) MetaModTime(metaModTime time.Time) ApiBrowserGetQuery1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiBrowserGetQuery1Request) MetaSelfLink(metaSelfLink string) ApiBrowserGetQuery1Request {
-	r.metaSelfLink = &metaSelfLink
 	return r
 }
 
@@ -132,35 +87,8 @@ func (a *BrowserV1ApiService) GetQuery1Execute(r ApiBrowserGetQuery1Request) (Br
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaName != nil {
-		localVarQueryParams.Add("meta.name", parameterToString(*r.metaName, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -226,20 +154,7 @@ type ApiBrowserGetReferencesRequest struct {
 	ctx _context.Context
 	ApiService *BrowserV1ApiService
 	tKind *string
-	tApiVersion *string
-	metaName *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	bUri *string
-	bQueryType *string
-	bMaxDepth *int64
-	bCountOnly *bool
 	bKindFilters *[]string
 }
 
@@ -247,60 +162,8 @@ func (r ApiBrowserGetReferencesRequest) TKind(tKind string) ApiBrowserGetReferen
 	r.tKind = &tKind
 	return r
 }
-func (r ApiBrowserGetReferencesRequest) TApiVersion(tApiVersion string) ApiBrowserGetReferencesRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiBrowserGetReferencesRequest) MetaName(metaName string) ApiBrowserGetReferencesRequest {
-	r.metaName = &metaName
-	return r
-}
-func (r ApiBrowserGetReferencesRequest) MetaTenant(metaTenant string) ApiBrowserGetReferencesRequest {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiBrowserGetReferencesRequest) MetaNamespace(metaNamespace string) ApiBrowserGetReferencesRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiBrowserGetReferencesRequest) MetaGenerationId(metaGenerationId string) ApiBrowserGetReferencesRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiBrowserGetReferencesRequest) MetaResourceVersion(metaResourceVersion string) ApiBrowserGetReferencesRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiBrowserGetReferencesRequest) MetaUuid(metaUuid string) ApiBrowserGetReferencesRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiBrowserGetReferencesRequest) MetaCreationTime(metaCreationTime time.Time) ApiBrowserGetReferencesRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiBrowserGetReferencesRequest) MetaModTime(metaModTime time.Time) ApiBrowserGetReferencesRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiBrowserGetReferencesRequest) MetaSelfLink(metaSelfLink string) ApiBrowserGetReferencesRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiBrowserGetReferencesRequest) BUri(bUri string) ApiBrowserGetReferencesRequest {
-	r.bUri = &bUri
-	return r
-}
-func (r ApiBrowserGetReferencesRequest) BQueryType(bQueryType string) ApiBrowserGetReferencesRequest {
-	r.bQueryType = &bQueryType
-	return r
-}
-func (r ApiBrowserGetReferencesRequest) BMaxDepth(bMaxDepth int64) ApiBrowserGetReferencesRequest {
-	r.bMaxDepth = &bMaxDepth
-	return r
-}
-func (r ApiBrowserGetReferencesRequest) BCountOnly(bCountOnly bool) ApiBrowserGetReferencesRequest {
-	r.bCountOnly = &bCountOnly
 	return r
 }
 func (r ApiBrowserGetReferencesRequest) BKindFilters(bKindFilters []string) ApiBrowserGetReferencesRequest {
@@ -352,47 +215,8 @@ func (a *BrowserV1ApiService) GetReferencesExecute(r ApiBrowserGetReferencesRequ
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaName != nil {
-		localVarQueryParams.Add("meta.name", parameterToString(*r.metaName, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.bUri != nil {
-		localVarQueryParams.Add("B.uri", parameterToString(*r.bUri, ""))
-	}
-	if r.bQueryType != nil {
-		localVarQueryParams.Add("B.query-type", parameterToString(*r.bQueryType, ""))
-	}
-	if r.bMaxDepth != nil {
-		localVarQueryParams.Add("B.max-depth", parameterToString(*r.bMaxDepth, ""))
-	}
-	if r.bCountOnly != nil {
-		localVarQueryParams.Add("B.count-only", parameterToString(*r.bCountOnly, ""))
 	}
 	if r.bKindFilters != nil {
 		localVarQueryParams.Add("B.kind-filters", parameterToString(*r.bKindFilters, "csv"))
@@ -461,20 +285,7 @@ type ApiBrowserGetReferrersRequest struct {
 	ctx _context.Context
 	ApiService *BrowserV1ApiService
 	tKind *string
-	tApiVersion *string
-	metaName *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	bUri *string
-	bQueryType *string
-	bMaxDepth *int64
-	bCountOnly *bool
 	bKindFilters *[]string
 }
 
@@ -482,60 +293,8 @@ func (r ApiBrowserGetReferrersRequest) TKind(tKind string) ApiBrowserGetReferrer
 	r.tKind = &tKind
 	return r
 }
-func (r ApiBrowserGetReferrersRequest) TApiVersion(tApiVersion string) ApiBrowserGetReferrersRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiBrowserGetReferrersRequest) MetaName(metaName string) ApiBrowserGetReferrersRequest {
-	r.metaName = &metaName
-	return r
-}
-func (r ApiBrowserGetReferrersRequest) MetaTenant(metaTenant string) ApiBrowserGetReferrersRequest {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiBrowserGetReferrersRequest) MetaNamespace(metaNamespace string) ApiBrowserGetReferrersRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiBrowserGetReferrersRequest) MetaGenerationId(metaGenerationId string) ApiBrowserGetReferrersRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiBrowserGetReferrersRequest) MetaResourceVersion(metaResourceVersion string) ApiBrowserGetReferrersRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiBrowserGetReferrersRequest) MetaUuid(metaUuid string) ApiBrowserGetReferrersRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiBrowserGetReferrersRequest) MetaCreationTime(metaCreationTime time.Time) ApiBrowserGetReferrersRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiBrowserGetReferrersRequest) MetaModTime(metaModTime time.Time) ApiBrowserGetReferrersRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiBrowserGetReferrersRequest) MetaSelfLink(metaSelfLink string) ApiBrowserGetReferrersRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiBrowserGetReferrersRequest) BUri(bUri string) ApiBrowserGetReferrersRequest {
-	r.bUri = &bUri
-	return r
-}
-func (r ApiBrowserGetReferrersRequest) BQueryType(bQueryType string) ApiBrowserGetReferrersRequest {
-	r.bQueryType = &bQueryType
-	return r
-}
-func (r ApiBrowserGetReferrersRequest) BMaxDepth(bMaxDepth int64) ApiBrowserGetReferrersRequest {
-	r.bMaxDepth = &bMaxDepth
-	return r
-}
-func (r ApiBrowserGetReferrersRequest) BCountOnly(bCountOnly bool) ApiBrowserGetReferrersRequest {
-	r.bCountOnly = &bCountOnly
 	return r
 }
 func (r ApiBrowserGetReferrersRequest) BKindFilters(bKindFilters []string) ApiBrowserGetReferrersRequest {
@@ -587,47 +346,8 @@ func (a *BrowserV1ApiService) GetReferrersExecute(r ApiBrowserGetReferrersReques
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaName != nil {
-		localVarQueryParams.Add("meta.name", parameterToString(*r.metaName, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.bUri != nil {
-		localVarQueryParams.Add("B.uri", parameterToString(*r.bUri, ""))
-	}
-	if r.bQueryType != nil {
-		localVarQueryParams.Add("B.query-type", parameterToString(*r.bQueryType, ""))
-	}
-	if r.bMaxDepth != nil {
-		localVarQueryParams.Add("B.max-depth", parameterToString(*r.bMaxDepth, ""))
-	}
-	if r.bCountOnly != nil {
-		localVarQueryParams.Add("B.count-only", parameterToString(*r.bCountOnly, ""))
 	}
 	if r.bKindFilters != nil {
 		localVarQueryParams.Add("B.kind-filters", parameterToString(*r.bKindFilters, "csv"))

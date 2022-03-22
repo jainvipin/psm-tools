@@ -21,10 +21,10 @@ type ClusterDistributedServiceCardSpec struct {
 	// Controllers contains the list of remote controllers IP addresses or hostnames.
 	Controllers *[]string `json:"controllers,omitempty"`
 	Dscprofile *string `json:"dscprofile,omitempty"`
-	// EnableFwLogging enables flow logging on the device.
-	EnableFwLogging *bool `json:"enable-fw-logging,omitempty"`
 	// EnableSecureBoot a true value indicates, set lifecycle fuse to enable secure boot.
 	EnableSecureBoot *bool `json:"enable-secure-boot,omitempty"`
+	// FlowExportPolicy is the configuration for flow export policy.
+	FlowExportPolicy *[]ClusterFlowExportPolicyRef `json:"flow-export-policy,omitempty"`
 	FwlogPolicy *ClusterFwlogPolicyRef `json:"fwlog-policy,omitempty"`
 	// ID is used as a user friendly identifier in logs/events.
 	Id *string `json:"id,omitempty"`
@@ -165,38 +165,6 @@ func (o *ClusterDistributedServiceCardSpec) SetDscprofile(v string) {
 	o.Dscprofile = &v
 }
 
-// GetEnableFwLogging returns the EnableFwLogging field value if set, zero value otherwise.
-func (o *ClusterDistributedServiceCardSpec) GetEnableFwLogging() bool {
-	if o == nil || o.EnableFwLogging == nil {
-		var ret bool
-		return ret
-	}
-	return *o.EnableFwLogging
-}
-
-// GetEnableFwLoggingOk returns a tuple with the EnableFwLogging field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ClusterDistributedServiceCardSpec) GetEnableFwLoggingOk() (*bool, bool) {
-	if o == nil || o.EnableFwLogging == nil {
-		return nil, false
-	}
-	return o.EnableFwLogging, true
-}
-
-// HasEnableFwLogging returns a boolean if a field has been set.
-func (o *ClusterDistributedServiceCardSpec) HasEnableFwLogging() bool {
-	if o != nil && o.EnableFwLogging != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetEnableFwLogging gets a reference to the given bool and assigns it to the EnableFwLogging field.
-func (o *ClusterDistributedServiceCardSpec) SetEnableFwLogging(v bool) {
-	o.EnableFwLogging = &v
-}
-
 // GetEnableSecureBoot returns the EnableSecureBoot field value if set, zero value otherwise.
 func (o *ClusterDistributedServiceCardSpec) GetEnableSecureBoot() bool {
 	if o == nil || o.EnableSecureBoot == nil {
@@ -227,6 +195,38 @@ func (o *ClusterDistributedServiceCardSpec) HasEnableSecureBoot() bool {
 // SetEnableSecureBoot gets a reference to the given bool and assigns it to the EnableSecureBoot field.
 func (o *ClusterDistributedServiceCardSpec) SetEnableSecureBoot(v bool) {
 	o.EnableSecureBoot = &v
+}
+
+// GetFlowExportPolicy returns the FlowExportPolicy field value if set, zero value otherwise.
+func (o *ClusterDistributedServiceCardSpec) GetFlowExportPolicy() []ClusterFlowExportPolicyRef {
+	if o == nil || o.FlowExportPolicy == nil {
+		var ret []ClusterFlowExportPolicyRef
+		return ret
+	}
+	return *o.FlowExportPolicy
+}
+
+// GetFlowExportPolicyOk returns a tuple with the FlowExportPolicy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ClusterDistributedServiceCardSpec) GetFlowExportPolicyOk() (*[]ClusterFlowExportPolicyRef, bool) {
+	if o == nil || o.FlowExportPolicy == nil {
+		return nil, false
+	}
+	return o.FlowExportPolicy, true
+}
+
+// HasFlowExportPolicy returns a boolean if a field has been set.
+func (o *ClusterDistributedServiceCardSpec) HasFlowExportPolicy() bool {
+	if o != nil && o.FlowExportPolicy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFlowExportPolicy gets a reference to the given []ClusterFlowExportPolicyRef and assigns it to the FlowExportPolicy field.
+func (o *ClusterDistributedServiceCardSpec) SetFlowExportPolicy(v []ClusterFlowExportPolicyRef) {
+	o.FlowExportPolicy = &v
 }
 
 // GetFwlogPolicy returns the FwlogPolicy field value if set, zero value otherwise.
@@ -496,11 +496,11 @@ func (o ClusterDistributedServiceCardSpec) MarshalJSON() ([]byte, error) {
 	if o.Dscprofile != nil {
 		toSerialize["dscprofile"] = o.Dscprofile
 	}
-	if o.EnableFwLogging != nil {
-		toSerialize["enable-fw-logging"] = o.EnableFwLogging
-	}
 	if o.EnableSecureBoot != nil {
 		toSerialize["enable-secure-boot"] = o.EnableSecureBoot
+	}
+	if o.FlowExportPolicy != nil {
+		toSerialize["flow-export-policy"] = o.FlowExportPolicy
 	}
 	if o.FwlogPolicy != nil {
 		toSerialize["fwlog-policy"] = o.FwlogPolicy

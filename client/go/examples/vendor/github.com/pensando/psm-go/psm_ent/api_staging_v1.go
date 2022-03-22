@@ -388,7 +388,6 @@ type ApiStagingBulkeditRequest struct {
 	ctx _context.Context
 	ApiService *StagingV1ApiService
 	oTenant string
-	oName string
 	body *StagingBulkEditAction
 }
 
@@ -405,15 +404,13 @@ func (r ApiStagingBulkeditRequest) Execute() (StagingBulkEditAction, *_nethttp.R
  * Bulkedit Create/Update/Delete multiple objects as part of a single request
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiStagingBulkeditRequest
  */
-func (a *StagingV1ApiService) Bulkedit(ctx _context.Context, oTenant string, oName string) ApiStagingBulkeditRequest {
+func (a *StagingV1ApiService) Bulkedit(ctx _context.Context, oTenant string) ApiStagingBulkeditRequest {
 	return ApiStagingBulkeditRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -438,7 +435,6 @@ func (a *StagingV1ApiService) BulkeditExecute(r ApiStagingBulkeditRequest) (Stag
 
 	localVarPath := localBasePath + "/configs/staging/v1/tenant/{O.Tenant}/buffers/{O.Name}/bulkedit"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -752,7 +748,6 @@ type ApiStagingClearRequest struct {
 	ctx _context.Context
 	ApiService *StagingV1ApiService
 	oTenant string
-	oName string
 	body *StagingClearAction
 }
 
@@ -769,15 +764,13 @@ func (r ApiStagingClearRequest) Execute() (StagingClearAction, *_nethttp.Respons
  * Clear Clear operations from a configuration buffer
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiStagingClearRequest
  */
-func (a *StagingV1ApiService) Clear(ctx _context.Context, oTenant string, oName string) ApiStagingClearRequest {
+func (a *StagingV1ApiService) Clear(ctx _context.Context, oTenant string) ApiStagingClearRequest {
 	return ApiStagingClearRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -802,7 +795,6 @@ func (a *StagingV1ApiService) ClearExecute(r ApiStagingClearRequest) (StagingCle
 
 	localVarPath := localBasePath + "/configs/staging/v1/tenant/{O.Tenant}/buffers/{O.Name}/clear"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1116,7 +1108,6 @@ type ApiStagingCommitRequest struct {
 	ctx _context.Context
 	ApiService *StagingV1ApiService
 	oTenant string
-	oName string
 	body *StagingCommitAction
 }
 
@@ -1133,15 +1124,13 @@ func (r ApiStagingCommitRequest) Execute() (StagingCommitAction, *_nethttp.Respo
  * Commit Commit a staged configuration buffer
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiStagingCommitRequest
  */
-func (a *StagingV1ApiService) Commit(ctx _context.Context, oTenant string, oName string) ApiStagingCommitRequest {
+func (a *StagingV1ApiService) Commit(ctx _context.Context, oTenant string) ApiStagingCommitRequest {
 	return ApiStagingCommitRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -1166,7 +1155,6 @@ func (a *StagingV1ApiService) CommitExecute(r ApiStagingCommitRequest) (StagingC
 
 	localVarPath := localBasePath + "/configs/staging/v1/tenant/{O.Tenant}/buffers/{O.Name}/commit"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1480,7 +1468,6 @@ type ApiStagingDeleteBufferRequest struct {
 	ctx _context.Context
 	ApiService *StagingV1ApiService
 	oTenant string
-	oName string
 }
 
 
@@ -1492,15 +1479,13 @@ func (r ApiStagingDeleteBufferRequest) Execute() (StagingBuffer, *_nethttp.Respo
  * DeleteBuffer Delete Buffer object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiStagingDeleteBufferRequest
  */
-func (a *StagingV1ApiService) DeleteBuffer(ctx _context.Context, oTenant string, oName string) ApiStagingDeleteBufferRequest {
+func (a *StagingV1ApiService) DeleteBuffer(ctx _context.Context, oTenant string) ApiStagingDeleteBufferRequest {
 	return ApiStagingDeleteBufferRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -1525,7 +1510,6 @@ func (a *StagingV1ApiService) DeleteBufferExecute(r ApiStagingDeleteBufferReques
 
 	localVarPath := localBasePath + "/configs/staging/v1/tenant/{O.Tenant}/buffers/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1824,62 +1808,21 @@ type ApiStagingGetBufferRequest struct {
 	ctx _context.Context
 	ApiService *StagingV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	specContact *string
-	statusValidationResult *string
 }
 
 func (r ApiStagingGetBufferRequest) TKind(tKind string) ApiStagingGetBufferRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiStagingGetBufferRequest) TApiVersion(tApiVersion string) ApiStagingGetBufferRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiStagingGetBufferRequest) MetaNamespace(metaNamespace string) ApiStagingGetBufferRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiStagingGetBufferRequest) MetaGenerationId(metaGenerationId string) ApiStagingGetBufferRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiStagingGetBufferRequest) MetaResourceVersion(metaResourceVersion string) ApiStagingGetBufferRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiStagingGetBufferRequest) MetaUuid(metaUuid string) ApiStagingGetBufferRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiStagingGetBufferRequest) MetaCreationTime(metaCreationTime time.Time) ApiStagingGetBufferRequest {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiStagingGetBufferRequest) MetaModTime(metaModTime time.Time) ApiStagingGetBufferRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiStagingGetBufferRequest) MetaSelfLink(metaSelfLink string) ApiStagingGetBufferRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
 func (r ApiStagingGetBufferRequest) SpecContact(specContact string) ApiStagingGetBufferRequest {
 	r.specContact = &specContact
-	return r
-}
-func (r ApiStagingGetBufferRequest) StatusValidationResult(statusValidationResult string) ApiStagingGetBufferRequest {
-	r.statusValidationResult = &statusValidationResult
 	return r
 }
 
@@ -1891,15 +1834,13 @@ func (r ApiStagingGetBufferRequest) Execute() (StagingBuffer, *_nethttp.Response
  * GetBuffer Get Buffer object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiStagingGetBufferRequest
  */
-func (a *StagingV1ApiService) GetBuffer(ctx _context.Context, oTenant string, oName string) ApiStagingGetBufferRequest {
+func (a *StagingV1ApiService) GetBuffer(ctx _context.Context, oTenant string) ApiStagingGetBufferRequest {
 	return ApiStagingGetBufferRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -1924,7 +1865,6 @@ func (a *StagingV1ApiService) GetBufferExecute(r ApiStagingGetBufferRequest) (St
 
 	localVarPath := localBasePath + "/configs/staging/v1/tenant/{O.Tenant}/buffers/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1933,35 +1873,11 @@ func (a *StagingV1ApiService) GetBufferExecute(r ApiStagingGetBufferRequest) (St
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
 	if r.specContact != nil {
 		localVarQueryParams.Add("spec.Contact", parameterToString(*r.specContact, ""))
-	}
-	if r.statusValidationResult != nil {
-		localVarQueryParams.Add("status.validation-result", parameterToString(*r.statusValidationResult, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2087,65 +2003,20 @@ type ApiStagingGetBuffer1Request struct {
 	ApiService *StagingV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	specContact *string
-	statusValidationResult *string
 }
 
 func (r ApiStagingGetBuffer1Request) TKind(tKind string) ApiStagingGetBuffer1Request {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiStagingGetBuffer1Request) TApiVersion(tApiVersion string) ApiStagingGetBuffer1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiStagingGetBuffer1Request) MetaTenant(metaTenant string) ApiStagingGetBuffer1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiStagingGetBuffer1Request) MetaNamespace(metaNamespace string) ApiStagingGetBuffer1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiStagingGetBuffer1Request) MetaGenerationId(metaGenerationId string) ApiStagingGetBuffer1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiStagingGetBuffer1Request) MetaResourceVersion(metaResourceVersion string) ApiStagingGetBuffer1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiStagingGetBuffer1Request) MetaUuid(metaUuid string) ApiStagingGetBuffer1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiStagingGetBuffer1Request) MetaCreationTime(metaCreationTime time.Time) ApiStagingGetBuffer1Request {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiStagingGetBuffer1Request) MetaModTime(metaModTime time.Time) ApiStagingGetBuffer1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiStagingGetBuffer1Request) MetaSelfLink(metaSelfLink string) ApiStagingGetBuffer1Request {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
 func (r ApiStagingGetBuffer1Request) SpecContact(specContact string) ApiStagingGetBuffer1Request {
 	r.specContact = &specContact
-	return r
-}
-func (r ApiStagingGetBuffer1Request) StatusValidationResult(statusValidationResult string) ApiStagingGetBuffer1Request {
-	r.statusValidationResult = &statusValidationResult
 	return r
 }
 
@@ -2196,38 +2067,11 @@ func (a *StagingV1ApiService) GetBuffer1Execute(r ApiStagingGetBuffer1Request) (
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
 	if r.specContact != nil {
 		localVarQueryParams.Add("spec.Contact", parameterToString(*r.specContact, ""))
-	}
-	if r.statusValidationResult != nil {
-		localVarQueryParams.Add("status.validation-result", parameterToString(*r.statusValidationResult, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2353,80 +2197,20 @@ type ApiStagingListBufferRequest struct {
 	ApiService *StagingV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiStagingListBufferRequest) OName(oName string) ApiStagingListBufferRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiStagingListBufferRequest) ONamespace(oNamespace string) ApiStagingListBufferRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiStagingListBufferRequest) OGenerationId(oGenerationId string) ApiStagingListBufferRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiStagingListBufferRequest) OResourceVersion(oResourceVersion string) ApiStagingListBufferRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiStagingListBufferRequest) OUuid(oUuid string) ApiStagingListBufferRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiStagingListBufferRequest) OCreationTime(oCreationTime time.Time) ApiStagingListBufferRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiStagingListBufferRequest) OModTime(oModTime time.Time) ApiStagingListBufferRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiStagingListBufferRequest) OSelfLink(oSelfLink string) ApiStagingListBufferRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiStagingListBufferRequest) LabelSelector(labelSelector string) ApiStagingListBufferRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiStagingListBufferRequest) FieldSelector(fieldSelector string) ApiStagingListBufferRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiStagingListBufferRequest) FieldChangeSelector(fieldChangeSelector []string) ApiStagingListBufferRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiStagingListBufferRequest) From(from int32) ApiStagingListBufferRequest {
-	r.from = &from
-	return r
-}
-func (r ApiStagingListBufferRequest) MaxResults(maxResults int32) ApiStagingListBufferRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiStagingListBufferRequest) SortOrder(sortOrder string) ApiStagingListBufferRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiStagingListBufferRequest) MetaOnly(metaOnly bool) ApiStagingListBufferRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -2477,47 +2261,11 @@ func (a *StagingV1ApiService) ListBufferExecute(r ApiStagingListBufferRequest) (
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2642,85 +2390,20 @@ type ApiStagingListBuffer1Request struct {
 	ctx _context.Context
 	ApiService *StagingV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiStagingListBuffer1Request) OName(oName string) ApiStagingListBuffer1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiStagingListBuffer1Request) OTenant(oTenant string) ApiStagingListBuffer1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiStagingListBuffer1Request) ONamespace(oNamespace string) ApiStagingListBuffer1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiStagingListBuffer1Request) OGenerationId(oGenerationId string) ApiStagingListBuffer1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiStagingListBuffer1Request) OResourceVersion(oResourceVersion string) ApiStagingListBuffer1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiStagingListBuffer1Request) OUuid(oUuid string) ApiStagingListBuffer1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiStagingListBuffer1Request) OCreationTime(oCreationTime time.Time) ApiStagingListBuffer1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiStagingListBuffer1Request) OModTime(oModTime time.Time) ApiStagingListBuffer1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiStagingListBuffer1Request) OSelfLink(oSelfLink string) ApiStagingListBuffer1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiStagingListBuffer1Request) LabelSelector(labelSelector string) ApiStagingListBuffer1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiStagingListBuffer1Request) FieldSelector(fieldSelector string) ApiStagingListBuffer1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiStagingListBuffer1Request) FieldChangeSelector(fieldChangeSelector []string) ApiStagingListBuffer1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiStagingListBuffer1Request) From(from int32) ApiStagingListBuffer1Request {
-	r.from = &from
-	return r
-}
-func (r ApiStagingListBuffer1Request) MaxResults(maxResults int32) ApiStagingListBuffer1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiStagingListBuffer1Request) SortOrder(sortOrder string) ApiStagingListBuffer1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiStagingListBuffer1Request) MetaOnly(metaOnly bool) ApiStagingListBuffer1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -2768,50 +2451,11 @@ func (a *StagingV1ApiService) ListBuffer1Execute(r ApiStagingListBuffer1Request)
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

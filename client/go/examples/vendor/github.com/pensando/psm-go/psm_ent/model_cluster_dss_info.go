@@ -22,6 +22,8 @@ type ClusterDSSInfo struct {
 	HaPeer *ClusterPeer `json:"ha-peer,omitempty"`
 	// Hostname of the switch.
 	HostName *string `json:"host-name,omitempty"`
+	// Information of the remote port mac amd local port of a link.
+	LinkInfo *[]ClusterNeighborPortInfo `json:"link-info,omitempty"`
 	// switch software version.
 	Version *string `json:"version,omitempty"`
 }
@@ -171,6 +173,38 @@ func (o *ClusterDSSInfo) SetHostName(v string) {
 	o.HostName = &v
 }
 
+// GetLinkInfo returns the LinkInfo field value if set, zero value otherwise.
+func (o *ClusterDSSInfo) GetLinkInfo() []ClusterNeighborPortInfo {
+	if o == nil || o.LinkInfo == nil {
+		var ret []ClusterNeighborPortInfo
+		return ret
+	}
+	return *o.LinkInfo
+}
+
+// GetLinkInfoOk returns a tuple with the LinkInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ClusterDSSInfo) GetLinkInfoOk() (*[]ClusterNeighborPortInfo, bool) {
+	if o == nil || o.LinkInfo == nil {
+		return nil, false
+	}
+	return o.LinkInfo, true
+}
+
+// HasLinkInfo returns a boolean if a field has been set.
+func (o *ClusterDSSInfo) HasLinkInfo() bool {
+	if o != nil && o.LinkInfo != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLinkInfo gets a reference to the given []ClusterNeighborPortInfo and assigns it to the LinkInfo field.
+func (o *ClusterDSSInfo) SetLinkInfo(v []ClusterNeighborPortInfo) {
+	o.LinkInfo = &v
+}
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *ClusterDSSInfo) GetVersion() string {
 	if o == nil || o.Version == nil {
@@ -216,6 +250,9 @@ func (o ClusterDSSInfo) MarshalJSON() ([]byte, error) {
 	}
 	if o.HostName != nil {
 		toSerialize["host-name"] = o.HostName
+	}
+	if o.LinkInfo != nil {
+		toSerialize["link-info"] = o.LinkInfo
 	}
 	if o.Version != nil {
 		toSerialize["version"] = o.Version

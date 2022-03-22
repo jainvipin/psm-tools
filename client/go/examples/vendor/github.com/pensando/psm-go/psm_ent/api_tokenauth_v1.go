@@ -32,7 +32,6 @@ type ApiTokenauthGetGenerateNodeTokenRequest struct {
 	ApiService *TokenauthV1ApiService
 	audience *[]string
 	validityStart *time.Time
-	validityEnd *time.Time
 }
 
 func (r ApiTokenauthGetGenerateNodeTokenRequest) Audience(audience []string) ApiTokenauthGetGenerateNodeTokenRequest {
@@ -41,10 +40,6 @@ func (r ApiTokenauthGetGenerateNodeTokenRequest) Audience(audience []string) Api
 }
 func (r ApiTokenauthGetGenerateNodeTokenRequest) ValidityStart(validityStart time.Time) ApiTokenauthGetGenerateNodeTokenRequest {
 	r.validityStart = &validityStart
-	return r
-}
-func (r ApiTokenauthGetGenerateNodeTokenRequest) ValidityEnd(validityEnd time.Time) ApiTokenauthGetGenerateNodeTokenRequest {
-	r.validityEnd = &validityEnd
 	return r
 }
 
@@ -94,9 +89,6 @@ func (a *TokenauthV1ApiService) GetGenerateNodeTokenExecute(r ApiTokenauthGetGen
 	}
 	if r.validityStart != nil {
 		localVarQueryParams.Add("validity-start", parameterToString(*r.validityStart, ""))
-	}
-	if r.validityEnd != nil {
-		localVarQueryParams.Add("validity-end", parameterToString(*r.validityEnd, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

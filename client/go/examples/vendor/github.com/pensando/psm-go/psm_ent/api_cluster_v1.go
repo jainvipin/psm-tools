@@ -556,6 +556,182 @@ func (a *ClusterV1ApiService) AddDistributedServiceCardExecute(r ApiClusterAddDi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiClusterAddDistributedServiceEntityRequest struct {
+	ctx _context.Context
+	ApiService *ClusterV1ApiService
+	body *ClusterDistributedServiceEntity
+}
+
+func (r ApiClusterAddDistributedServiceEntityRequest) Body(body ClusterDistributedServiceEntity) ApiClusterAddDistributedServiceEntityRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiClusterAddDistributedServiceEntityRequest) Execute() (ClusterDistributedServiceEntity, *_nethttp.Response, error) {
+	return r.ApiService.AddDistributedServiceEntityExecute(r)
+}
+
+/*
+ * AddDistributedServiceEntity Create DistributedServiceEntity object
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return ApiClusterAddDistributedServiceEntityRequest
+ */
+func (a *ClusterV1ApiService) AddDistributedServiceEntity(ctx _context.Context) ApiClusterAddDistributedServiceEntityRequest {
+	return ApiClusterAddDistributedServiceEntityRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return ClusterDistributedServiceEntity
+ */
+func (a *ClusterV1ApiService) AddDistributedServiceEntityExecute(r ApiClusterAddDistributedServiceEntityRequest) (ClusterDistributedServiceEntity, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  ClusterDistributedServiceEntity
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClusterV1ApiService.AddDistributedServiceEntity")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/configs/cluster/v1/distributedserviceentities"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode == 401 {
+		a.client.cfg.PSMCfg.Login()
+		a.client.cfg.PSMCfg.SaveConfig()
+		return a.AddDistributedServiceEntityExecute(r)
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiClusterAddHostRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
@@ -1942,6 +2118,176 @@ func (a *ClusterV1ApiService) DeleteDistributedServiceCardExecute(r ApiClusterDe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiClusterDeleteDistributedServiceEntityRequest struct {
+	ctx _context.Context
+	ApiService *ClusterV1ApiService
+	oName string
+}
+
+
+func (r ApiClusterDeleteDistributedServiceEntityRequest) Execute() (ClusterDistributedServiceEntity, *_nethttp.Response, error) {
+	return r.ApiService.DeleteDistributedServiceEntityExecute(r)
+}
+
+/*
+ * DeleteDistributedServiceEntity Delete DistributedServiceEntity object
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param oName
+ * @return ApiClusterDeleteDistributedServiceEntityRequest
+ */
+func (a *ClusterV1ApiService) DeleteDistributedServiceEntity(ctx _context.Context, oName string) ApiClusterDeleteDistributedServiceEntityRequest {
+	return ApiClusterDeleteDistributedServiceEntityRequest{
+		ApiService: a,
+		ctx: ctx,
+		oName: oName,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return ClusterDistributedServiceEntity
+ */
+func (a *ClusterV1ApiService) DeleteDistributedServiceEntityExecute(r ApiClusterDeleteDistributedServiceEntityRequest) (ClusterDistributedServiceEntity, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  ClusterDistributedServiceEntity
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClusterV1ApiService.DeleteDistributedServiceEntity")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/configs/cluster/v1/distributedserviceentities/{O.Name}"
+	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode == 401 {
+		a.client.cfg.PSMCfg.Login()
+		a.client.cfg.PSMCfg.SaveConfig()
+		return a.DeleteDistributedServiceEntityExecute(r)
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiClusterDeleteHostRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
@@ -2456,140 +2802,20 @@ type ApiClusterGetClusterRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
 	tKind *string
-	tApiVersion *string
-	metaName *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	specQuorumNodes *[]string
-	specVirtualIp *string
-	specNtpServers *[]string
-	specAutoAdmitDscs *bool
-	specCerts *string
-	specKey *string
-	recoveryKeysPsmVersion *string
-	recoveryKeysPrivateKey *string
-	recoveryKeysTrustChain *[]string
-	recoveryKeysTrustRoots *[]string
-	specBootstrapIpamPolicy *string
-	statusLeader *string
-	statusLastLeaderTransitionTime *time.Time
-	statusAuthBootstrapped *bool
-	statusCurrentTime *time.Time
-	statusRecoveryKeysDownloaded *bool
 }
 
 func (r ApiClusterGetClusterRequest) TKind(tKind string) ApiClusterGetClusterRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiClusterGetClusterRequest) TApiVersion(tApiVersion string) ApiClusterGetClusterRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiClusterGetClusterRequest) MetaName(metaName string) ApiClusterGetClusterRequest {
-	r.metaName = &metaName
-	return r
-}
-func (r ApiClusterGetClusterRequest) MetaTenant(metaTenant string) ApiClusterGetClusterRequest {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiClusterGetClusterRequest) MetaNamespace(metaNamespace string) ApiClusterGetClusterRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiClusterGetClusterRequest) MetaGenerationId(metaGenerationId string) ApiClusterGetClusterRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiClusterGetClusterRequest) MetaResourceVersion(metaResourceVersion string) ApiClusterGetClusterRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiClusterGetClusterRequest) MetaUuid(metaUuid string) ApiClusterGetClusterRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiClusterGetClusterRequest) MetaCreationTime(metaCreationTime time.Time) ApiClusterGetClusterRequest {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiClusterGetClusterRequest) MetaModTime(metaModTime time.Time) ApiClusterGetClusterRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiClusterGetClusterRequest) MetaSelfLink(metaSelfLink string) ApiClusterGetClusterRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
 func (r ApiClusterGetClusterRequest) SpecQuorumNodes(specQuorumNodes []string) ApiClusterGetClusterRequest {
 	r.specQuorumNodes = &specQuorumNodes
-	return r
-}
-func (r ApiClusterGetClusterRequest) SpecVirtualIp(specVirtualIp string) ApiClusterGetClusterRequest {
-	r.specVirtualIp = &specVirtualIp
-	return r
-}
-func (r ApiClusterGetClusterRequest) SpecNtpServers(specNtpServers []string) ApiClusterGetClusterRequest {
-	r.specNtpServers = &specNtpServers
-	return r
-}
-func (r ApiClusterGetClusterRequest) SpecAutoAdmitDscs(specAutoAdmitDscs bool) ApiClusterGetClusterRequest {
-	r.specAutoAdmitDscs = &specAutoAdmitDscs
-	return r
-}
-func (r ApiClusterGetClusterRequest) SpecCerts(specCerts string) ApiClusterGetClusterRequest {
-	r.specCerts = &specCerts
-	return r
-}
-func (r ApiClusterGetClusterRequest) SpecKey(specKey string) ApiClusterGetClusterRequest {
-	r.specKey = &specKey
-	return r
-}
-func (r ApiClusterGetClusterRequest) RecoveryKeysPsmVersion(recoveryKeysPsmVersion string) ApiClusterGetClusterRequest {
-	r.recoveryKeysPsmVersion = &recoveryKeysPsmVersion
-	return r
-}
-func (r ApiClusterGetClusterRequest) RecoveryKeysPrivateKey(recoveryKeysPrivateKey string) ApiClusterGetClusterRequest {
-	r.recoveryKeysPrivateKey = &recoveryKeysPrivateKey
-	return r
-}
-func (r ApiClusterGetClusterRequest) RecoveryKeysTrustChain(recoveryKeysTrustChain []string) ApiClusterGetClusterRequest {
-	r.recoveryKeysTrustChain = &recoveryKeysTrustChain
-	return r
-}
-func (r ApiClusterGetClusterRequest) RecoveryKeysTrustRoots(recoveryKeysTrustRoots []string) ApiClusterGetClusterRequest {
-	r.recoveryKeysTrustRoots = &recoveryKeysTrustRoots
-	return r
-}
-func (r ApiClusterGetClusterRequest) SpecBootstrapIpamPolicy(specBootstrapIpamPolicy string) ApiClusterGetClusterRequest {
-	r.specBootstrapIpamPolicy = &specBootstrapIpamPolicy
-	return r
-}
-func (r ApiClusterGetClusterRequest) StatusLeader(statusLeader string) ApiClusterGetClusterRequest {
-	r.statusLeader = &statusLeader
-	return r
-}
-func (r ApiClusterGetClusterRequest) StatusLastLeaderTransitionTime(statusLastLeaderTransitionTime time.Time) ApiClusterGetClusterRequest {
-	r.statusLastLeaderTransitionTime = &statusLastLeaderTransitionTime
-	return r
-}
-func (r ApiClusterGetClusterRequest) StatusAuthBootstrapped(statusAuthBootstrapped bool) ApiClusterGetClusterRequest {
-	r.statusAuthBootstrapped = &statusAuthBootstrapped
-	return r
-}
-func (r ApiClusterGetClusterRequest) StatusCurrentTime(statusCurrentTime time.Time) ApiClusterGetClusterRequest {
-	r.statusCurrentTime = &statusCurrentTime
-	return r
-}
-func (r ApiClusterGetClusterRequest) StatusRecoveryKeysDownloaded(statusRecoveryKeysDownloaded bool) ApiClusterGetClusterRequest {
-	r.statusRecoveryKeysDownloaded = &statusRecoveryKeysDownloaded
 	return r
 }
 
@@ -2637,83 +2863,11 @@ func (a *ClusterV1ApiService) GetClusterExecute(r ApiClusterGetClusterRequest) (
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaName != nil {
-		localVarQueryParams.Add("meta.name", parameterToString(*r.metaName, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
 	if r.specQuorumNodes != nil {
 		localVarQueryParams.Add("spec.quorum-nodes", parameterToString(*r.specQuorumNodes, "csv"))
-	}
-	if r.specVirtualIp != nil {
-		localVarQueryParams.Add("spec.virtual-ip", parameterToString(*r.specVirtualIp, ""))
-	}
-	if r.specNtpServers != nil {
-		localVarQueryParams.Add("spec.ntp-servers", parameterToString(*r.specNtpServers, "csv"))
-	}
-	if r.specAutoAdmitDscs != nil {
-		localVarQueryParams.Add("spec.auto-admit-dscs", parameterToString(*r.specAutoAdmitDscs, ""))
-	}
-	if r.specCerts != nil {
-		localVarQueryParams.Add("spec.certs", parameterToString(*r.specCerts, ""))
-	}
-	if r.specKey != nil {
-		localVarQueryParams.Add("spec.key", parameterToString(*r.specKey, ""))
-	}
-	if r.recoveryKeysPsmVersion != nil {
-		localVarQueryParams.Add("recovery-keys.psm-version", parameterToString(*r.recoveryKeysPsmVersion, ""))
-	}
-	if r.recoveryKeysPrivateKey != nil {
-		localVarQueryParams.Add("recovery-keys.private-key", parameterToString(*r.recoveryKeysPrivateKey, ""))
-	}
-	if r.recoveryKeysTrustChain != nil {
-		localVarQueryParams.Add("recovery-keys.trust-chain", parameterToString(*r.recoveryKeysTrustChain, "csv"))
-	}
-	if r.recoveryKeysTrustRoots != nil {
-		localVarQueryParams.Add("recovery-keys.trust-roots", parameterToString(*r.recoveryKeysTrustRoots, "csv"))
-	}
-	if r.specBootstrapIpamPolicy != nil {
-		localVarQueryParams.Add("spec.bootstrap-ipam-policy", parameterToString(*r.specBootstrapIpamPolicy, ""))
-	}
-	if r.statusLeader != nil {
-		localVarQueryParams.Add("status.leader", parameterToString(*r.statusLeader, ""))
-	}
-	if r.statusLastLeaderTransitionTime != nil {
-		localVarQueryParams.Add("status.last-leader-transition-time", parameterToString(*r.statusLastLeaderTransitionTime, ""))
-	}
-	if r.statusAuthBootstrapped != nil {
-		localVarQueryParams.Add("status.auth-bootstrapped", parameterToString(*r.statusAuthBootstrapped, ""))
-	}
-	if r.statusCurrentTime != nil {
-		localVarQueryParams.Add("status.current-time", parameterToString(*r.statusCurrentTime, ""))
-	}
-	if r.statusRecoveryKeysDownloaded != nil {
-		localVarQueryParams.Add("status.recovery-keys-downloaded", parameterToString(*r.statusRecoveryKeysDownloaded, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2838,65 +2992,20 @@ type ApiClusterGetClusterProfileRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
 	tKind *string
-	tApiVersion *string
-	metaName *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	searchOptionsEnableFwlogSearch *bool
+	overlayForwardingSymmetricIrb *string
 }
 
 func (r ApiClusterGetClusterProfileRequest) TKind(tKind string) ApiClusterGetClusterProfileRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiClusterGetClusterProfileRequest) TApiVersion(tApiVersion string) ApiClusterGetClusterProfileRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiClusterGetClusterProfileRequest) MetaName(metaName string) ApiClusterGetClusterProfileRequest {
-	r.metaName = &metaName
-	return r
-}
-func (r ApiClusterGetClusterProfileRequest) MetaTenant(metaTenant string) ApiClusterGetClusterProfileRequest {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiClusterGetClusterProfileRequest) MetaNamespace(metaNamespace string) ApiClusterGetClusterProfileRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiClusterGetClusterProfileRequest) MetaGenerationId(metaGenerationId string) ApiClusterGetClusterProfileRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiClusterGetClusterProfileRequest) MetaResourceVersion(metaResourceVersion string) ApiClusterGetClusterProfileRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiClusterGetClusterProfileRequest) MetaUuid(metaUuid string) ApiClusterGetClusterProfileRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiClusterGetClusterProfileRequest) MetaCreationTime(metaCreationTime time.Time) ApiClusterGetClusterProfileRequest {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiClusterGetClusterProfileRequest) MetaModTime(metaModTime time.Time) ApiClusterGetClusterProfileRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiClusterGetClusterProfileRequest) MetaSelfLink(metaSelfLink string) ApiClusterGetClusterProfileRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiClusterGetClusterProfileRequest) SearchOptionsEnableFwlogSearch(searchOptionsEnableFwlogSearch bool) ApiClusterGetClusterProfileRequest {
-	r.searchOptionsEnableFwlogSearch = &searchOptionsEnableFwlogSearch
+func (r ApiClusterGetClusterProfileRequest) OverlayForwardingSymmetricIrb(overlayForwardingSymmetricIrb string) ApiClusterGetClusterProfileRequest {
+	r.overlayForwardingSymmetricIrb = &overlayForwardingSymmetricIrb
 	return r
 }
 
@@ -2944,38 +3053,11 @@ func (a *ClusterV1ApiService) GetClusterProfileExecute(r ApiClusterGetClusterPro
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaName != nil {
-		localVarQueryParams.Add("meta.name", parameterToString(*r.metaName, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.searchOptionsEnableFwlogSearch != nil {
-		localVarQueryParams.Add("search-options.enable-fwlog-search", parameterToString(*r.searchOptionsEnableFwlogSearch, ""))
+	if r.overlayForwardingSymmetricIrb != nil {
+		localVarQueryParams.Add("overlay-forwarding.symmetric-irb", parameterToString(*r.overlayForwardingSymmetricIrb, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3100,75 +3182,20 @@ type ApiClusterGetConfigurationSnapshotRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
 	tKind *string
-	tApiVersion *string
-	metaName *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	destinationType *string
-	lastSnapshotDestType *string
-	lastSnapshotUri *string
 }
 
 func (r ApiClusterGetConfigurationSnapshotRequest) TKind(tKind string) ApiClusterGetConfigurationSnapshotRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiClusterGetConfigurationSnapshotRequest) TApiVersion(tApiVersion string) ApiClusterGetConfigurationSnapshotRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiClusterGetConfigurationSnapshotRequest) MetaName(metaName string) ApiClusterGetConfigurationSnapshotRequest {
-	r.metaName = &metaName
-	return r
-}
-func (r ApiClusterGetConfigurationSnapshotRequest) MetaTenant(metaTenant string) ApiClusterGetConfigurationSnapshotRequest {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiClusterGetConfigurationSnapshotRequest) MetaNamespace(metaNamespace string) ApiClusterGetConfigurationSnapshotRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiClusterGetConfigurationSnapshotRequest) MetaGenerationId(metaGenerationId string) ApiClusterGetConfigurationSnapshotRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiClusterGetConfigurationSnapshotRequest) MetaResourceVersion(metaResourceVersion string) ApiClusterGetConfigurationSnapshotRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiClusterGetConfigurationSnapshotRequest) MetaUuid(metaUuid string) ApiClusterGetConfigurationSnapshotRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiClusterGetConfigurationSnapshotRequest) MetaCreationTime(metaCreationTime time.Time) ApiClusterGetConfigurationSnapshotRequest {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiClusterGetConfigurationSnapshotRequest) MetaModTime(metaModTime time.Time) ApiClusterGetConfigurationSnapshotRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiClusterGetConfigurationSnapshotRequest) MetaSelfLink(metaSelfLink string) ApiClusterGetConfigurationSnapshotRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
 func (r ApiClusterGetConfigurationSnapshotRequest) DestinationType(destinationType string) ApiClusterGetConfigurationSnapshotRequest {
 	r.destinationType = &destinationType
-	return r
-}
-func (r ApiClusterGetConfigurationSnapshotRequest) LastSnapshotDestType(lastSnapshotDestType string) ApiClusterGetConfigurationSnapshotRequest {
-	r.lastSnapshotDestType = &lastSnapshotDestType
-	return r
-}
-func (r ApiClusterGetConfigurationSnapshotRequest) LastSnapshotUri(lastSnapshotUri string) ApiClusterGetConfigurationSnapshotRequest {
-	r.lastSnapshotUri = &lastSnapshotUri
 	return r
 }
 
@@ -3216,44 +3243,11 @@ func (a *ClusterV1ApiService) GetConfigurationSnapshotExecute(r ApiClusterGetCon
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaName != nil {
-		localVarQueryParams.Add("meta.name", parameterToString(*r.metaName, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
 	if r.destinationType != nil {
 		localVarQueryParams.Add("destination.Type", parameterToString(*r.destinationType, ""))
-	}
-	if r.lastSnapshotDestType != nil {
-		localVarQueryParams.Add("last-snapshot.dest-type", parameterToString(*r.lastSnapshotDestType, ""))
-	}
-	if r.lastSnapshotUri != nil {
-		localVarQueryParams.Add("last-snapshot.uri", parameterToString(*r.lastSnapshotUri, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3379,25 +3373,9 @@ type ApiClusterGetDSCProfileRequest struct {
 	ApiService *ClusterV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	specDeploymentTarget *string
-	specFeatureSet *string
 	interfaceProfileNumPfs *int64
-	interfaceProfileNumVfs *int64
-	specApplyPoliciesToEncapsulatedTraffic *string
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
 	propagationStatusPendingDscs *[]string
 }
 
@@ -3405,80 +3383,16 @@ func (r ApiClusterGetDSCProfileRequest) TKind(tKind string) ApiClusterGetDSCProf
 	r.tKind = &tKind
 	return r
 }
-func (r ApiClusterGetDSCProfileRequest) TApiVersion(tApiVersion string) ApiClusterGetDSCProfileRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiClusterGetDSCProfileRequest) MetaTenant(metaTenant string) ApiClusterGetDSCProfileRequest {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiClusterGetDSCProfileRequest) MetaNamespace(metaNamespace string) ApiClusterGetDSCProfileRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiClusterGetDSCProfileRequest) MetaGenerationId(metaGenerationId string) ApiClusterGetDSCProfileRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiClusterGetDSCProfileRequest) MetaResourceVersion(metaResourceVersion string) ApiClusterGetDSCProfileRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiClusterGetDSCProfileRequest) MetaUuid(metaUuid string) ApiClusterGetDSCProfileRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiClusterGetDSCProfileRequest) MetaCreationTime(metaCreationTime time.Time) ApiClusterGetDSCProfileRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiClusterGetDSCProfileRequest) MetaModTime(metaModTime time.Time) ApiClusterGetDSCProfileRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiClusterGetDSCProfileRequest) MetaSelfLink(metaSelfLink string) ApiClusterGetDSCProfileRequest {
-	r.metaSelfLink = &metaSelfLink
 	return r
 }
 func (r ApiClusterGetDSCProfileRequest) SpecDeploymentTarget(specDeploymentTarget string) ApiClusterGetDSCProfileRequest {
 	r.specDeploymentTarget = &specDeploymentTarget
 	return r
 }
-func (r ApiClusterGetDSCProfileRequest) SpecFeatureSet(specFeatureSet string) ApiClusterGetDSCProfileRequest {
-	r.specFeatureSet = &specFeatureSet
-	return r
-}
 func (r ApiClusterGetDSCProfileRequest) InterfaceProfileNumPfs(interfaceProfileNumPfs int64) ApiClusterGetDSCProfileRequest {
 	r.interfaceProfileNumPfs = &interfaceProfileNumPfs
-	return r
-}
-func (r ApiClusterGetDSCProfileRequest) InterfaceProfileNumVfs(interfaceProfileNumVfs int64) ApiClusterGetDSCProfileRequest {
-	r.interfaceProfileNumVfs = &interfaceProfileNumVfs
-	return r
-}
-func (r ApiClusterGetDSCProfileRequest) SpecApplyPoliciesToEncapsulatedTraffic(specApplyPoliciesToEncapsulatedTraffic string) ApiClusterGetDSCProfileRequest {
-	r.specApplyPoliciesToEncapsulatedTraffic = &specApplyPoliciesToEncapsulatedTraffic
-	return r
-}
-func (r ApiClusterGetDSCProfileRequest) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiClusterGetDSCProfileRequest {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiClusterGetDSCProfileRequest) PropagationStatusUpdated(propagationStatusUpdated int32) ApiClusterGetDSCProfileRequest {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiClusterGetDSCProfileRequest) PropagationStatusPending(propagationStatusPending int32) ApiClusterGetDSCProfileRequest {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiClusterGetDSCProfileRequest) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiClusterGetDSCProfileRequest {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiClusterGetDSCProfileRequest) PropagationStatusStatus(propagationStatusStatus string) ApiClusterGetDSCProfileRequest {
-	r.propagationStatusStatus = &propagationStatusStatus
 	return r
 }
 func (r ApiClusterGetDSCProfileRequest) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiClusterGetDSCProfileRequest {
@@ -3533,62 +3447,14 @@ func (a *ClusterV1ApiService) GetDSCProfileExecute(r ApiClusterGetDSCProfileRequ
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
 	}
 	if r.specDeploymentTarget != nil {
 		localVarQueryParams.Add("spec.deployment-target", parameterToString(*r.specDeploymentTarget, ""))
 	}
-	if r.specFeatureSet != nil {
-		localVarQueryParams.Add("spec.feature-set", parameterToString(*r.specFeatureSet, ""))
-	}
 	if r.interfaceProfileNumPfs != nil {
 		localVarQueryParams.Add("interface-profile.num-pfs", parameterToString(*r.interfaceProfileNumPfs, ""))
-	}
-	if r.interfaceProfileNumVfs != nil {
-		localVarQueryParams.Add("interface-profile.num-vfs", parameterToString(*r.interfaceProfileNumVfs, ""))
-	}
-	if r.specApplyPoliciesToEncapsulatedTraffic != nil {
-		localVarQueryParams.Add("spec.apply-policies-to-encapsulated-traffic", parameterToString(*r.specApplyPoliciesToEncapsulatedTraffic, ""))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
 	}
 	if r.propagationStatusPendingDscs != nil {
 		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
@@ -3717,345 +3583,25 @@ type ApiClusterGetDistributedServiceCardRequest struct {
 	ApiService *ClusterV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specAdmit *bool
-	specId *string
-	ipConfigIpAddress *string
-	ipConfigDefaultGw *string
 	ipConfigDnsServers *[]string
-	specMgmtMode *string
-	specNetworkMode *string
-	specMgmtVlan *int64
-	specControllers *[]string
-	specRoutingConfig *string
 	specDscprofile *string
-	policerTenant *string
-	policerTxPolicer *string
-	fwlogPolicyTenant *string
-	fwlogPolicyName *string
-	specEnableFwLogging *bool
-	specEnableSecureBoot *bool
-	statusAdmissionPhase *string
-	statusSerialNum *string
-	statusPrimaryMac *string
-	biosInfoVendor *string
-	biosInfoVersion *string
-	biosInfoFwMajorVer *string
-	biosInfoFwMinorVer *string
-	osInfoType *string
-	osInfoKernelRelease *string
-	osInfoKernelVersion *string
-	osInfoProcessor *string
-	cpuInfoSpeed *string
-	cpuInfoNumSockets *int32
-	cpuInfoNumCores *int32
-	cpuInfoNumThreads *int32
-	memoryInfoType *string
-	memoryInfoSize *string
-	statusInterfaces *[]string
-	statusDSCVersion *string
-	statusDSCSku *string
-	statusHost *string
-	statusAdmPhaseReason *string
-	statusVersionMismatch *bool
-	controlPlaneStatusLastUpdatedTime *string
-	controlPlaneStatusMessage *string
-	statusIsConnectedToPsm *bool
-	statusUnhealthyServices *[]string
-	statusNumMacAddress *int64
-	inbandIpConfigIpAddress *string
-	inbandIpConfigDefaultGw *string
-	inbandIpConfigDnsServers *[]string
-	statusSecureBooted *bool
-	statusAlomPresent *bool
-	statusPackageType *string
-	dssInfoHostName *string
-	dssInfoVersion *string
-	faultInfoSeverity *string
-	faultInfoDescription *string
-	faultInfoLastOccuredTime *string
-	faultInfoMitigation *string
-	haPeerMacAddress *string
 }
 
 func (r ApiClusterGetDistributedServiceCardRequest) TKind(tKind string) ApiClusterGetDistributedServiceCardRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiClusterGetDistributedServiceCardRequest) TApiVersion(tApiVersion string) ApiClusterGetDistributedServiceCardRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) MetaTenant(metaTenant string) ApiClusterGetDistributedServiceCardRequest {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) MetaNamespace(metaNamespace string) ApiClusterGetDistributedServiceCardRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) MetaGenerationId(metaGenerationId string) ApiClusterGetDistributedServiceCardRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) MetaResourceVersion(metaResourceVersion string) ApiClusterGetDistributedServiceCardRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) MetaUuid(metaUuid string) ApiClusterGetDistributedServiceCardRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiClusterGetDistributedServiceCardRequest) MetaCreationTime(metaCreationTime time.Time) ApiClusterGetDistributedServiceCardRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) MetaModTime(metaModTime time.Time) ApiClusterGetDistributedServiceCardRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) MetaSelfLink(metaSelfLink string) ApiClusterGetDistributedServiceCardRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) SpecAdmit(specAdmit bool) ApiClusterGetDistributedServiceCardRequest {
-	r.specAdmit = &specAdmit
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) SpecId(specId string) ApiClusterGetDistributedServiceCardRequest {
-	r.specId = &specId
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) IpConfigIpAddress(ipConfigIpAddress string) ApiClusterGetDistributedServiceCardRequest {
-	r.ipConfigIpAddress = &ipConfigIpAddress
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) IpConfigDefaultGw(ipConfigDefaultGw string) ApiClusterGetDistributedServiceCardRequest {
-	r.ipConfigDefaultGw = &ipConfigDefaultGw
 	return r
 }
 func (r ApiClusterGetDistributedServiceCardRequest) IpConfigDnsServers(ipConfigDnsServers []string) ApiClusterGetDistributedServiceCardRequest {
 	r.ipConfigDnsServers = &ipConfigDnsServers
 	return r
 }
-func (r ApiClusterGetDistributedServiceCardRequest) SpecMgmtMode(specMgmtMode string) ApiClusterGetDistributedServiceCardRequest {
-	r.specMgmtMode = &specMgmtMode
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) SpecNetworkMode(specNetworkMode string) ApiClusterGetDistributedServiceCardRequest {
-	r.specNetworkMode = &specNetworkMode
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) SpecMgmtVlan(specMgmtVlan int64) ApiClusterGetDistributedServiceCardRequest {
-	r.specMgmtVlan = &specMgmtVlan
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) SpecControllers(specControllers []string) ApiClusterGetDistributedServiceCardRequest {
-	r.specControllers = &specControllers
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) SpecRoutingConfig(specRoutingConfig string) ApiClusterGetDistributedServiceCardRequest {
-	r.specRoutingConfig = &specRoutingConfig
-	return r
-}
 func (r ApiClusterGetDistributedServiceCardRequest) SpecDscprofile(specDscprofile string) ApiClusterGetDistributedServiceCardRequest {
 	r.specDscprofile = &specDscprofile
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) PolicerTenant(policerTenant string) ApiClusterGetDistributedServiceCardRequest {
-	r.policerTenant = &policerTenant
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) PolicerTxPolicer(policerTxPolicer string) ApiClusterGetDistributedServiceCardRequest {
-	r.policerTxPolicer = &policerTxPolicer
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) FwlogPolicyTenant(fwlogPolicyTenant string) ApiClusterGetDistributedServiceCardRequest {
-	r.fwlogPolicyTenant = &fwlogPolicyTenant
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) FwlogPolicyName(fwlogPolicyName string) ApiClusterGetDistributedServiceCardRequest {
-	r.fwlogPolicyName = &fwlogPolicyName
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) SpecEnableFwLogging(specEnableFwLogging bool) ApiClusterGetDistributedServiceCardRequest {
-	r.specEnableFwLogging = &specEnableFwLogging
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) SpecEnableSecureBoot(specEnableSecureBoot bool) ApiClusterGetDistributedServiceCardRequest {
-	r.specEnableSecureBoot = &specEnableSecureBoot
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) StatusAdmissionPhase(statusAdmissionPhase string) ApiClusterGetDistributedServiceCardRequest {
-	r.statusAdmissionPhase = &statusAdmissionPhase
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) StatusSerialNum(statusSerialNum string) ApiClusterGetDistributedServiceCardRequest {
-	r.statusSerialNum = &statusSerialNum
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) StatusPrimaryMac(statusPrimaryMac string) ApiClusterGetDistributedServiceCardRequest {
-	r.statusPrimaryMac = &statusPrimaryMac
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) BiosInfoVendor(biosInfoVendor string) ApiClusterGetDistributedServiceCardRequest {
-	r.biosInfoVendor = &biosInfoVendor
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) BiosInfoVersion(biosInfoVersion string) ApiClusterGetDistributedServiceCardRequest {
-	r.biosInfoVersion = &biosInfoVersion
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) BiosInfoFwMajorVer(biosInfoFwMajorVer string) ApiClusterGetDistributedServiceCardRequest {
-	r.biosInfoFwMajorVer = &biosInfoFwMajorVer
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) BiosInfoFwMinorVer(biosInfoFwMinorVer string) ApiClusterGetDistributedServiceCardRequest {
-	r.biosInfoFwMinorVer = &biosInfoFwMinorVer
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) OsInfoType(osInfoType string) ApiClusterGetDistributedServiceCardRequest {
-	r.osInfoType = &osInfoType
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) OsInfoKernelRelease(osInfoKernelRelease string) ApiClusterGetDistributedServiceCardRequest {
-	r.osInfoKernelRelease = &osInfoKernelRelease
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) OsInfoKernelVersion(osInfoKernelVersion string) ApiClusterGetDistributedServiceCardRequest {
-	r.osInfoKernelVersion = &osInfoKernelVersion
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) OsInfoProcessor(osInfoProcessor string) ApiClusterGetDistributedServiceCardRequest {
-	r.osInfoProcessor = &osInfoProcessor
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) CpuInfoSpeed(cpuInfoSpeed string) ApiClusterGetDistributedServiceCardRequest {
-	r.cpuInfoSpeed = &cpuInfoSpeed
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) CpuInfoNumSockets(cpuInfoNumSockets int32) ApiClusterGetDistributedServiceCardRequest {
-	r.cpuInfoNumSockets = &cpuInfoNumSockets
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) CpuInfoNumCores(cpuInfoNumCores int32) ApiClusterGetDistributedServiceCardRequest {
-	r.cpuInfoNumCores = &cpuInfoNumCores
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) CpuInfoNumThreads(cpuInfoNumThreads int32) ApiClusterGetDistributedServiceCardRequest {
-	r.cpuInfoNumThreads = &cpuInfoNumThreads
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) MemoryInfoType(memoryInfoType string) ApiClusterGetDistributedServiceCardRequest {
-	r.memoryInfoType = &memoryInfoType
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) MemoryInfoSize(memoryInfoSize string) ApiClusterGetDistributedServiceCardRequest {
-	r.memoryInfoSize = &memoryInfoSize
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) StatusInterfaces(statusInterfaces []string) ApiClusterGetDistributedServiceCardRequest {
-	r.statusInterfaces = &statusInterfaces
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) StatusDSCVersion(statusDSCVersion string) ApiClusterGetDistributedServiceCardRequest {
-	r.statusDSCVersion = &statusDSCVersion
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) StatusDSCSku(statusDSCSku string) ApiClusterGetDistributedServiceCardRequest {
-	r.statusDSCSku = &statusDSCSku
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) StatusHost(statusHost string) ApiClusterGetDistributedServiceCardRequest {
-	r.statusHost = &statusHost
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) StatusAdmPhaseReason(statusAdmPhaseReason string) ApiClusterGetDistributedServiceCardRequest {
-	r.statusAdmPhaseReason = &statusAdmPhaseReason
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) StatusVersionMismatch(statusVersionMismatch bool) ApiClusterGetDistributedServiceCardRequest {
-	r.statusVersionMismatch = &statusVersionMismatch
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) ControlPlaneStatusLastUpdatedTime(controlPlaneStatusLastUpdatedTime string) ApiClusterGetDistributedServiceCardRequest {
-	r.controlPlaneStatusLastUpdatedTime = &controlPlaneStatusLastUpdatedTime
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) ControlPlaneStatusMessage(controlPlaneStatusMessage string) ApiClusterGetDistributedServiceCardRequest {
-	r.controlPlaneStatusMessage = &controlPlaneStatusMessage
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) StatusIsConnectedToPsm(statusIsConnectedToPsm bool) ApiClusterGetDistributedServiceCardRequest {
-	r.statusIsConnectedToPsm = &statusIsConnectedToPsm
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) StatusUnhealthyServices(statusUnhealthyServices []string) ApiClusterGetDistributedServiceCardRequest {
-	r.statusUnhealthyServices = &statusUnhealthyServices
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) StatusNumMacAddress(statusNumMacAddress int64) ApiClusterGetDistributedServiceCardRequest {
-	r.statusNumMacAddress = &statusNumMacAddress
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) InbandIpConfigIpAddress(inbandIpConfigIpAddress string) ApiClusterGetDistributedServiceCardRequest {
-	r.inbandIpConfigIpAddress = &inbandIpConfigIpAddress
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) InbandIpConfigDefaultGw(inbandIpConfigDefaultGw string) ApiClusterGetDistributedServiceCardRequest {
-	r.inbandIpConfigDefaultGw = &inbandIpConfigDefaultGw
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) InbandIpConfigDnsServers(inbandIpConfigDnsServers []string) ApiClusterGetDistributedServiceCardRequest {
-	r.inbandIpConfigDnsServers = &inbandIpConfigDnsServers
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) StatusSecureBooted(statusSecureBooted bool) ApiClusterGetDistributedServiceCardRequest {
-	r.statusSecureBooted = &statusSecureBooted
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) StatusAlomPresent(statusAlomPresent bool) ApiClusterGetDistributedServiceCardRequest {
-	r.statusAlomPresent = &statusAlomPresent
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) StatusPackageType(statusPackageType string) ApiClusterGetDistributedServiceCardRequest {
-	r.statusPackageType = &statusPackageType
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) DssInfoHostName(dssInfoHostName string) ApiClusterGetDistributedServiceCardRequest {
-	r.dssInfoHostName = &dssInfoHostName
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) DssInfoVersion(dssInfoVersion string) ApiClusterGetDistributedServiceCardRequest {
-	r.dssInfoVersion = &dssInfoVersion
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) FaultInfoSeverity(faultInfoSeverity string) ApiClusterGetDistributedServiceCardRequest {
-	r.faultInfoSeverity = &faultInfoSeverity
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) FaultInfoDescription(faultInfoDescription string) ApiClusterGetDistributedServiceCardRequest {
-	r.faultInfoDescription = &faultInfoDescription
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) FaultInfoLastOccuredTime(faultInfoLastOccuredTime string) ApiClusterGetDistributedServiceCardRequest {
-	r.faultInfoLastOccuredTime = &faultInfoLastOccuredTime
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) FaultInfoMitigation(faultInfoMitigation string) ApiClusterGetDistributedServiceCardRequest {
-	r.faultInfoMitigation = &faultInfoMitigation
-	return r
-}
-func (r ApiClusterGetDistributedServiceCardRequest) HaPeerMacAddress(haPeerMacAddress string) ApiClusterGetDistributedServiceCardRequest {
-	r.haPeerMacAddress = &haPeerMacAddress
 	return r
 }
 
@@ -4106,206 +3652,14 @@ func (a *ClusterV1ApiService) GetDistributedServiceCardExecute(r ApiClusterGetDi
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specAdmit != nil {
-		localVarQueryParams.Add("spec.admit", parameterToString(*r.specAdmit, ""))
-	}
-	if r.specId != nil {
-		localVarQueryParams.Add("spec.id", parameterToString(*r.specId, ""))
-	}
-	if r.ipConfigIpAddress != nil {
-		localVarQueryParams.Add("ip-config.ip-address", parameterToString(*r.ipConfigIpAddress, ""))
-	}
-	if r.ipConfigDefaultGw != nil {
-		localVarQueryParams.Add("ip-config.default-gw", parameterToString(*r.ipConfigDefaultGw, ""))
 	}
 	if r.ipConfigDnsServers != nil {
 		localVarQueryParams.Add("ip-config.dns-servers", parameterToString(*r.ipConfigDnsServers, "csv"))
 	}
-	if r.specMgmtMode != nil {
-		localVarQueryParams.Add("spec.mgmt-mode", parameterToString(*r.specMgmtMode, ""))
-	}
-	if r.specNetworkMode != nil {
-		localVarQueryParams.Add("spec.network-mode", parameterToString(*r.specNetworkMode, ""))
-	}
-	if r.specMgmtVlan != nil {
-		localVarQueryParams.Add("spec.mgmt-vlan", parameterToString(*r.specMgmtVlan, ""))
-	}
-	if r.specControllers != nil {
-		localVarQueryParams.Add("spec.controllers", parameterToString(*r.specControllers, "csv"))
-	}
-	if r.specRoutingConfig != nil {
-		localVarQueryParams.Add("spec.routing-config", parameterToString(*r.specRoutingConfig, ""))
-	}
 	if r.specDscprofile != nil {
 		localVarQueryParams.Add("spec.dscprofile", parameterToString(*r.specDscprofile, ""))
-	}
-	if r.policerTenant != nil {
-		localVarQueryParams.Add("policer.tenant", parameterToString(*r.policerTenant, ""))
-	}
-	if r.policerTxPolicer != nil {
-		localVarQueryParams.Add("policer.tx-policer", parameterToString(*r.policerTxPolicer, ""))
-	}
-	if r.fwlogPolicyTenant != nil {
-		localVarQueryParams.Add("fwlog-policy.tenant", parameterToString(*r.fwlogPolicyTenant, ""))
-	}
-	if r.fwlogPolicyName != nil {
-		localVarQueryParams.Add("fwlog-policy.name", parameterToString(*r.fwlogPolicyName, ""))
-	}
-	if r.specEnableFwLogging != nil {
-		localVarQueryParams.Add("spec.enable-fw-logging", parameterToString(*r.specEnableFwLogging, ""))
-	}
-	if r.specEnableSecureBoot != nil {
-		localVarQueryParams.Add("spec.enable-secure-boot", parameterToString(*r.specEnableSecureBoot, ""))
-	}
-	if r.statusAdmissionPhase != nil {
-		localVarQueryParams.Add("status.admission-phase", parameterToString(*r.statusAdmissionPhase, ""))
-	}
-	if r.statusSerialNum != nil {
-		localVarQueryParams.Add("status.serial-num", parameterToString(*r.statusSerialNum, ""))
-	}
-	if r.statusPrimaryMac != nil {
-		localVarQueryParams.Add("status.primary-mac", parameterToString(*r.statusPrimaryMac, ""))
-	}
-	if r.biosInfoVendor != nil {
-		localVarQueryParams.Add("bios-info.vendor", parameterToString(*r.biosInfoVendor, ""))
-	}
-	if r.biosInfoVersion != nil {
-		localVarQueryParams.Add("bios-info.version", parameterToString(*r.biosInfoVersion, ""))
-	}
-	if r.biosInfoFwMajorVer != nil {
-		localVarQueryParams.Add("bios-info.fw-major-ver", parameterToString(*r.biosInfoFwMajorVer, ""))
-	}
-	if r.biosInfoFwMinorVer != nil {
-		localVarQueryParams.Add("bios-info.fw-minor-ver", parameterToString(*r.biosInfoFwMinorVer, ""))
-	}
-	if r.osInfoType != nil {
-		localVarQueryParams.Add("os-info.type", parameterToString(*r.osInfoType, ""))
-	}
-	if r.osInfoKernelRelease != nil {
-		localVarQueryParams.Add("os-info.kernel-release", parameterToString(*r.osInfoKernelRelease, ""))
-	}
-	if r.osInfoKernelVersion != nil {
-		localVarQueryParams.Add("os-info.kernel-version", parameterToString(*r.osInfoKernelVersion, ""))
-	}
-	if r.osInfoProcessor != nil {
-		localVarQueryParams.Add("os-info.processor", parameterToString(*r.osInfoProcessor, ""))
-	}
-	if r.cpuInfoSpeed != nil {
-		localVarQueryParams.Add("cpu-info.speed", parameterToString(*r.cpuInfoSpeed, ""))
-	}
-	if r.cpuInfoNumSockets != nil {
-		localVarQueryParams.Add("cpu-info.num-sockets", parameterToString(*r.cpuInfoNumSockets, ""))
-	}
-	if r.cpuInfoNumCores != nil {
-		localVarQueryParams.Add("cpu-info.num-cores", parameterToString(*r.cpuInfoNumCores, ""))
-	}
-	if r.cpuInfoNumThreads != nil {
-		localVarQueryParams.Add("cpu-info.num-threads", parameterToString(*r.cpuInfoNumThreads, ""))
-	}
-	if r.memoryInfoType != nil {
-		localVarQueryParams.Add("memory-info.type", parameterToString(*r.memoryInfoType, ""))
-	}
-	if r.memoryInfoSize != nil {
-		localVarQueryParams.Add("memory-info.size", parameterToString(*r.memoryInfoSize, ""))
-	}
-	if r.statusInterfaces != nil {
-		localVarQueryParams.Add("status.interfaces", parameterToString(*r.statusInterfaces, "csv"))
-	}
-	if r.statusDSCVersion != nil {
-		localVarQueryParams.Add("status.DSCVersion", parameterToString(*r.statusDSCVersion, ""))
-	}
-	if r.statusDSCSku != nil {
-		localVarQueryParams.Add("status.DSCSku", parameterToString(*r.statusDSCSku, ""))
-	}
-	if r.statusHost != nil {
-		localVarQueryParams.Add("status.host", parameterToString(*r.statusHost, ""))
-	}
-	if r.statusAdmPhaseReason != nil {
-		localVarQueryParams.Add("status.adm-phase-reason", parameterToString(*r.statusAdmPhaseReason, ""))
-	}
-	if r.statusVersionMismatch != nil {
-		localVarQueryParams.Add("status.version-mismatch", parameterToString(*r.statusVersionMismatch, ""))
-	}
-	if r.controlPlaneStatusLastUpdatedTime != nil {
-		localVarQueryParams.Add("control-plane-status.last-updated-time", parameterToString(*r.controlPlaneStatusLastUpdatedTime, ""))
-	}
-	if r.controlPlaneStatusMessage != nil {
-		localVarQueryParams.Add("control-plane-status.message", parameterToString(*r.controlPlaneStatusMessage, ""))
-	}
-	if r.statusIsConnectedToPsm != nil {
-		localVarQueryParams.Add("status.is-connected-to-psm", parameterToString(*r.statusIsConnectedToPsm, ""))
-	}
-	if r.statusUnhealthyServices != nil {
-		localVarQueryParams.Add("status.unhealthy-services", parameterToString(*r.statusUnhealthyServices, "csv"))
-	}
-	if r.statusNumMacAddress != nil {
-		localVarQueryParams.Add("status.num-mac-address", parameterToString(*r.statusNumMacAddress, ""))
-	}
-	if r.inbandIpConfigIpAddress != nil {
-		localVarQueryParams.Add("inband-ip-config.ip-address", parameterToString(*r.inbandIpConfigIpAddress, ""))
-	}
-	if r.inbandIpConfigDefaultGw != nil {
-		localVarQueryParams.Add("inband-ip-config.default-gw", parameterToString(*r.inbandIpConfigDefaultGw, ""))
-	}
-	if r.inbandIpConfigDnsServers != nil {
-		localVarQueryParams.Add("inband-ip-config.dns-servers", parameterToString(*r.inbandIpConfigDnsServers, "csv"))
-	}
-	if r.statusSecureBooted != nil {
-		localVarQueryParams.Add("status.secure-booted", parameterToString(*r.statusSecureBooted, ""))
-	}
-	if r.statusAlomPresent != nil {
-		localVarQueryParams.Add("status.alom-present", parameterToString(*r.statusAlomPresent, ""))
-	}
-	if r.statusPackageType != nil {
-		localVarQueryParams.Add("status.package-type", parameterToString(*r.statusPackageType, ""))
-	}
-	if r.dssInfoHostName != nil {
-		localVarQueryParams.Add("dss-info.host-name", parameterToString(*r.dssInfoHostName, ""))
-	}
-	if r.dssInfoVersion != nil {
-		localVarQueryParams.Add("dss-info.version", parameterToString(*r.dssInfoVersion, ""))
-	}
-	if r.faultInfoSeverity != nil {
-		localVarQueryParams.Add("fault-info.severity", parameterToString(*r.faultInfoSeverity, ""))
-	}
-	if r.faultInfoDescription != nil {
-		localVarQueryParams.Add("fault-info.description", parameterToString(*r.faultInfoDescription, ""))
-	}
-	if r.faultInfoLastOccuredTime != nil {
-		localVarQueryParams.Add("fault-info.last-occured-time", parameterToString(*r.faultInfoLastOccuredTime, ""))
-	}
-	if r.faultInfoMitigation != nil {
-		localVarQueryParams.Add("fault-info.mitigation", parameterToString(*r.faultInfoMitigation, ""))
-	}
-	if r.haPeerMacAddress != nil {
-		localVarQueryParams.Add("ha-peer.mac-address", parameterToString(*r.haPeerMacAddress, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -4426,70 +3780,243 @@ func (a *ClusterV1ApiService) GetDistributedServiceCardExecute(r ApiClusterGetDi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiClusterGetDistributedServiceEntityRequest struct {
+	ctx _context.Context
+	ApiService *ClusterV1ApiService
+	oName string
+	tKind *string
+	metaCreationTime *time.Time
+	specAdmit *bool
+	specId *string
+	ipConfigDnsServers *[]string
+	specControllers *[]string
+}
+
+func (r ApiClusterGetDistributedServiceEntityRequest) TKind(tKind string) ApiClusterGetDistributedServiceEntityRequest {
+	r.tKind = &tKind
+	return r
+}
+func (r ApiClusterGetDistributedServiceEntityRequest) MetaCreationTime(metaCreationTime time.Time) ApiClusterGetDistributedServiceEntityRequest {
+	r.metaCreationTime = &metaCreationTime
+	return r
+}
+func (r ApiClusterGetDistributedServiceEntityRequest) SpecAdmit(specAdmit bool) ApiClusterGetDistributedServiceEntityRequest {
+	r.specAdmit = &specAdmit
+	return r
+}
+func (r ApiClusterGetDistributedServiceEntityRequest) SpecId(specId string) ApiClusterGetDistributedServiceEntityRequest {
+	r.specId = &specId
+	return r
+}
+func (r ApiClusterGetDistributedServiceEntityRequest) IpConfigDnsServers(ipConfigDnsServers []string) ApiClusterGetDistributedServiceEntityRequest {
+	r.ipConfigDnsServers = &ipConfigDnsServers
+	return r
+}
+func (r ApiClusterGetDistributedServiceEntityRequest) SpecControllers(specControllers []string) ApiClusterGetDistributedServiceEntityRequest {
+	r.specControllers = &specControllers
+	return r
+}
+
+func (r ApiClusterGetDistributedServiceEntityRequest) Execute() (ClusterDistributedServiceEntity, *_nethttp.Response, error) {
+	return r.ApiService.GetDistributedServiceEntityExecute(r)
+}
+
+/*
+ * GetDistributedServiceEntity Get DistributedServiceEntity object
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param oName
+ * @return ApiClusterGetDistributedServiceEntityRequest
+ */
+func (a *ClusterV1ApiService) GetDistributedServiceEntity(ctx _context.Context, oName string) ApiClusterGetDistributedServiceEntityRequest {
+	return ApiClusterGetDistributedServiceEntityRequest{
+		ApiService: a,
+		ctx: ctx,
+		oName: oName,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return ClusterDistributedServiceEntity
+ */
+func (a *ClusterV1ApiService) GetDistributedServiceEntityExecute(r ApiClusterGetDistributedServiceEntityRequest) (ClusterDistributedServiceEntity, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  ClusterDistributedServiceEntity
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClusterV1ApiService.GetDistributedServiceEntity")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/configs/cluster/v1/distributedserviceentities/{O.Name}"
+	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.tKind != nil {
+		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
+	}
+	if r.metaCreationTime != nil {
+		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
+	}
+	if r.specAdmit != nil {
+		localVarQueryParams.Add("spec.admit", parameterToString(*r.specAdmit, ""))
+	}
+	if r.specId != nil {
+		localVarQueryParams.Add("spec.id", parameterToString(*r.specId, ""))
+	}
+	if r.ipConfigDnsServers != nil {
+		localVarQueryParams.Add("ip-config.dns-servers", parameterToString(*r.ipConfigDnsServers, "csv"))
+	}
+	if r.specControllers != nil {
+		localVarQueryParams.Add("spec.controllers", parameterToString(*r.specControllers, "csv"))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode == 401 {
+		a.client.cfg.PSMCfg.Login()
+		a.client.cfg.PSMCfg.SaveConfig()
+		return a.GetDistributedServiceEntityExecute(r)
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiClusterGetHostRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	statusAdmittedDscs *[]string
-	statusMirrorSessions *[]string
 }
 
 func (r ApiClusterGetHostRequest) TKind(tKind string) ApiClusterGetHostRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiClusterGetHostRequest) TApiVersion(tApiVersion string) ApiClusterGetHostRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiClusterGetHostRequest) MetaTenant(metaTenant string) ApiClusterGetHostRequest {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiClusterGetHostRequest) MetaNamespace(metaNamespace string) ApiClusterGetHostRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiClusterGetHostRequest) MetaGenerationId(metaGenerationId string) ApiClusterGetHostRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiClusterGetHostRequest) MetaResourceVersion(metaResourceVersion string) ApiClusterGetHostRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiClusterGetHostRequest) MetaUuid(metaUuid string) ApiClusterGetHostRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiClusterGetHostRequest) MetaCreationTime(metaCreationTime time.Time) ApiClusterGetHostRequest {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiClusterGetHostRequest) MetaModTime(metaModTime time.Time) ApiClusterGetHostRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiClusterGetHostRequest) MetaSelfLink(metaSelfLink string) ApiClusterGetHostRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
 func (r ApiClusterGetHostRequest) StatusAdmittedDscs(statusAdmittedDscs []string) ApiClusterGetHostRequest {
 	r.statusAdmittedDscs = &statusAdmittedDscs
-	return r
-}
-func (r ApiClusterGetHostRequest) StatusMirrorSessions(statusMirrorSessions []string) ApiClusterGetHostRequest {
-	r.statusMirrorSessions = &statusMirrorSessions
 	return r
 }
 
@@ -4540,38 +4067,11 @@ func (a *ClusterV1ApiService) GetHostExecute(r ApiClusterGetHostRequest) (Cluste
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
 	if r.statusAdmittedDscs != nil {
 		localVarQueryParams.Add("status.admitted-dscs", parameterToString(*r.statusAdmittedDscs, "csv"))
-	}
-	if r.statusMirrorSessions != nil {
-		localVarQueryParams.Add("status.mirror-sessions", parameterToString(*r.statusMirrorSessions, "csv"))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -4696,16 +4196,7 @@ type ApiClusterGetLicenseRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
 	tKind *string
-	tApiVersion *string
-	metaName *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	statusUnknown *[]string
 }
 
@@ -4713,44 +4204,8 @@ func (r ApiClusterGetLicenseRequest) TKind(tKind string) ApiClusterGetLicenseReq
 	r.tKind = &tKind
 	return r
 }
-func (r ApiClusterGetLicenseRequest) TApiVersion(tApiVersion string) ApiClusterGetLicenseRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiClusterGetLicenseRequest) MetaName(metaName string) ApiClusterGetLicenseRequest {
-	r.metaName = &metaName
-	return r
-}
-func (r ApiClusterGetLicenseRequest) MetaTenant(metaTenant string) ApiClusterGetLicenseRequest {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiClusterGetLicenseRequest) MetaNamespace(metaNamespace string) ApiClusterGetLicenseRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiClusterGetLicenseRequest) MetaGenerationId(metaGenerationId string) ApiClusterGetLicenseRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiClusterGetLicenseRequest) MetaResourceVersion(metaResourceVersion string) ApiClusterGetLicenseRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiClusterGetLicenseRequest) MetaUuid(metaUuid string) ApiClusterGetLicenseRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiClusterGetLicenseRequest) MetaCreationTime(metaCreationTime time.Time) ApiClusterGetLicenseRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiClusterGetLicenseRequest) MetaModTime(metaModTime time.Time) ApiClusterGetLicenseRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiClusterGetLicenseRequest) MetaSelfLink(metaSelfLink string) ApiClusterGetLicenseRequest {
-	r.metaSelfLink = &metaSelfLink
 	return r
 }
 func (r ApiClusterGetLicenseRequest) StatusUnknown(statusUnknown []string) ApiClusterGetLicenseRequest {
@@ -4802,35 +4257,8 @@ func (a *ClusterV1ApiService) GetLicenseExecute(r ApiClusterGetLicenseRequest) (
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaName != nil {
-		localVarQueryParams.Add("meta.name", parameterToString(*r.metaName, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
 	}
 	if r.statusUnknown != nil {
 		localVarQueryParams.Add("status.unknown", parameterToString(*r.statusUnknown, "csv"))
@@ -4959,70 +4387,15 @@ type ApiClusterGetNodeRequest struct {
 	ApiService *ClusterV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specRoutingConfig *string
-	statusPhase *string
-	statusQuorum *bool
 }
 
 func (r ApiClusterGetNodeRequest) TKind(tKind string) ApiClusterGetNodeRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiClusterGetNodeRequest) TApiVersion(tApiVersion string) ApiClusterGetNodeRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiClusterGetNodeRequest) MetaTenant(metaTenant string) ApiClusterGetNodeRequest {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiClusterGetNodeRequest) MetaNamespace(metaNamespace string) ApiClusterGetNodeRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiClusterGetNodeRequest) MetaGenerationId(metaGenerationId string) ApiClusterGetNodeRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiClusterGetNodeRequest) MetaResourceVersion(metaResourceVersion string) ApiClusterGetNodeRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiClusterGetNodeRequest) MetaUuid(metaUuid string) ApiClusterGetNodeRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiClusterGetNodeRequest) MetaCreationTime(metaCreationTime time.Time) ApiClusterGetNodeRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiClusterGetNodeRequest) MetaModTime(metaModTime time.Time) ApiClusterGetNodeRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiClusterGetNodeRequest) MetaSelfLink(metaSelfLink string) ApiClusterGetNodeRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiClusterGetNodeRequest) SpecRoutingConfig(specRoutingConfig string) ApiClusterGetNodeRequest {
-	r.specRoutingConfig = &specRoutingConfig
-	return r
-}
-func (r ApiClusterGetNodeRequest) StatusPhase(statusPhase string) ApiClusterGetNodeRequest {
-	r.statusPhase = &statusPhase
-	return r
-}
-func (r ApiClusterGetNodeRequest) StatusQuorum(statusQuorum bool) ApiClusterGetNodeRequest {
-	r.statusQuorum = &statusQuorum
 	return r
 }
 
@@ -5073,41 +4446,8 @@ func (a *ClusterV1ApiService) GetNodeExecute(r ApiClusterGetNodeRequest) (Cluste
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specRoutingConfig != nil {
-		localVarQueryParams.Add("spec.routing-config", parameterToString(*r.specRoutingConfig, ""))
-	}
-	if r.statusPhase != nil {
-		localVarQueryParams.Add("status.phase", parameterToString(*r.statusPhase, ""))
-	}
-	if r.statusQuorum != nil {
-		localVarQueryParams.Add("status.quorum", parameterToString(*r.statusQuorum, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -5232,85 +4572,25 @@ type ApiClusterGetSnapshotRestoreRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
 	tKind *string
-	tApiVersion *string
-	metaName *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	specPath *string
-	statusStatus *string
 	statusStartTime *time.Time
-	statusEndTime *time.Time
-	statusBackupSnapshotPath *string
 }
 
 func (r ApiClusterGetSnapshotRestoreRequest) TKind(tKind string) ApiClusterGetSnapshotRestoreRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiClusterGetSnapshotRestoreRequest) TApiVersion(tApiVersion string) ApiClusterGetSnapshotRestoreRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiClusterGetSnapshotRestoreRequest) MetaName(metaName string) ApiClusterGetSnapshotRestoreRequest {
-	r.metaName = &metaName
-	return r
-}
-func (r ApiClusterGetSnapshotRestoreRequest) MetaTenant(metaTenant string) ApiClusterGetSnapshotRestoreRequest {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiClusterGetSnapshotRestoreRequest) MetaNamespace(metaNamespace string) ApiClusterGetSnapshotRestoreRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiClusterGetSnapshotRestoreRequest) MetaGenerationId(metaGenerationId string) ApiClusterGetSnapshotRestoreRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiClusterGetSnapshotRestoreRequest) MetaResourceVersion(metaResourceVersion string) ApiClusterGetSnapshotRestoreRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiClusterGetSnapshotRestoreRequest) MetaUuid(metaUuid string) ApiClusterGetSnapshotRestoreRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiClusterGetSnapshotRestoreRequest) MetaCreationTime(metaCreationTime time.Time) ApiClusterGetSnapshotRestoreRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiClusterGetSnapshotRestoreRequest) MetaModTime(metaModTime time.Time) ApiClusterGetSnapshotRestoreRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiClusterGetSnapshotRestoreRequest) MetaSelfLink(metaSelfLink string) ApiClusterGetSnapshotRestoreRequest {
-	r.metaSelfLink = &metaSelfLink
 	return r
 }
 func (r ApiClusterGetSnapshotRestoreRequest) SpecPath(specPath string) ApiClusterGetSnapshotRestoreRequest {
 	r.specPath = &specPath
 	return r
 }
-func (r ApiClusterGetSnapshotRestoreRequest) StatusStatus(statusStatus string) ApiClusterGetSnapshotRestoreRequest {
-	r.statusStatus = &statusStatus
-	return r
-}
 func (r ApiClusterGetSnapshotRestoreRequest) StatusStartTime(statusStartTime time.Time) ApiClusterGetSnapshotRestoreRequest {
 	r.statusStartTime = &statusStartTime
-	return r
-}
-func (r ApiClusterGetSnapshotRestoreRequest) StatusEndTime(statusEndTime time.Time) ApiClusterGetSnapshotRestoreRequest {
-	r.statusEndTime = &statusEndTime
-	return r
-}
-func (r ApiClusterGetSnapshotRestoreRequest) StatusBackupSnapshotPath(statusBackupSnapshotPath string) ApiClusterGetSnapshotRestoreRequest {
-	r.statusBackupSnapshotPath = &statusBackupSnapshotPath
 	return r
 }
 
@@ -5358,50 +4638,14 @@ func (a *ClusterV1ApiService) GetSnapshotRestoreExecute(r ApiClusterGetSnapshotR
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaName != nil {
-		localVarQueryParams.Add("meta.name", parameterToString(*r.metaName, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
 	}
 	if r.specPath != nil {
 		localVarQueryParams.Add("spec.path", parameterToString(*r.specPath, ""))
 	}
-	if r.statusStatus != nil {
-		localVarQueryParams.Add("status.status", parameterToString(*r.statusStatus, ""))
-	}
 	if r.statusStartTime != nil {
 		localVarQueryParams.Add("status.start-time", parameterToString(*r.statusStartTime, ""))
-	}
-	if r.statusEndTime != nil {
-		localVarQueryParams.Add("status.end-time", parameterToString(*r.statusEndTime, ""))
-	}
-	if r.statusBackupSnapshotPath != nil {
-		localVarQueryParams.Add("status.backup-snapshot-path", parameterToString(*r.statusBackupSnapshotPath, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -5527,60 +4771,15 @@ type ApiClusterGetTenantRequest struct {
 	ApiService *ClusterV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specAdminUser *string
 }
 
 func (r ApiClusterGetTenantRequest) TKind(tKind string) ApiClusterGetTenantRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiClusterGetTenantRequest) TApiVersion(tApiVersion string) ApiClusterGetTenantRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiClusterGetTenantRequest) MetaTenant(metaTenant string) ApiClusterGetTenantRequest {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiClusterGetTenantRequest) MetaNamespace(metaNamespace string) ApiClusterGetTenantRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiClusterGetTenantRequest) MetaGenerationId(metaGenerationId string) ApiClusterGetTenantRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiClusterGetTenantRequest) MetaResourceVersion(metaResourceVersion string) ApiClusterGetTenantRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiClusterGetTenantRequest) MetaUuid(metaUuid string) ApiClusterGetTenantRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiClusterGetTenantRequest) MetaCreationTime(metaCreationTime time.Time) ApiClusterGetTenantRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiClusterGetTenantRequest) MetaModTime(metaModTime time.Time) ApiClusterGetTenantRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiClusterGetTenantRequest) MetaSelfLink(metaSelfLink string) ApiClusterGetTenantRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiClusterGetTenantRequest) SpecAdminUser(specAdminUser string) ApiClusterGetTenantRequest {
-	r.specAdminUser = &specAdminUser
 	return r
 }
 
@@ -5631,35 +4830,8 @@ func (a *ClusterV1ApiService) GetTenantExecute(r ApiClusterGetTenantRequest) (Cl
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specAdminUser != nil {
-		localVarQueryParams.Add("spec.admin-user", parameterToString(*r.specAdminUser, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -5784,85 +4956,15 @@ type ApiClusterGetVersionRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
 	tKind *string
-	tApiVersion *string
-	metaName *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specAutoRolloutDscVersion *string
-	statusBuildVersion *string
-	statusVcsCommit *string
-	statusBuildDate *string
-	statusRolloutBuildVersion *string
 }
 
 func (r ApiClusterGetVersionRequest) TKind(tKind string) ApiClusterGetVersionRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiClusterGetVersionRequest) TApiVersion(tApiVersion string) ApiClusterGetVersionRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiClusterGetVersionRequest) MetaName(metaName string) ApiClusterGetVersionRequest {
-	r.metaName = &metaName
-	return r
-}
-func (r ApiClusterGetVersionRequest) MetaTenant(metaTenant string) ApiClusterGetVersionRequest {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiClusterGetVersionRequest) MetaNamespace(metaNamespace string) ApiClusterGetVersionRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiClusterGetVersionRequest) MetaGenerationId(metaGenerationId string) ApiClusterGetVersionRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiClusterGetVersionRequest) MetaResourceVersion(metaResourceVersion string) ApiClusterGetVersionRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiClusterGetVersionRequest) MetaUuid(metaUuid string) ApiClusterGetVersionRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiClusterGetVersionRequest) MetaCreationTime(metaCreationTime time.Time) ApiClusterGetVersionRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiClusterGetVersionRequest) MetaModTime(metaModTime time.Time) ApiClusterGetVersionRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiClusterGetVersionRequest) MetaSelfLink(metaSelfLink string) ApiClusterGetVersionRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiClusterGetVersionRequest) SpecAutoRolloutDscVersion(specAutoRolloutDscVersion string) ApiClusterGetVersionRequest {
-	r.specAutoRolloutDscVersion = &specAutoRolloutDscVersion
-	return r
-}
-func (r ApiClusterGetVersionRequest) StatusBuildVersion(statusBuildVersion string) ApiClusterGetVersionRequest {
-	r.statusBuildVersion = &statusBuildVersion
-	return r
-}
-func (r ApiClusterGetVersionRequest) StatusVcsCommit(statusVcsCommit string) ApiClusterGetVersionRequest {
-	r.statusVcsCommit = &statusVcsCommit
-	return r
-}
-func (r ApiClusterGetVersionRequest) StatusBuildDate(statusBuildDate string) ApiClusterGetVersionRequest {
-	r.statusBuildDate = &statusBuildDate
-	return r
-}
-func (r ApiClusterGetVersionRequest) StatusRolloutBuildVersion(statusRolloutBuildVersion string) ApiClusterGetVersionRequest {
-	r.statusRolloutBuildVersion = &statusRolloutBuildVersion
 	return r
 }
 
@@ -5910,50 +5012,8 @@ func (a *ClusterV1ApiService) GetVersionExecute(r ApiClusterGetVersionRequest) (
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaName != nil {
-		localVarQueryParams.Add("meta.name", parameterToString(*r.metaName, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specAutoRolloutDscVersion != nil {
-		localVarQueryParams.Add("spec.auto-rollout-dsc-version", parameterToString(*r.specAutoRolloutDscVersion, ""))
-	}
-	if r.statusBuildVersion != nil {
-		localVarQueryParams.Add("status.build-version", parameterToString(*r.statusBuildVersion, ""))
-	}
-	if r.statusVcsCommit != nil {
-		localVarQueryParams.Add("status.vcs-commit", parameterToString(*r.statusVcsCommit, ""))
-	}
-	if r.statusBuildDate != nil {
-		localVarQueryParams.Add("status.build-date", parameterToString(*r.statusBuildDate, ""))
-	}
-	if r.statusRolloutBuildVersion != nil {
-		localVarQueryParams.Add("status.rollout-build-version", parameterToString(*r.statusRolloutBuildVersion, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -6962,6 +6022,186 @@ func (a *ClusterV1ApiService) LabelDistributedServiceCardExecute(r ApiClusterLab
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiClusterLabelDistributedServiceEntityRequest struct {
+	ctx _context.Context
+	ApiService *ClusterV1ApiService
+	oName string
+	body *ApiLabel
+}
+
+func (r ApiClusterLabelDistributedServiceEntityRequest) Body(body ApiLabel) ApiClusterLabelDistributedServiceEntityRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiClusterLabelDistributedServiceEntityRequest) Execute() (ClusterDistributedServiceEntity, *_nethttp.Response, error) {
+	return r.ApiService.LabelDistributedServiceEntityExecute(r)
+}
+
+/*
+ * LabelDistributedServiceEntity Label DistributedServiceEntity object
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param oName
+ * @return ApiClusterLabelDistributedServiceEntityRequest
+ */
+func (a *ClusterV1ApiService) LabelDistributedServiceEntity(ctx _context.Context, oName string) ApiClusterLabelDistributedServiceEntityRequest {
+	return ApiClusterLabelDistributedServiceEntityRequest{
+		ApiService: a,
+		ctx: ctx,
+		oName: oName,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return ClusterDistributedServiceEntity
+ */
+func (a *ClusterV1ApiService) LabelDistributedServiceEntityExecute(r ApiClusterLabelDistributedServiceEntityRequest) (ClusterDistributedServiceEntity, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  ClusterDistributedServiceEntity
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClusterV1ApiService.LabelDistributedServiceEntity")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/configs/cluster/v1/distributedserviceentities/{O.Name}/label"
+	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode == 401 {
+		a.client.cfg.PSMCfg.Login()
+		a.client.cfg.PSMCfg.SaveConfig()
+		return a.LabelDistributedServiceEntityExecute(r)
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiClusterLabelHostRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
@@ -7682,85 +6922,20 @@ type ApiClusterListDSCProfileRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiClusterListDSCProfileRequest) OName(oName string) ApiClusterListDSCProfileRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiClusterListDSCProfileRequest) OTenant(oTenant string) ApiClusterListDSCProfileRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiClusterListDSCProfileRequest) ONamespace(oNamespace string) ApiClusterListDSCProfileRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiClusterListDSCProfileRequest) OGenerationId(oGenerationId string) ApiClusterListDSCProfileRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiClusterListDSCProfileRequest) OResourceVersion(oResourceVersion string) ApiClusterListDSCProfileRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiClusterListDSCProfileRequest) OUuid(oUuid string) ApiClusterListDSCProfileRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiClusterListDSCProfileRequest) OCreationTime(oCreationTime time.Time) ApiClusterListDSCProfileRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiClusterListDSCProfileRequest) OModTime(oModTime time.Time) ApiClusterListDSCProfileRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiClusterListDSCProfileRequest) OSelfLink(oSelfLink string) ApiClusterListDSCProfileRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiClusterListDSCProfileRequest) LabelSelector(labelSelector string) ApiClusterListDSCProfileRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiClusterListDSCProfileRequest) FieldSelector(fieldSelector string) ApiClusterListDSCProfileRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiClusterListDSCProfileRequest) FieldChangeSelector(fieldChangeSelector []string) ApiClusterListDSCProfileRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiClusterListDSCProfileRequest) From(from int32) ApiClusterListDSCProfileRequest {
-	r.from = &from
-	return r
-}
-func (r ApiClusterListDSCProfileRequest) MaxResults(maxResults int32) ApiClusterListDSCProfileRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiClusterListDSCProfileRequest) SortOrder(sortOrder string) ApiClusterListDSCProfileRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiClusterListDSCProfileRequest) MetaOnly(metaOnly bool) ApiClusterListDSCProfileRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -7808,50 +6983,11 @@ func (a *ClusterV1ApiService) ListDSCProfileExecute(r ApiClusterListDSCProfileRe
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -7976,85 +7112,20 @@ type ApiClusterListDistributedServiceCardRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiClusterListDistributedServiceCardRequest) OName(oName string) ApiClusterListDistributedServiceCardRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiClusterListDistributedServiceCardRequest) OTenant(oTenant string) ApiClusterListDistributedServiceCardRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiClusterListDistributedServiceCardRequest) ONamespace(oNamespace string) ApiClusterListDistributedServiceCardRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiClusterListDistributedServiceCardRequest) OGenerationId(oGenerationId string) ApiClusterListDistributedServiceCardRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiClusterListDistributedServiceCardRequest) OResourceVersion(oResourceVersion string) ApiClusterListDistributedServiceCardRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiClusterListDistributedServiceCardRequest) OUuid(oUuid string) ApiClusterListDistributedServiceCardRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiClusterListDistributedServiceCardRequest) OCreationTime(oCreationTime time.Time) ApiClusterListDistributedServiceCardRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiClusterListDistributedServiceCardRequest) OModTime(oModTime time.Time) ApiClusterListDistributedServiceCardRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiClusterListDistributedServiceCardRequest) OSelfLink(oSelfLink string) ApiClusterListDistributedServiceCardRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiClusterListDistributedServiceCardRequest) LabelSelector(labelSelector string) ApiClusterListDistributedServiceCardRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiClusterListDistributedServiceCardRequest) FieldSelector(fieldSelector string) ApiClusterListDistributedServiceCardRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiClusterListDistributedServiceCardRequest) FieldChangeSelector(fieldChangeSelector []string) ApiClusterListDistributedServiceCardRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiClusterListDistributedServiceCardRequest) From(from int32) ApiClusterListDistributedServiceCardRequest {
-	r.from = &from
-	return r
-}
-func (r ApiClusterListDistributedServiceCardRequest) MaxResults(maxResults int32) ApiClusterListDistributedServiceCardRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiClusterListDistributedServiceCardRequest) SortOrder(sortOrder string) ApiClusterListDistributedServiceCardRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiClusterListDistributedServiceCardRequest) MetaOnly(metaOnly bool) ApiClusterListDistributedServiceCardRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -8102,50 +7173,11 @@ func (a *ClusterV1ApiService) ListDistributedServiceCardExecute(r ApiClusterList
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -8266,89 +7298,214 @@ func (a *ClusterV1ApiService) ListDistributedServiceCardExecute(r ApiClusterList
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiClusterListDistributedServiceEntityRequest struct {
+	ctx _context.Context
+	ApiService *ClusterV1ApiService
+	oName *string
+	oCreationTime *time.Time
+	fieldChangeSelector *[]string
+}
+
+func (r ApiClusterListDistributedServiceEntityRequest) OName(oName string) ApiClusterListDistributedServiceEntityRequest {
+	r.oName = &oName
+	return r
+}
+func (r ApiClusterListDistributedServiceEntityRequest) OCreationTime(oCreationTime time.Time) ApiClusterListDistributedServiceEntityRequest {
+	r.oCreationTime = &oCreationTime
+	return r
+}
+func (r ApiClusterListDistributedServiceEntityRequest) FieldChangeSelector(fieldChangeSelector []string) ApiClusterListDistributedServiceEntityRequest {
+	r.fieldChangeSelector = &fieldChangeSelector
+	return r
+}
+
+func (r ApiClusterListDistributedServiceEntityRequest) Execute() (ClusterDistributedServiceEntityList, *_nethttp.Response, error) {
+	return r.ApiService.ListDistributedServiceEntityExecute(r)
+}
+
+/*
+ * ListDistributedServiceEntity List DistributedServiceEntity objects
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return ApiClusterListDistributedServiceEntityRequest
+ */
+func (a *ClusterV1ApiService) ListDistributedServiceEntity(ctx _context.Context) ApiClusterListDistributedServiceEntityRequest {
+	return ApiClusterListDistributedServiceEntityRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return ClusterDistributedServiceEntityList
+ */
+func (a *ClusterV1ApiService) ListDistributedServiceEntityExecute(r ApiClusterListDistributedServiceEntityRequest) (ClusterDistributedServiceEntityList, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  ClusterDistributedServiceEntityList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClusterV1ApiService.ListDistributedServiceEntity")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/configs/cluster/v1/distributedserviceentities"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.oName != nil {
+		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
+	}
+	if r.oCreationTime != nil {
+		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
+	}
+	if r.fieldChangeSelector != nil {
+		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode == 401 {
+		a.client.cfg.PSMCfg.Login()
+		a.client.cfg.PSMCfg.SaveConfig()
+		return a.ListDistributedServiceEntityExecute(r)
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiClusterListHostRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiClusterListHostRequest) OName(oName string) ApiClusterListHostRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiClusterListHostRequest) OTenant(oTenant string) ApiClusterListHostRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiClusterListHostRequest) ONamespace(oNamespace string) ApiClusterListHostRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiClusterListHostRequest) OGenerationId(oGenerationId string) ApiClusterListHostRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiClusterListHostRequest) OResourceVersion(oResourceVersion string) ApiClusterListHostRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiClusterListHostRequest) OUuid(oUuid string) ApiClusterListHostRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiClusterListHostRequest) OCreationTime(oCreationTime time.Time) ApiClusterListHostRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiClusterListHostRequest) OModTime(oModTime time.Time) ApiClusterListHostRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiClusterListHostRequest) OSelfLink(oSelfLink string) ApiClusterListHostRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiClusterListHostRequest) LabelSelector(labelSelector string) ApiClusterListHostRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiClusterListHostRequest) FieldSelector(fieldSelector string) ApiClusterListHostRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiClusterListHostRequest) FieldChangeSelector(fieldChangeSelector []string) ApiClusterListHostRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiClusterListHostRequest) From(from int32) ApiClusterListHostRequest {
-	r.from = &from
-	return r
-}
-func (r ApiClusterListHostRequest) MaxResults(maxResults int32) ApiClusterListHostRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiClusterListHostRequest) SortOrder(sortOrder string) ApiClusterListHostRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiClusterListHostRequest) MetaOnly(metaOnly bool) ApiClusterListHostRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -8396,50 +7553,11 @@ func (a *ClusterV1ApiService) ListHostExecute(r ApiClusterListHostRequest) (Clus
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -8564,85 +7682,20 @@ type ApiClusterListNodeRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiClusterListNodeRequest) OName(oName string) ApiClusterListNodeRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiClusterListNodeRequest) OTenant(oTenant string) ApiClusterListNodeRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiClusterListNodeRequest) ONamespace(oNamespace string) ApiClusterListNodeRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiClusterListNodeRequest) OGenerationId(oGenerationId string) ApiClusterListNodeRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiClusterListNodeRequest) OResourceVersion(oResourceVersion string) ApiClusterListNodeRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiClusterListNodeRequest) OUuid(oUuid string) ApiClusterListNodeRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiClusterListNodeRequest) OCreationTime(oCreationTime time.Time) ApiClusterListNodeRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiClusterListNodeRequest) OModTime(oModTime time.Time) ApiClusterListNodeRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiClusterListNodeRequest) OSelfLink(oSelfLink string) ApiClusterListNodeRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiClusterListNodeRequest) LabelSelector(labelSelector string) ApiClusterListNodeRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiClusterListNodeRequest) FieldSelector(fieldSelector string) ApiClusterListNodeRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiClusterListNodeRequest) FieldChangeSelector(fieldChangeSelector []string) ApiClusterListNodeRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiClusterListNodeRequest) From(from int32) ApiClusterListNodeRequest {
-	r.from = &from
-	return r
-}
-func (r ApiClusterListNodeRequest) MaxResults(maxResults int32) ApiClusterListNodeRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiClusterListNodeRequest) SortOrder(sortOrder string) ApiClusterListNodeRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiClusterListNodeRequest) MetaOnly(metaOnly bool) ApiClusterListNodeRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -8690,50 +7743,11 @@ func (a *ClusterV1ApiService) ListNodeExecute(r ApiClusterListNodeRequest) (Clus
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -8858,85 +7872,20 @@ type ApiClusterListTenantRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiClusterListTenantRequest) OName(oName string) ApiClusterListTenantRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiClusterListTenantRequest) OTenant(oTenant string) ApiClusterListTenantRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiClusterListTenantRequest) ONamespace(oNamespace string) ApiClusterListTenantRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiClusterListTenantRequest) OGenerationId(oGenerationId string) ApiClusterListTenantRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiClusterListTenantRequest) OResourceVersion(oResourceVersion string) ApiClusterListTenantRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiClusterListTenantRequest) OUuid(oUuid string) ApiClusterListTenantRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiClusterListTenantRequest) OCreationTime(oCreationTime time.Time) ApiClusterListTenantRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiClusterListTenantRequest) OModTime(oModTime time.Time) ApiClusterListTenantRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiClusterListTenantRequest) OSelfLink(oSelfLink string) ApiClusterListTenantRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiClusterListTenantRequest) LabelSelector(labelSelector string) ApiClusterListTenantRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiClusterListTenantRequest) FieldSelector(fieldSelector string) ApiClusterListTenantRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiClusterListTenantRequest) FieldChangeSelector(fieldChangeSelector []string) ApiClusterListTenantRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiClusterListTenantRequest) From(from int32) ApiClusterListTenantRequest {
-	r.from = &from
-	return r
-}
-func (r ApiClusterListTenantRequest) MaxResults(maxResults int32) ApiClusterListTenantRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiClusterListTenantRequest) SortOrder(sortOrder string) ApiClusterListTenantRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiClusterListTenantRequest) MetaOnly(metaOnly bool) ApiClusterListTenantRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -8984,50 +7933,11 @@ func (a *ClusterV1ApiService) ListTenantExecute(r ApiClusterListTenantRequest) (
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -10388,6 +9298,186 @@ func (a *ClusterV1ApiService) UpdateDistributedServiceCardExecute(r ApiClusterUp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiClusterUpdateDistributedServiceEntityRequest struct {
+	ctx _context.Context
+	ApiService *ClusterV1ApiService
+	oName string
+	body *ClusterDistributedServiceEntity
+}
+
+func (r ApiClusterUpdateDistributedServiceEntityRequest) Body(body ClusterDistributedServiceEntity) ApiClusterUpdateDistributedServiceEntityRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiClusterUpdateDistributedServiceEntityRequest) Execute() (ClusterDistributedServiceEntity, *_nethttp.Response, error) {
+	return r.ApiService.UpdateDistributedServiceEntityExecute(r)
+}
+
+/*
+ * UpdateDistributedServiceEntity Update DistributedServiceEntity object
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param oName
+ * @return ApiClusterUpdateDistributedServiceEntityRequest
+ */
+func (a *ClusterV1ApiService) UpdateDistributedServiceEntity(ctx _context.Context, oName string) ApiClusterUpdateDistributedServiceEntityRequest {
+	return ApiClusterUpdateDistributedServiceEntityRequest{
+		ApiService: a,
+		ctx: ctx,
+		oName: oName,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return ClusterDistributedServiceEntity
+ */
+func (a *ClusterV1ApiService) UpdateDistributedServiceEntityExecute(r ApiClusterUpdateDistributedServiceEntityRequest) (ClusterDistributedServiceEntity, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  ClusterDistributedServiceEntity
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClusterV1ApiService.UpdateDistributedServiceEntity")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/configs/cluster/v1/distributedserviceentities/{O.Name}"
+	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode == 401 {
+		a.client.cfg.PSMCfg.Login()
+		a.client.cfg.PSMCfg.SaveConfig()
+		return a.UpdateDistributedServiceEntityExecute(r)
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiClusterUpdateHostRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
@@ -11460,85 +10550,20 @@ type ApiClusterWatchClusterRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiClusterWatchClusterRequest) OName(oName string) ApiClusterWatchClusterRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiClusterWatchClusterRequest) OTenant(oTenant string) ApiClusterWatchClusterRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiClusterWatchClusterRequest) ONamespace(oNamespace string) ApiClusterWatchClusterRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiClusterWatchClusterRequest) OGenerationId(oGenerationId string) ApiClusterWatchClusterRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiClusterWatchClusterRequest) OResourceVersion(oResourceVersion string) ApiClusterWatchClusterRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiClusterWatchClusterRequest) OUuid(oUuid string) ApiClusterWatchClusterRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiClusterWatchClusterRequest) OCreationTime(oCreationTime time.Time) ApiClusterWatchClusterRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiClusterWatchClusterRequest) OModTime(oModTime time.Time) ApiClusterWatchClusterRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiClusterWatchClusterRequest) OSelfLink(oSelfLink string) ApiClusterWatchClusterRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiClusterWatchClusterRequest) LabelSelector(labelSelector string) ApiClusterWatchClusterRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiClusterWatchClusterRequest) FieldSelector(fieldSelector string) ApiClusterWatchClusterRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiClusterWatchClusterRequest) FieldChangeSelector(fieldChangeSelector []string) ApiClusterWatchClusterRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiClusterWatchClusterRequest) From(from int32) ApiClusterWatchClusterRequest {
-	r.from = &from
-	return r
-}
-func (r ApiClusterWatchClusterRequest) MaxResults(maxResults int32) ApiClusterWatchClusterRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiClusterWatchClusterRequest) SortOrder(sortOrder string) ApiClusterWatchClusterRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiClusterWatchClusterRequest) MetaOnly(metaOnly bool) ApiClusterWatchClusterRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -11586,50 +10611,11 @@ func (a *ClusterV1ApiService) WatchClusterExecute(r ApiClusterWatchClusterReques
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -11754,85 +10740,20 @@ type ApiClusterWatchClusterProfileRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiClusterWatchClusterProfileRequest) OName(oName string) ApiClusterWatchClusterProfileRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiClusterWatchClusterProfileRequest) OTenant(oTenant string) ApiClusterWatchClusterProfileRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiClusterWatchClusterProfileRequest) ONamespace(oNamespace string) ApiClusterWatchClusterProfileRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiClusterWatchClusterProfileRequest) OGenerationId(oGenerationId string) ApiClusterWatchClusterProfileRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiClusterWatchClusterProfileRequest) OResourceVersion(oResourceVersion string) ApiClusterWatchClusterProfileRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiClusterWatchClusterProfileRequest) OUuid(oUuid string) ApiClusterWatchClusterProfileRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiClusterWatchClusterProfileRequest) OCreationTime(oCreationTime time.Time) ApiClusterWatchClusterProfileRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiClusterWatchClusterProfileRequest) OModTime(oModTime time.Time) ApiClusterWatchClusterProfileRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiClusterWatchClusterProfileRequest) OSelfLink(oSelfLink string) ApiClusterWatchClusterProfileRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiClusterWatchClusterProfileRequest) LabelSelector(labelSelector string) ApiClusterWatchClusterProfileRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiClusterWatchClusterProfileRequest) FieldSelector(fieldSelector string) ApiClusterWatchClusterProfileRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiClusterWatchClusterProfileRequest) FieldChangeSelector(fieldChangeSelector []string) ApiClusterWatchClusterProfileRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiClusterWatchClusterProfileRequest) From(from int32) ApiClusterWatchClusterProfileRequest {
-	r.from = &from
-	return r
-}
-func (r ApiClusterWatchClusterProfileRequest) MaxResults(maxResults int32) ApiClusterWatchClusterProfileRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiClusterWatchClusterProfileRequest) SortOrder(sortOrder string) ApiClusterWatchClusterProfileRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiClusterWatchClusterProfileRequest) MetaOnly(metaOnly bool) ApiClusterWatchClusterProfileRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -11880,50 +10801,11 @@ func (a *ClusterV1ApiService) WatchClusterProfileExecute(r ApiClusterWatchCluste
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -12048,85 +10930,20 @@ type ApiClusterWatchConfigurationSnapshotRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiClusterWatchConfigurationSnapshotRequest) OName(oName string) ApiClusterWatchConfigurationSnapshotRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiClusterWatchConfigurationSnapshotRequest) OTenant(oTenant string) ApiClusterWatchConfigurationSnapshotRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiClusterWatchConfigurationSnapshotRequest) ONamespace(oNamespace string) ApiClusterWatchConfigurationSnapshotRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiClusterWatchConfigurationSnapshotRequest) OGenerationId(oGenerationId string) ApiClusterWatchConfigurationSnapshotRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiClusterWatchConfigurationSnapshotRequest) OResourceVersion(oResourceVersion string) ApiClusterWatchConfigurationSnapshotRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiClusterWatchConfigurationSnapshotRequest) OUuid(oUuid string) ApiClusterWatchConfigurationSnapshotRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiClusterWatchConfigurationSnapshotRequest) OCreationTime(oCreationTime time.Time) ApiClusterWatchConfigurationSnapshotRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiClusterWatchConfigurationSnapshotRequest) OModTime(oModTime time.Time) ApiClusterWatchConfigurationSnapshotRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiClusterWatchConfigurationSnapshotRequest) OSelfLink(oSelfLink string) ApiClusterWatchConfigurationSnapshotRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiClusterWatchConfigurationSnapshotRequest) LabelSelector(labelSelector string) ApiClusterWatchConfigurationSnapshotRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiClusterWatchConfigurationSnapshotRequest) FieldSelector(fieldSelector string) ApiClusterWatchConfigurationSnapshotRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiClusterWatchConfigurationSnapshotRequest) FieldChangeSelector(fieldChangeSelector []string) ApiClusterWatchConfigurationSnapshotRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiClusterWatchConfigurationSnapshotRequest) From(from int32) ApiClusterWatchConfigurationSnapshotRequest {
-	r.from = &from
-	return r
-}
-func (r ApiClusterWatchConfigurationSnapshotRequest) MaxResults(maxResults int32) ApiClusterWatchConfigurationSnapshotRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiClusterWatchConfigurationSnapshotRequest) SortOrder(sortOrder string) ApiClusterWatchConfigurationSnapshotRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiClusterWatchConfigurationSnapshotRequest) MetaOnly(metaOnly bool) ApiClusterWatchConfigurationSnapshotRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -12174,50 +10991,11 @@ func (a *ClusterV1ApiService) WatchConfigurationSnapshotExecute(r ApiClusterWatc
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -12342,85 +11120,20 @@ type ApiClusterWatchDSCProfileRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiClusterWatchDSCProfileRequest) OName(oName string) ApiClusterWatchDSCProfileRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiClusterWatchDSCProfileRequest) OTenant(oTenant string) ApiClusterWatchDSCProfileRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiClusterWatchDSCProfileRequest) ONamespace(oNamespace string) ApiClusterWatchDSCProfileRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiClusterWatchDSCProfileRequest) OGenerationId(oGenerationId string) ApiClusterWatchDSCProfileRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiClusterWatchDSCProfileRequest) OResourceVersion(oResourceVersion string) ApiClusterWatchDSCProfileRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiClusterWatchDSCProfileRequest) OUuid(oUuid string) ApiClusterWatchDSCProfileRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiClusterWatchDSCProfileRequest) OCreationTime(oCreationTime time.Time) ApiClusterWatchDSCProfileRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiClusterWatchDSCProfileRequest) OModTime(oModTime time.Time) ApiClusterWatchDSCProfileRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiClusterWatchDSCProfileRequest) OSelfLink(oSelfLink string) ApiClusterWatchDSCProfileRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiClusterWatchDSCProfileRequest) LabelSelector(labelSelector string) ApiClusterWatchDSCProfileRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiClusterWatchDSCProfileRequest) FieldSelector(fieldSelector string) ApiClusterWatchDSCProfileRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiClusterWatchDSCProfileRequest) FieldChangeSelector(fieldChangeSelector []string) ApiClusterWatchDSCProfileRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiClusterWatchDSCProfileRequest) From(from int32) ApiClusterWatchDSCProfileRequest {
-	r.from = &from
-	return r
-}
-func (r ApiClusterWatchDSCProfileRequest) MaxResults(maxResults int32) ApiClusterWatchDSCProfileRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiClusterWatchDSCProfileRequest) SortOrder(sortOrder string) ApiClusterWatchDSCProfileRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiClusterWatchDSCProfileRequest) MetaOnly(metaOnly bool) ApiClusterWatchDSCProfileRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -12468,50 +11181,11 @@ func (a *ClusterV1ApiService) WatchDSCProfileExecute(r ApiClusterWatchDSCProfile
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -12636,85 +11310,20 @@ type ApiClusterWatchDistributedServiceCardRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiClusterWatchDistributedServiceCardRequest) OName(oName string) ApiClusterWatchDistributedServiceCardRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiClusterWatchDistributedServiceCardRequest) OTenant(oTenant string) ApiClusterWatchDistributedServiceCardRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiClusterWatchDistributedServiceCardRequest) ONamespace(oNamespace string) ApiClusterWatchDistributedServiceCardRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiClusterWatchDistributedServiceCardRequest) OGenerationId(oGenerationId string) ApiClusterWatchDistributedServiceCardRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiClusterWatchDistributedServiceCardRequest) OResourceVersion(oResourceVersion string) ApiClusterWatchDistributedServiceCardRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiClusterWatchDistributedServiceCardRequest) OUuid(oUuid string) ApiClusterWatchDistributedServiceCardRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiClusterWatchDistributedServiceCardRequest) OCreationTime(oCreationTime time.Time) ApiClusterWatchDistributedServiceCardRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiClusterWatchDistributedServiceCardRequest) OModTime(oModTime time.Time) ApiClusterWatchDistributedServiceCardRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiClusterWatchDistributedServiceCardRequest) OSelfLink(oSelfLink string) ApiClusterWatchDistributedServiceCardRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiClusterWatchDistributedServiceCardRequest) LabelSelector(labelSelector string) ApiClusterWatchDistributedServiceCardRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiClusterWatchDistributedServiceCardRequest) FieldSelector(fieldSelector string) ApiClusterWatchDistributedServiceCardRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiClusterWatchDistributedServiceCardRequest) FieldChangeSelector(fieldChangeSelector []string) ApiClusterWatchDistributedServiceCardRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiClusterWatchDistributedServiceCardRequest) From(from int32) ApiClusterWatchDistributedServiceCardRequest {
-	r.from = &from
-	return r
-}
-func (r ApiClusterWatchDistributedServiceCardRequest) MaxResults(maxResults int32) ApiClusterWatchDistributedServiceCardRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiClusterWatchDistributedServiceCardRequest) SortOrder(sortOrder string) ApiClusterWatchDistributedServiceCardRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiClusterWatchDistributedServiceCardRequest) MetaOnly(metaOnly bool) ApiClusterWatchDistributedServiceCardRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -12762,50 +11371,11 @@ func (a *ClusterV1ApiService) WatchDistributedServiceCardExecute(r ApiClusterWat
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -12926,89 +11496,214 @@ func (a *ClusterV1ApiService) WatchDistributedServiceCardExecute(r ApiClusterWat
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiClusterWatchDistributedServiceEntityRequest struct {
+	ctx _context.Context
+	ApiService *ClusterV1ApiService
+	oName *string
+	oCreationTime *time.Time
+	fieldChangeSelector *[]string
+}
+
+func (r ApiClusterWatchDistributedServiceEntityRequest) OName(oName string) ApiClusterWatchDistributedServiceEntityRequest {
+	r.oName = &oName
+	return r
+}
+func (r ApiClusterWatchDistributedServiceEntityRequest) OCreationTime(oCreationTime time.Time) ApiClusterWatchDistributedServiceEntityRequest {
+	r.oCreationTime = &oCreationTime
+	return r
+}
+func (r ApiClusterWatchDistributedServiceEntityRequest) FieldChangeSelector(fieldChangeSelector []string) ApiClusterWatchDistributedServiceEntityRequest {
+	r.fieldChangeSelector = &fieldChangeSelector
+	return r
+}
+
+func (r ApiClusterWatchDistributedServiceEntityRequest) Execute() (ClusterAutoMsgDistributedServiceEntityWatchHelper, *_nethttp.Response, error) {
+	return r.ApiService.WatchDistributedServiceEntityExecute(r)
+}
+
+/*
+ * WatchDistributedServiceEntity Watch DistributedServiceEntity objects. Supports WebSockets or HTTP long poll
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return ApiClusterWatchDistributedServiceEntityRequest
+ */
+func (a *ClusterV1ApiService) WatchDistributedServiceEntity(ctx _context.Context) ApiClusterWatchDistributedServiceEntityRequest {
+	return ApiClusterWatchDistributedServiceEntityRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return ClusterAutoMsgDistributedServiceEntityWatchHelper
+ */
+func (a *ClusterV1ApiService) WatchDistributedServiceEntityExecute(r ApiClusterWatchDistributedServiceEntityRequest) (ClusterAutoMsgDistributedServiceEntityWatchHelper, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  ClusterAutoMsgDistributedServiceEntityWatchHelper
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClusterV1ApiService.WatchDistributedServiceEntity")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/configs/cluster/v1/watch/distributedserviceentities"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.oName != nil {
+		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
+	}
+	if r.oCreationTime != nil {
+		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
+	}
+	if r.fieldChangeSelector != nil {
+		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode == 401 {
+		a.client.cfg.PSMCfg.Login()
+		a.client.cfg.PSMCfg.SaveConfig()
+		return a.WatchDistributedServiceEntityExecute(r)
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ApiStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiClusterWatchHostRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiClusterWatchHostRequest) OName(oName string) ApiClusterWatchHostRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiClusterWatchHostRequest) OTenant(oTenant string) ApiClusterWatchHostRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiClusterWatchHostRequest) ONamespace(oNamespace string) ApiClusterWatchHostRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiClusterWatchHostRequest) OGenerationId(oGenerationId string) ApiClusterWatchHostRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiClusterWatchHostRequest) OResourceVersion(oResourceVersion string) ApiClusterWatchHostRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiClusterWatchHostRequest) OUuid(oUuid string) ApiClusterWatchHostRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiClusterWatchHostRequest) OCreationTime(oCreationTime time.Time) ApiClusterWatchHostRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiClusterWatchHostRequest) OModTime(oModTime time.Time) ApiClusterWatchHostRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiClusterWatchHostRequest) OSelfLink(oSelfLink string) ApiClusterWatchHostRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiClusterWatchHostRequest) LabelSelector(labelSelector string) ApiClusterWatchHostRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiClusterWatchHostRequest) FieldSelector(fieldSelector string) ApiClusterWatchHostRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiClusterWatchHostRequest) FieldChangeSelector(fieldChangeSelector []string) ApiClusterWatchHostRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiClusterWatchHostRequest) From(from int32) ApiClusterWatchHostRequest {
-	r.from = &from
-	return r
-}
-func (r ApiClusterWatchHostRequest) MaxResults(maxResults int32) ApiClusterWatchHostRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiClusterWatchHostRequest) SortOrder(sortOrder string) ApiClusterWatchHostRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiClusterWatchHostRequest) MetaOnly(metaOnly bool) ApiClusterWatchHostRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -13056,50 +11751,11 @@ func (a *ClusterV1ApiService) WatchHostExecute(r ApiClusterWatchHostRequest) (Cl
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -13224,85 +11880,20 @@ type ApiClusterWatchNodeRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiClusterWatchNodeRequest) OName(oName string) ApiClusterWatchNodeRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiClusterWatchNodeRequest) OTenant(oTenant string) ApiClusterWatchNodeRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiClusterWatchNodeRequest) ONamespace(oNamespace string) ApiClusterWatchNodeRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiClusterWatchNodeRequest) OGenerationId(oGenerationId string) ApiClusterWatchNodeRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiClusterWatchNodeRequest) OResourceVersion(oResourceVersion string) ApiClusterWatchNodeRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiClusterWatchNodeRequest) OUuid(oUuid string) ApiClusterWatchNodeRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiClusterWatchNodeRequest) OCreationTime(oCreationTime time.Time) ApiClusterWatchNodeRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiClusterWatchNodeRequest) OModTime(oModTime time.Time) ApiClusterWatchNodeRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiClusterWatchNodeRequest) OSelfLink(oSelfLink string) ApiClusterWatchNodeRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiClusterWatchNodeRequest) LabelSelector(labelSelector string) ApiClusterWatchNodeRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiClusterWatchNodeRequest) FieldSelector(fieldSelector string) ApiClusterWatchNodeRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiClusterWatchNodeRequest) FieldChangeSelector(fieldChangeSelector []string) ApiClusterWatchNodeRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiClusterWatchNodeRequest) From(from int32) ApiClusterWatchNodeRequest {
-	r.from = &from
-	return r
-}
-func (r ApiClusterWatchNodeRequest) MaxResults(maxResults int32) ApiClusterWatchNodeRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiClusterWatchNodeRequest) SortOrder(sortOrder string) ApiClusterWatchNodeRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiClusterWatchNodeRequest) MetaOnly(metaOnly bool) ApiClusterWatchNodeRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -13350,50 +11941,11 @@ func (a *ClusterV1ApiService) WatchNodeExecute(r ApiClusterWatchNodeRequest) (Cl
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -13518,85 +12070,20 @@ type ApiClusterWatchTenantRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiClusterWatchTenantRequest) OName(oName string) ApiClusterWatchTenantRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiClusterWatchTenantRequest) OTenant(oTenant string) ApiClusterWatchTenantRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiClusterWatchTenantRequest) ONamespace(oNamespace string) ApiClusterWatchTenantRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiClusterWatchTenantRequest) OGenerationId(oGenerationId string) ApiClusterWatchTenantRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiClusterWatchTenantRequest) OResourceVersion(oResourceVersion string) ApiClusterWatchTenantRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiClusterWatchTenantRequest) OUuid(oUuid string) ApiClusterWatchTenantRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiClusterWatchTenantRequest) OCreationTime(oCreationTime time.Time) ApiClusterWatchTenantRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiClusterWatchTenantRequest) OModTime(oModTime time.Time) ApiClusterWatchTenantRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiClusterWatchTenantRequest) OSelfLink(oSelfLink string) ApiClusterWatchTenantRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiClusterWatchTenantRequest) LabelSelector(labelSelector string) ApiClusterWatchTenantRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiClusterWatchTenantRequest) FieldSelector(fieldSelector string) ApiClusterWatchTenantRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiClusterWatchTenantRequest) FieldChangeSelector(fieldChangeSelector []string) ApiClusterWatchTenantRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiClusterWatchTenantRequest) From(from int32) ApiClusterWatchTenantRequest {
-	r.from = &from
-	return r
-}
-func (r ApiClusterWatchTenantRequest) MaxResults(maxResults int32) ApiClusterWatchTenantRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiClusterWatchTenantRequest) SortOrder(sortOrder string) ApiClusterWatchTenantRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiClusterWatchTenantRequest) MetaOnly(metaOnly bool) ApiClusterWatchTenantRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -13644,50 +12131,11 @@ func (a *ClusterV1ApiService) WatchTenantExecute(r ApiClusterWatchTenantRequest)
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -13812,85 +12260,20 @@ type ApiClusterWatchVersionRequest struct {
 	ctx _context.Context
 	ApiService *ClusterV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiClusterWatchVersionRequest) OName(oName string) ApiClusterWatchVersionRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiClusterWatchVersionRequest) OTenant(oTenant string) ApiClusterWatchVersionRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiClusterWatchVersionRequest) ONamespace(oNamespace string) ApiClusterWatchVersionRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiClusterWatchVersionRequest) OGenerationId(oGenerationId string) ApiClusterWatchVersionRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiClusterWatchVersionRequest) OResourceVersion(oResourceVersion string) ApiClusterWatchVersionRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiClusterWatchVersionRequest) OUuid(oUuid string) ApiClusterWatchVersionRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiClusterWatchVersionRequest) OCreationTime(oCreationTime time.Time) ApiClusterWatchVersionRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiClusterWatchVersionRequest) OModTime(oModTime time.Time) ApiClusterWatchVersionRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiClusterWatchVersionRequest) OSelfLink(oSelfLink string) ApiClusterWatchVersionRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiClusterWatchVersionRequest) LabelSelector(labelSelector string) ApiClusterWatchVersionRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiClusterWatchVersionRequest) FieldSelector(fieldSelector string) ApiClusterWatchVersionRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiClusterWatchVersionRequest) FieldChangeSelector(fieldChangeSelector []string) ApiClusterWatchVersionRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiClusterWatchVersionRequest) From(from int32) ApiClusterWatchVersionRequest {
-	r.from = &from
-	return r
-}
-func (r ApiClusterWatchVersionRequest) MaxResults(maxResults int32) ApiClusterWatchVersionRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiClusterWatchVersionRequest) SortOrder(sortOrder string) ApiClusterWatchVersionRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiClusterWatchVersionRequest) MetaOnly(metaOnly bool) ApiClusterWatchVersionRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -13938,50 +12321,11 @@ func (a *ClusterV1ApiService) WatchVersionExecute(r ApiClusterWatchVersionReques
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

@@ -1096,367 +1096,10 @@ func (a *SecurityV1ApiService) AddNetworkSecurityPolicy1Execute(r ApiSecurityAdd
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSecurityAddSecurityGroupRequest struct {
-	ctx _context.Context
-	ApiService *SecurityV1ApiService
-	oTenant string
-	body *SecuritySecurityGroup
-}
-
-func (r ApiSecurityAddSecurityGroupRequest) Body(body SecuritySecurityGroup) ApiSecurityAddSecurityGroupRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiSecurityAddSecurityGroupRequest) Execute() (SecuritySecurityGroup, *_nethttp.Response, error) {
-	return r.ApiService.AddSecurityGroupExecute(r)
-}
-
-/*
- * AddSecurityGroup Create SecurityGroup object
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param oTenant
- * @return ApiSecurityAddSecurityGroupRequest
- */
-func (a *SecurityV1ApiService) AddSecurityGroup(ctx _context.Context, oTenant string) ApiSecurityAddSecurityGroupRequest {
-	return ApiSecurityAddSecurityGroupRequest{
-		ApiService: a,
-		ctx: ctx,
-		oTenant: oTenant,
-	}
-}
-
-/*
- * Execute executes the request
- * @return SecuritySecurityGroup
- */
-func (a *SecurityV1ApiService) AddSecurityGroupExecute(r ApiSecurityAddSecurityGroupRequest) (SecuritySecurityGroup, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SecuritySecurityGroup
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityV1ApiService.AddSecurityGroup")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/configs/security/v1/tenant/{O.Tenant}/security-groups"
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode == 401 {
-		a.client.cfg.PSMCfg.Login()
-		a.client.cfg.PSMCfg.SaveConfig()
-		return a.AddSecurityGroupExecute(r)
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 412 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 501 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiSecurityAddSecurityGroup1Request struct {
-	ctx _context.Context
-	ApiService *SecurityV1ApiService
-	body *SecuritySecurityGroup
-}
-
-func (r ApiSecurityAddSecurityGroup1Request) Body(body SecuritySecurityGroup) ApiSecurityAddSecurityGroup1Request {
-	r.body = &body
-	return r
-}
-
-func (r ApiSecurityAddSecurityGroup1Request) Execute() (SecuritySecurityGroup, *_nethttp.Response, error) {
-	return r.ApiService.AddSecurityGroup1Execute(r)
-}
-
-/*
- * AddSecurityGroup1 Create SecurityGroup object
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiSecurityAddSecurityGroup1Request
- */
-func (a *SecurityV1ApiService) AddSecurityGroup1(ctx _context.Context) ApiSecurityAddSecurityGroup1Request {
-	return ApiSecurityAddSecurityGroup1Request{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-/*
- * Execute executes the request
- * @return SecuritySecurityGroup
- */
-func (a *SecurityV1ApiService) AddSecurityGroup1Execute(r ApiSecurityAddSecurityGroup1Request) (SecuritySecurityGroup, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SecuritySecurityGroup
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityV1ApiService.AddSecurityGroup1")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/configs/security/v1/security-groups"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode == 401 {
-		a.client.cfg.PSMCfg.Login()
-		a.client.cfg.PSMCfg.SaveConfig()
-		return a.AddSecurityGroup1Execute(r)
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 412 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 501 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ApiSecurityDeleteAppRequest struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oTenant string
-	oName string
 }
 
 
@@ -1468,15 +1111,13 @@ func (r ApiSecurityDeleteAppRequest) Execute() (SecurityApp, *_nethttp.Response,
  * DeleteApp Delete App object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiSecurityDeleteAppRequest
  */
-func (a *SecurityV1ApiService) DeleteApp(ctx _context.Context, oTenant string, oName string) ApiSecurityDeleteAppRequest {
+func (a *SecurityV1ApiService) DeleteApp(ctx _context.Context, oTenant string) ApiSecurityDeleteAppRequest {
 	return ApiSecurityDeleteAppRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -1501,7 +1142,6 @@ func (a *SecurityV1ApiService) DeleteAppExecute(r ApiSecurityDeleteAppRequest) (
 
 	localVarPath := localBasePath + "/configs/security/v1/tenant/{O.Tenant}/apps/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1800,7 +1440,6 @@ type ApiSecurityDeleteIPSecPolicyRequest struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oTenant string
-	oName string
 }
 
 
@@ -1812,15 +1451,13 @@ func (r ApiSecurityDeleteIPSecPolicyRequest) Execute() (SecurityIPSecPolicy, *_n
  * DeleteIPSecPolicy Delete IPSecPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiSecurityDeleteIPSecPolicyRequest
  */
-func (a *SecurityV1ApiService) DeleteIPSecPolicy(ctx _context.Context, oTenant string, oName string) ApiSecurityDeleteIPSecPolicyRequest {
+func (a *SecurityV1ApiService) DeleteIPSecPolicy(ctx _context.Context, oTenant string) ApiSecurityDeleteIPSecPolicyRequest {
 	return ApiSecurityDeleteIPSecPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -1845,7 +1482,6 @@ func (a *SecurityV1ApiService) DeleteIPSecPolicyExecute(r ApiSecurityDeleteIPSec
 
 	localVarPath := localBasePath + "/configs/security/v1/tenant/{O.Tenant}/ipsecpolicies/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -2144,7 +1780,6 @@ type ApiSecurityDeleteNetworkSecurityPolicyRequest struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oTenant string
-	oName string
 }
 
 
@@ -2156,15 +1791,13 @@ func (r ApiSecurityDeleteNetworkSecurityPolicyRequest) Execute() (SecurityNetwor
  * DeleteNetworkSecurityPolicy Delete NetworkSecurityPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiSecurityDeleteNetworkSecurityPolicyRequest
  */
-func (a *SecurityV1ApiService) DeleteNetworkSecurityPolicy(ctx _context.Context, oTenant string, oName string) ApiSecurityDeleteNetworkSecurityPolicyRequest {
+func (a *SecurityV1ApiService) DeleteNetworkSecurityPolicy(ctx _context.Context, oTenant string) ApiSecurityDeleteNetworkSecurityPolicyRequest {
 	return ApiSecurityDeleteNetworkSecurityPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -2189,7 +1822,6 @@ func (a *SecurityV1ApiService) DeleteNetworkSecurityPolicyExecute(r ApiSecurityD
 
 	localVarPath := localBasePath + "/configs/security/v1/tenant/{O.Tenant}/networksecuritypolicies/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -2484,374 +2116,13 @@ func (a *SecurityV1ApiService) DeleteNetworkSecurityPolicy1Execute(r ApiSecurity
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSecurityDeleteSecurityGroupRequest struct {
-	ctx _context.Context
-	ApiService *SecurityV1ApiService
-	oTenant string
-	oName string
-}
-
-
-func (r ApiSecurityDeleteSecurityGroupRequest) Execute() (SecuritySecurityGroup, *_nethttp.Response, error) {
-	return r.ApiService.DeleteSecurityGroupExecute(r)
-}
-
-/*
- * DeleteSecurityGroup Delete SecurityGroup object
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param oTenant
- * @param oName
- * @return ApiSecurityDeleteSecurityGroupRequest
- */
-func (a *SecurityV1ApiService) DeleteSecurityGroup(ctx _context.Context, oTenant string, oName string) ApiSecurityDeleteSecurityGroupRequest {
-	return ApiSecurityDeleteSecurityGroupRequest{
-		ApiService: a,
-		ctx: ctx,
-		oTenant: oTenant,
-		oName: oName,
-	}
-}
-
-/*
- * Execute executes the request
- * @return SecuritySecurityGroup
- */
-func (a *SecurityV1ApiService) DeleteSecurityGroupExecute(r ApiSecurityDeleteSecurityGroupRequest) (SecuritySecurityGroup, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SecuritySecurityGroup
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityV1ApiService.DeleteSecurityGroup")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/configs/security/v1/tenant/{O.Tenant}/security-groups/{O.Name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode == 401 {
-		a.client.cfg.PSMCfg.Login()
-		a.client.cfg.PSMCfg.SaveConfig()
-		return a.DeleteSecurityGroupExecute(r)
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 412 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 501 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiSecurityDeleteSecurityGroup1Request struct {
-	ctx _context.Context
-	ApiService *SecurityV1ApiService
-	oName string
-}
-
-
-func (r ApiSecurityDeleteSecurityGroup1Request) Execute() (SecuritySecurityGroup, *_nethttp.Response, error) {
-	return r.ApiService.DeleteSecurityGroup1Execute(r)
-}
-
-/*
- * DeleteSecurityGroup1 Delete SecurityGroup object
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param oName
- * @return ApiSecurityDeleteSecurityGroup1Request
- */
-func (a *SecurityV1ApiService) DeleteSecurityGroup1(ctx _context.Context, oName string) ApiSecurityDeleteSecurityGroup1Request {
-	return ApiSecurityDeleteSecurityGroup1Request{
-		ApiService: a,
-		ctx: ctx,
-		oName: oName,
-	}
-}
-
-/*
- * Execute executes the request
- * @return SecuritySecurityGroup
- */
-func (a *SecurityV1ApiService) DeleteSecurityGroup1Execute(r ApiSecurityDeleteSecurityGroup1Request) (SecuritySecurityGroup, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SecuritySecurityGroup
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityV1ApiService.DeleteSecurityGroup1")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/configs/security/v1/security-groups/{O.Name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode == 401 {
-		a.client.cfg.PSMCfg.Login()
-		a.client.cfg.PSMCfg.SaveConfig()
-		return a.DeleteSecurityGroup1Execute(r)
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 412 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 501 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ApiSecurityGetAppRequest struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specTimeout *string
 	algType *string
-	icmpType *string
-	icmpCode *string
-	dnsDropMultiQuestionPackets *bool
-	dnsDropLargeDomainNamePackets *bool
-	dnsDropLongLabelPackets *bool
-	dnsMaxMessageLength *int64
-	dnsQueryResponseTimeout *string
-	ftpAllowMismatchIpAddress *bool
 	statusAttachedPolicies *[]string
 }
 
@@ -2859,76 +2130,12 @@ func (r ApiSecurityGetAppRequest) TKind(tKind string) ApiSecurityGetAppRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiSecurityGetAppRequest) TApiVersion(tApiVersion string) ApiSecurityGetAppRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiSecurityGetAppRequest) MetaNamespace(metaNamespace string) ApiSecurityGetAppRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiSecurityGetAppRequest) MetaGenerationId(metaGenerationId string) ApiSecurityGetAppRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiSecurityGetAppRequest) MetaResourceVersion(metaResourceVersion string) ApiSecurityGetAppRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiSecurityGetAppRequest) MetaUuid(metaUuid string) ApiSecurityGetAppRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiSecurityGetAppRequest) MetaCreationTime(metaCreationTime time.Time) ApiSecurityGetAppRequest {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiSecurityGetAppRequest) MetaModTime(metaModTime time.Time) ApiSecurityGetAppRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiSecurityGetAppRequest) MetaSelfLink(metaSelfLink string) ApiSecurityGetAppRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiSecurityGetAppRequest) SpecTimeout(specTimeout string) ApiSecurityGetAppRequest {
-	r.specTimeout = &specTimeout
-	return r
-}
 func (r ApiSecurityGetAppRequest) AlgType(algType string) ApiSecurityGetAppRequest {
 	r.algType = &algType
-	return r
-}
-func (r ApiSecurityGetAppRequest) IcmpType(icmpType string) ApiSecurityGetAppRequest {
-	r.icmpType = &icmpType
-	return r
-}
-func (r ApiSecurityGetAppRequest) IcmpCode(icmpCode string) ApiSecurityGetAppRequest {
-	r.icmpCode = &icmpCode
-	return r
-}
-func (r ApiSecurityGetAppRequest) DnsDropMultiQuestionPackets(dnsDropMultiQuestionPackets bool) ApiSecurityGetAppRequest {
-	r.dnsDropMultiQuestionPackets = &dnsDropMultiQuestionPackets
-	return r
-}
-func (r ApiSecurityGetAppRequest) DnsDropLargeDomainNamePackets(dnsDropLargeDomainNamePackets bool) ApiSecurityGetAppRequest {
-	r.dnsDropLargeDomainNamePackets = &dnsDropLargeDomainNamePackets
-	return r
-}
-func (r ApiSecurityGetAppRequest) DnsDropLongLabelPackets(dnsDropLongLabelPackets bool) ApiSecurityGetAppRequest {
-	r.dnsDropLongLabelPackets = &dnsDropLongLabelPackets
-	return r
-}
-func (r ApiSecurityGetAppRequest) DnsMaxMessageLength(dnsMaxMessageLength int64) ApiSecurityGetAppRequest {
-	r.dnsMaxMessageLength = &dnsMaxMessageLength
-	return r
-}
-func (r ApiSecurityGetAppRequest) DnsQueryResponseTimeout(dnsQueryResponseTimeout string) ApiSecurityGetAppRequest {
-	r.dnsQueryResponseTimeout = &dnsQueryResponseTimeout
-	return r
-}
-func (r ApiSecurityGetAppRequest) FtpAllowMismatchIpAddress(ftpAllowMismatchIpAddress bool) ApiSecurityGetAppRequest {
-	r.ftpAllowMismatchIpAddress = &ftpAllowMismatchIpAddress
 	return r
 }
 func (r ApiSecurityGetAppRequest) StatusAttachedPolicies(statusAttachedPolicies []string) ApiSecurityGetAppRequest {
@@ -2944,15 +2151,13 @@ func (r ApiSecurityGetAppRequest) Execute() (SecurityApp, *_nethttp.Response, er
  * GetApp Get App object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiSecurityGetAppRequest
  */
-func (a *SecurityV1ApiService) GetApp(ctx _context.Context, oTenant string, oName string) ApiSecurityGetAppRequest {
+func (a *SecurityV1ApiService) GetApp(ctx _context.Context, oTenant string) ApiSecurityGetAppRequest {
 	return ApiSecurityGetAppRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -2977,7 +2182,6 @@ func (a *SecurityV1ApiService) GetAppExecute(r ApiSecurityGetAppRequest) (Securi
 
 	localVarPath := localBasePath + "/configs/security/v1/tenant/{O.Tenant}/apps/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -2986,59 +2190,11 @@ func (a *SecurityV1ApiService) GetAppExecute(r ApiSecurityGetAppRequest) (Securi
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specTimeout != nil {
-		localVarQueryParams.Add("spec.timeout", parameterToString(*r.specTimeout, ""))
-	}
 	if r.algType != nil {
 		localVarQueryParams.Add("alg.type", parameterToString(*r.algType, ""))
-	}
-	if r.icmpType != nil {
-		localVarQueryParams.Add("icmp.type", parameterToString(*r.icmpType, ""))
-	}
-	if r.icmpCode != nil {
-		localVarQueryParams.Add("icmp.code", parameterToString(*r.icmpCode, ""))
-	}
-	if r.dnsDropMultiQuestionPackets != nil {
-		localVarQueryParams.Add("dns.drop-multi-question-packets", parameterToString(*r.dnsDropMultiQuestionPackets, ""))
-	}
-	if r.dnsDropLargeDomainNamePackets != nil {
-		localVarQueryParams.Add("dns.drop-large-domain-name-packets", parameterToString(*r.dnsDropLargeDomainNamePackets, ""))
-	}
-	if r.dnsDropLongLabelPackets != nil {
-		localVarQueryParams.Add("dns.drop-long-label-packets", parameterToString(*r.dnsDropLongLabelPackets, ""))
-	}
-	if r.dnsMaxMessageLength != nil {
-		localVarQueryParams.Add("dns.max-message-length", parameterToString(*r.dnsMaxMessageLength, ""))
-	}
-	if r.dnsQueryResponseTimeout != nil {
-		localVarQueryParams.Add("dns.query-response-timeout", parameterToString(*r.dnsQueryResponseTimeout, ""))
-	}
-	if r.ftpAllowMismatchIpAddress != nil {
-		localVarQueryParams.Add("ftp.allow-mismatch-ip-address", parameterToString(*r.ftpAllowMismatchIpAddress, ""))
 	}
 	if r.statusAttachedPolicies != nil {
 		localVarQueryParams.Add("status.attached-policies", parameterToString(*r.statusAttachedPolicies, "csv"))
@@ -3167,25 +2323,8 @@ type ApiSecurityGetApp1Request struct {
 	ApiService *SecurityV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specTimeout *string
 	algType *string
-	icmpType *string
-	icmpCode *string
-	dnsDropMultiQuestionPackets *bool
-	dnsDropLargeDomainNamePackets *bool
-	dnsDropLongLabelPackets *bool
-	dnsMaxMessageLength *int64
-	dnsQueryResponseTimeout *string
-	ftpAllowMismatchIpAddress *bool
 	statusAttachedPolicies *[]string
 }
 
@@ -3193,80 +2332,12 @@ func (r ApiSecurityGetApp1Request) TKind(tKind string) ApiSecurityGetApp1Request
 	r.tKind = &tKind
 	return r
 }
-func (r ApiSecurityGetApp1Request) TApiVersion(tApiVersion string) ApiSecurityGetApp1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiSecurityGetApp1Request) MetaTenant(metaTenant string) ApiSecurityGetApp1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiSecurityGetApp1Request) MetaNamespace(metaNamespace string) ApiSecurityGetApp1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiSecurityGetApp1Request) MetaGenerationId(metaGenerationId string) ApiSecurityGetApp1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiSecurityGetApp1Request) MetaResourceVersion(metaResourceVersion string) ApiSecurityGetApp1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiSecurityGetApp1Request) MetaUuid(metaUuid string) ApiSecurityGetApp1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiSecurityGetApp1Request) MetaCreationTime(metaCreationTime time.Time) ApiSecurityGetApp1Request {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiSecurityGetApp1Request) MetaModTime(metaModTime time.Time) ApiSecurityGetApp1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiSecurityGetApp1Request) MetaSelfLink(metaSelfLink string) ApiSecurityGetApp1Request {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiSecurityGetApp1Request) SpecTimeout(specTimeout string) ApiSecurityGetApp1Request {
-	r.specTimeout = &specTimeout
-	return r
-}
 func (r ApiSecurityGetApp1Request) AlgType(algType string) ApiSecurityGetApp1Request {
 	r.algType = &algType
-	return r
-}
-func (r ApiSecurityGetApp1Request) IcmpType(icmpType string) ApiSecurityGetApp1Request {
-	r.icmpType = &icmpType
-	return r
-}
-func (r ApiSecurityGetApp1Request) IcmpCode(icmpCode string) ApiSecurityGetApp1Request {
-	r.icmpCode = &icmpCode
-	return r
-}
-func (r ApiSecurityGetApp1Request) DnsDropMultiQuestionPackets(dnsDropMultiQuestionPackets bool) ApiSecurityGetApp1Request {
-	r.dnsDropMultiQuestionPackets = &dnsDropMultiQuestionPackets
-	return r
-}
-func (r ApiSecurityGetApp1Request) DnsDropLargeDomainNamePackets(dnsDropLargeDomainNamePackets bool) ApiSecurityGetApp1Request {
-	r.dnsDropLargeDomainNamePackets = &dnsDropLargeDomainNamePackets
-	return r
-}
-func (r ApiSecurityGetApp1Request) DnsDropLongLabelPackets(dnsDropLongLabelPackets bool) ApiSecurityGetApp1Request {
-	r.dnsDropLongLabelPackets = &dnsDropLongLabelPackets
-	return r
-}
-func (r ApiSecurityGetApp1Request) DnsMaxMessageLength(dnsMaxMessageLength int64) ApiSecurityGetApp1Request {
-	r.dnsMaxMessageLength = &dnsMaxMessageLength
-	return r
-}
-func (r ApiSecurityGetApp1Request) DnsQueryResponseTimeout(dnsQueryResponseTimeout string) ApiSecurityGetApp1Request {
-	r.dnsQueryResponseTimeout = &dnsQueryResponseTimeout
-	return r
-}
-func (r ApiSecurityGetApp1Request) FtpAllowMismatchIpAddress(ftpAllowMismatchIpAddress bool) ApiSecurityGetApp1Request {
-	r.ftpAllowMismatchIpAddress = &ftpAllowMismatchIpAddress
 	return r
 }
 func (r ApiSecurityGetApp1Request) StatusAttachedPolicies(statusAttachedPolicies []string) ApiSecurityGetApp1Request {
@@ -3321,62 +2392,11 @@ func (a *SecurityV1ApiService) GetApp1Execute(r ApiSecurityGetApp1Request) (Secu
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specTimeout != nil {
-		localVarQueryParams.Add("spec.timeout", parameterToString(*r.specTimeout, ""))
-	}
 	if r.algType != nil {
 		localVarQueryParams.Add("alg.type", parameterToString(*r.algType, ""))
-	}
-	if r.icmpType != nil {
-		localVarQueryParams.Add("icmp.type", parameterToString(*r.icmpType, ""))
-	}
-	if r.icmpCode != nil {
-		localVarQueryParams.Add("icmp.code", parameterToString(*r.icmpCode, ""))
-	}
-	if r.dnsDropMultiQuestionPackets != nil {
-		localVarQueryParams.Add("dns.drop-multi-question-packets", parameterToString(*r.dnsDropMultiQuestionPackets, ""))
-	}
-	if r.dnsDropLargeDomainNamePackets != nil {
-		localVarQueryParams.Add("dns.drop-large-domain-name-packets", parameterToString(*r.dnsDropLargeDomainNamePackets, ""))
-	}
-	if r.dnsDropLongLabelPackets != nil {
-		localVarQueryParams.Add("dns.drop-long-label-packets", parameterToString(*r.dnsDropLongLabelPackets, ""))
-	}
-	if r.dnsMaxMessageLength != nil {
-		localVarQueryParams.Add("dns.max-message-length", parameterToString(*r.dnsMaxMessageLength, ""))
-	}
-	if r.dnsQueryResponseTimeout != nil {
-		localVarQueryParams.Add("dns.query-response-timeout", parameterToString(*r.dnsQueryResponseTimeout, ""))
-	}
-	if r.ftpAllowMismatchIpAddress != nil {
-		localVarQueryParams.Add("ftp.allow-mismatch-ip-address", parameterToString(*r.ftpAllowMismatchIpAddress, ""))
 	}
 	if r.statusAttachedPolicies != nil {
 		localVarQueryParams.Add("status.attached-policies", parameterToString(*r.statusAttachedPolicies, "csv"))
@@ -3504,37 +2524,8 @@ type ApiSecurityGetFirewallProfileRequest struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specSessionIdleTimeout *string
-	specTcpConnectionSetupTimeout *string
-	specTcpCloseTimeout *string
-	specTcpHalfClosedTimeout *string
-	specTcpDropTimeout *string
-	specUdpDropTimeout *string
-	specIcmpDropTimeout *string
-	specDropTimeout *string
-	specTcpTimeout *string
-	specUdpTimeout *string
-	specIcmpTimeout *string
-	specTcpHalfOpenSessionLimit *int64
-	specUdpActiveSessionLimit *int64
-	specIcmpActiveSessionLimit *int64
-	specDetectApp *bool
-	specConnectionTracking *bool
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
 	propagationStatusPendingDscs *[]string
 }
 
@@ -3542,120 +2533,8 @@ func (r ApiSecurityGetFirewallProfileRequest) TKind(tKind string) ApiSecurityGet
 	r.tKind = &tKind
 	return r
 }
-func (r ApiSecurityGetFirewallProfileRequest) TApiVersion(tApiVersion string) ApiSecurityGetFirewallProfileRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) MetaNamespace(metaNamespace string) ApiSecurityGetFirewallProfileRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) MetaGenerationId(metaGenerationId string) ApiSecurityGetFirewallProfileRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) MetaResourceVersion(metaResourceVersion string) ApiSecurityGetFirewallProfileRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) MetaUuid(metaUuid string) ApiSecurityGetFirewallProfileRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiSecurityGetFirewallProfileRequest) MetaCreationTime(metaCreationTime time.Time) ApiSecurityGetFirewallProfileRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) MetaModTime(metaModTime time.Time) ApiSecurityGetFirewallProfileRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) MetaSelfLink(metaSelfLink string) ApiSecurityGetFirewallProfileRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) SpecSessionIdleTimeout(specSessionIdleTimeout string) ApiSecurityGetFirewallProfileRequest {
-	r.specSessionIdleTimeout = &specSessionIdleTimeout
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) SpecTcpConnectionSetupTimeout(specTcpConnectionSetupTimeout string) ApiSecurityGetFirewallProfileRequest {
-	r.specTcpConnectionSetupTimeout = &specTcpConnectionSetupTimeout
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) SpecTcpCloseTimeout(specTcpCloseTimeout string) ApiSecurityGetFirewallProfileRequest {
-	r.specTcpCloseTimeout = &specTcpCloseTimeout
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) SpecTcpHalfClosedTimeout(specTcpHalfClosedTimeout string) ApiSecurityGetFirewallProfileRequest {
-	r.specTcpHalfClosedTimeout = &specTcpHalfClosedTimeout
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) SpecTcpDropTimeout(specTcpDropTimeout string) ApiSecurityGetFirewallProfileRequest {
-	r.specTcpDropTimeout = &specTcpDropTimeout
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) SpecUdpDropTimeout(specUdpDropTimeout string) ApiSecurityGetFirewallProfileRequest {
-	r.specUdpDropTimeout = &specUdpDropTimeout
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) SpecIcmpDropTimeout(specIcmpDropTimeout string) ApiSecurityGetFirewallProfileRequest {
-	r.specIcmpDropTimeout = &specIcmpDropTimeout
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) SpecDropTimeout(specDropTimeout string) ApiSecurityGetFirewallProfileRequest {
-	r.specDropTimeout = &specDropTimeout
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) SpecTcpTimeout(specTcpTimeout string) ApiSecurityGetFirewallProfileRequest {
-	r.specTcpTimeout = &specTcpTimeout
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) SpecUdpTimeout(specUdpTimeout string) ApiSecurityGetFirewallProfileRequest {
-	r.specUdpTimeout = &specUdpTimeout
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) SpecIcmpTimeout(specIcmpTimeout string) ApiSecurityGetFirewallProfileRequest {
-	r.specIcmpTimeout = &specIcmpTimeout
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) SpecTcpHalfOpenSessionLimit(specTcpHalfOpenSessionLimit int64) ApiSecurityGetFirewallProfileRequest {
-	r.specTcpHalfOpenSessionLimit = &specTcpHalfOpenSessionLimit
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) SpecUdpActiveSessionLimit(specUdpActiveSessionLimit int64) ApiSecurityGetFirewallProfileRequest {
-	r.specUdpActiveSessionLimit = &specUdpActiveSessionLimit
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) SpecIcmpActiveSessionLimit(specIcmpActiveSessionLimit int64) ApiSecurityGetFirewallProfileRequest {
-	r.specIcmpActiveSessionLimit = &specIcmpActiveSessionLimit
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) SpecDetectApp(specDetectApp bool) ApiSecurityGetFirewallProfileRequest {
-	r.specDetectApp = &specDetectApp
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) SpecConnectionTracking(specConnectionTracking bool) ApiSecurityGetFirewallProfileRequest {
-	r.specConnectionTracking = &specConnectionTracking
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiSecurityGetFirewallProfileRequest {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) PropagationStatusUpdated(propagationStatusUpdated int32) ApiSecurityGetFirewallProfileRequest {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) PropagationStatusPending(propagationStatusPending int32) ApiSecurityGetFirewallProfileRequest {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiSecurityGetFirewallProfileRequest {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiSecurityGetFirewallProfileRequest) PropagationStatusStatus(propagationStatusStatus string) ApiSecurityGetFirewallProfileRequest {
-	r.propagationStatusStatus = &propagationStatusStatus
 	return r
 }
 func (r ApiSecurityGetFirewallProfileRequest) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiSecurityGetFirewallProfileRequest {
@@ -3671,15 +2550,13 @@ func (r ApiSecurityGetFirewallProfileRequest) Execute() (SecurityFirewallProfile
  * GetFirewallProfile Get FirewallProfile object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiSecurityGetFirewallProfileRequest
  */
-func (a *SecurityV1ApiService) GetFirewallProfile(ctx _context.Context, oTenant string, oName string) ApiSecurityGetFirewallProfileRequest {
+func (a *SecurityV1ApiService) GetFirewallProfile(ctx _context.Context, oTenant string) ApiSecurityGetFirewallProfileRequest {
 	return ApiSecurityGetFirewallProfileRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -3704,7 +2581,6 @@ func (a *SecurityV1ApiService) GetFirewallProfileExecute(r ApiSecurityGetFirewal
 
 	localVarPath := localBasePath + "/configs/security/v1/tenant/{O.Tenant}/firewallprofiles/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -3713,92 +2589,8 @@ func (a *SecurityV1ApiService) GetFirewallProfileExecute(r ApiSecurityGetFirewal
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specSessionIdleTimeout != nil {
-		localVarQueryParams.Add("spec.session-idle-timeout", parameterToString(*r.specSessionIdleTimeout, ""))
-	}
-	if r.specTcpConnectionSetupTimeout != nil {
-		localVarQueryParams.Add("spec.tcp-connection-setup-timeout", parameterToString(*r.specTcpConnectionSetupTimeout, ""))
-	}
-	if r.specTcpCloseTimeout != nil {
-		localVarQueryParams.Add("spec.tcp-close-timeout", parameterToString(*r.specTcpCloseTimeout, ""))
-	}
-	if r.specTcpHalfClosedTimeout != nil {
-		localVarQueryParams.Add("spec.tcp-half-closed-timeout", parameterToString(*r.specTcpHalfClosedTimeout, ""))
-	}
-	if r.specTcpDropTimeout != nil {
-		localVarQueryParams.Add("spec.tcp-drop-timeout", parameterToString(*r.specTcpDropTimeout, ""))
-	}
-	if r.specUdpDropTimeout != nil {
-		localVarQueryParams.Add("spec.udp-drop-timeout", parameterToString(*r.specUdpDropTimeout, ""))
-	}
-	if r.specIcmpDropTimeout != nil {
-		localVarQueryParams.Add("spec.icmp-drop-timeout", parameterToString(*r.specIcmpDropTimeout, ""))
-	}
-	if r.specDropTimeout != nil {
-		localVarQueryParams.Add("spec.drop-timeout", parameterToString(*r.specDropTimeout, ""))
-	}
-	if r.specTcpTimeout != nil {
-		localVarQueryParams.Add("spec.tcp-timeout", parameterToString(*r.specTcpTimeout, ""))
-	}
-	if r.specUdpTimeout != nil {
-		localVarQueryParams.Add("spec.udp-timeout", parameterToString(*r.specUdpTimeout, ""))
-	}
-	if r.specIcmpTimeout != nil {
-		localVarQueryParams.Add("spec.icmp-timeout", parameterToString(*r.specIcmpTimeout, ""))
-	}
-	if r.specTcpHalfOpenSessionLimit != nil {
-		localVarQueryParams.Add("spec.tcp-half-open-session-limit", parameterToString(*r.specTcpHalfOpenSessionLimit, ""))
-	}
-	if r.specUdpActiveSessionLimit != nil {
-		localVarQueryParams.Add("spec.udp-active-session-limit", parameterToString(*r.specUdpActiveSessionLimit, ""))
-	}
-	if r.specIcmpActiveSessionLimit != nil {
-		localVarQueryParams.Add("spec.icmp-active-session-limit", parameterToString(*r.specIcmpActiveSessionLimit, ""))
-	}
-	if r.specDetectApp != nil {
-		localVarQueryParams.Add("spec.detect-app", parameterToString(*r.specDetectApp, ""))
-	}
-	if r.specConnectionTracking != nil {
-		localVarQueryParams.Add("spec.connection-tracking", parameterToString(*r.specConnectionTracking, ""))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
 	}
 	if r.propagationStatusPendingDscs != nil {
 		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
@@ -3927,36 +2719,7 @@ type ApiSecurityGetFirewallProfile1Request struct {
 	ApiService *SecurityV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specSessionIdleTimeout *string
-	specTcpConnectionSetupTimeout *string
-	specTcpCloseTimeout *string
-	specTcpHalfClosedTimeout *string
-	specTcpDropTimeout *string
-	specUdpDropTimeout *string
-	specIcmpDropTimeout *string
-	specDropTimeout *string
-	specTcpTimeout *string
-	specUdpTimeout *string
-	specIcmpTimeout *string
-	specTcpHalfOpenSessionLimit *int64
-	specUdpActiveSessionLimit *int64
-	specIcmpActiveSessionLimit *int64
-	specDetectApp *bool
-	specConnectionTracking *bool
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
 	propagationStatusPendingDscs *[]string
 }
 
@@ -3964,124 +2727,8 @@ func (r ApiSecurityGetFirewallProfile1Request) TKind(tKind string) ApiSecurityGe
 	r.tKind = &tKind
 	return r
 }
-func (r ApiSecurityGetFirewallProfile1Request) TApiVersion(tApiVersion string) ApiSecurityGetFirewallProfile1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) MetaTenant(metaTenant string) ApiSecurityGetFirewallProfile1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) MetaNamespace(metaNamespace string) ApiSecurityGetFirewallProfile1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) MetaGenerationId(metaGenerationId string) ApiSecurityGetFirewallProfile1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) MetaResourceVersion(metaResourceVersion string) ApiSecurityGetFirewallProfile1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) MetaUuid(metaUuid string) ApiSecurityGetFirewallProfile1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiSecurityGetFirewallProfile1Request) MetaCreationTime(metaCreationTime time.Time) ApiSecurityGetFirewallProfile1Request {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) MetaModTime(metaModTime time.Time) ApiSecurityGetFirewallProfile1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) MetaSelfLink(metaSelfLink string) ApiSecurityGetFirewallProfile1Request {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) SpecSessionIdleTimeout(specSessionIdleTimeout string) ApiSecurityGetFirewallProfile1Request {
-	r.specSessionIdleTimeout = &specSessionIdleTimeout
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) SpecTcpConnectionSetupTimeout(specTcpConnectionSetupTimeout string) ApiSecurityGetFirewallProfile1Request {
-	r.specTcpConnectionSetupTimeout = &specTcpConnectionSetupTimeout
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) SpecTcpCloseTimeout(specTcpCloseTimeout string) ApiSecurityGetFirewallProfile1Request {
-	r.specTcpCloseTimeout = &specTcpCloseTimeout
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) SpecTcpHalfClosedTimeout(specTcpHalfClosedTimeout string) ApiSecurityGetFirewallProfile1Request {
-	r.specTcpHalfClosedTimeout = &specTcpHalfClosedTimeout
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) SpecTcpDropTimeout(specTcpDropTimeout string) ApiSecurityGetFirewallProfile1Request {
-	r.specTcpDropTimeout = &specTcpDropTimeout
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) SpecUdpDropTimeout(specUdpDropTimeout string) ApiSecurityGetFirewallProfile1Request {
-	r.specUdpDropTimeout = &specUdpDropTimeout
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) SpecIcmpDropTimeout(specIcmpDropTimeout string) ApiSecurityGetFirewallProfile1Request {
-	r.specIcmpDropTimeout = &specIcmpDropTimeout
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) SpecDropTimeout(specDropTimeout string) ApiSecurityGetFirewallProfile1Request {
-	r.specDropTimeout = &specDropTimeout
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) SpecTcpTimeout(specTcpTimeout string) ApiSecurityGetFirewallProfile1Request {
-	r.specTcpTimeout = &specTcpTimeout
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) SpecUdpTimeout(specUdpTimeout string) ApiSecurityGetFirewallProfile1Request {
-	r.specUdpTimeout = &specUdpTimeout
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) SpecIcmpTimeout(specIcmpTimeout string) ApiSecurityGetFirewallProfile1Request {
-	r.specIcmpTimeout = &specIcmpTimeout
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) SpecTcpHalfOpenSessionLimit(specTcpHalfOpenSessionLimit int64) ApiSecurityGetFirewallProfile1Request {
-	r.specTcpHalfOpenSessionLimit = &specTcpHalfOpenSessionLimit
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) SpecUdpActiveSessionLimit(specUdpActiveSessionLimit int64) ApiSecurityGetFirewallProfile1Request {
-	r.specUdpActiveSessionLimit = &specUdpActiveSessionLimit
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) SpecIcmpActiveSessionLimit(specIcmpActiveSessionLimit int64) ApiSecurityGetFirewallProfile1Request {
-	r.specIcmpActiveSessionLimit = &specIcmpActiveSessionLimit
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) SpecDetectApp(specDetectApp bool) ApiSecurityGetFirewallProfile1Request {
-	r.specDetectApp = &specDetectApp
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) SpecConnectionTracking(specConnectionTracking bool) ApiSecurityGetFirewallProfile1Request {
-	r.specConnectionTracking = &specConnectionTracking
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiSecurityGetFirewallProfile1Request {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) PropagationStatusUpdated(propagationStatusUpdated int32) ApiSecurityGetFirewallProfile1Request {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) PropagationStatusPending(propagationStatusPending int32) ApiSecurityGetFirewallProfile1Request {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiSecurityGetFirewallProfile1Request {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiSecurityGetFirewallProfile1Request) PropagationStatusStatus(propagationStatusStatus string) ApiSecurityGetFirewallProfile1Request {
-	r.propagationStatusStatus = &propagationStatusStatus
 	return r
 }
 func (r ApiSecurityGetFirewallProfile1Request) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiSecurityGetFirewallProfile1Request {
@@ -4136,95 +2783,8 @@ func (a *SecurityV1ApiService) GetFirewallProfile1Execute(r ApiSecurityGetFirewa
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specSessionIdleTimeout != nil {
-		localVarQueryParams.Add("spec.session-idle-timeout", parameterToString(*r.specSessionIdleTimeout, ""))
-	}
-	if r.specTcpConnectionSetupTimeout != nil {
-		localVarQueryParams.Add("spec.tcp-connection-setup-timeout", parameterToString(*r.specTcpConnectionSetupTimeout, ""))
-	}
-	if r.specTcpCloseTimeout != nil {
-		localVarQueryParams.Add("spec.tcp-close-timeout", parameterToString(*r.specTcpCloseTimeout, ""))
-	}
-	if r.specTcpHalfClosedTimeout != nil {
-		localVarQueryParams.Add("spec.tcp-half-closed-timeout", parameterToString(*r.specTcpHalfClosedTimeout, ""))
-	}
-	if r.specTcpDropTimeout != nil {
-		localVarQueryParams.Add("spec.tcp-drop-timeout", parameterToString(*r.specTcpDropTimeout, ""))
-	}
-	if r.specUdpDropTimeout != nil {
-		localVarQueryParams.Add("spec.udp-drop-timeout", parameterToString(*r.specUdpDropTimeout, ""))
-	}
-	if r.specIcmpDropTimeout != nil {
-		localVarQueryParams.Add("spec.icmp-drop-timeout", parameterToString(*r.specIcmpDropTimeout, ""))
-	}
-	if r.specDropTimeout != nil {
-		localVarQueryParams.Add("spec.drop-timeout", parameterToString(*r.specDropTimeout, ""))
-	}
-	if r.specTcpTimeout != nil {
-		localVarQueryParams.Add("spec.tcp-timeout", parameterToString(*r.specTcpTimeout, ""))
-	}
-	if r.specUdpTimeout != nil {
-		localVarQueryParams.Add("spec.udp-timeout", parameterToString(*r.specUdpTimeout, ""))
-	}
-	if r.specIcmpTimeout != nil {
-		localVarQueryParams.Add("spec.icmp-timeout", parameterToString(*r.specIcmpTimeout, ""))
-	}
-	if r.specTcpHalfOpenSessionLimit != nil {
-		localVarQueryParams.Add("spec.tcp-half-open-session-limit", parameterToString(*r.specTcpHalfOpenSessionLimit, ""))
-	}
-	if r.specUdpActiveSessionLimit != nil {
-		localVarQueryParams.Add("spec.udp-active-session-limit", parameterToString(*r.specUdpActiveSessionLimit, ""))
-	}
-	if r.specIcmpActiveSessionLimit != nil {
-		localVarQueryParams.Add("spec.icmp-active-session-limit", parameterToString(*r.specIcmpActiveSessionLimit, ""))
-	}
-	if r.specDetectApp != nil {
-		localVarQueryParams.Add("spec.detect-app", parameterToString(*r.specDetectApp, ""))
-	}
-	if r.specConnectionTracking != nil {
-		localVarQueryParams.Add("spec.connection-tracking", parameterToString(*r.specConnectionTracking, ""))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
 	}
 	if r.propagationStatusPendingDscs != nil {
 		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
@@ -4352,102 +2912,21 @@ type ApiSecurityGetIPSecPolicyRequest struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	configSaLifetime *string
-	configIkeLifetime *string
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
 	propagationStatusPendingDscs *[]string
-	statusIkeParams *string
-	statusEspParams *string
 }
 
 func (r ApiSecurityGetIPSecPolicyRequest) TKind(tKind string) ApiSecurityGetIPSecPolicyRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiSecurityGetIPSecPolicyRequest) TApiVersion(tApiVersion string) ApiSecurityGetIPSecPolicyRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiSecurityGetIPSecPolicyRequest) MetaNamespace(metaNamespace string) ApiSecurityGetIPSecPolicyRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiSecurityGetIPSecPolicyRequest) MetaGenerationId(metaGenerationId string) ApiSecurityGetIPSecPolicyRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiSecurityGetIPSecPolicyRequest) MetaResourceVersion(metaResourceVersion string) ApiSecurityGetIPSecPolicyRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiSecurityGetIPSecPolicyRequest) MetaUuid(metaUuid string) ApiSecurityGetIPSecPolicyRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiSecurityGetIPSecPolicyRequest) MetaCreationTime(metaCreationTime time.Time) ApiSecurityGetIPSecPolicyRequest {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiSecurityGetIPSecPolicyRequest) MetaModTime(metaModTime time.Time) ApiSecurityGetIPSecPolicyRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiSecurityGetIPSecPolicyRequest) MetaSelfLink(metaSelfLink string) ApiSecurityGetIPSecPolicyRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiSecurityGetIPSecPolicyRequest) ConfigSaLifetime(configSaLifetime string) ApiSecurityGetIPSecPolicyRequest {
-	r.configSaLifetime = &configSaLifetime
-	return r
-}
-func (r ApiSecurityGetIPSecPolicyRequest) ConfigIkeLifetime(configIkeLifetime string) ApiSecurityGetIPSecPolicyRequest {
-	r.configIkeLifetime = &configIkeLifetime
-	return r
-}
-func (r ApiSecurityGetIPSecPolicyRequest) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiSecurityGetIPSecPolicyRequest {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiSecurityGetIPSecPolicyRequest) PropagationStatusUpdated(propagationStatusUpdated int32) ApiSecurityGetIPSecPolicyRequest {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiSecurityGetIPSecPolicyRequest) PropagationStatusPending(propagationStatusPending int32) ApiSecurityGetIPSecPolicyRequest {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiSecurityGetIPSecPolicyRequest) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiSecurityGetIPSecPolicyRequest {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiSecurityGetIPSecPolicyRequest) PropagationStatusStatus(propagationStatusStatus string) ApiSecurityGetIPSecPolicyRequest {
-	r.propagationStatusStatus = &propagationStatusStatus
-	return r
-}
 func (r ApiSecurityGetIPSecPolicyRequest) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiSecurityGetIPSecPolicyRequest {
 	r.propagationStatusPendingDscs = &propagationStatusPendingDscs
-	return r
-}
-func (r ApiSecurityGetIPSecPolicyRequest) StatusIkeParams(statusIkeParams string) ApiSecurityGetIPSecPolicyRequest {
-	r.statusIkeParams = &statusIkeParams
-	return r
-}
-func (r ApiSecurityGetIPSecPolicyRequest) StatusEspParams(statusEspParams string) ApiSecurityGetIPSecPolicyRequest {
-	r.statusEspParams = &statusEspParams
 	return r
 }
 
@@ -4459,15 +2938,13 @@ func (r ApiSecurityGetIPSecPolicyRequest) Execute() (SecurityIPSecPolicy, *_neth
  * GetIPSecPolicy Get IPSecPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiSecurityGetIPSecPolicyRequest
  */
-func (a *SecurityV1ApiService) GetIPSecPolicy(ctx _context.Context, oTenant string, oName string) ApiSecurityGetIPSecPolicyRequest {
+func (a *SecurityV1ApiService) GetIPSecPolicy(ctx _context.Context, oTenant string) ApiSecurityGetIPSecPolicyRequest {
 	return ApiSecurityGetIPSecPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -4492,7 +2969,6 @@ func (a *SecurityV1ApiService) GetIPSecPolicyExecute(r ApiSecurityGetIPSecPolicy
 
 	localVarPath := localBasePath + "/configs/security/v1/tenant/{O.Tenant}/ipsecpolicies/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -4501,59 +2977,11 @@ func (a *SecurityV1ApiService) GetIPSecPolicyExecute(r ApiSecurityGetIPSecPolicy
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.configSaLifetime != nil {
-		localVarQueryParams.Add("config.sa-lifetime", parameterToString(*r.configSaLifetime, ""))
-	}
-	if r.configIkeLifetime != nil {
-		localVarQueryParams.Add("config.ike-lifetime", parameterToString(*r.configIkeLifetime, ""))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
-	}
 	if r.propagationStatusPendingDscs != nil {
 		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
-	}
-	if r.statusIkeParams != nil {
-		localVarQueryParams.Add("status.ike-params", parameterToString(*r.statusIkeParams, ""))
-	}
-	if r.statusEspParams != nil {
-		localVarQueryParams.Add("status.esp-params", parameterToString(*r.statusEspParams, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -4679,105 +3107,20 @@ type ApiSecurityGetIPSecPolicy1Request struct {
 	ApiService *SecurityV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	configSaLifetime *string
-	configIkeLifetime *string
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
 	propagationStatusPendingDscs *[]string
-	statusIkeParams *string
-	statusEspParams *string
 }
 
 func (r ApiSecurityGetIPSecPolicy1Request) TKind(tKind string) ApiSecurityGetIPSecPolicy1Request {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiSecurityGetIPSecPolicy1Request) TApiVersion(tApiVersion string) ApiSecurityGetIPSecPolicy1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiSecurityGetIPSecPolicy1Request) MetaTenant(metaTenant string) ApiSecurityGetIPSecPolicy1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiSecurityGetIPSecPolicy1Request) MetaNamespace(metaNamespace string) ApiSecurityGetIPSecPolicy1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiSecurityGetIPSecPolicy1Request) MetaGenerationId(metaGenerationId string) ApiSecurityGetIPSecPolicy1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiSecurityGetIPSecPolicy1Request) MetaResourceVersion(metaResourceVersion string) ApiSecurityGetIPSecPolicy1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiSecurityGetIPSecPolicy1Request) MetaUuid(metaUuid string) ApiSecurityGetIPSecPolicy1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiSecurityGetIPSecPolicy1Request) MetaCreationTime(metaCreationTime time.Time) ApiSecurityGetIPSecPolicy1Request {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiSecurityGetIPSecPolicy1Request) MetaModTime(metaModTime time.Time) ApiSecurityGetIPSecPolicy1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiSecurityGetIPSecPolicy1Request) MetaSelfLink(metaSelfLink string) ApiSecurityGetIPSecPolicy1Request {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiSecurityGetIPSecPolicy1Request) ConfigSaLifetime(configSaLifetime string) ApiSecurityGetIPSecPolicy1Request {
-	r.configSaLifetime = &configSaLifetime
-	return r
-}
-func (r ApiSecurityGetIPSecPolicy1Request) ConfigIkeLifetime(configIkeLifetime string) ApiSecurityGetIPSecPolicy1Request {
-	r.configIkeLifetime = &configIkeLifetime
-	return r
-}
-func (r ApiSecurityGetIPSecPolicy1Request) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiSecurityGetIPSecPolicy1Request {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiSecurityGetIPSecPolicy1Request) PropagationStatusUpdated(propagationStatusUpdated int32) ApiSecurityGetIPSecPolicy1Request {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiSecurityGetIPSecPolicy1Request) PropagationStatusPending(propagationStatusPending int32) ApiSecurityGetIPSecPolicy1Request {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiSecurityGetIPSecPolicy1Request) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiSecurityGetIPSecPolicy1Request {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiSecurityGetIPSecPolicy1Request) PropagationStatusStatus(propagationStatusStatus string) ApiSecurityGetIPSecPolicy1Request {
-	r.propagationStatusStatus = &propagationStatusStatus
-	return r
-}
 func (r ApiSecurityGetIPSecPolicy1Request) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiSecurityGetIPSecPolicy1Request {
 	r.propagationStatusPendingDscs = &propagationStatusPendingDscs
-	return r
-}
-func (r ApiSecurityGetIPSecPolicy1Request) StatusIkeParams(statusIkeParams string) ApiSecurityGetIPSecPolicy1Request {
-	r.statusIkeParams = &statusIkeParams
-	return r
-}
-func (r ApiSecurityGetIPSecPolicy1Request) StatusEspParams(statusEspParams string) ApiSecurityGetIPSecPolicy1Request {
-	r.statusEspParams = &statusEspParams
 	return r
 }
 
@@ -4828,62 +3171,11 @@ func (a *SecurityV1ApiService) GetIPSecPolicy1Execute(r ApiSecurityGetIPSecPolic
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.configSaLifetime != nil {
-		localVarQueryParams.Add("config.sa-lifetime", parameterToString(*r.configSaLifetime, ""))
-	}
-	if r.configIkeLifetime != nil {
-		localVarQueryParams.Add("config.ike-lifetime", parameterToString(*r.configIkeLifetime, ""))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
-	}
 	if r.propagationStatusPendingDscs != nil {
 		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
-	}
-	if r.statusIkeParams != nil {
-		localVarQueryParams.Add("status.ike-params", parameterToString(*r.statusIkeParams, ""))
-	}
-	if r.statusEspParams != nil {
-		localVarQueryParams.Add("status.esp-params", parameterToString(*r.statusEspParams, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -5008,24 +3300,8 @@ type ApiSecurityGetNetworkSecurityPolicyRequest struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specAttachGroups *[]string
-	specAttachTenant *bool
-	specPriority *int64
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
 	propagationStatusPendingDscs *[]string
 }
 
@@ -5033,68 +3309,8 @@ func (r ApiSecurityGetNetworkSecurityPolicyRequest) TKind(tKind string) ApiSecur
 	r.tKind = &tKind
 	return r
 }
-func (r ApiSecurityGetNetworkSecurityPolicyRequest) TApiVersion(tApiVersion string) ApiSecurityGetNetworkSecurityPolicyRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicyRequest) MetaNamespace(metaNamespace string) ApiSecurityGetNetworkSecurityPolicyRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicyRequest) MetaGenerationId(metaGenerationId string) ApiSecurityGetNetworkSecurityPolicyRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicyRequest) MetaResourceVersion(metaResourceVersion string) ApiSecurityGetNetworkSecurityPolicyRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicyRequest) MetaUuid(metaUuid string) ApiSecurityGetNetworkSecurityPolicyRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiSecurityGetNetworkSecurityPolicyRequest) MetaCreationTime(metaCreationTime time.Time) ApiSecurityGetNetworkSecurityPolicyRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicyRequest) MetaModTime(metaModTime time.Time) ApiSecurityGetNetworkSecurityPolicyRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicyRequest) MetaSelfLink(metaSelfLink string) ApiSecurityGetNetworkSecurityPolicyRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicyRequest) SpecAttachGroups(specAttachGroups []string) ApiSecurityGetNetworkSecurityPolicyRequest {
-	r.specAttachGroups = &specAttachGroups
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicyRequest) SpecAttachTenant(specAttachTenant bool) ApiSecurityGetNetworkSecurityPolicyRequest {
-	r.specAttachTenant = &specAttachTenant
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicyRequest) SpecPriority(specPriority int64) ApiSecurityGetNetworkSecurityPolicyRequest {
-	r.specPriority = &specPriority
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicyRequest) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiSecurityGetNetworkSecurityPolicyRequest {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicyRequest) PropagationStatusUpdated(propagationStatusUpdated int32) ApiSecurityGetNetworkSecurityPolicyRequest {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicyRequest) PropagationStatusPending(propagationStatusPending int32) ApiSecurityGetNetworkSecurityPolicyRequest {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicyRequest) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiSecurityGetNetworkSecurityPolicyRequest {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicyRequest) PropagationStatusStatus(propagationStatusStatus string) ApiSecurityGetNetworkSecurityPolicyRequest {
-	r.propagationStatusStatus = &propagationStatusStatus
 	return r
 }
 func (r ApiSecurityGetNetworkSecurityPolicyRequest) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiSecurityGetNetworkSecurityPolicyRequest {
@@ -5110,15 +3326,13 @@ func (r ApiSecurityGetNetworkSecurityPolicyRequest) Execute() (SecurityNetworkSe
  * GetNetworkSecurityPolicy Get NetworkSecurityPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiSecurityGetNetworkSecurityPolicyRequest
  */
-func (a *SecurityV1ApiService) GetNetworkSecurityPolicy(ctx _context.Context, oTenant string, oName string) ApiSecurityGetNetworkSecurityPolicyRequest {
+func (a *SecurityV1ApiService) GetNetworkSecurityPolicy(ctx _context.Context, oTenant string) ApiSecurityGetNetworkSecurityPolicyRequest {
 	return ApiSecurityGetNetworkSecurityPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -5143,7 +3357,6 @@ func (a *SecurityV1ApiService) GetNetworkSecurityPolicyExecute(r ApiSecurityGetN
 
 	localVarPath := localBasePath + "/configs/security/v1/tenant/{O.Tenant}/networksecuritypolicies/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -5152,53 +3365,8 @@ func (a *SecurityV1ApiService) GetNetworkSecurityPolicyExecute(r ApiSecurityGetN
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specAttachGroups != nil {
-		localVarQueryParams.Add("spec.attach-groups", parameterToString(*r.specAttachGroups, "csv"))
-	}
-	if r.specAttachTenant != nil {
-		localVarQueryParams.Add("spec.attach-tenant", parameterToString(*r.specAttachTenant, ""))
-	}
-	if r.specPriority != nil {
-		localVarQueryParams.Add("spec.priority", parameterToString(*r.specPriority, ""))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
 	}
 	if r.propagationStatusPendingDscs != nil {
 		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
@@ -5327,23 +3495,7 @@ type ApiSecurityGetNetworkSecurityPolicy1Request struct {
 	ApiService *SecurityV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specAttachGroups *[]string
-	specAttachTenant *bool
-	specPriority *int64
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
 	propagationStatusPendingDscs *[]string
 }
 
@@ -5351,72 +3503,8 @@ func (r ApiSecurityGetNetworkSecurityPolicy1Request) TKind(tKind string) ApiSecu
 	r.tKind = &tKind
 	return r
 }
-func (r ApiSecurityGetNetworkSecurityPolicy1Request) TApiVersion(tApiVersion string) ApiSecurityGetNetworkSecurityPolicy1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicy1Request) MetaTenant(metaTenant string) ApiSecurityGetNetworkSecurityPolicy1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicy1Request) MetaNamespace(metaNamespace string) ApiSecurityGetNetworkSecurityPolicy1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicy1Request) MetaGenerationId(metaGenerationId string) ApiSecurityGetNetworkSecurityPolicy1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicy1Request) MetaResourceVersion(metaResourceVersion string) ApiSecurityGetNetworkSecurityPolicy1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicy1Request) MetaUuid(metaUuid string) ApiSecurityGetNetworkSecurityPolicy1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiSecurityGetNetworkSecurityPolicy1Request) MetaCreationTime(metaCreationTime time.Time) ApiSecurityGetNetworkSecurityPolicy1Request {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicy1Request) MetaModTime(metaModTime time.Time) ApiSecurityGetNetworkSecurityPolicy1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicy1Request) MetaSelfLink(metaSelfLink string) ApiSecurityGetNetworkSecurityPolicy1Request {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicy1Request) SpecAttachGroups(specAttachGroups []string) ApiSecurityGetNetworkSecurityPolicy1Request {
-	r.specAttachGroups = &specAttachGroups
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicy1Request) SpecAttachTenant(specAttachTenant bool) ApiSecurityGetNetworkSecurityPolicy1Request {
-	r.specAttachTenant = &specAttachTenant
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicy1Request) SpecPriority(specPriority int64) ApiSecurityGetNetworkSecurityPolicy1Request {
-	r.specPriority = &specPriority
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicy1Request) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiSecurityGetNetworkSecurityPolicy1Request {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicy1Request) PropagationStatusUpdated(propagationStatusUpdated int32) ApiSecurityGetNetworkSecurityPolicy1Request {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicy1Request) PropagationStatusPending(propagationStatusPending int32) ApiSecurityGetNetworkSecurityPolicy1Request {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicy1Request) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiSecurityGetNetworkSecurityPolicy1Request {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiSecurityGetNetworkSecurityPolicy1Request) PropagationStatusStatus(propagationStatusStatus string) ApiSecurityGetNetworkSecurityPolicy1Request {
-	r.propagationStatusStatus = &propagationStatusStatus
 	return r
 }
 func (r ApiSecurityGetNetworkSecurityPolicy1Request) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiSecurityGetNetworkSecurityPolicy1Request {
@@ -5471,56 +3559,8 @@ func (a *SecurityV1ApiService) GetNetworkSecurityPolicy1Execute(r ApiSecurityGet
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specAttachGroups != nil {
-		localVarQueryParams.Add("spec.attach-groups", parameterToString(*r.specAttachGroups, "csv"))
-	}
-	if r.specAttachTenant != nil {
-		localVarQueryParams.Add("spec.attach-tenant", parameterToString(*r.specAttachTenant, ""))
-	}
-	if r.specPriority != nil {
-		localVarQueryParams.Add("spec.priority", parameterToString(*r.specPriority, ""))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
 	}
 	if r.propagationStatusPendingDscs != nil {
 		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
@@ -5644,571 +3684,10 @@ func (a *SecurityV1ApiService) GetNetworkSecurityPolicy1Execute(r ApiSecurityGet
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSecurityGetSecurityGroupRequest struct {
-	ctx _context.Context
-	ApiService *SecurityV1ApiService
-	oTenant string
-	oName string
-	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
-	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specServiceLabels *[]string
-	specMatchPrefixes *[]string
-	statusWorkloads *[]string
-	statusPolicies *[]string
-}
-
-func (r ApiSecurityGetSecurityGroupRequest) TKind(tKind string) ApiSecurityGetSecurityGroupRequest {
-	r.tKind = &tKind
-	return r
-}
-func (r ApiSecurityGetSecurityGroupRequest) TApiVersion(tApiVersion string) ApiSecurityGetSecurityGroupRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiSecurityGetSecurityGroupRequest) MetaNamespace(metaNamespace string) ApiSecurityGetSecurityGroupRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiSecurityGetSecurityGroupRequest) MetaGenerationId(metaGenerationId string) ApiSecurityGetSecurityGroupRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiSecurityGetSecurityGroupRequest) MetaResourceVersion(metaResourceVersion string) ApiSecurityGetSecurityGroupRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiSecurityGetSecurityGroupRequest) MetaUuid(metaUuid string) ApiSecurityGetSecurityGroupRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
-func (r ApiSecurityGetSecurityGroupRequest) MetaCreationTime(metaCreationTime time.Time) ApiSecurityGetSecurityGroupRequest {
-	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiSecurityGetSecurityGroupRequest) MetaModTime(metaModTime time.Time) ApiSecurityGetSecurityGroupRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiSecurityGetSecurityGroupRequest) MetaSelfLink(metaSelfLink string) ApiSecurityGetSecurityGroupRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiSecurityGetSecurityGroupRequest) SpecServiceLabels(specServiceLabels []string) ApiSecurityGetSecurityGroupRequest {
-	r.specServiceLabels = &specServiceLabels
-	return r
-}
-func (r ApiSecurityGetSecurityGroupRequest) SpecMatchPrefixes(specMatchPrefixes []string) ApiSecurityGetSecurityGroupRequest {
-	r.specMatchPrefixes = &specMatchPrefixes
-	return r
-}
-func (r ApiSecurityGetSecurityGroupRequest) StatusWorkloads(statusWorkloads []string) ApiSecurityGetSecurityGroupRequest {
-	r.statusWorkloads = &statusWorkloads
-	return r
-}
-func (r ApiSecurityGetSecurityGroupRequest) StatusPolicies(statusPolicies []string) ApiSecurityGetSecurityGroupRequest {
-	r.statusPolicies = &statusPolicies
-	return r
-}
-
-func (r ApiSecurityGetSecurityGroupRequest) Execute() (SecuritySecurityGroup, *_nethttp.Response, error) {
-	return r.ApiService.GetSecurityGroupExecute(r)
-}
-
-/*
- * GetSecurityGroup Get SecurityGroup object
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param oTenant
- * @param oName
- * @return ApiSecurityGetSecurityGroupRequest
- */
-func (a *SecurityV1ApiService) GetSecurityGroup(ctx _context.Context, oTenant string, oName string) ApiSecurityGetSecurityGroupRequest {
-	return ApiSecurityGetSecurityGroupRequest{
-		ApiService: a,
-		ctx: ctx,
-		oTenant: oTenant,
-		oName: oName,
-	}
-}
-
-/*
- * Execute executes the request
- * @return SecuritySecurityGroup
- */
-func (a *SecurityV1ApiService) GetSecurityGroupExecute(r ApiSecurityGetSecurityGroupRequest) (SecuritySecurityGroup, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SecuritySecurityGroup
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityV1ApiService.GetSecurityGroup")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/configs/security/v1/tenant/{O.Tenant}/security-groups/{O.Name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.tKind != nil {
-		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
-	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
-	if r.metaCreationTime != nil {
-		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specServiceLabels != nil {
-		localVarQueryParams.Add("spec.service-labels", parameterToString(*r.specServiceLabels, "csv"))
-	}
-	if r.specMatchPrefixes != nil {
-		localVarQueryParams.Add("spec.match-prefixes", parameterToString(*r.specMatchPrefixes, "csv"))
-	}
-	if r.statusWorkloads != nil {
-		localVarQueryParams.Add("status.workloads", parameterToString(*r.statusWorkloads, "csv"))
-	}
-	if r.statusPolicies != nil {
-		localVarQueryParams.Add("status.Policies", parameterToString(*r.statusPolicies, "csv"))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode == 401 {
-		a.client.cfg.PSMCfg.Login()
-		a.client.cfg.PSMCfg.SaveConfig()
-		return a.GetSecurityGroupExecute(r)
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 412 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 501 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiSecurityGetSecurityGroup1Request struct {
-	ctx _context.Context
-	ApiService *SecurityV1ApiService
-	oName string
-	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
-	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specServiceLabels *[]string
-	specMatchPrefixes *[]string
-	statusWorkloads *[]string
-	statusPolicies *[]string
-}
-
-func (r ApiSecurityGetSecurityGroup1Request) TKind(tKind string) ApiSecurityGetSecurityGroup1Request {
-	r.tKind = &tKind
-	return r
-}
-func (r ApiSecurityGetSecurityGroup1Request) TApiVersion(tApiVersion string) ApiSecurityGetSecurityGroup1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiSecurityGetSecurityGroup1Request) MetaTenant(metaTenant string) ApiSecurityGetSecurityGroup1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiSecurityGetSecurityGroup1Request) MetaNamespace(metaNamespace string) ApiSecurityGetSecurityGroup1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiSecurityGetSecurityGroup1Request) MetaGenerationId(metaGenerationId string) ApiSecurityGetSecurityGroup1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiSecurityGetSecurityGroup1Request) MetaResourceVersion(metaResourceVersion string) ApiSecurityGetSecurityGroup1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiSecurityGetSecurityGroup1Request) MetaUuid(metaUuid string) ApiSecurityGetSecurityGroup1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
-func (r ApiSecurityGetSecurityGroup1Request) MetaCreationTime(metaCreationTime time.Time) ApiSecurityGetSecurityGroup1Request {
-	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiSecurityGetSecurityGroup1Request) MetaModTime(metaModTime time.Time) ApiSecurityGetSecurityGroup1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiSecurityGetSecurityGroup1Request) MetaSelfLink(metaSelfLink string) ApiSecurityGetSecurityGroup1Request {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiSecurityGetSecurityGroup1Request) SpecServiceLabels(specServiceLabels []string) ApiSecurityGetSecurityGroup1Request {
-	r.specServiceLabels = &specServiceLabels
-	return r
-}
-func (r ApiSecurityGetSecurityGroup1Request) SpecMatchPrefixes(specMatchPrefixes []string) ApiSecurityGetSecurityGroup1Request {
-	r.specMatchPrefixes = &specMatchPrefixes
-	return r
-}
-func (r ApiSecurityGetSecurityGroup1Request) StatusWorkloads(statusWorkloads []string) ApiSecurityGetSecurityGroup1Request {
-	r.statusWorkloads = &statusWorkloads
-	return r
-}
-func (r ApiSecurityGetSecurityGroup1Request) StatusPolicies(statusPolicies []string) ApiSecurityGetSecurityGroup1Request {
-	r.statusPolicies = &statusPolicies
-	return r
-}
-
-func (r ApiSecurityGetSecurityGroup1Request) Execute() (SecuritySecurityGroup, *_nethttp.Response, error) {
-	return r.ApiService.GetSecurityGroup1Execute(r)
-}
-
-/*
- * GetSecurityGroup1 Get SecurityGroup object
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param oName
- * @return ApiSecurityGetSecurityGroup1Request
- */
-func (a *SecurityV1ApiService) GetSecurityGroup1(ctx _context.Context, oName string) ApiSecurityGetSecurityGroup1Request {
-	return ApiSecurityGetSecurityGroup1Request{
-		ApiService: a,
-		ctx: ctx,
-		oName: oName,
-	}
-}
-
-/*
- * Execute executes the request
- * @return SecuritySecurityGroup
- */
-func (a *SecurityV1ApiService) GetSecurityGroup1Execute(r ApiSecurityGetSecurityGroup1Request) (SecuritySecurityGroup, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SecuritySecurityGroup
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityV1ApiService.GetSecurityGroup1")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/configs/security/v1/security-groups/{O.Name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.tKind != nil {
-		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
-	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
-	if r.metaCreationTime != nil {
-		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specServiceLabels != nil {
-		localVarQueryParams.Add("spec.service-labels", parameterToString(*r.specServiceLabels, "csv"))
-	}
-	if r.specMatchPrefixes != nil {
-		localVarQueryParams.Add("spec.match-prefixes", parameterToString(*r.specMatchPrefixes, "csv"))
-	}
-	if r.statusWorkloads != nil {
-		localVarQueryParams.Add("status.workloads", parameterToString(*r.statusWorkloads, "csv"))
-	}
-	if r.statusPolicies != nil {
-		localVarQueryParams.Add("status.Policies", parameterToString(*r.statusPolicies, "csv"))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode == 401 {
-		a.client.cfg.PSMCfg.Login()
-		a.client.cfg.PSMCfg.SaveConfig()
-		return a.GetSecurityGroup1Execute(r)
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 412 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 501 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ApiSecurityLabelAppRequest struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oTenant string
-	oName string
 	body *ApiLabel
 }
 
@@ -6225,15 +3704,13 @@ func (r ApiSecurityLabelAppRequest) Execute() (SecurityApp, *_nethttp.Response, 
  * LabelApp Label App object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiSecurityLabelAppRequest
  */
-func (a *SecurityV1ApiService) LabelApp(ctx _context.Context, oTenant string, oName string) ApiSecurityLabelAppRequest {
+func (a *SecurityV1ApiService) LabelApp(ctx _context.Context, oTenant string) ApiSecurityLabelAppRequest {
 	return ApiSecurityLabelAppRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -6258,7 +3735,6 @@ func (a *SecurityV1ApiService) LabelAppExecute(r ApiSecurityLabelAppRequest) (Se
 
 	localVarPath := localBasePath + "/configs/security/v1/tenant/{O.Tenant}/apps/{O.Name}/label"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -6572,7 +4048,6 @@ type ApiSecurityLabelFirewallProfileRequest struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oTenant string
-	oName string
 	body *ApiLabel
 }
 
@@ -6589,15 +4064,13 @@ func (r ApiSecurityLabelFirewallProfileRequest) Execute() (SecurityFirewallProfi
  * LabelFirewallProfile Label FirewallProfile object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiSecurityLabelFirewallProfileRequest
  */
-func (a *SecurityV1ApiService) LabelFirewallProfile(ctx _context.Context, oTenant string, oName string) ApiSecurityLabelFirewallProfileRequest {
+func (a *SecurityV1ApiService) LabelFirewallProfile(ctx _context.Context, oTenant string) ApiSecurityLabelFirewallProfileRequest {
 	return ApiSecurityLabelFirewallProfileRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -6622,7 +4095,6 @@ func (a *SecurityV1ApiService) LabelFirewallProfileExecute(r ApiSecurityLabelFir
 
 	localVarPath := localBasePath + "/configs/security/v1/tenant/{O.Tenant}/firewallprofiles/{O.Name}/label"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -6936,7 +4408,6 @@ type ApiSecurityLabelIPSecPolicyRequest struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oTenant string
-	oName string
 	body *ApiLabel
 }
 
@@ -6953,15 +4424,13 @@ func (r ApiSecurityLabelIPSecPolicyRequest) Execute() (SecurityIPSecPolicy, *_ne
  * LabelIPSecPolicy Label IPSecPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiSecurityLabelIPSecPolicyRequest
  */
-func (a *SecurityV1ApiService) LabelIPSecPolicy(ctx _context.Context, oTenant string, oName string) ApiSecurityLabelIPSecPolicyRequest {
+func (a *SecurityV1ApiService) LabelIPSecPolicy(ctx _context.Context, oTenant string) ApiSecurityLabelIPSecPolicyRequest {
 	return ApiSecurityLabelIPSecPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -6986,7 +4455,6 @@ func (a *SecurityV1ApiService) LabelIPSecPolicyExecute(r ApiSecurityLabelIPSecPo
 
 	localVarPath := localBasePath + "/configs/security/v1/tenant/{O.Tenant}/ipsecpolicies/{O.Name}/label"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -7300,7 +4768,6 @@ type ApiSecurityLabelNetworkSecurityPolicyRequest struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oTenant string
-	oName string
 	body *ApiLabel
 }
 
@@ -7317,15 +4784,13 @@ func (r ApiSecurityLabelNetworkSecurityPolicyRequest) Execute() (SecurityNetwork
  * LabelNetworkSecurityPolicy Label NetworkSecurityPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiSecurityLabelNetworkSecurityPolicyRequest
  */
-func (a *SecurityV1ApiService) LabelNetworkSecurityPolicy(ctx _context.Context, oTenant string, oName string) ApiSecurityLabelNetworkSecurityPolicyRequest {
+func (a *SecurityV1ApiService) LabelNetworkSecurityPolicy(ctx _context.Context, oTenant string) ApiSecurityLabelNetworkSecurityPolicyRequest {
 	return ApiSecurityLabelNetworkSecurityPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -7350,7 +4815,6 @@ func (a *SecurityV1ApiService) LabelNetworkSecurityPolicyExecute(r ApiSecurityLa
 
 	localVarPath := localBasePath + "/configs/security/v1/tenant/{O.Tenant}/networksecuritypolicies/{O.Name}/label"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -7660,449 +5124,25 @@ func (a *SecurityV1ApiService) LabelNetworkSecurityPolicy1Execute(r ApiSecurityL
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSecurityLabelSecurityGroupRequest struct {
-	ctx _context.Context
-	ApiService *SecurityV1ApiService
-	oTenant string
-	oName string
-	body *ApiLabel
-}
-
-func (r ApiSecurityLabelSecurityGroupRequest) Body(body ApiLabel) ApiSecurityLabelSecurityGroupRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiSecurityLabelSecurityGroupRequest) Execute() (SecuritySecurityGroup, *_nethttp.Response, error) {
-	return r.ApiService.LabelSecurityGroupExecute(r)
-}
-
-/*
- * LabelSecurityGroup Label SecurityGroup object
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param oTenant
- * @param oName
- * @return ApiSecurityLabelSecurityGroupRequest
- */
-func (a *SecurityV1ApiService) LabelSecurityGroup(ctx _context.Context, oTenant string, oName string) ApiSecurityLabelSecurityGroupRequest {
-	return ApiSecurityLabelSecurityGroupRequest{
-		ApiService: a,
-		ctx: ctx,
-		oTenant: oTenant,
-		oName: oName,
-	}
-}
-
-/*
- * Execute executes the request
- * @return SecuritySecurityGroup
- */
-func (a *SecurityV1ApiService) LabelSecurityGroupExecute(r ApiSecurityLabelSecurityGroupRequest) (SecuritySecurityGroup, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SecuritySecurityGroup
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityV1ApiService.LabelSecurityGroup")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/configs/security/v1/tenant/{O.Tenant}/security-groups/{O.Name}/label"
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode == 401 {
-		a.client.cfg.PSMCfg.Login()
-		a.client.cfg.PSMCfg.SaveConfig()
-		return a.LabelSecurityGroupExecute(r)
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 412 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 501 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiSecurityLabelSecurityGroup1Request struct {
-	ctx _context.Context
-	ApiService *SecurityV1ApiService
-	oName string
-	body *ApiLabel
-}
-
-func (r ApiSecurityLabelSecurityGroup1Request) Body(body ApiLabel) ApiSecurityLabelSecurityGroup1Request {
-	r.body = &body
-	return r
-}
-
-func (r ApiSecurityLabelSecurityGroup1Request) Execute() (SecuritySecurityGroup, *_nethttp.Response, error) {
-	return r.ApiService.LabelSecurityGroup1Execute(r)
-}
-
-/*
- * LabelSecurityGroup1 Label SecurityGroup object
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param oName
- * @return ApiSecurityLabelSecurityGroup1Request
- */
-func (a *SecurityV1ApiService) LabelSecurityGroup1(ctx _context.Context, oName string) ApiSecurityLabelSecurityGroup1Request {
-	return ApiSecurityLabelSecurityGroup1Request{
-		ApiService: a,
-		ctx: ctx,
-		oName: oName,
-	}
-}
-
-/*
- * Execute executes the request
- * @return SecuritySecurityGroup
- */
-func (a *SecurityV1ApiService) LabelSecurityGroup1Execute(r ApiSecurityLabelSecurityGroup1Request) (SecuritySecurityGroup, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SecuritySecurityGroup
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityV1ApiService.LabelSecurityGroup1")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/configs/security/v1/security-groups/{O.Name}/label"
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode == 401 {
-		a.client.cfg.PSMCfg.Login()
-		a.client.cfg.PSMCfg.SaveConfig()
-		return a.LabelSecurityGroup1Execute(r)
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 412 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 501 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ApiSecurityListAppRequest struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiSecurityListAppRequest) OName(oName string) ApiSecurityListAppRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiSecurityListAppRequest) ONamespace(oNamespace string) ApiSecurityListAppRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiSecurityListAppRequest) OGenerationId(oGenerationId string) ApiSecurityListAppRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiSecurityListAppRequest) OResourceVersion(oResourceVersion string) ApiSecurityListAppRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiSecurityListAppRequest) OUuid(oUuid string) ApiSecurityListAppRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiSecurityListAppRequest) OCreationTime(oCreationTime time.Time) ApiSecurityListAppRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiSecurityListAppRequest) OModTime(oModTime time.Time) ApiSecurityListAppRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiSecurityListAppRequest) OSelfLink(oSelfLink string) ApiSecurityListAppRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiSecurityListAppRequest) LabelSelector(labelSelector string) ApiSecurityListAppRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiSecurityListAppRequest) FieldSelector(fieldSelector string) ApiSecurityListAppRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiSecurityListAppRequest) FieldChangeSelector(fieldChangeSelector []string) ApiSecurityListAppRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiSecurityListAppRequest) From(from int32) ApiSecurityListAppRequest {
-	r.from = &from
-	return r
-}
-func (r ApiSecurityListAppRequest) MaxResults(maxResults int32) ApiSecurityListAppRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiSecurityListAppRequest) SortOrder(sortOrder string) ApiSecurityListAppRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiSecurityListAppRequest) MetaOnly(metaOnly bool) ApiSecurityListAppRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -8153,47 +5193,11 @@ func (a *SecurityV1ApiService) ListAppExecute(r ApiSecurityListAppRequest) (Secu
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -8318,85 +5322,20 @@ type ApiSecurityListApp1Request struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiSecurityListApp1Request) OName(oName string) ApiSecurityListApp1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiSecurityListApp1Request) OTenant(oTenant string) ApiSecurityListApp1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiSecurityListApp1Request) ONamespace(oNamespace string) ApiSecurityListApp1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiSecurityListApp1Request) OGenerationId(oGenerationId string) ApiSecurityListApp1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiSecurityListApp1Request) OResourceVersion(oResourceVersion string) ApiSecurityListApp1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiSecurityListApp1Request) OUuid(oUuid string) ApiSecurityListApp1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiSecurityListApp1Request) OCreationTime(oCreationTime time.Time) ApiSecurityListApp1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiSecurityListApp1Request) OModTime(oModTime time.Time) ApiSecurityListApp1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiSecurityListApp1Request) OSelfLink(oSelfLink string) ApiSecurityListApp1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiSecurityListApp1Request) LabelSelector(labelSelector string) ApiSecurityListApp1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiSecurityListApp1Request) FieldSelector(fieldSelector string) ApiSecurityListApp1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiSecurityListApp1Request) FieldChangeSelector(fieldChangeSelector []string) ApiSecurityListApp1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiSecurityListApp1Request) From(from int32) ApiSecurityListApp1Request {
-	r.from = &from
-	return r
-}
-func (r ApiSecurityListApp1Request) MaxResults(maxResults int32) ApiSecurityListApp1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiSecurityListApp1Request) SortOrder(sortOrder string) ApiSecurityListApp1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiSecurityListApp1Request) MetaOnly(metaOnly bool) ApiSecurityListApp1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -8444,50 +5383,11 @@ func (a *SecurityV1ApiService) ListApp1Execute(r ApiSecurityListApp1Request) (Se
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -8613,80 +5513,20 @@ type ApiSecurityListFirewallProfileRequest struct {
 	ApiService *SecurityV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiSecurityListFirewallProfileRequest) OName(oName string) ApiSecurityListFirewallProfileRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiSecurityListFirewallProfileRequest) ONamespace(oNamespace string) ApiSecurityListFirewallProfileRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiSecurityListFirewallProfileRequest) OGenerationId(oGenerationId string) ApiSecurityListFirewallProfileRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiSecurityListFirewallProfileRequest) OResourceVersion(oResourceVersion string) ApiSecurityListFirewallProfileRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiSecurityListFirewallProfileRequest) OUuid(oUuid string) ApiSecurityListFirewallProfileRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiSecurityListFirewallProfileRequest) OCreationTime(oCreationTime time.Time) ApiSecurityListFirewallProfileRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiSecurityListFirewallProfileRequest) OModTime(oModTime time.Time) ApiSecurityListFirewallProfileRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiSecurityListFirewallProfileRequest) OSelfLink(oSelfLink string) ApiSecurityListFirewallProfileRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiSecurityListFirewallProfileRequest) LabelSelector(labelSelector string) ApiSecurityListFirewallProfileRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiSecurityListFirewallProfileRequest) FieldSelector(fieldSelector string) ApiSecurityListFirewallProfileRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiSecurityListFirewallProfileRequest) FieldChangeSelector(fieldChangeSelector []string) ApiSecurityListFirewallProfileRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiSecurityListFirewallProfileRequest) From(from int32) ApiSecurityListFirewallProfileRequest {
-	r.from = &from
-	return r
-}
-func (r ApiSecurityListFirewallProfileRequest) MaxResults(maxResults int32) ApiSecurityListFirewallProfileRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiSecurityListFirewallProfileRequest) SortOrder(sortOrder string) ApiSecurityListFirewallProfileRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiSecurityListFirewallProfileRequest) MetaOnly(metaOnly bool) ApiSecurityListFirewallProfileRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -8737,47 +5577,11 @@ func (a *SecurityV1ApiService) ListFirewallProfileExecute(r ApiSecurityListFirew
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -8902,85 +5706,20 @@ type ApiSecurityListFirewallProfile1Request struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiSecurityListFirewallProfile1Request) OName(oName string) ApiSecurityListFirewallProfile1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiSecurityListFirewallProfile1Request) OTenant(oTenant string) ApiSecurityListFirewallProfile1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiSecurityListFirewallProfile1Request) ONamespace(oNamespace string) ApiSecurityListFirewallProfile1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiSecurityListFirewallProfile1Request) OGenerationId(oGenerationId string) ApiSecurityListFirewallProfile1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiSecurityListFirewallProfile1Request) OResourceVersion(oResourceVersion string) ApiSecurityListFirewallProfile1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiSecurityListFirewallProfile1Request) OUuid(oUuid string) ApiSecurityListFirewallProfile1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiSecurityListFirewallProfile1Request) OCreationTime(oCreationTime time.Time) ApiSecurityListFirewallProfile1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiSecurityListFirewallProfile1Request) OModTime(oModTime time.Time) ApiSecurityListFirewallProfile1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiSecurityListFirewallProfile1Request) OSelfLink(oSelfLink string) ApiSecurityListFirewallProfile1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiSecurityListFirewallProfile1Request) LabelSelector(labelSelector string) ApiSecurityListFirewallProfile1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiSecurityListFirewallProfile1Request) FieldSelector(fieldSelector string) ApiSecurityListFirewallProfile1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiSecurityListFirewallProfile1Request) FieldChangeSelector(fieldChangeSelector []string) ApiSecurityListFirewallProfile1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiSecurityListFirewallProfile1Request) From(from int32) ApiSecurityListFirewallProfile1Request {
-	r.from = &from
-	return r
-}
-func (r ApiSecurityListFirewallProfile1Request) MaxResults(maxResults int32) ApiSecurityListFirewallProfile1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiSecurityListFirewallProfile1Request) SortOrder(sortOrder string) ApiSecurityListFirewallProfile1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiSecurityListFirewallProfile1Request) MetaOnly(metaOnly bool) ApiSecurityListFirewallProfile1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -9028,50 +5767,11 @@ func (a *SecurityV1ApiService) ListFirewallProfile1Execute(r ApiSecurityListFire
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -9197,80 +5897,20 @@ type ApiSecurityListIPSecPolicyRequest struct {
 	ApiService *SecurityV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiSecurityListIPSecPolicyRequest) OName(oName string) ApiSecurityListIPSecPolicyRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiSecurityListIPSecPolicyRequest) ONamespace(oNamespace string) ApiSecurityListIPSecPolicyRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiSecurityListIPSecPolicyRequest) OGenerationId(oGenerationId string) ApiSecurityListIPSecPolicyRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiSecurityListIPSecPolicyRequest) OResourceVersion(oResourceVersion string) ApiSecurityListIPSecPolicyRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiSecurityListIPSecPolicyRequest) OUuid(oUuid string) ApiSecurityListIPSecPolicyRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiSecurityListIPSecPolicyRequest) OCreationTime(oCreationTime time.Time) ApiSecurityListIPSecPolicyRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiSecurityListIPSecPolicyRequest) OModTime(oModTime time.Time) ApiSecurityListIPSecPolicyRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiSecurityListIPSecPolicyRequest) OSelfLink(oSelfLink string) ApiSecurityListIPSecPolicyRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiSecurityListIPSecPolicyRequest) LabelSelector(labelSelector string) ApiSecurityListIPSecPolicyRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiSecurityListIPSecPolicyRequest) FieldSelector(fieldSelector string) ApiSecurityListIPSecPolicyRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiSecurityListIPSecPolicyRequest) FieldChangeSelector(fieldChangeSelector []string) ApiSecurityListIPSecPolicyRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiSecurityListIPSecPolicyRequest) From(from int32) ApiSecurityListIPSecPolicyRequest {
-	r.from = &from
-	return r
-}
-func (r ApiSecurityListIPSecPolicyRequest) MaxResults(maxResults int32) ApiSecurityListIPSecPolicyRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiSecurityListIPSecPolicyRequest) SortOrder(sortOrder string) ApiSecurityListIPSecPolicyRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiSecurityListIPSecPolicyRequest) MetaOnly(metaOnly bool) ApiSecurityListIPSecPolicyRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -9321,47 +5961,11 @@ func (a *SecurityV1ApiService) ListIPSecPolicyExecute(r ApiSecurityListIPSecPoli
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -9486,85 +6090,20 @@ type ApiSecurityListIPSecPolicy1Request struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiSecurityListIPSecPolicy1Request) OName(oName string) ApiSecurityListIPSecPolicy1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiSecurityListIPSecPolicy1Request) OTenant(oTenant string) ApiSecurityListIPSecPolicy1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiSecurityListIPSecPolicy1Request) ONamespace(oNamespace string) ApiSecurityListIPSecPolicy1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiSecurityListIPSecPolicy1Request) OGenerationId(oGenerationId string) ApiSecurityListIPSecPolicy1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiSecurityListIPSecPolicy1Request) OResourceVersion(oResourceVersion string) ApiSecurityListIPSecPolicy1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiSecurityListIPSecPolicy1Request) OUuid(oUuid string) ApiSecurityListIPSecPolicy1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiSecurityListIPSecPolicy1Request) OCreationTime(oCreationTime time.Time) ApiSecurityListIPSecPolicy1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiSecurityListIPSecPolicy1Request) OModTime(oModTime time.Time) ApiSecurityListIPSecPolicy1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiSecurityListIPSecPolicy1Request) OSelfLink(oSelfLink string) ApiSecurityListIPSecPolicy1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiSecurityListIPSecPolicy1Request) LabelSelector(labelSelector string) ApiSecurityListIPSecPolicy1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiSecurityListIPSecPolicy1Request) FieldSelector(fieldSelector string) ApiSecurityListIPSecPolicy1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiSecurityListIPSecPolicy1Request) FieldChangeSelector(fieldChangeSelector []string) ApiSecurityListIPSecPolicy1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiSecurityListIPSecPolicy1Request) From(from int32) ApiSecurityListIPSecPolicy1Request {
-	r.from = &from
-	return r
-}
-func (r ApiSecurityListIPSecPolicy1Request) MaxResults(maxResults int32) ApiSecurityListIPSecPolicy1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiSecurityListIPSecPolicy1Request) SortOrder(sortOrder string) ApiSecurityListIPSecPolicy1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiSecurityListIPSecPolicy1Request) MetaOnly(metaOnly bool) ApiSecurityListIPSecPolicy1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -9612,50 +6151,11 @@ func (a *SecurityV1ApiService) ListIPSecPolicy1Execute(r ApiSecurityListIPSecPol
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -9781,80 +6281,20 @@ type ApiSecurityListNetworkSecurityPolicyRequest struct {
 	ApiService *SecurityV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiSecurityListNetworkSecurityPolicyRequest) OName(oName string) ApiSecurityListNetworkSecurityPolicyRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiSecurityListNetworkSecurityPolicyRequest) ONamespace(oNamespace string) ApiSecurityListNetworkSecurityPolicyRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiSecurityListNetworkSecurityPolicyRequest) OGenerationId(oGenerationId string) ApiSecurityListNetworkSecurityPolicyRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiSecurityListNetworkSecurityPolicyRequest) OResourceVersion(oResourceVersion string) ApiSecurityListNetworkSecurityPolicyRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiSecurityListNetworkSecurityPolicyRequest) OUuid(oUuid string) ApiSecurityListNetworkSecurityPolicyRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiSecurityListNetworkSecurityPolicyRequest) OCreationTime(oCreationTime time.Time) ApiSecurityListNetworkSecurityPolicyRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiSecurityListNetworkSecurityPolicyRequest) OModTime(oModTime time.Time) ApiSecurityListNetworkSecurityPolicyRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiSecurityListNetworkSecurityPolicyRequest) OSelfLink(oSelfLink string) ApiSecurityListNetworkSecurityPolicyRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiSecurityListNetworkSecurityPolicyRequest) LabelSelector(labelSelector string) ApiSecurityListNetworkSecurityPolicyRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiSecurityListNetworkSecurityPolicyRequest) FieldSelector(fieldSelector string) ApiSecurityListNetworkSecurityPolicyRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiSecurityListNetworkSecurityPolicyRequest) FieldChangeSelector(fieldChangeSelector []string) ApiSecurityListNetworkSecurityPolicyRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiSecurityListNetworkSecurityPolicyRequest) From(from int32) ApiSecurityListNetworkSecurityPolicyRequest {
-	r.from = &from
-	return r
-}
-func (r ApiSecurityListNetworkSecurityPolicyRequest) MaxResults(maxResults int32) ApiSecurityListNetworkSecurityPolicyRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiSecurityListNetworkSecurityPolicyRequest) SortOrder(sortOrder string) ApiSecurityListNetworkSecurityPolicyRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiSecurityListNetworkSecurityPolicyRequest) MetaOnly(metaOnly bool) ApiSecurityListNetworkSecurityPolicyRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -9905,47 +6345,11 @@ func (a *SecurityV1ApiService) ListNetworkSecurityPolicyExecute(r ApiSecurityLis
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -10070,85 +6474,20 @@ type ApiSecurityListNetworkSecurityPolicy1Request struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiSecurityListNetworkSecurityPolicy1Request) OName(oName string) ApiSecurityListNetworkSecurityPolicy1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiSecurityListNetworkSecurityPolicy1Request) OTenant(oTenant string) ApiSecurityListNetworkSecurityPolicy1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiSecurityListNetworkSecurityPolicy1Request) ONamespace(oNamespace string) ApiSecurityListNetworkSecurityPolicy1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiSecurityListNetworkSecurityPolicy1Request) OGenerationId(oGenerationId string) ApiSecurityListNetworkSecurityPolicy1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiSecurityListNetworkSecurityPolicy1Request) OResourceVersion(oResourceVersion string) ApiSecurityListNetworkSecurityPolicy1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiSecurityListNetworkSecurityPolicy1Request) OUuid(oUuid string) ApiSecurityListNetworkSecurityPolicy1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiSecurityListNetworkSecurityPolicy1Request) OCreationTime(oCreationTime time.Time) ApiSecurityListNetworkSecurityPolicy1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiSecurityListNetworkSecurityPolicy1Request) OModTime(oModTime time.Time) ApiSecurityListNetworkSecurityPolicy1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiSecurityListNetworkSecurityPolicy1Request) OSelfLink(oSelfLink string) ApiSecurityListNetworkSecurityPolicy1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiSecurityListNetworkSecurityPolicy1Request) LabelSelector(labelSelector string) ApiSecurityListNetworkSecurityPolicy1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiSecurityListNetworkSecurityPolicy1Request) FieldSelector(fieldSelector string) ApiSecurityListNetworkSecurityPolicy1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiSecurityListNetworkSecurityPolicy1Request) FieldChangeSelector(fieldChangeSelector []string) ApiSecurityListNetworkSecurityPolicy1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiSecurityListNetworkSecurityPolicy1Request) From(from int32) ApiSecurityListNetworkSecurityPolicy1Request {
-	r.from = &from
-	return r
-}
-func (r ApiSecurityListNetworkSecurityPolicy1Request) MaxResults(maxResults int32) ApiSecurityListNetworkSecurityPolicy1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiSecurityListNetworkSecurityPolicy1Request) SortOrder(sortOrder string) ApiSecurityListNetworkSecurityPolicy1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiSecurityListNetworkSecurityPolicy1Request) MetaOnly(metaOnly bool) ApiSecurityListNetworkSecurityPolicy1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -10196,50 +6535,11 @@ func (a *SecurityV1ApiService) ListNetworkSecurityPolicy1Execute(r ApiSecurityLi
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -10360,595 +6660,10 @@ func (a *SecurityV1ApiService) ListNetworkSecurityPolicy1Execute(r ApiSecurityLi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSecurityListSecurityGroupRequest struct {
-	ctx _context.Context
-	ApiService *SecurityV1ApiService
-	oTenant string
-	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
-	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
-	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
-}
-
-func (r ApiSecurityListSecurityGroupRequest) OName(oName string) ApiSecurityListSecurityGroupRequest {
-	r.oName = &oName
-	return r
-}
-func (r ApiSecurityListSecurityGroupRequest) ONamespace(oNamespace string) ApiSecurityListSecurityGroupRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiSecurityListSecurityGroupRequest) OGenerationId(oGenerationId string) ApiSecurityListSecurityGroupRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiSecurityListSecurityGroupRequest) OResourceVersion(oResourceVersion string) ApiSecurityListSecurityGroupRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiSecurityListSecurityGroupRequest) OUuid(oUuid string) ApiSecurityListSecurityGroupRequest {
-	r.oUuid = &oUuid
-	return r
-}
-func (r ApiSecurityListSecurityGroupRequest) OCreationTime(oCreationTime time.Time) ApiSecurityListSecurityGroupRequest {
-	r.oCreationTime = &oCreationTime
-	return r
-}
-func (r ApiSecurityListSecurityGroupRequest) OModTime(oModTime time.Time) ApiSecurityListSecurityGroupRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiSecurityListSecurityGroupRequest) OSelfLink(oSelfLink string) ApiSecurityListSecurityGroupRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiSecurityListSecurityGroupRequest) LabelSelector(labelSelector string) ApiSecurityListSecurityGroupRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiSecurityListSecurityGroupRequest) FieldSelector(fieldSelector string) ApiSecurityListSecurityGroupRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
-func (r ApiSecurityListSecurityGroupRequest) FieldChangeSelector(fieldChangeSelector []string) ApiSecurityListSecurityGroupRequest {
-	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiSecurityListSecurityGroupRequest) From(from int32) ApiSecurityListSecurityGroupRequest {
-	r.from = &from
-	return r
-}
-func (r ApiSecurityListSecurityGroupRequest) MaxResults(maxResults int32) ApiSecurityListSecurityGroupRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiSecurityListSecurityGroupRequest) SortOrder(sortOrder string) ApiSecurityListSecurityGroupRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiSecurityListSecurityGroupRequest) MetaOnly(metaOnly bool) ApiSecurityListSecurityGroupRequest {
-	r.metaOnly = &metaOnly
-	return r
-}
-
-func (r ApiSecurityListSecurityGroupRequest) Execute() (SecuritySecurityGroupList, *_nethttp.Response, error) {
-	return r.ApiService.ListSecurityGroupExecute(r)
-}
-
-/*
- * ListSecurityGroup List SecurityGroup objects
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param oTenant
- * @return ApiSecurityListSecurityGroupRequest
- */
-func (a *SecurityV1ApiService) ListSecurityGroup(ctx _context.Context, oTenant string) ApiSecurityListSecurityGroupRequest {
-	return ApiSecurityListSecurityGroupRequest{
-		ApiService: a,
-		ctx: ctx,
-		oTenant: oTenant,
-	}
-}
-
-/*
- * Execute executes the request
- * @return SecuritySecurityGroupList
- */
-func (a *SecurityV1ApiService) ListSecurityGroupExecute(r ApiSecurityListSecurityGroupRequest) (SecuritySecurityGroupList, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SecuritySecurityGroupList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityV1ApiService.ListSecurityGroup")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/configs/security/v1/tenant/{O.Tenant}/security-groups"
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.oName != nil {
-		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
-	if r.oCreationTime != nil {
-		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
-	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
-	if r.fieldChangeSelector != nil {
-		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode == 401 {
-		a.client.cfg.PSMCfg.Login()
-		a.client.cfg.PSMCfg.SaveConfig()
-		return a.ListSecurityGroupExecute(r)
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 412 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 501 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiSecurityListSecurityGroup1Request struct {
-	ctx _context.Context
-	ApiService *SecurityV1ApiService
-	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
-	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
-	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
-}
-
-func (r ApiSecurityListSecurityGroup1Request) OName(oName string) ApiSecurityListSecurityGroup1Request {
-	r.oName = &oName
-	return r
-}
-func (r ApiSecurityListSecurityGroup1Request) OTenant(oTenant string) ApiSecurityListSecurityGroup1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiSecurityListSecurityGroup1Request) ONamespace(oNamespace string) ApiSecurityListSecurityGroup1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiSecurityListSecurityGroup1Request) OGenerationId(oGenerationId string) ApiSecurityListSecurityGroup1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiSecurityListSecurityGroup1Request) OResourceVersion(oResourceVersion string) ApiSecurityListSecurityGroup1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiSecurityListSecurityGroup1Request) OUuid(oUuid string) ApiSecurityListSecurityGroup1Request {
-	r.oUuid = &oUuid
-	return r
-}
-func (r ApiSecurityListSecurityGroup1Request) OCreationTime(oCreationTime time.Time) ApiSecurityListSecurityGroup1Request {
-	r.oCreationTime = &oCreationTime
-	return r
-}
-func (r ApiSecurityListSecurityGroup1Request) OModTime(oModTime time.Time) ApiSecurityListSecurityGroup1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiSecurityListSecurityGroup1Request) OSelfLink(oSelfLink string) ApiSecurityListSecurityGroup1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiSecurityListSecurityGroup1Request) LabelSelector(labelSelector string) ApiSecurityListSecurityGroup1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiSecurityListSecurityGroup1Request) FieldSelector(fieldSelector string) ApiSecurityListSecurityGroup1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
-func (r ApiSecurityListSecurityGroup1Request) FieldChangeSelector(fieldChangeSelector []string) ApiSecurityListSecurityGroup1Request {
-	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiSecurityListSecurityGroup1Request) From(from int32) ApiSecurityListSecurityGroup1Request {
-	r.from = &from
-	return r
-}
-func (r ApiSecurityListSecurityGroup1Request) MaxResults(maxResults int32) ApiSecurityListSecurityGroup1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiSecurityListSecurityGroup1Request) SortOrder(sortOrder string) ApiSecurityListSecurityGroup1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiSecurityListSecurityGroup1Request) MetaOnly(metaOnly bool) ApiSecurityListSecurityGroup1Request {
-	r.metaOnly = &metaOnly
-	return r
-}
-
-func (r ApiSecurityListSecurityGroup1Request) Execute() (SecuritySecurityGroupList, *_nethttp.Response, error) {
-	return r.ApiService.ListSecurityGroup1Execute(r)
-}
-
-/*
- * ListSecurityGroup1 List SecurityGroup objects
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiSecurityListSecurityGroup1Request
- */
-func (a *SecurityV1ApiService) ListSecurityGroup1(ctx _context.Context) ApiSecurityListSecurityGroup1Request {
-	return ApiSecurityListSecurityGroup1Request{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-/*
- * Execute executes the request
- * @return SecuritySecurityGroupList
- */
-func (a *SecurityV1ApiService) ListSecurityGroup1Execute(r ApiSecurityListSecurityGroup1Request) (SecuritySecurityGroupList, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SecuritySecurityGroupList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityV1ApiService.ListSecurityGroup1")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/configs/security/v1/security-groups"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.oName != nil {
-		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
-	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
-	if r.oCreationTime != nil {
-		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
-	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
-	if r.fieldChangeSelector != nil {
-		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode == 401 {
-		a.client.cfg.PSMCfg.Login()
-		a.client.cfg.PSMCfg.SaveConfig()
-		return a.ListSecurityGroup1Execute(r)
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 412 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 501 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ApiSecurityUpdateAppRequest struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oTenant string
-	oName string
 	body *SecurityApp
 }
 
@@ -10965,15 +6680,13 @@ func (r ApiSecurityUpdateAppRequest) Execute() (SecurityApp, *_nethttp.Response,
  * UpdateApp Update App object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiSecurityUpdateAppRequest
  */
-func (a *SecurityV1ApiService) UpdateApp(ctx _context.Context, oTenant string, oName string) ApiSecurityUpdateAppRequest {
+func (a *SecurityV1ApiService) UpdateApp(ctx _context.Context, oTenant string) ApiSecurityUpdateAppRequest {
 	return ApiSecurityUpdateAppRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -10998,7 +6711,6 @@ func (a *SecurityV1ApiService) UpdateAppExecute(r ApiSecurityUpdateAppRequest) (
 
 	localVarPath := localBasePath + "/configs/security/v1/tenant/{O.Tenant}/apps/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -11312,7 +7024,6 @@ type ApiSecurityUpdateFirewallProfileRequest struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oTenant string
-	oName string
 	body *SecurityFirewallProfile
 }
 
@@ -11329,15 +7040,13 @@ func (r ApiSecurityUpdateFirewallProfileRequest) Execute() (SecurityFirewallProf
  * UpdateFirewallProfile Update FirewallProfile object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiSecurityUpdateFirewallProfileRequest
  */
-func (a *SecurityV1ApiService) UpdateFirewallProfile(ctx _context.Context, oTenant string, oName string) ApiSecurityUpdateFirewallProfileRequest {
+func (a *SecurityV1ApiService) UpdateFirewallProfile(ctx _context.Context, oTenant string) ApiSecurityUpdateFirewallProfileRequest {
 	return ApiSecurityUpdateFirewallProfileRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -11362,7 +7071,6 @@ func (a *SecurityV1ApiService) UpdateFirewallProfileExecute(r ApiSecurityUpdateF
 
 	localVarPath := localBasePath + "/configs/security/v1/tenant/{O.Tenant}/firewallprofiles/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -11676,7 +7384,6 @@ type ApiSecurityUpdateIPSecPolicyRequest struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oTenant string
-	oName string
 	body *SecurityIPSecPolicy
 }
 
@@ -11693,15 +7400,13 @@ func (r ApiSecurityUpdateIPSecPolicyRequest) Execute() (SecurityIPSecPolicy, *_n
  * UpdateIPSecPolicy Update IPSecPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiSecurityUpdateIPSecPolicyRequest
  */
-func (a *SecurityV1ApiService) UpdateIPSecPolicy(ctx _context.Context, oTenant string, oName string) ApiSecurityUpdateIPSecPolicyRequest {
+func (a *SecurityV1ApiService) UpdateIPSecPolicy(ctx _context.Context, oTenant string) ApiSecurityUpdateIPSecPolicyRequest {
 	return ApiSecurityUpdateIPSecPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -11726,7 +7431,6 @@ func (a *SecurityV1ApiService) UpdateIPSecPolicyExecute(r ApiSecurityUpdateIPSec
 
 	localVarPath := localBasePath + "/configs/security/v1/tenant/{O.Tenant}/ipsecpolicies/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -12040,7 +7744,6 @@ type ApiSecurityUpdateNetworkSecurityPolicyRequest struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oTenant string
-	oName string
 	body *SecurityNetworkSecurityPolicy
 }
 
@@ -12057,15 +7760,13 @@ func (r ApiSecurityUpdateNetworkSecurityPolicyRequest) Execute() (SecurityNetwor
  * UpdateNetworkSecurityPolicy Update NetworkSecurityPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiSecurityUpdateNetworkSecurityPolicyRequest
  */
-func (a *SecurityV1ApiService) UpdateNetworkSecurityPolicy(ctx _context.Context, oTenant string, oName string) ApiSecurityUpdateNetworkSecurityPolicyRequest {
+func (a *SecurityV1ApiService) UpdateNetworkSecurityPolicy(ctx _context.Context, oTenant string) ApiSecurityUpdateNetworkSecurityPolicyRequest {
 	return ApiSecurityUpdateNetworkSecurityPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -12090,7 +7791,6 @@ func (a *SecurityV1ApiService) UpdateNetworkSecurityPolicyExecute(r ApiSecurityU
 
 	localVarPath := localBasePath + "/configs/security/v1/tenant/{O.Tenant}/networksecuritypolicies/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -12400,449 +8100,25 @@ func (a *SecurityV1ApiService) UpdateNetworkSecurityPolicy1Execute(r ApiSecurity
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSecurityUpdateSecurityGroupRequest struct {
-	ctx _context.Context
-	ApiService *SecurityV1ApiService
-	oTenant string
-	oName string
-	body *SecuritySecurityGroup
-}
-
-func (r ApiSecurityUpdateSecurityGroupRequest) Body(body SecuritySecurityGroup) ApiSecurityUpdateSecurityGroupRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiSecurityUpdateSecurityGroupRequest) Execute() (SecuritySecurityGroup, *_nethttp.Response, error) {
-	return r.ApiService.UpdateSecurityGroupExecute(r)
-}
-
-/*
- * UpdateSecurityGroup Update SecurityGroup object
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param oTenant
- * @param oName
- * @return ApiSecurityUpdateSecurityGroupRequest
- */
-func (a *SecurityV1ApiService) UpdateSecurityGroup(ctx _context.Context, oTenant string, oName string) ApiSecurityUpdateSecurityGroupRequest {
-	return ApiSecurityUpdateSecurityGroupRequest{
-		ApiService: a,
-		ctx: ctx,
-		oTenant: oTenant,
-		oName: oName,
-	}
-}
-
-/*
- * Execute executes the request
- * @return SecuritySecurityGroup
- */
-func (a *SecurityV1ApiService) UpdateSecurityGroupExecute(r ApiSecurityUpdateSecurityGroupRequest) (SecuritySecurityGroup, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SecuritySecurityGroup
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityV1ApiService.UpdateSecurityGroup")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/configs/security/v1/tenant/{O.Tenant}/security-groups/{O.Name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode == 401 {
-		a.client.cfg.PSMCfg.Login()
-		a.client.cfg.PSMCfg.SaveConfig()
-		return a.UpdateSecurityGroupExecute(r)
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 412 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 501 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiSecurityUpdateSecurityGroup1Request struct {
-	ctx _context.Context
-	ApiService *SecurityV1ApiService
-	oName string
-	body *SecuritySecurityGroup
-}
-
-func (r ApiSecurityUpdateSecurityGroup1Request) Body(body SecuritySecurityGroup) ApiSecurityUpdateSecurityGroup1Request {
-	r.body = &body
-	return r
-}
-
-func (r ApiSecurityUpdateSecurityGroup1Request) Execute() (SecuritySecurityGroup, *_nethttp.Response, error) {
-	return r.ApiService.UpdateSecurityGroup1Execute(r)
-}
-
-/*
- * UpdateSecurityGroup1 Update SecurityGroup object
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param oName
- * @return ApiSecurityUpdateSecurityGroup1Request
- */
-func (a *SecurityV1ApiService) UpdateSecurityGroup1(ctx _context.Context, oName string) ApiSecurityUpdateSecurityGroup1Request {
-	return ApiSecurityUpdateSecurityGroup1Request{
-		ApiService: a,
-		ctx: ctx,
-		oName: oName,
-	}
-}
-
-/*
- * Execute executes the request
- * @return SecuritySecurityGroup
- */
-func (a *SecurityV1ApiService) UpdateSecurityGroup1Execute(r ApiSecurityUpdateSecurityGroup1Request) (SecuritySecurityGroup, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SecuritySecurityGroup
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityV1ApiService.UpdateSecurityGroup1")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/configs/security/v1/security-groups/{O.Name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode == 401 {
-		a.client.cfg.PSMCfg.Login()
-		a.client.cfg.PSMCfg.SaveConfig()
-		return a.UpdateSecurityGroup1Execute(r)
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 412 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 501 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ApiSecurityWatchAppRequest struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiSecurityWatchAppRequest) OName(oName string) ApiSecurityWatchAppRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiSecurityWatchAppRequest) ONamespace(oNamespace string) ApiSecurityWatchAppRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiSecurityWatchAppRequest) OGenerationId(oGenerationId string) ApiSecurityWatchAppRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiSecurityWatchAppRequest) OResourceVersion(oResourceVersion string) ApiSecurityWatchAppRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiSecurityWatchAppRequest) OUuid(oUuid string) ApiSecurityWatchAppRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiSecurityWatchAppRequest) OCreationTime(oCreationTime time.Time) ApiSecurityWatchAppRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiSecurityWatchAppRequest) OModTime(oModTime time.Time) ApiSecurityWatchAppRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiSecurityWatchAppRequest) OSelfLink(oSelfLink string) ApiSecurityWatchAppRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiSecurityWatchAppRequest) LabelSelector(labelSelector string) ApiSecurityWatchAppRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiSecurityWatchAppRequest) FieldSelector(fieldSelector string) ApiSecurityWatchAppRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiSecurityWatchAppRequest) FieldChangeSelector(fieldChangeSelector []string) ApiSecurityWatchAppRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiSecurityWatchAppRequest) From(from int32) ApiSecurityWatchAppRequest {
-	r.from = &from
-	return r
-}
-func (r ApiSecurityWatchAppRequest) MaxResults(maxResults int32) ApiSecurityWatchAppRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiSecurityWatchAppRequest) SortOrder(sortOrder string) ApiSecurityWatchAppRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiSecurityWatchAppRequest) MetaOnly(metaOnly bool) ApiSecurityWatchAppRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -12893,47 +8169,11 @@ func (a *SecurityV1ApiService) WatchAppExecute(r ApiSecurityWatchAppRequest) (Se
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -13058,85 +8298,20 @@ type ApiSecurityWatchApp1Request struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiSecurityWatchApp1Request) OName(oName string) ApiSecurityWatchApp1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiSecurityWatchApp1Request) OTenant(oTenant string) ApiSecurityWatchApp1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiSecurityWatchApp1Request) ONamespace(oNamespace string) ApiSecurityWatchApp1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiSecurityWatchApp1Request) OGenerationId(oGenerationId string) ApiSecurityWatchApp1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiSecurityWatchApp1Request) OResourceVersion(oResourceVersion string) ApiSecurityWatchApp1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiSecurityWatchApp1Request) OUuid(oUuid string) ApiSecurityWatchApp1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiSecurityWatchApp1Request) OCreationTime(oCreationTime time.Time) ApiSecurityWatchApp1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiSecurityWatchApp1Request) OModTime(oModTime time.Time) ApiSecurityWatchApp1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiSecurityWatchApp1Request) OSelfLink(oSelfLink string) ApiSecurityWatchApp1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiSecurityWatchApp1Request) LabelSelector(labelSelector string) ApiSecurityWatchApp1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiSecurityWatchApp1Request) FieldSelector(fieldSelector string) ApiSecurityWatchApp1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiSecurityWatchApp1Request) FieldChangeSelector(fieldChangeSelector []string) ApiSecurityWatchApp1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiSecurityWatchApp1Request) From(from int32) ApiSecurityWatchApp1Request {
-	r.from = &from
-	return r
-}
-func (r ApiSecurityWatchApp1Request) MaxResults(maxResults int32) ApiSecurityWatchApp1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiSecurityWatchApp1Request) SortOrder(sortOrder string) ApiSecurityWatchApp1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiSecurityWatchApp1Request) MetaOnly(metaOnly bool) ApiSecurityWatchApp1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -13184,50 +8359,11 @@ func (a *SecurityV1ApiService) WatchApp1Execute(r ApiSecurityWatchApp1Request) (
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -13353,80 +8489,20 @@ type ApiSecurityWatchFirewallProfileRequest struct {
 	ApiService *SecurityV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiSecurityWatchFirewallProfileRequest) OName(oName string) ApiSecurityWatchFirewallProfileRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiSecurityWatchFirewallProfileRequest) ONamespace(oNamespace string) ApiSecurityWatchFirewallProfileRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiSecurityWatchFirewallProfileRequest) OGenerationId(oGenerationId string) ApiSecurityWatchFirewallProfileRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiSecurityWatchFirewallProfileRequest) OResourceVersion(oResourceVersion string) ApiSecurityWatchFirewallProfileRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiSecurityWatchFirewallProfileRequest) OUuid(oUuid string) ApiSecurityWatchFirewallProfileRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiSecurityWatchFirewallProfileRequest) OCreationTime(oCreationTime time.Time) ApiSecurityWatchFirewallProfileRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiSecurityWatchFirewallProfileRequest) OModTime(oModTime time.Time) ApiSecurityWatchFirewallProfileRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiSecurityWatchFirewallProfileRequest) OSelfLink(oSelfLink string) ApiSecurityWatchFirewallProfileRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiSecurityWatchFirewallProfileRequest) LabelSelector(labelSelector string) ApiSecurityWatchFirewallProfileRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiSecurityWatchFirewallProfileRequest) FieldSelector(fieldSelector string) ApiSecurityWatchFirewallProfileRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiSecurityWatchFirewallProfileRequest) FieldChangeSelector(fieldChangeSelector []string) ApiSecurityWatchFirewallProfileRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiSecurityWatchFirewallProfileRequest) From(from int32) ApiSecurityWatchFirewallProfileRequest {
-	r.from = &from
-	return r
-}
-func (r ApiSecurityWatchFirewallProfileRequest) MaxResults(maxResults int32) ApiSecurityWatchFirewallProfileRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiSecurityWatchFirewallProfileRequest) SortOrder(sortOrder string) ApiSecurityWatchFirewallProfileRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiSecurityWatchFirewallProfileRequest) MetaOnly(metaOnly bool) ApiSecurityWatchFirewallProfileRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -13477,47 +8553,11 @@ func (a *SecurityV1ApiService) WatchFirewallProfileExecute(r ApiSecurityWatchFir
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -13642,85 +8682,20 @@ type ApiSecurityWatchFirewallProfile1Request struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiSecurityWatchFirewallProfile1Request) OName(oName string) ApiSecurityWatchFirewallProfile1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiSecurityWatchFirewallProfile1Request) OTenant(oTenant string) ApiSecurityWatchFirewallProfile1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiSecurityWatchFirewallProfile1Request) ONamespace(oNamespace string) ApiSecurityWatchFirewallProfile1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiSecurityWatchFirewallProfile1Request) OGenerationId(oGenerationId string) ApiSecurityWatchFirewallProfile1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiSecurityWatchFirewallProfile1Request) OResourceVersion(oResourceVersion string) ApiSecurityWatchFirewallProfile1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiSecurityWatchFirewallProfile1Request) OUuid(oUuid string) ApiSecurityWatchFirewallProfile1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiSecurityWatchFirewallProfile1Request) OCreationTime(oCreationTime time.Time) ApiSecurityWatchFirewallProfile1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiSecurityWatchFirewallProfile1Request) OModTime(oModTime time.Time) ApiSecurityWatchFirewallProfile1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiSecurityWatchFirewallProfile1Request) OSelfLink(oSelfLink string) ApiSecurityWatchFirewallProfile1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiSecurityWatchFirewallProfile1Request) LabelSelector(labelSelector string) ApiSecurityWatchFirewallProfile1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiSecurityWatchFirewallProfile1Request) FieldSelector(fieldSelector string) ApiSecurityWatchFirewallProfile1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiSecurityWatchFirewallProfile1Request) FieldChangeSelector(fieldChangeSelector []string) ApiSecurityWatchFirewallProfile1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiSecurityWatchFirewallProfile1Request) From(from int32) ApiSecurityWatchFirewallProfile1Request {
-	r.from = &from
-	return r
-}
-func (r ApiSecurityWatchFirewallProfile1Request) MaxResults(maxResults int32) ApiSecurityWatchFirewallProfile1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiSecurityWatchFirewallProfile1Request) SortOrder(sortOrder string) ApiSecurityWatchFirewallProfile1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiSecurityWatchFirewallProfile1Request) MetaOnly(metaOnly bool) ApiSecurityWatchFirewallProfile1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -13768,50 +8743,11 @@ func (a *SecurityV1ApiService) WatchFirewallProfile1Execute(r ApiSecurityWatchFi
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -13937,80 +8873,20 @@ type ApiSecurityWatchIPSecPolicyRequest struct {
 	ApiService *SecurityV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiSecurityWatchIPSecPolicyRequest) OName(oName string) ApiSecurityWatchIPSecPolicyRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiSecurityWatchIPSecPolicyRequest) ONamespace(oNamespace string) ApiSecurityWatchIPSecPolicyRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiSecurityWatchIPSecPolicyRequest) OGenerationId(oGenerationId string) ApiSecurityWatchIPSecPolicyRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiSecurityWatchIPSecPolicyRequest) OResourceVersion(oResourceVersion string) ApiSecurityWatchIPSecPolicyRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiSecurityWatchIPSecPolicyRequest) OUuid(oUuid string) ApiSecurityWatchIPSecPolicyRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiSecurityWatchIPSecPolicyRequest) OCreationTime(oCreationTime time.Time) ApiSecurityWatchIPSecPolicyRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiSecurityWatchIPSecPolicyRequest) OModTime(oModTime time.Time) ApiSecurityWatchIPSecPolicyRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiSecurityWatchIPSecPolicyRequest) OSelfLink(oSelfLink string) ApiSecurityWatchIPSecPolicyRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiSecurityWatchIPSecPolicyRequest) LabelSelector(labelSelector string) ApiSecurityWatchIPSecPolicyRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiSecurityWatchIPSecPolicyRequest) FieldSelector(fieldSelector string) ApiSecurityWatchIPSecPolicyRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiSecurityWatchIPSecPolicyRequest) FieldChangeSelector(fieldChangeSelector []string) ApiSecurityWatchIPSecPolicyRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiSecurityWatchIPSecPolicyRequest) From(from int32) ApiSecurityWatchIPSecPolicyRequest {
-	r.from = &from
-	return r
-}
-func (r ApiSecurityWatchIPSecPolicyRequest) MaxResults(maxResults int32) ApiSecurityWatchIPSecPolicyRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiSecurityWatchIPSecPolicyRequest) SortOrder(sortOrder string) ApiSecurityWatchIPSecPolicyRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiSecurityWatchIPSecPolicyRequest) MetaOnly(metaOnly bool) ApiSecurityWatchIPSecPolicyRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -14061,47 +8937,11 @@ func (a *SecurityV1ApiService) WatchIPSecPolicyExecute(r ApiSecurityWatchIPSecPo
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -14226,85 +9066,20 @@ type ApiSecurityWatchIPSecPolicy1Request struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiSecurityWatchIPSecPolicy1Request) OName(oName string) ApiSecurityWatchIPSecPolicy1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiSecurityWatchIPSecPolicy1Request) OTenant(oTenant string) ApiSecurityWatchIPSecPolicy1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiSecurityWatchIPSecPolicy1Request) ONamespace(oNamespace string) ApiSecurityWatchIPSecPolicy1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiSecurityWatchIPSecPolicy1Request) OGenerationId(oGenerationId string) ApiSecurityWatchIPSecPolicy1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiSecurityWatchIPSecPolicy1Request) OResourceVersion(oResourceVersion string) ApiSecurityWatchIPSecPolicy1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiSecurityWatchIPSecPolicy1Request) OUuid(oUuid string) ApiSecurityWatchIPSecPolicy1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiSecurityWatchIPSecPolicy1Request) OCreationTime(oCreationTime time.Time) ApiSecurityWatchIPSecPolicy1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiSecurityWatchIPSecPolicy1Request) OModTime(oModTime time.Time) ApiSecurityWatchIPSecPolicy1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiSecurityWatchIPSecPolicy1Request) OSelfLink(oSelfLink string) ApiSecurityWatchIPSecPolicy1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiSecurityWatchIPSecPolicy1Request) LabelSelector(labelSelector string) ApiSecurityWatchIPSecPolicy1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiSecurityWatchIPSecPolicy1Request) FieldSelector(fieldSelector string) ApiSecurityWatchIPSecPolicy1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiSecurityWatchIPSecPolicy1Request) FieldChangeSelector(fieldChangeSelector []string) ApiSecurityWatchIPSecPolicy1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiSecurityWatchIPSecPolicy1Request) From(from int32) ApiSecurityWatchIPSecPolicy1Request {
-	r.from = &from
-	return r
-}
-func (r ApiSecurityWatchIPSecPolicy1Request) MaxResults(maxResults int32) ApiSecurityWatchIPSecPolicy1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiSecurityWatchIPSecPolicy1Request) SortOrder(sortOrder string) ApiSecurityWatchIPSecPolicy1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiSecurityWatchIPSecPolicy1Request) MetaOnly(metaOnly bool) ApiSecurityWatchIPSecPolicy1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -14352,50 +9127,11 @@ func (a *SecurityV1ApiService) WatchIPSecPolicy1Execute(r ApiSecurityWatchIPSecP
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -14521,80 +9257,20 @@ type ApiSecurityWatchNetworkSecurityPolicyRequest struct {
 	ApiService *SecurityV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiSecurityWatchNetworkSecurityPolicyRequest) OName(oName string) ApiSecurityWatchNetworkSecurityPolicyRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiSecurityWatchNetworkSecurityPolicyRequest) ONamespace(oNamespace string) ApiSecurityWatchNetworkSecurityPolicyRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiSecurityWatchNetworkSecurityPolicyRequest) OGenerationId(oGenerationId string) ApiSecurityWatchNetworkSecurityPolicyRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiSecurityWatchNetworkSecurityPolicyRequest) OResourceVersion(oResourceVersion string) ApiSecurityWatchNetworkSecurityPolicyRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiSecurityWatchNetworkSecurityPolicyRequest) OUuid(oUuid string) ApiSecurityWatchNetworkSecurityPolicyRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiSecurityWatchNetworkSecurityPolicyRequest) OCreationTime(oCreationTime time.Time) ApiSecurityWatchNetworkSecurityPolicyRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiSecurityWatchNetworkSecurityPolicyRequest) OModTime(oModTime time.Time) ApiSecurityWatchNetworkSecurityPolicyRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiSecurityWatchNetworkSecurityPolicyRequest) OSelfLink(oSelfLink string) ApiSecurityWatchNetworkSecurityPolicyRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiSecurityWatchNetworkSecurityPolicyRequest) LabelSelector(labelSelector string) ApiSecurityWatchNetworkSecurityPolicyRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiSecurityWatchNetworkSecurityPolicyRequest) FieldSelector(fieldSelector string) ApiSecurityWatchNetworkSecurityPolicyRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiSecurityWatchNetworkSecurityPolicyRequest) FieldChangeSelector(fieldChangeSelector []string) ApiSecurityWatchNetworkSecurityPolicyRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiSecurityWatchNetworkSecurityPolicyRequest) From(from int32) ApiSecurityWatchNetworkSecurityPolicyRequest {
-	r.from = &from
-	return r
-}
-func (r ApiSecurityWatchNetworkSecurityPolicyRequest) MaxResults(maxResults int32) ApiSecurityWatchNetworkSecurityPolicyRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiSecurityWatchNetworkSecurityPolicyRequest) SortOrder(sortOrder string) ApiSecurityWatchNetworkSecurityPolicyRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiSecurityWatchNetworkSecurityPolicyRequest) MetaOnly(metaOnly bool) ApiSecurityWatchNetworkSecurityPolicyRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -14645,47 +9321,11 @@ func (a *SecurityV1ApiService) WatchNetworkSecurityPolicyExecute(r ApiSecurityWa
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -14810,85 +9450,20 @@ type ApiSecurityWatchNetworkSecurityPolicy1Request struct {
 	ctx _context.Context
 	ApiService *SecurityV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiSecurityWatchNetworkSecurityPolicy1Request) OName(oName string) ApiSecurityWatchNetworkSecurityPolicy1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiSecurityWatchNetworkSecurityPolicy1Request) OTenant(oTenant string) ApiSecurityWatchNetworkSecurityPolicy1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiSecurityWatchNetworkSecurityPolicy1Request) ONamespace(oNamespace string) ApiSecurityWatchNetworkSecurityPolicy1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiSecurityWatchNetworkSecurityPolicy1Request) OGenerationId(oGenerationId string) ApiSecurityWatchNetworkSecurityPolicy1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiSecurityWatchNetworkSecurityPolicy1Request) OResourceVersion(oResourceVersion string) ApiSecurityWatchNetworkSecurityPolicy1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiSecurityWatchNetworkSecurityPolicy1Request) OUuid(oUuid string) ApiSecurityWatchNetworkSecurityPolicy1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiSecurityWatchNetworkSecurityPolicy1Request) OCreationTime(oCreationTime time.Time) ApiSecurityWatchNetworkSecurityPolicy1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiSecurityWatchNetworkSecurityPolicy1Request) OModTime(oModTime time.Time) ApiSecurityWatchNetworkSecurityPolicy1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiSecurityWatchNetworkSecurityPolicy1Request) OSelfLink(oSelfLink string) ApiSecurityWatchNetworkSecurityPolicy1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiSecurityWatchNetworkSecurityPolicy1Request) LabelSelector(labelSelector string) ApiSecurityWatchNetworkSecurityPolicy1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiSecurityWatchNetworkSecurityPolicy1Request) FieldSelector(fieldSelector string) ApiSecurityWatchNetworkSecurityPolicy1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiSecurityWatchNetworkSecurityPolicy1Request) FieldChangeSelector(fieldChangeSelector []string) ApiSecurityWatchNetworkSecurityPolicy1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiSecurityWatchNetworkSecurityPolicy1Request) From(from int32) ApiSecurityWatchNetworkSecurityPolicy1Request {
-	r.from = &from
-	return r
-}
-func (r ApiSecurityWatchNetworkSecurityPolicy1Request) MaxResults(maxResults int32) ApiSecurityWatchNetworkSecurityPolicy1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiSecurityWatchNetworkSecurityPolicy1Request) SortOrder(sortOrder string) ApiSecurityWatchNetworkSecurityPolicy1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiSecurityWatchNetworkSecurityPolicy1Request) MetaOnly(metaOnly bool) ApiSecurityWatchNetworkSecurityPolicy1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -14936,50 +9511,11 @@ func (a *SecurityV1ApiService) WatchNetworkSecurityPolicy1Execute(r ApiSecurityW
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -15019,590 +9555,6 @@ func (a *SecurityV1ApiService) WatchNetworkSecurityPolicy1Execute(r ApiSecurityW
 		a.client.cfg.PSMCfg.Login()
 		a.client.cfg.PSMCfg.SaveConfig()
 		return a.WatchNetworkSecurityPolicy1Execute(r)
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 412 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 501 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiSecurityWatchSecurityGroupRequest struct {
-	ctx _context.Context
-	ApiService *SecurityV1ApiService
-	oTenant string
-	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
-	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
-	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
-}
-
-func (r ApiSecurityWatchSecurityGroupRequest) OName(oName string) ApiSecurityWatchSecurityGroupRequest {
-	r.oName = &oName
-	return r
-}
-func (r ApiSecurityWatchSecurityGroupRequest) ONamespace(oNamespace string) ApiSecurityWatchSecurityGroupRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiSecurityWatchSecurityGroupRequest) OGenerationId(oGenerationId string) ApiSecurityWatchSecurityGroupRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiSecurityWatchSecurityGroupRequest) OResourceVersion(oResourceVersion string) ApiSecurityWatchSecurityGroupRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiSecurityWatchSecurityGroupRequest) OUuid(oUuid string) ApiSecurityWatchSecurityGroupRequest {
-	r.oUuid = &oUuid
-	return r
-}
-func (r ApiSecurityWatchSecurityGroupRequest) OCreationTime(oCreationTime time.Time) ApiSecurityWatchSecurityGroupRequest {
-	r.oCreationTime = &oCreationTime
-	return r
-}
-func (r ApiSecurityWatchSecurityGroupRequest) OModTime(oModTime time.Time) ApiSecurityWatchSecurityGroupRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiSecurityWatchSecurityGroupRequest) OSelfLink(oSelfLink string) ApiSecurityWatchSecurityGroupRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiSecurityWatchSecurityGroupRequest) LabelSelector(labelSelector string) ApiSecurityWatchSecurityGroupRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiSecurityWatchSecurityGroupRequest) FieldSelector(fieldSelector string) ApiSecurityWatchSecurityGroupRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
-func (r ApiSecurityWatchSecurityGroupRequest) FieldChangeSelector(fieldChangeSelector []string) ApiSecurityWatchSecurityGroupRequest {
-	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiSecurityWatchSecurityGroupRequest) From(from int32) ApiSecurityWatchSecurityGroupRequest {
-	r.from = &from
-	return r
-}
-func (r ApiSecurityWatchSecurityGroupRequest) MaxResults(maxResults int32) ApiSecurityWatchSecurityGroupRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiSecurityWatchSecurityGroupRequest) SortOrder(sortOrder string) ApiSecurityWatchSecurityGroupRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiSecurityWatchSecurityGroupRequest) MetaOnly(metaOnly bool) ApiSecurityWatchSecurityGroupRequest {
-	r.metaOnly = &metaOnly
-	return r
-}
-
-func (r ApiSecurityWatchSecurityGroupRequest) Execute() (SecurityAutoMsgSecurityGroupWatchHelper, *_nethttp.Response, error) {
-	return r.ApiService.WatchSecurityGroupExecute(r)
-}
-
-/*
- * WatchSecurityGroup Watch SecurityGroup objects. Supports WebSockets or HTTP long poll
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param oTenant
- * @return ApiSecurityWatchSecurityGroupRequest
- */
-func (a *SecurityV1ApiService) WatchSecurityGroup(ctx _context.Context, oTenant string) ApiSecurityWatchSecurityGroupRequest {
-	return ApiSecurityWatchSecurityGroupRequest{
-		ApiService: a,
-		ctx: ctx,
-		oTenant: oTenant,
-	}
-}
-
-/*
- * Execute executes the request
- * @return SecurityAutoMsgSecurityGroupWatchHelper
- */
-func (a *SecurityV1ApiService) WatchSecurityGroupExecute(r ApiSecurityWatchSecurityGroupRequest) (SecurityAutoMsgSecurityGroupWatchHelper, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SecurityAutoMsgSecurityGroupWatchHelper
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityV1ApiService.WatchSecurityGroup")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/configs/security/v1/watch/tenant/{O.Tenant}/security-groups"
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.oName != nil {
-		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
-	if r.oCreationTime != nil {
-		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
-	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
-	if r.fieldChangeSelector != nil {
-		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode == 401 {
-		a.client.cfg.PSMCfg.Login()
-		a.client.cfg.PSMCfg.SaveConfig()
-		return a.WatchSecurityGroupExecute(r)
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 412 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 501 {
-			var v ApiStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiSecurityWatchSecurityGroup1Request struct {
-	ctx _context.Context
-	ApiService *SecurityV1ApiService
-	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
-	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
-	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
-}
-
-func (r ApiSecurityWatchSecurityGroup1Request) OName(oName string) ApiSecurityWatchSecurityGroup1Request {
-	r.oName = &oName
-	return r
-}
-func (r ApiSecurityWatchSecurityGroup1Request) OTenant(oTenant string) ApiSecurityWatchSecurityGroup1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiSecurityWatchSecurityGroup1Request) ONamespace(oNamespace string) ApiSecurityWatchSecurityGroup1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiSecurityWatchSecurityGroup1Request) OGenerationId(oGenerationId string) ApiSecurityWatchSecurityGroup1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiSecurityWatchSecurityGroup1Request) OResourceVersion(oResourceVersion string) ApiSecurityWatchSecurityGroup1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiSecurityWatchSecurityGroup1Request) OUuid(oUuid string) ApiSecurityWatchSecurityGroup1Request {
-	r.oUuid = &oUuid
-	return r
-}
-func (r ApiSecurityWatchSecurityGroup1Request) OCreationTime(oCreationTime time.Time) ApiSecurityWatchSecurityGroup1Request {
-	r.oCreationTime = &oCreationTime
-	return r
-}
-func (r ApiSecurityWatchSecurityGroup1Request) OModTime(oModTime time.Time) ApiSecurityWatchSecurityGroup1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiSecurityWatchSecurityGroup1Request) OSelfLink(oSelfLink string) ApiSecurityWatchSecurityGroup1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiSecurityWatchSecurityGroup1Request) LabelSelector(labelSelector string) ApiSecurityWatchSecurityGroup1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiSecurityWatchSecurityGroup1Request) FieldSelector(fieldSelector string) ApiSecurityWatchSecurityGroup1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
-func (r ApiSecurityWatchSecurityGroup1Request) FieldChangeSelector(fieldChangeSelector []string) ApiSecurityWatchSecurityGroup1Request {
-	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiSecurityWatchSecurityGroup1Request) From(from int32) ApiSecurityWatchSecurityGroup1Request {
-	r.from = &from
-	return r
-}
-func (r ApiSecurityWatchSecurityGroup1Request) MaxResults(maxResults int32) ApiSecurityWatchSecurityGroup1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiSecurityWatchSecurityGroup1Request) SortOrder(sortOrder string) ApiSecurityWatchSecurityGroup1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiSecurityWatchSecurityGroup1Request) MetaOnly(metaOnly bool) ApiSecurityWatchSecurityGroup1Request {
-	r.metaOnly = &metaOnly
-	return r
-}
-
-func (r ApiSecurityWatchSecurityGroup1Request) Execute() (SecurityAutoMsgSecurityGroupWatchHelper, *_nethttp.Response, error) {
-	return r.ApiService.WatchSecurityGroup1Execute(r)
-}
-
-/*
- * WatchSecurityGroup1 Watch SecurityGroup objects. Supports WebSockets or HTTP long poll
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiSecurityWatchSecurityGroup1Request
- */
-func (a *SecurityV1ApiService) WatchSecurityGroup1(ctx _context.Context) ApiSecurityWatchSecurityGroup1Request {
-	return ApiSecurityWatchSecurityGroup1Request{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-/*
- * Execute executes the request
- * @return SecurityAutoMsgSecurityGroupWatchHelper
- */
-func (a *SecurityV1ApiService) WatchSecurityGroup1Execute(r ApiSecurityWatchSecurityGroup1Request) (SecurityAutoMsgSecurityGroupWatchHelper, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SecurityAutoMsgSecurityGroupWatchHelper
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityV1ApiService.WatchSecurityGroup1")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/configs/security/v1/watch/security-groups"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.oName != nil {
-		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
-	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
-	if r.oCreationTime != nil {
-		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
-	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
-	if r.fieldChangeSelector != nil {
-		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode == 401 {
-		a.client.cfg.PSMCfg.Login()
-		a.client.cfg.PSMCfg.SaveConfig()
-		return a.WatchSecurityGroup1Execute(r)
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {

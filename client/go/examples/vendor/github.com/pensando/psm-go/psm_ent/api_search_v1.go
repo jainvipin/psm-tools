@@ -30,65 +30,15 @@ type ApiSearchGetPolicyQuery1Request struct {
 	ctx _context.Context
 	ApiService *SearchV1ApiService
 	tenant *string
-	namespace *string
-	app *string
-	protocol *string
-	port *string
-	fromIpAddress *string
-	toIpAddress *string
-	fromSecurityGroup *string
-	toSecurityGroup *string
 	kinds *[]string
-	name *string
-	action *string
 }
 
 func (r ApiSearchGetPolicyQuery1Request) Tenant(tenant string) ApiSearchGetPolicyQuery1Request {
 	r.tenant = &tenant
 	return r
 }
-func (r ApiSearchGetPolicyQuery1Request) Namespace(namespace string) ApiSearchGetPolicyQuery1Request {
-	r.namespace = &namespace
-	return r
-}
-func (r ApiSearchGetPolicyQuery1Request) App(app string) ApiSearchGetPolicyQuery1Request {
-	r.app = &app
-	return r
-}
-func (r ApiSearchGetPolicyQuery1Request) Protocol(protocol string) ApiSearchGetPolicyQuery1Request {
-	r.protocol = &protocol
-	return r
-}
-func (r ApiSearchGetPolicyQuery1Request) Port(port string) ApiSearchGetPolicyQuery1Request {
-	r.port = &port
-	return r
-}
-func (r ApiSearchGetPolicyQuery1Request) FromIpAddress(fromIpAddress string) ApiSearchGetPolicyQuery1Request {
-	r.fromIpAddress = &fromIpAddress
-	return r
-}
-func (r ApiSearchGetPolicyQuery1Request) ToIpAddress(toIpAddress string) ApiSearchGetPolicyQuery1Request {
-	r.toIpAddress = &toIpAddress
-	return r
-}
-func (r ApiSearchGetPolicyQuery1Request) FromSecurityGroup(fromSecurityGroup string) ApiSearchGetPolicyQuery1Request {
-	r.fromSecurityGroup = &fromSecurityGroup
-	return r
-}
-func (r ApiSearchGetPolicyQuery1Request) ToSecurityGroup(toSecurityGroup string) ApiSearchGetPolicyQuery1Request {
-	r.toSecurityGroup = &toSecurityGroup
-	return r
-}
 func (r ApiSearchGetPolicyQuery1Request) Kinds(kinds []string) ApiSearchGetPolicyQuery1Request {
 	r.kinds = &kinds
-	return r
-}
-func (r ApiSearchGetPolicyQuery1Request) Name(name string) ApiSearchGetPolicyQuery1Request {
-	r.name = &name
-	return r
-}
-func (r ApiSearchGetPolicyQuery1Request) Action(action string) ApiSearchGetPolicyQuery1Request {
-	r.action = &action
 	return r
 }
 
@@ -136,38 +86,8 @@ func (a *SearchV1ApiService) GetPolicyQuery1Execute(r ApiSearchGetPolicyQuery1Re
 	if r.tenant != nil {
 		localVarQueryParams.Add("tenant", parameterToString(*r.tenant, ""))
 	}
-	if r.namespace != nil {
-		localVarQueryParams.Add("namespace", parameterToString(*r.namespace, ""))
-	}
-	if r.app != nil {
-		localVarQueryParams.Add("app", parameterToString(*r.app, ""))
-	}
-	if r.protocol != nil {
-		localVarQueryParams.Add("protocol", parameterToString(*r.protocol, ""))
-	}
-	if r.port != nil {
-		localVarQueryParams.Add("port", parameterToString(*r.port, ""))
-	}
-	if r.fromIpAddress != nil {
-		localVarQueryParams.Add("from-ip-address", parameterToString(*r.fromIpAddress, ""))
-	}
-	if r.toIpAddress != nil {
-		localVarQueryParams.Add("to-ip-address", parameterToString(*r.toIpAddress, ""))
-	}
-	if r.fromSecurityGroup != nil {
-		localVarQueryParams.Add("from-security-group", parameterToString(*r.fromSecurityGroup, ""))
-	}
-	if r.toSecurityGroup != nil {
-		localVarQueryParams.Add("to-security-group", parameterToString(*r.toSecurityGroup, ""))
-	}
 	if r.kinds != nil {
 		localVarQueryParams.Add("kinds", parameterToString(*r.kinds, "csv"))
-	}
-	if r.name != nil {
-		localVarQueryParams.Add("name", parameterToString(*r.name, ""))
-	}
-	if r.action != nil {
-		localVarQueryParams.Add("action", parameterToString(*r.action, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -234,14 +154,7 @@ type ApiSearchGetQuery1Request struct {
 	ApiService *SearchV1ApiService
 	queryString *string
 	from *int32
-	maxResults *int32
-	sortBy *string
-	sortOrder *string
-	mode *string
 	queryCategories *[]string
-	queryKinds *[]string
-	tenants *[]string
-	aggregate *bool
 }
 
 func (r ApiSearchGetQuery1Request) QueryString(queryString string) ApiSearchGetQuery1Request {
@@ -252,36 +165,8 @@ func (r ApiSearchGetQuery1Request) From(from int32) ApiSearchGetQuery1Request {
 	r.from = &from
 	return r
 }
-func (r ApiSearchGetQuery1Request) MaxResults(maxResults int32) ApiSearchGetQuery1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiSearchGetQuery1Request) SortBy(sortBy string) ApiSearchGetQuery1Request {
-	r.sortBy = &sortBy
-	return r
-}
-func (r ApiSearchGetQuery1Request) SortOrder(sortOrder string) ApiSearchGetQuery1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiSearchGetQuery1Request) Mode(mode string) ApiSearchGetQuery1Request {
-	r.mode = &mode
-	return r
-}
 func (r ApiSearchGetQuery1Request) QueryCategories(queryCategories []string) ApiSearchGetQuery1Request {
 	r.queryCategories = &queryCategories
-	return r
-}
-func (r ApiSearchGetQuery1Request) QueryKinds(queryKinds []string) ApiSearchGetQuery1Request {
-	r.queryKinds = &queryKinds
-	return r
-}
-func (r ApiSearchGetQuery1Request) Tenants(tenants []string) ApiSearchGetQuery1Request {
-	r.tenants = &tenants
-	return r
-}
-func (r ApiSearchGetQuery1Request) Aggregate(aggregate bool) ApiSearchGetQuery1Request {
-	r.aggregate = &aggregate
 	return r
 }
 
@@ -332,29 +217,8 @@ func (a *SearchV1ApiService) GetQuery1Execute(r ApiSearchGetQuery1Request) (Sear
 	if r.from != nil {
 		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
 	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortBy != nil {
-		localVarQueryParams.Add("sort-by", parameterToString(*r.sortBy, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.mode != nil {
-		localVarQueryParams.Add("mode", parameterToString(*r.mode, ""))
-	}
 	if r.queryCategories != nil {
 		localVarQueryParams.Add("query.categories", parameterToString(*r.queryCategories, "csv"))
-	}
-	if r.queryKinds != nil {
-		localVarQueryParams.Add("query.kinds", parameterToString(*r.queryKinds, "csv"))
-	}
-	if r.tenants != nil {
-		localVarQueryParams.Add("tenants", parameterToString(*r.tenants, "csv"))
-	}
-	if r.aggregate != nil {
-		localVarQueryParams.Add("aggregate", parameterToString(*r.aggregate, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

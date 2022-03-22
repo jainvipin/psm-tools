@@ -26,8 +26,6 @@ type MonitoringFlowExportPolicySpec struct {
 	MatchRules *[]MonitoringMatchRule `json:"match-rules,omitempty"`
 	// TemplateInterval defines how often to send ipfix templates to an external collector The value is specified as a string format, '1m', '10m'. Should be a valid time duration between 1m0s and 30m0s.
 	TemplateInterval *string `json:"template-interval,omitempty"`
-	// VrfName specifies the name of the VRF that the current flow export Policy belongs to.
-	VrfName *string `json:"vrf-name,omitempty"`
 }
 
 // NewMonitoringFlowExportPolicySpec instantiates a new MonitoringFlowExportPolicySpec object
@@ -251,38 +249,6 @@ func (o *MonitoringFlowExportPolicySpec) SetTemplateInterval(v string) {
 	o.TemplateInterval = &v
 }
 
-// GetVrfName returns the VrfName field value if set, zero value otherwise.
-func (o *MonitoringFlowExportPolicySpec) GetVrfName() string {
-	if o == nil || o.VrfName == nil {
-		var ret string
-		return ret
-	}
-	return *o.VrfName
-}
-
-// GetVrfNameOk returns a tuple with the VrfName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MonitoringFlowExportPolicySpec) GetVrfNameOk() (*string, bool) {
-	if o == nil || o.VrfName == nil {
-		return nil, false
-	}
-	return o.VrfName, true
-}
-
-// HasVrfName returns a boolean if a field has been set.
-func (o *MonitoringFlowExportPolicySpec) HasVrfName() bool {
-	if o != nil && o.VrfName != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetVrfName gets a reference to the given string and assigns it to the VrfName field.
-func (o *MonitoringFlowExportPolicySpec) SetVrfName(v string) {
-	o.VrfName = &v
-}
-
 func (o MonitoringFlowExportPolicySpec) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Disabled != nil {
@@ -302,9 +268,6 @@ func (o MonitoringFlowExportPolicySpec) MarshalJSON() ([]byte, error) {
 	}
 	if o.TemplateInterval != nil {
 		toSerialize["template-interval"] = o.TemplateInterval
-	}
-	if o.VrfName != nil {
-		toSerialize["vrf-name"] = o.VrfName
 	}
 	return json.Marshal(toSerialize)
 }

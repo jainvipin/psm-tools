@@ -7,6 +7,7 @@ import sys
 import logging
 from login import get_psm_config
 import warnings
+import collections
 warnings.simplefilter("ignore")
 
 HOME = os.environ["HOME"]
@@ -36,9 +37,40 @@ def removeRequired(filename, jsondata):
             jsondata["definitions"][key]["required"] = []
     return jsondata
 
+def removeDuplicates(filename, jsondata):
+
+    if type(jsondata) != dict:
+        return
+
+    for key in jsondata.keys():
+
+        value = jsondata[key]
+        if type(value) is dict:
+            removeDuplicates(filename, jsondata[key])
+        elif type(value) is list:
+            duplicate_map = set()
+            newlist = []
+
+            for i,v in enumerate(value):
+                removeDuplicates(filename, jsondata[key][i])
+
+            value = jsondata[key]
+            for v in value:
+                hv = None
+                if isinstance(v, collections.Hashable):
+                    hv = v
+                else:
+                    hv = frozenset(v)
+                if hv not in duplicate_map:
+                    duplicate_map.add(hv)
+                    newlist.append(v)
+            jsondata[key] = newlist
+    return jsondata
+            
 def processSwagger(filename, jsondata):
 
     jsondata = removeRequired(filename, jsondata)
+    removeDuplicates(filename, jsondata)
 
     '''
     fwlog apigroup:

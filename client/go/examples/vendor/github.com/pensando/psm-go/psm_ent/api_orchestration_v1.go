@@ -379,111 +379,18 @@ type ApiOrchestrationGetOrchestratorRequest struct {
 	ApiService *OrchestrationV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specType *string
-	specUri *string
-	credentialsAuthType *string
-	credentialsUsername *string
-	credentialsPassword *string
-	credentialsBearerToken *string
-	credentialsCertData *string
-	credentialsKeyData *string
-	credentialsCaData *string
-	credentialsDisableServerAuthentication *bool
 	statusConnectionStatus *string
 	statusLastTransitionTime *time.Time
-	statusMessage *string
-	statusOrchId *int32
 	statusDiscoveredNamespaces *[]string
-	statusIncompatibleDscs *[]string
 }
 
 func (r ApiOrchestrationGetOrchestratorRequest) TKind(tKind string) ApiOrchestrationGetOrchestratorRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiOrchestrationGetOrchestratorRequest) TApiVersion(tApiVersion string) ApiOrchestrationGetOrchestratorRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiOrchestrationGetOrchestratorRequest) MetaTenant(metaTenant string) ApiOrchestrationGetOrchestratorRequest {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiOrchestrationGetOrchestratorRequest) MetaNamespace(metaNamespace string) ApiOrchestrationGetOrchestratorRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiOrchestrationGetOrchestratorRequest) MetaGenerationId(metaGenerationId string) ApiOrchestrationGetOrchestratorRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiOrchestrationGetOrchestratorRequest) MetaResourceVersion(metaResourceVersion string) ApiOrchestrationGetOrchestratorRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiOrchestrationGetOrchestratorRequest) MetaUuid(metaUuid string) ApiOrchestrationGetOrchestratorRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiOrchestrationGetOrchestratorRequest) MetaCreationTime(metaCreationTime time.Time) ApiOrchestrationGetOrchestratorRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiOrchestrationGetOrchestratorRequest) MetaModTime(metaModTime time.Time) ApiOrchestrationGetOrchestratorRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiOrchestrationGetOrchestratorRequest) MetaSelfLink(metaSelfLink string) ApiOrchestrationGetOrchestratorRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiOrchestrationGetOrchestratorRequest) SpecType(specType string) ApiOrchestrationGetOrchestratorRequest {
-	r.specType = &specType
-	return r
-}
-func (r ApiOrchestrationGetOrchestratorRequest) SpecUri(specUri string) ApiOrchestrationGetOrchestratorRequest {
-	r.specUri = &specUri
-	return r
-}
-func (r ApiOrchestrationGetOrchestratorRequest) CredentialsAuthType(credentialsAuthType string) ApiOrchestrationGetOrchestratorRequest {
-	r.credentialsAuthType = &credentialsAuthType
-	return r
-}
-func (r ApiOrchestrationGetOrchestratorRequest) CredentialsUsername(credentialsUsername string) ApiOrchestrationGetOrchestratorRequest {
-	r.credentialsUsername = &credentialsUsername
-	return r
-}
-func (r ApiOrchestrationGetOrchestratorRequest) CredentialsPassword(credentialsPassword string) ApiOrchestrationGetOrchestratorRequest {
-	r.credentialsPassword = &credentialsPassword
-	return r
-}
-func (r ApiOrchestrationGetOrchestratorRequest) CredentialsBearerToken(credentialsBearerToken string) ApiOrchestrationGetOrchestratorRequest {
-	r.credentialsBearerToken = &credentialsBearerToken
-	return r
-}
-func (r ApiOrchestrationGetOrchestratorRequest) CredentialsCertData(credentialsCertData string) ApiOrchestrationGetOrchestratorRequest {
-	r.credentialsCertData = &credentialsCertData
-	return r
-}
-func (r ApiOrchestrationGetOrchestratorRequest) CredentialsKeyData(credentialsKeyData string) ApiOrchestrationGetOrchestratorRequest {
-	r.credentialsKeyData = &credentialsKeyData
-	return r
-}
-func (r ApiOrchestrationGetOrchestratorRequest) CredentialsCaData(credentialsCaData string) ApiOrchestrationGetOrchestratorRequest {
-	r.credentialsCaData = &credentialsCaData
-	return r
-}
-func (r ApiOrchestrationGetOrchestratorRequest) CredentialsDisableServerAuthentication(credentialsDisableServerAuthentication bool) ApiOrchestrationGetOrchestratorRequest {
-	r.credentialsDisableServerAuthentication = &credentialsDisableServerAuthentication
 	return r
 }
 func (r ApiOrchestrationGetOrchestratorRequest) StatusConnectionStatus(statusConnectionStatus string) ApiOrchestrationGetOrchestratorRequest {
@@ -494,20 +401,8 @@ func (r ApiOrchestrationGetOrchestratorRequest) StatusLastTransitionTime(statusL
 	r.statusLastTransitionTime = &statusLastTransitionTime
 	return r
 }
-func (r ApiOrchestrationGetOrchestratorRequest) StatusMessage(statusMessage string) ApiOrchestrationGetOrchestratorRequest {
-	r.statusMessage = &statusMessage
-	return r
-}
-func (r ApiOrchestrationGetOrchestratorRequest) StatusOrchId(statusOrchId int32) ApiOrchestrationGetOrchestratorRequest {
-	r.statusOrchId = &statusOrchId
-	return r
-}
 func (r ApiOrchestrationGetOrchestratorRequest) StatusDiscoveredNamespaces(statusDiscoveredNamespaces []string) ApiOrchestrationGetOrchestratorRequest {
 	r.statusDiscoveredNamespaces = &statusDiscoveredNamespaces
-	return r
-}
-func (r ApiOrchestrationGetOrchestratorRequest) StatusIncompatibleDscs(statusIncompatibleDscs []string) ApiOrchestrationGetOrchestratorRequest {
-	r.statusIncompatibleDscs = &statusIncompatibleDscs
 	return r
 }
 
@@ -558,62 +453,8 @@ func (a *OrchestrationV1ApiService) GetOrchestratorExecute(r ApiOrchestrationGet
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specType != nil {
-		localVarQueryParams.Add("spec.type", parameterToString(*r.specType, ""))
-	}
-	if r.specUri != nil {
-		localVarQueryParams.Add("spec.uri", parameterToString(*r.specUri, ""))
-	}
-	if r.credentialsAuthType != nil {
-		localVarQueryParams.Add("credentials.auth-type", parameterToString(*r.credentialsAuthType, ""))
-	}
-	if r.credentialsUsername != nil {
-		localVarQueryParams.Add("credentials.username", parameterToString(*r.credentialsUsername, ""))
-	}
-	if r.credentialsPassword != nil {
-		localVarQueryParams.Add("credentials.password", parameterToString(*r.credentialsPassword, ""))
-	}
-	if r.credentialsBearerToken != nil {
-		localVarQueryParams.Add("credentials.bearer-token", parameterToString(*r.credentialsBearerToken, ""))
-	}
-	if r.credentialsCertData != nil {
-		localVarQueryParams.Add("credentials.cert-data", parameterToString(*r.credentialsCertData, ""))
-	}
-	if r.credentialsKeyData != nil {
-		localVarQueryParams.Add("credentials.key-data", parameterToString(*r.credentialsKeyData, ""))
-	}
-	if r.credentialsCaData != nil {
-		localVarQueryParams.Add("credentials.ca-data", parameterToString(*r.credentialsCaData, ""))
-	}
-	if r.credentialsDisableServerAuthentication != nil {
-		localVarQueryParams.Add("credentials.disable-server-authentication", parameterToString(*r.credentialsDisableServerAuthentication, ""))
 	}
 	if r.statusConnectionStatus != nil {
 		localVarQueryParams.Add("status.connection-status", parameterToString(*r.statusConnectionStatus, ""))
@@ -621,17 +462,8 @@ func (a *OrchestrationV1ApiService) GetOrchestratorExecute(r ApiOrchestrationGet
 	if r.statusLastTransitionTime != nil {
 		localVarQueryParams.Add("status.last-transition-time", parameterToString(*r.statusLastTransitionTime, ""))
 	}
-	if r.statusMessage != nil {
-		localVarQueryParams.Add("status.message", parameterToString(*r.statusMessage, ""))
-	}
-	if r.statusOrchId != nil {
-		localVarQueryParams.Add("status.orch-id", parameterToString(*r.statusOrchId, ""))
-	}
 	if r.statusDiscoveredNamespaces != nil {
 		localVarQueryParams.Add("status.discovered-namespaces", parameterToString(*r.statusDiscoveredNamespaces, "csv"))
-	}
-	if r.statusIncompatibleDscs != nil {
-		localVarQueryParams.Add("status.incompatible-dscs", parameterToString(*r.statusIncompatibleDscs, "csv"))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -936,85 +768,20 @@ type ApiOrchestrationListOrchestratorRequest struct {
 	ctx _context.Context
 	ApiService *OrchestrationV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiOrchestrationListOrchestratorRequest) OName(oName string) ApiOrchestrationListOrchestratorRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiOrchestrationListOrchestratorRequest) OTenant(oTenant string) ApiOrchestrationListOrchestratorRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiOrchestrationListOrchestratorRequest) ONamespace(oNamespace string) ApiOrchestrationListOrchestratorRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiOrchestrationListOrchestratorRequest) OGenerationId(oGenerationId string) ApiOrchestrationListOrchestratorRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiOrchestrationListOrchestratorRequest) OResourceVersion(oResourceVersion string) ApiOrchestrationListOrchestratorRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiOrchestrationListOrchestratorRequest) OUuid(oUuid string) ApiOrchestrationListOrchestratorRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiOrchestrationListOrchestratorRequest) OCreationTime(oCreationTime time.Time) ApiOrchestrationListOrchestratorRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiOrchestrationListOrchestratorRequest) OModTime(oModTime time.Time) ApiOrchestrationListOrchestratorRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiOrchestrationListOrchestratorRequest) OSelfLink(oSelfLink string) ApiOrchestrationListOrchestratorRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiOrchestrationListOrchestratorRequest) LabelSelector(labelSelector string) ApiOrchestrationListOrchestratorRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiOrchestrationListOrchestratorRequest) FieldSelector(fieldSelector string) ApiOrchestrationListOrchestratorRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiOrchestrationListOrchestratorRequest) FieldChangeSelector(fieldChangeSelector []string) ApiOrchestrationListOrchestratorRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiOrchestrationListOrchestratorRequest) From(from int32) ApiOrchestrationListOrchestratorRequest {
-	r.from = &from
-	return r
-}
-func (r ApiOrchestrationListOrchestratorRequest) MaxResults(maxResults int32) ApiOrchestrationListOrchestratorRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiOrchestrationListOrchestratorRequest) SortOrder(sortOrder string) ApiOrchestrationListOrchestratorRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiOrchestrationListOrchestratorRequest) MetaOnly(metaOnly bool) ApiOrchestrationListOrchestratorRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -1062,50 +829,11 @@ func (a *OrchestrationV1ApiService) ListOrchestratorExecute(r ApiOrchestrationLi
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1410,85 +1138,20 @@ type ApiOrchestrationWatchOrchestratorRequest struct {
 	ctx _context.Context
 	ApiService *OrchestrationV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiOrchestrationWatchOrchestratorRequest) OName(oName string) ApiOrchestrationWatchOrchestratorRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiOrchestrationWatchOrchestratorRequest) OTenant(oTenant string) ApiOrchestrationWatchOrchestratorRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiOrchestrationWatchOrchestratorRequest) ONamespace(oNamespace string) ApiOrchestrationWatchOrchestratorRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiOrchestrationWatchOrchestratorRequest) OGenerationId(oGenerationId string) ApiOrchestrationWatchOrchestratorRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiOrchestrationWatchOrchestratorRequest) OResourceVersion(oResourceVersion string) ApiOrchestrationWatchOrchestratorRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiOrchestrationWatchOrchestratorRequest) OUuid(oUuid string) ApiOrchestrationWatchOrchestratorRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiOrchestrationWatchOrchestratorRequest) OCreationTime(oCreationTime time.Time) ApiOrchestrationWatchOrchestratorRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiOrchestrationWatchOrchestratorRequest) OModTime(oModTime time.Time) ApiOrchestrationWatchOrchestratorRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiOrchestrationWatchOrchestratorRequest) OSelfLink(oSelfLink string) ApiOrchestrationWatchOrchestratorRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiOrchestrationWatchOrchestratorRequest) LabelSelector(labelSelector string) ApiOrchestrationWatchOrchestratorRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiOrchestrationWatchOrchestratorRequest) FieldSelector(fieldSelector string) ApiOrchestrationWatchOrchestratorRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiOrchestrationWatchOrchestratorRequest) FieldChangeSelector(fieldChangeSelector []string) ApiOrchestrationWatchOrchestratorRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiOrchestrationWatchOrchestratorRequest) From(from int32) ApiOrchestrationWatchOrchestratorRequest {
-	r.from = &from
-	return r
-}
-func (r ApiOrchestrationWatchOrchestratorRequest) MaxResults(maxResults int32) ApiOrchestrationWatchOrchestratorRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiOrchestrationWatchOrchestratorRequest) SortOrder(sortOrder string) ApiOrchestrationWatchOrchestratorRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiOrchestrationWatchOrchestratorRequest) MetaOnly(metaOnly bool) ApiOrchestrationWatchOrchestratorRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -1536,50 +1199,11 @@ func (a *OrchestrationV1ApiService) WatchOrchestratorExecute(r ApiOrchestrationW
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

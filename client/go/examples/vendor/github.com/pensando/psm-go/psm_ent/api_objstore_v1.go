@@ -32,7 +32,6 @@ type ApiObjstoreAddObjectRequest struct {
 	ctx _context.Context
 	ApiService *ObjstoreV1ApiService
 	oTenant string
-	oNamespace string
 	body *ObjstoreObject
 }
 
@@ -49,15 +48,13 @@ func (r ApiObjstoreAddObjectRequest) Execute() (ObjstoreObject, *_nethttp.Respon
  * AddObject Create Object object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oNamespace
  * @return ApiObjstoreAddObjectRequest
  */
-func (a *ObjstoreV1ApiService) AddObject(ctx _context.Context, oTenant string, oNamespace string) ApiObjstoreAddObjectRequest {
+func (a *ObjstoreV1ApiService) AddObject(ctx _context.Context, oTenant string) ApiObjstoreAddObjectRequest {
 	return ApiObjstoreAddObjectRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oNamespace: oNamespace,
 	}
 }
 
@@ -82,7 +79,6 @@ func (a *ObjstoreV1ApiService) AddObjectExecute(r ApiObjstoreAddObjectRequest) (
 
 	localVarPath := localBasePath + "/objstore/v1/tenant/{O.Tenant}/{O.Namespace}/objects"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Namespace"+"}", _neturl.PathEscape(parameterToString(r.oNamespace, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -396,8 +392,6 @@ type ApiObjstoreDeleteObjectRequest struct {
 	ctx _context.Context
 	ApiService *ObjstoreV1ApiService
 	oTenant string
-	oNamespace string
-	oName string
 }
 
 
@@ -409,17 +403,13 @@ func (r ApiObjstoreDeleteObjectRequest) Execute() (ObjstoreObject, *_nethttp.Res
  * DeleteObject Delete Object object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oNamespace
- * @param oName
  * @return ApiObjstoreDeleteObjectRequest
  */
-func (a *ObjstoreV1ApiService) DeleteObject(ctx _context.Context, oTenant string, oNamespace string, oName string) ApiObjstoreDeleteObjectRequest {
+func (a *ObjstoreV1ApiService) DeleteObject(ctx _context.Context, oTenant string) ApiObjstoreDeleteObjectRequest {
 	return ApiObjstoreDeleteObjectRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oNamespace: oNamespace,
-		oName: oName,
 	}
 }
 
@@ -444,8 +434,6 @@ func (a *ObjstoreV1ApiService) DeleteObjectExecute(r ApiObjstoreDeleteObjectRequ
 
 	localVarPath := localBasePath + "/objstore/v1/tenant/{O.Tenant}/{O.Namespace}/objects/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Namespace"+"}", _neturl.PathEscape(parameterToString(r.oNamespace, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -574,7 +562,6 @@ type ApiObjstoreDeleteObject1Request struct {
 	ctx _context.Context
 	ApiService *ObjstoreV1ApiService
 	oNamespace string
-	oName string
 }
 
 
@@ -586,15 +573,13 @@ func (r ApiObjstoreDeleteObject1Request) Execute() (ObjstoreObject, *_nethttp.Re
  * DeleteObject1 Delete Object object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oNamespace
- * @param oName
  * @return ApiObjstoreDeleteObject1Request
  */
-func (a *ObjstoreV1ApiService) DeleteObject1(ctx _context.Context, oNamespace string, oName string) ApiObjstoreDeleteObject1Request {
+func (a *ObjstoreV1ApiService) DeleteObject1(ctx _context.Context, oNamespace string) ApiObjstoreDeleteObject1Request {
 	return ApiObjstoreDeleteObject1Request{
 		ApiService: a,
 		ctx: ctx,
 		oNamespace: oNamespace,
-		oName: oName,
 	}
 }
 
@@ -619,7 +604,6 @@ func (a *ObjstoreV1ApiService) DeleteObject1Execute(r ApiObjstoreDeleteObject1Re
 
 	localVarPath := localBasePath + "/objstore/v1/{O.Namespace}/objects/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Namespace"+"}", _neturl.PathEscape(parameterToString(r.oNamespace, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -748,63 +732,16 @@ type ApiObjstoreGetDownloadFileRequest struct {
 	ctx _context.Context
 	ApiService *ObjstoreV1ApiService
 	oTenant string
-	oNamespace string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specContentType *string
-	statusSize *string
-	statusDigest *string
 }
 
 func (r ApiObjstoreGetDownloadFileRequest) TKind(tKind string) ApiObjstoreGetDownloadFileRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiObjstoreGetDownloadFileRequest) TApiVersion(tApiVersion string) ApiObjstoreGetDownloadFileRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiObjstoreGetDownloadFileRequest) MetaGenerationId(metaGenerationId string) ApiObjstoreGetDownloadFileRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiObjstoreGetDownloadFileRequest) MetaResourceVersion(metaResourceVersion string) ApiObjstoreGetDownloadFileRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiObjstoreGetDownloadFileRequest) MetaUuid(metaUuid string) ApiObjstoreGetDownloadFileRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiObjstoreGetDownloadFileRequest) MetaCreationTime(metaCreationTime time.Time) ApiObjstoreGetDownloadFileRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiObjstoreGetDownloadFileRequest) MetaModTime(metaModTime time.Time) ApiObjstoreGetDownloadFileRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiObjstoreGetDownloadFileRequest) MetaSelfLink(metaSelfLink string) ApiObjstoreGetDownloadFileRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiObjstoreGetDownloadFileRequest) SpecContentType(specContentType string) ApiObjstoreGetDownloadFileRequest {
-	r.specContentType = &specContentType
-	return r
-}
-func (r ApiObjstoreGetDownloadFileRequest) StatusSize(statusSize string) ApiObjstoreGetDownloadFileRequest {
-	r.statusSize = &statusSize
-	return r
-}
-func (r ApiObjstoreGetDownloadFileRequest) StatusDigest(statusDigest string) ApiObjstoreGetDownloadFileRequest {
-	r.statusDigest = &statusDigest
 	return r
 }
 
@@ -816,17 +753,13 @@ func (r ApiObjstoreGetDownloadFileRequest) Execute() (ObjstoreStreamChunk, *_net
  * GetDownloadFile Download file
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oNamespace
- * @param oName
  * @return ApiObjstoreGetDownloadFileRequest
  */
-func (a *ObjstoreV1ApiService) GetDownloadFile(ctx _context.Context, oTenant string, oNamespace string, oName string) ApiObjstoreGetDownloadFileRequest {
+func (a *ObjstoreV1ApiService) GetDownloadFile(ctx _context.Context, oTenant string) ApiObjstoreGetDownloadFileRequest {
 	return ApiObjstoreGetDownloadFileRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oNamespace: oNamespace,
-		oName: oName,
 	}
 }
 
@@ -851,8 +784,6 @@ func (a *ObjstoreV1ApiService) GetDownloadFileExecute(r ApiObjstoreGetDownloadFi
 
 	localVarPath := localBasePath + "/objstore/v1/downloads/tenant/{O.Tenant}/{O.Namespace}/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Namespace"+"}", _neturl.PathEscape(parameterToString(r.oNamespace, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -861,35 +792,8 @@ func (a *ObjstoreV1ApiService) GetDownloadFileExecute(r ApiObjstoreGetDownloadFi
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specContentType != nil {
-		localVarQueryParams.Add("spec.content-type", parameterToString(*r.specContentType, ""))
-	}
-	if r.statusSize != nil {
-		localVarQueryParams.Add("status.size", parameterToString(*r.statusSize, ""))
-	}
-	if r.statusDigest != nil {
-		localVarQueryParams.Add("status.digest", parameterToString(*r.statusDigest, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -955,67 +859,16 @@ type ApiObjstoreGetDownloadFile1Request struct {
 	ctx _context.Context
 	ApiService *ObjstoreV1ApiService
 	oNamespace string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specContentType *string
-	statusSize *string
-	statusDigest *string
 }
 
 func (r ApiObjstoreGetDownloadFile1Request) TKind(tKind string) ApiObjstoreGetDownloadFile1Request {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiObjstoreGetDownloadFile1Request) TApiVersion(tApiVersion string) ApiObjstoreGetDownloadFile1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiObjstoreGetDownloadFile1Request) MetaTenant(metaTenant string) ApiObjstoreGetDownloadFile1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiObjstoreGetDownloadFile1Request) MetaGenerationId(metaGenerationId string) ApiObjstoreGetDownloadFile1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiObjstoreGetDownloadFile1Request) MetaResourceVersion(metaResourceVersion string) ApiObjstoreGetDownloadFile1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiObjstoreGetDownloadFile1Request) MetaUuid(metaUuid string) ApiObjstoreGetDownloadFile1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiObjstoreGetDownloadFile1Request) MetaCreationTime(metaCreationTime time.Time) ApiObjstoreGetDownloadFile1Request {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiObjstoreGetDownloadFile1Request) MetaModTime(metaModTime time.Time) ApiObjstoreGetDownloadFile1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiObjstoreGetDownloadFile1Request) MetaSelfLink(metaSelfLink string) ApiObjstoreGetDownloadFile1Request {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiObjstoreGetDownloadFile1Request) SpecContentType(specContentType string) ApiObjstoreGetDownloadFile1Request {
-	r.specContentType = &specContentType
-	return r
-}
-func (r ApiObjstoreGetDownloadFile1Request) StatusSize(statusSize string) ApiObjstoreGetDownloadFile1Request {
-	r.statusSize = &statusSize
-	return r
-}
-func (r ApiObjstoreGetDownloadFile1Request) StatusDigest(statusDigest string) ApiObjstoreGetDownloadFile1Request {
-	r.statusDigest = &statusDigest
 	return r
 }
 
@@ -1027,15 +880,13 @@ func (r ApiObjstoreGetDownloadFile1Request) Execute() (ObjstoreStreamChunk, *_ne
  * GetDownloadFile1 Download file
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oNamespace
- * @param oName
  * @return ApiObjstoreGetDownloadFile1Request
  */
-func (a *ObjstoreV1ApiService) GetDownloadFile1(ctx _context.Context, oNamespace string, oName string) ApiObjstoreGetDownloadFile1Request {
+func (a *ObjstoreV1ApiService) GetDownloadFile1(ctx _context.Context, oNamespace string) ApiObjstoreGetDownloadFile1Request {
 	return ApiObjstoreGetDownloadFile1Request{
 		ApiService: a,
 		ctx: ctx,
 		oNamespace: oNamespace,
-		oName: oName,
 	}
 }
 
@@ -1060,7 +911,6 @@ func (a *ObjstoreV1ApiService) GetDownloadFile1Execute(r ApiObjstoreGetDownloadF
 
 	localVarPath := localBasePath + "/objstore/v1/downloads/{O.Namespace}/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Namespace"+"}", _neturl.PathEscape(parameterToString(r.oNamespace, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1069,38 +919,8 @@ func (a *ObjstoreV1ApiService) GetDownloadFile1Execute(r ApiObjstoreGetDownloadF
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specContentType != nil {
-		localVarQueryParams.Add("spec.content-type", parameterToString(*r.specContentType, ""))
-	}
-	if r.statusSize != nil {
-		localVarQueryParams.Add("status.size", parameterToString(*r.statusSize, ""))
-	}
-	if r.statusDigest != nil {
-		localVarQueryParams.Add("status.digest", parameterToString(*r.statusDigest, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1166,63 +986,16 @@ type ApiObjstoreGetDownloadFileByPrefixRequest struct {
 	ctx _context.Context
 	ApiService *ObjstoreV1ApiService
 	oTenant string
-	oNamespace string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specContentType *string
-	statusSize *string
-	statusDigest *string
 }
 
 func (r ApiObjstoreGetDownloadFileByPrefixRequest) TKind(tKind string) ApiObjstoreGetDownloadFileByPrefixRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiObjstoreGetDownloadFileByPrefixRequest) TApiVersion(tApiVersion string) ApiObjstoreGetDownloadFileByPrefixRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiObjstoreGetDownloadFileByPrefixRequest) MetaGenerationId(metaGenerationId string) ApiObjstoreGetDownloadFileByPrefixRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiObjstoreGetDownloadFileByPrefixRequest) MetaResourceVersion(metaResourceVersion string) ApiObjstoreGetDownloadFileByPrefixRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiObjstoreGetDownloadFileByPrefixRequest) MetaUuid(metaUuid string) ApiObjstoreGetDownloadFileByPrefixRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiObjstoreGetDownloadFileByPrefixRequest) MetaCreationTime(metaCreationTime time.Time) ApiObjstoreGetDownloadFileByPrefixRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiObjstoreGetDownloadFileByPrefixRequest) MetaModTime(metaModTime time.Time) ApiObjstoreGetDownloadFileByPrefixRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiObjstoreGetDownloadFileByPrefixRequest) MetaSelfLink(metaSelfLink string) ApiObjstoreGetDownloadFileByPrefixRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiObjstoreGetDownloadFileByPrefixRequest) SpecContentType(specContentType string) ApiObjstoreGetDownloadFileByPrefixRequest {
-	r.specContentType = &specContentType
-	return r
-}
-func (r ApiObjstoreGetDownloadFileByPrefixRequest) StatusSize(statusSize string) ApiObjstoreGetDownloadFileByPrefixRequest {
-	r.statusSize = &statusSize
-	return r
-}
-func (r ApiObjstoreGetDownloadFileByPrefixRequest) StatusDigest(statusDigest string) ApiObjstoreGetDownloadFileByPrefixRequest {
-	r.statusDigest = &statusDigest
 	return r
 }
 
@@ -1234,17 +1007,13 @@ func (r ApiObjstoreGetDownloadFileByPrefixRequest) Execute() (ObjstoreStreamChun
  * GetDownloadFileByPrefix Download file by prefix
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oNamespace
- * @param oName
  * @return ApiObjstoreGetDownloadFileByPrefixRequest
  */
-func (a *ObjstoreV1ApiService) GetDownloadFileByPrefix(ctx _context.Context, oTenant string, oNamespace string, oName string) ApiObjstoreGetDownloadFileByPrefixRequest {
+func (a *ObjstoreV1ApiService) GetDownloadFileByPrefix(ctx _context.Context, oTenant string) ApiObjstoreGetDownloadFileByPrefixRequest {
 	return ApiObjstoreGetDownloadFileByPrefixRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oNamespace: oNamespace,
-		oName: oName,
 	}
 }
 
@@ -1269,8 +1038,6 @@ func (a *ObjstoreV1ApiService) GetDownloadFileByPrefixExecute(r ApiObjstoreGetDo
 
 	localVarPath := localBasePath + "/objstore/v1/downloads/all/tenant/{O.Tenant}/{O.Namespace}/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Namespace"+"}", _neturl.PathEscape(parameterToString(r.oNamespace, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1279,35 +1046,8 @@ func (a *ObjstoreV1ApiService) GetDownloadFileByPrefixExecute(r ApiObjstoreGetDo
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specContentType != nil {
-		localVarQueryParams.Add("spec.content-type", parameterToString(*r.specContentType, ""))
-	}
-	if r.statusSize != nil {
-		localVarQueryParams.Add("status.size", parameterToString(*r.statusSize, ""))
-	}
-	if r.statusDigest != nil {
-		localVarQueryParams.Add("status.digest", parameterToString(*r.statusDigest, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1373,63 +1113,16 @@ type ApiObjstoreGetObjectRequest struct {
 	ctx _context.Context
 	ApiService *ObjstoreV1ApiService
 	oTenant string
-	oNamespace string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specContentType *string
-	statusSize *string
-	statusDigest *string
 }
 
 func (r ApiObjstoreGetObjectRequest) TKind(tKind string) ApiObjstoreGetObjectRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiObjstoreGetObjectRequest) TApiVersion(tApiVersion string) ApiObjstoreGetObjectRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiObjstoreGetObjectRequest) MetaGenerationId(metaGenerationId string) ApiObjstoreGetObjectRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiObjstoreGetObjectRequest) MetaResourceVersion(metaResourceVersion string) ApiObjstoreGetObjectRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiObjstoreGetObjectRequest) MetaUuid(metaUuid string) ApiObjstoreGetObjectRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiObjstoreGetObjectRequest) MetaCreationTime(metaCreationTime time.Time) ApiObjstoreGetObjectRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiObjstoreGetObjectRequest) MetaModTime(metaModTime time.Time) ApiObjstoreGetObjectRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiObjstoreGetObjectRequest) MetaSelfLink(metaSelfLink string) ApiObjstoreGetObjectRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiObjstoreGetObjectRequest) SpecContentType(specContentType string) ApiObjstoreGetObjectRequest {
-	r.specContentType = &specContentType
-	return r
-}
-func (r ApiObjstoreGetObjectRequest) StatusSize(statusSize string) ApiObjstoreGetObjectRequest {
-	r.statusSize = &statusSize
-	return r
-}
-func (r ApiObjstoreGetObjectRequest) StatusDigest(statusDigest string) ApiObjstoreGetObjectRequest {
-	r.statusDigest = &statusDigest
 	return r
 }
 
@@ -1441,17 +1134,13 @@ func (r ApiObjstoreGetObjectRequest) Execute() (ObjstoreObject, *_nethttp.Respon
  * GetObject Get Object object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oNamespace
- * @param oName
  * @return ApiObjstoreGetObjectRequest
  */
-func (a *ObjstoreV1ApiService) GetObject(ctx _context.Context, oTenant string, oNamespace string, oName string) ApiObjstoreGetObjectRequest {
+func (a *ObjstoreV1ApiService) GetObject(ctx _context.Context, oTenant string) ApiObjstoreGetObjectRequest {
 	return ApiObjstoreGetObjectRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oNamespace: oNamespace,
-		oName: oName,
 	}
 }
 
@@ -1476,8 +1165,6 @@ func (a *ObjstoreV1ApiService) GetObjectExecute(r ApiObjstoreGetObjectRequest) (
 
 	localVarPath := localBasePath + "/objstore/v1/tenant/{O.Tenant}/{O.Namespace}/objects/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Namespace"+"}", _neturl.PathEscape(parameterToString(r.oNamespace, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1486,35 +1173,8 @@ func (a *ObjstoreV1ApiService) GetObjectExecute(r ApiObjstoreGetObjectRequest) (
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specContentType != nil {
-		localVarQueryParams.Add("spec.content-type", parameterToString(*r.specContentType, ""))
-	}
-	if r.statusSize != nil {
-		localVarQueryParams.Add("status.size", parameterToString(*r.statusSize, ""))
-	}
-	if r.statusDigest != nil {
-		localVarQueryParams.Add("status.digest", parameterToString(*r.statusDigest, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1639,67 +1299,16 @@ type ApiObjstoreGetObject1Request struct {
 	ctx _context.Context
 	ApiService *ObjstoreV1ApiService
 	oNamespace string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specContentType *string
-	statusSize *string
-	statusDigest *string
 }
 
 func (r ApiObjstoreGetObject1Request) TKind(tKind string) ApiObjstoreGetObject1Request {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiObjstoreGetObject1Request) TApiVersion(tApiVersion string) ApiObjstoreGetObject1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiObjstoreGetObject1Request) MetaTenant(metaTenant string) ApiObjstoreGetObject1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiObjstoreGetObject1Request) MetaGenerationId(metaGenerationId string) ApiObjstoreGetObject1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiObjstoreGetObject1Request) MetaResourceVersion(metaResourceVersion string) ApiObjstoreGetObject1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiObjstoreGetObject1Request) MetaUuid(metaUuid string) ApiObjstoreGetObject1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiObjstoreGetObject1Request) MetaCreationTime(metaCreationTime time.Time) ApiObjstoreGetObject1Request {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiObjstoreGetObject1Request) MetaModTime(metaModTime time.Time) ApiObjstoreGetObject1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiObjstoreGetObject1Request) MetaSelfLink(metaSelfLink string) ApiObjstoreGetObject1Request {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiObjstoreGetObject1Request) SpecContentType(specContentType string) ApiObjstoreGetObject1Request {
-	r.specContentType = &specContentType
-	return r
-}
-func (r ApiObjstoreGetObject1Request) StatusSize(statusSize string) ApiObjstoreGetObject1Request {
-	r.statusSize = &statusSize
-	return r
-}
-func (r ApiObjstoreGetObject1Request) StatusDigest(statusDigest string) ApiObjstoreGetObject1Request {
-	r.statusDigest = &statusDigest
 	return r
 }
 
@@ -1711,15 +1320,13 @@ func (r ApiObjstoreGetObject1Request) Execute() (ObjstoreObject, *_nethttp.Respo
  * GetObject1 Get Object object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oNamespace
- * @param oName
  * @return ApiObjstoreGetObject1Request
  */
-func (a *ObjstoreV1ApiService) GetObject1(ctx _context.Context, oNamespace string, oName string) ApiObjstoreGetObject1Request {
+func (a *ObjstoreV1ApiService) GetObject1(ctx _context.Context, oNamespace string) ApiObjstoreGetObject1Request {
 	return ApiObjstoreGetObject1Request{
 		ApiService: a,
 		ctx: ctx,
 		oNamespace: oNamespace,
-		oName: oName,
 	}
 }
 
@@ -1744,7 +1351,6 @@ func (a *ObjstoreV1ApiService) GetObject1Execute(r ApiObjstoreGetObject1Request)
 
 	localVarPath := localBasePath + "/objstore/v1/{O.Namespace}/objects/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Namespace"+"}", _neturl.PathEscape(parameterToString(r.oNamespace, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1753,38 +1359,8 @@ func (a *ObjstoreV1ApiService) GetObject1Execute(r ApiObjstoreGetObject1Request)
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specContentType != nil {
-		localVarQueryParams.Add("spec.content-type", parameterToString(*r.specContentType, ""))
-	}
-	if r.statusSize != nil {
-		localVarQueryParams.Add("status.size", parameterToString(*r.statusSize, ""))
-	}
-	if r.statusDigest != nil {
-		localVarQueryParams.Add("status.digest", parameterToString(*r.statusDigest, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1909,77 +1485,21 @@ type ApiObjstoreListObjectRequest struct {
 	ctx _context.Context
 	ApiService *ObjstoreV1ApiService
 	oTenant string
-	oNamespace string
 	oName *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiObjstoreListObjectRequest) OName(oName string) ApiObjstoreListObjectRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiObjstoreListObjectRequest) OGenerationId(oGenerationId string) ApiObjstoreListObjectRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiObjstoreListObjectRequest) OResourceVersion(oResourceVersion string) ApiObjstoreListObjectRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiObjstoreListObjectRequest) OUuid(oUuid string) ApiObjstoreListObjectRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiObjstoreListObjectRequest) OCreationTime(oCreationTime time.Time) ApiObjstoreListObjectRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiObjstoreListObjectRequest) OModTime(oModTime time.Time) ApiObjstoreListObjectRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiObjstoreListObjectRequest) OSelfLink(oSelfLink string) ApiObjstoreListObjectRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiObjstoreListObjectRequest) LabelSelector(labelSelector string) ApiObjstoreListObjectRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiObjstoreListObjectRequest) FieldSelector(fieldSelector string) ApiObjstoreListObjectRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiObjstoreListObjectRequest) FieldChangeSelector(fieldChangeSelector []string) ApiObjstoreListObjectRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiObjstoreListObjectRequest) From(from int32) ApiObjstoreListObjectRequest {
-	r.from = &from
-	return r
-}
-func (r ApiObjstoreListObjectRequest) MaxResults(maxResults int32) ApiObjstoreListObjectRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiObjstoreListObjectRequest) SortOrder(sortOrder string) ApiObjstoreListObjectRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiObjstoreListObjectRequest) MetaOnly(metaOnly bool) ApiObjstoreListObjectRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -1991,15 +1511,13 @@ func (r ApiObjstoreListObjectRequest) Execute() (ObjstoreObjectList, *_nethttp.R
  * ListObject List Object objects
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oNamespace
  * @return ApiObjstoreListObjectRequest
  */
-func (a *ObjstoreV1ApiService) ListObject(ctx _context.Context, oTenant string, oNamespace string) ApiObjstoreListObjectRequest {
+func (a *ObjstoreV1ApiService) ListObject(ctx _context.Context, oTenant string) ApiObjstoreListObjectRequest {
 	return ApiObjstoreListObjectRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oNamespace: oNamespace,
 	}
 }
 
@@ -2024,7 +1542,6 @@ func (a *ObjstoreV1ApiService) ListObjectExecute(r ApiObjstoreListObjectRequest)
 
 	localVarPath := localBasePath + "/objstore/v1/tenant/{O.Tenant}/{O.Namespace}/objects"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Namespace"+"}", _neturl.PathEscape(parameterToString(r.oNamespace, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -2033,44 +1550,11 @@ func (a *ObjstoreV1ApiService) ListObjectExecute(r ApiObjstoreListObjectRequest)
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2196,80 +1680,20 @@ type ApiObjstoreListObject1Request struct {
 	ApiService *ObjstoreV1ApiService
 	oNamespace string
 	oName *string
-	oTenant *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiObjstoreListObject1Request) OName(oName string) ApiObjstoreListObject1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiObjstoreListObject1Request) OTenant(oTenant string) ApiObjstoreListObject1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiObjstoreListObject1Request) OGenerationId(oGenerationId string) ApiObjstoreListObject1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiObjstoreListObject1Request) OResourceVersion(oResourceVersion string) ApiObjstoreListObject1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiObjstoreListObject1Request) OUuid(oUuid string) ApiObjstoreListObject1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiObjstoreListObject1Request) OCreationTime(oCreationTime time.Time) ApiObjstoreListObject1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiObjstoreListObject1Request) OModTime(oModTime time.Time) ApiObjstoreListObject1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiObjstoreListObject1Request) OSelfLink(oSelfLink string) ApiObjstoreListObject1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiObjstoreListObject1Request) LabelSelector(labelSelector string) ApiObjstoreListObject1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiObjstoreListObject1Request) FieldSelector(fieldSelector string) ApiObjstoreListObject1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiObjstoreListObject1Request) FieldChangeSelector(fieldChangeSelector []string) ApiObjstoreListObject1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiObjstoreListObject1Request) From(from int32) ApiObjstoreListObject1Request {
-	r.from = &from
-	return r
-}
-func (r ApiObjstoreListObject1Request) MaxResults(maxResults int32) ApiObjstoreListObject1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiObjstoreListObject1Request) SortOrder(sortOrder string) ApiObjstoreListObject1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiObjstoreListObject1Request) MetaOnly(metaOnly bool) ApiObjstoreListObject1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -2320,47 +1744,11 @@ func (a *ObjstoreV1ApiService) ListObject1Execute(r ApiObjstoreListObject1Reques
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2485,77 +1873,21 @@ type ApiObjstoreWatchObjectRequest struct {
 	ctx _context.Context
 	ApiService *ObjstoreV1ApiService
 	oTenant string
-	oNamespace string
 	oName *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiObjstoreWatchObjectRequest) OName(oName string) ApiObjstoreWatchObjectRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiObjstoreWatchObjectRequest) OGenerationId(oGenerationId string) ApiObjstoreWatchObjectRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiObjstoreWatchObjectRequest) OResourceVersion(oResourceVersion string) ApiObjstoreWatchObjectRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiObjstoreWatchObjectRequest) OUuid(oUuid string) ApiObjstoreWatchObjectRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiObjstoreWatchObjectRequest) OCreationTime(oCreationTime time.Time) ApiObjstoreWatchObjectRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiObjstoreWatchObjectRequest) OModTime(oModTime time.Time) ApiObjstoreWatchObjectRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiObjstoreWatchObjectRequest) OSelfLink(oSelfLink string) ApiObjstoreWatchObjectRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiObjstoreWatchObjectRequest) LabelSelector(labelSelector string) ApiObjstoreWatchObjectRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiObjstoreWatchObjectRequest) FieldSelector(fieldSelector string) ApiObjstoreWatchObjectRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiObjstoreWatchObjectRequest) FieldChangeSelector(fieldChangeSelector []string) ApiObjstoreWatchObjectRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiObjstoreWatchObjectRequest) From(from int32) ApiObjstoreWatchObjectRequest {
-	r.from = &from
-	return r
-}
-func (r ApiObjstoreWatchObjectRequest) MaxResults(maxResults int32) ApiObjstoreWatchObjectRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiObjstoreWatchObjectRequest) SortOrder(sortOrder string) ApiObjstoreWatchObjectRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiObjstoreWatchObjectRequest) MetaOnly(metaOnly bool) ApiObjstoreWatchObjectRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -2567,15 +1899,13 @@ func (r ApiObjstoreWatchObjectRequest) Execute() (ObjstoreAutoMsgObjectWatchHelp
  * WatchObject Watch Object objects. Supports WebSockets or HTTP long poll
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oNamespace
  * @return ApiObjstoreWatchObjectRequest
  */
-func (a *ObjstoreV1ApiService) WatchObject(ctx _context.Context, oTenant string, oNamespace string) ApiObjstoreWatchObjectRequest {
+func (a *ObjstoreV1ApiService) WatchObject(ctx _context.Context, oTenant string) ApiObjstoreWatchObjectRequest {
 	return ApiObjstoreWatchObjectRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oNamespace: oNamespace,
 	}
 }
 
@@ -2600,7 +1930,6 @@ func (a *ObjstoreV1ApiService) WatchObjectExecute(r ApiObjstoreWatchObjectReques
 
 	localVarPath := localBasePath + "/objstore/v1/watch/tenant/{O.Tenant}/{O.Namespace}/objects"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Namespace"+"}", _neturl.PathEscape(parameterToString(r.oNamespace, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -2609,44 +1938,11 @@ func (a *ObjstoreV1ApiService) WatchObjectExecute(r ApiObjstoreWatchObjectReques
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2772,80 +2068,20 @@ type ApiObjstoreWatchObject1Request struct {
 	ApiService *ObjstoreV1ApiService
 	oNamespace string
 	oName *string
-	oTenant *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiObjstoreWatchObject1Request) OName(oName string) ApiObjstoreWatchObject1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiObjstoreWatchObject1Request) OTenant(oTenant string) ApiObjstoreWatchObject1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiObjstoreWatchObject1Request) OGenerationId(oGenerationId string) ApiObjstoreWatchObject1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiObjstoreWatchObject1Request) OResourceVersion(oResourceVersion string) ApiObjstoreWatchObject1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiObjstoreWatchObject1Request) OUuid(oUuid string) ApiObjstoreWatchObject1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiObjstoreWatchObject1Request) OCreationTime(oCreationTime time.Time) ApiObjstoreWatchObject1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiObjstoreWatchObject1Request) OModTime(oModTime time.Time) ApiObjstoreWatchObject1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiObjstoreWatchObject1Request) OSelfLink(oSelfLink string) ApiObjstoreWatchObject1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiObjstoreWatchObject1Request) LabelSelector(labelSelector string) ApiObjstoreWatchObject1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiObjstoreWatchObject1Request) FieldSelector(fieldSelector string) ApiObjstoreWatchObject1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiObjstoreWatchObject1Request) FieldChangeSelector(fieldChangeSelector []string) ApiObjstoreWatchObject1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiObjstoreWatchObject1Request) From(from int32) ApiObjstoreWatchObject1Request {
-	r.from = &from
-	return r
-}
-func (r ApiObjstoreWatchObject1Request) MaxResults(maxResults int32) ApiObjstoreWatchObject1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiObjstoreWatchObject1Request) SortOrder(sortOrder string) ApiObjstoreWatchObject1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiObjstoreWatchObject1Request) MetaOnly(metaOnly bool) ApiObjstoreWatchObject1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -2896,47 +2132,11 @@ func (a *ObjstoreV1ApiService) WatchObject1Execute(r ApiObjstoreWatchObject1Requ
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

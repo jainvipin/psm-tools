@@ -14,10 +14,12 @@ import (
 	"encoding/json"
 )
 
-// NetworkNetworkFirewallProfile Firewall features that can be enabled on the network Interaction with the global firewall profile setting is as follows: If the feature is disabled at the global and network levels, the feature is disabled on the network If the feature is enabled at the global and network levels, the feature is enabled on the network If the feature is disabled at the global level and enabled at the network, the feature is enabled on the network If the feature is enabled at the global level and disabled at the network level, the feature is enabled on the network. So to turn off the feature on a network, the feature must be disabled at both the global and network levels.
+// NetworkNetworkFirewallProfile Firewall features that can be enabled on the network.
 type NetworkNetworkFirewallProfile struct {
-	// EnableFwLogging enables flow logging on the network.
-	EnableFwLogging *bool `json:"enable-fw-logging,omitempty"`
+	// Maximum Connections Per Second supported for the Network within a Distributed Services Entity. The value configured here overrides the MaxCPSPerNetworkPerDistributedServicesEntity configuration in the Virtual Router that the Network belongs to. Value 0 means the CPS limit is not enforced and the CPS is limited only by the system capacity. Connections exceeding the CPS limit are dropped. Value should be between -1 and 409599.
+	MaximumCpsPerDistributedServicesEntity *int32 `json:"maximum-cps-per-distributed-services-entity,omitempty"`
+	// Maximum sessions supported in the Network within a Distributed Services Entity. The value configured here overrides the MaxSessionsPerNetworkPerDistributedServicesEntity configuration in the Virtual Router that the Network belongs to. Value 0 means the sessions limit is not enforced and the number of sessions is limited only by the system capacity. Sessions exceeding the sessions limit are dropped. Value should be between -1 and 16777215.
+	MaximumSessionsPerDistributedServicesEntity *int32 `json:"maximum-sessions-per-distributed-services-entity,omitempty"`
 }
 
 // NewNetworkNetworkFirewallProfile instantiates a new NetworkNetworkFirewallProfile object
@@ -26,6 +28,10 @@ type NetworkNetworkFirewallProfile struct {
 // will change when the set of required properties is changed
 func NewNetworkNetworkFirewallProfile() *NetworkNetworkFirewallProfile {
 	this := NetworkNetworkFirewallProfile{}
+	var maximumCpsPerDistributedServicesEntity int32 = -1
+	this.MaximumCpsPerDistributedServicesEntity = &maximumCpsPerDistributedServicesEntity
+	var maximumSessionsPerDistributedServicesEntity int32 = -1
+	this.MaximumSessionsPerDistributedServicesEntity = &maximumSessionsPerDistributedServicesEntity
 	return &this
 }
 
@@ -34,45 +40,84 @@ func NewNetworkNetworkFirewallProfile() *NetworkNetworkFirewallProfile {
 // but it doesn't guarantee that properties required by API are set
 func NewNetworkNetworkFirewallProfileWithDefaults() *NetworkNetworkFirewallProfile {
 	this := NetworkNetworkFirewallProfile{}
+	var maximumCpsPerDistributedServicesEntity int32 = -1
+	this.MaximumCpsPerDistributedServicesEntity = &maximumCpsPerDistributedServicesEntity
+	var maximumSessionsPerDistributedServicesEntity int32 = -1
+	this.MaximumSessionsPerDistributedServicesEntity = &maximumSessionsPerDistributedServicesEntity
 	return &this
 }
 
-// GetEnableFwLogging returns the EnableFwLogging field value if set, zero value otherwise.
-func (o *NetworkNetworkFirewallProfile) GetEnableFwLogging() bool {
-	if o == nil || o.EnableFwLogging == nil {
-		var ret bool
+// GetMaximumCpsPerDistributedServicesEntity returns the MaximumCpsPerDistributedServicesEntity field value if set, zero value otherwise.
+func (o *NetworkNetworkFirewallProfile) GetMaximumCpsPerDistributedServicesEntity() int32 {
+	if o == nil || o.MaximumCpsPerDistributedServicesEntity == nil {
+		var ret int32
 		return ret
 	}
-	return *o.EnableFwLogging
+	return *o.MaximumCpsPerDistributedServicesEntity
 }
 
-// GetEnableFwLoggingOk returns a tuple with the EnableFwLogging field value if set, nil otherwise
+// GetMaximumCpsPerDistributedServicesEntityOk returns a tuple with the MaximumCpsPerDistributedServicesEntity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkNetworkFirewallProfile) GetEnableFwLoggingOk() (*bool, bool) {
-	if o == nil || o.EnableFwLogging == nil {
+func (o *NetworkNetworkFirewallProfile) GetMaximumCpsPerDistributedServicesEntityOk() (*int32, bool) {
+	if o == nil || o.MaximumCpsPerDistributedServicesEntity == nil {
 		return nil, false
 	}
-	return o.EnableFwLogging, true
+	return o.MaximumCpsPerDistributedServicesEntity, true
 }
 
-// HasEnableFwLogging returns a boolean if a field has been set.
-func (o *NetworkNetworkFirewallProfile) HasEnableFwLogging() bool {
-	if o != nil && o.EnableFwLogging != nil {
+// HasMaximumCpsPerDistributedServicesEntity returns a boolean if a field has been set.
+func (o *NetworkNetworkFirewallProfile) HasMaximumCpsPerDistributedServicesEntity() bool {
+	if o != nil && o.MaximumCpsPerDistributedServicesEntity != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetEnableFwLogging gets a reference to the given bool and assigns it to the EnableFwLogging field.
-func (o *NetworkNetworkFirewallProfile) SetEnableFwLogging(v bool) {
-	o.EnableFwLogging = &v
+// SetMaximumCpsPerDistributedServicesEntity gets a reference to the given int32 and assigns it to the MaximumCpsPerDistributedServicesEntity field.
+func (o *NetworkNetworkFirewallProfile) SetMaximumCpsPerDistributedServicesEntity(v int32) {
+	o.MaximumCpsPerDistributedServicesEntity = &v
+}
+
+// GetMaximumSessionsPerDistributedServicesEntity returns the MaximumSessionsPerDistributedServicesEntity field value if set, zero value otherwise.
+func (o *NetworkNetworkFirewallProfile) GetMaximumSessionsPerDistributedServicesEntity() int32 {
+	if o == nil || o.MaximumSessionsPerDistributedServicesEntity == nil {
+		var ret int32
+		return ret
+	}
+	return *o.MaximumSessionsPerDistributedServicesEntity
+}
+
+// GetMaximumSessionsPerDistributedServicesEntityOk returns a tuple with the MaximumSessionsPerDistributedServicesEntity field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkNetworkFirewallProfile) GetMaximumSessionsPerDistributedServicesEntityOk() (*int32, bool) {
+	if o == nil || o.MaximumSessionsPerDistributedServicesEntity == nil {
+		return nil, false
+	}
+	return o.MaximumSessionsPerDistributedServicesEntity, true
+}
+
+// HasMaximumSessionsPerDistributedServicesEntity returns a boolean if a field has been set.
+func (o *NetworkNetworkFirewallProfile) HasMaximumSessionsPerDistributedServicesEntity() bool {
+	if o != nil && o.MaximumSessionsPerDistributedServicesEntity != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMaximumSessionsPerDistributedServicesEntity gets a reference to the given int32 and assigns it to the MaximumSessionsPerDistributedServicesEntity field.
+func (o *NetworkNetworkFirewallProfile) SetMaximumSessionsPerDistributedServicesEntity(v int32) {
+	o.MaximumSessionsPerDistributedServicesEntity = &v
 }
 
 func (o NetworkNetworkFirewallProfile) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.EnableFwLogging != nil {
-		toSerialize["enable-fw-logging"] = o.EnableFwLogging
+	if o.MaximumCpsPerDistributedServicesEntity != nil {
+		toSerialize["maximum-cps-per-distributed-services-entity"] = o.MaximumCpsPerDistributedServicesEntity
+	}
+	if o.MaximumSessionsPerDistributedServicesEntity != nil {
+		toSerialize["maximum-sessions-per-distributed-services-entity"] = o.MaximumSessionsPerDistributedServicesEntity
 	}
 	return json.Marshal(toSerialize)
 }

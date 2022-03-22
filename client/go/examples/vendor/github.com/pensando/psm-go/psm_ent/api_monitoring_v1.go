@@ -3768,7 +3768,6 @@ type ApiMonitoringCancelRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	body *MonitoringCancelArchiveRequest
 }
 
@@ -3785,15 +3784,13 @@ func (r ApiMonitoringCancelRequest) Execute() (MonitoringArchiveRequest, *_netht
  * Cancel Method for Cancel
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringCancelRequest
  */
-func (a *MonitoringV1ApiService) Cancel(ctx _context.Context, oTenant string, oName string) ApiMonitoringCancelRequest {
+func (a *MonitoringV1ApiService) Cancel(ctx _context.Context, oTenant string) ApiMonitoringCancelRequest {
 	return ApiMonitoringCancelRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -3818,7 +3815,6 @@ func (a *MonitoringV1ApiService) CancelExecute(r ApiMonitoringCancelRequest) (Mo
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/archive-requests/{O.Name}/Cancel"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -4132,7 +4128,6 @@ type ApiMonitoringDeleteAlertDestinationRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 }
 
 
@@ -4144,15 +4139,13 @@ func (r ApiMonitoringDeleteAlertDestinationRequest) Execute() (MonitoringAlertDe
  * DeleteAlertDestination Delete AlertDestination object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringDeleteAlertDestinationRequest
  */
-func (a *MonitoringV1ApiService) DeleteAlertDestination(ctx _context.Context, oTenant string, oName string) ApiMonitoringDeleteAlertDestinationRequest {
+func (a *MonitoringV1ApiService) DeleteAlertDestination(ctx _context.Context, oTenant string) ApiMonitoringDeleteAlertDestinationRequest {
 	return ApiMonitoringDeleteAlertDestinationRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -4177,7 +4170,6 @@ func (a *MonitoringV1ApiService) DeleteAlertDestinationExecute(r ApiMonitoringDe
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/alertDestinations/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -4476,7 +4468,6 @@ type ApiMonitoringDeleteAlertPolicyRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 }
 
 
@@ -4488,15 +4479,13 @@ func (r ApiMonitoringDeleteAlertPolicyRequest) Execute() (MonitoringAlertPolicy,
  * DeleteAlertPolicy Delete AlertPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringDeleteAlertPolicyRequest
  */
-func (a *MonitoringV1ApiService) DeleteAlertPolicy(ctx _context.Context, oTenant string, oName string) ApiMonitoringDeleteAlertPolicyRequest {
+func (a *MonitoringV1ApiService) DeleteAlertPolicy(ctx _context.Context, oTenant string) ApiMonitoringDeleteAlertPolicyRequest {
 	return ApiMonitoringDeleteAlertPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -4521,7 +4510,6 @@ func (a *MonitoringV1ApiService) DeleteAlertPolicyExecute(r ApiMonitoringDeleteA
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/alertPolicies/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -4820,7 +4808,6 @@ type ApiMonitoringDeleteArchiveRequestRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 }
 
 
@@ -4832,15 +4819,13 @@ func (r ApiMonitoringDeleteArchiveRequestRequest) Execute() (MonitoringArchiveRe
  * DeleteArchiveRequest Delete ArchiveRequest object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringDeleteArchiveRequestRequest
  */
-func (a *MonitoringV1ApiService) DeleteArchiveRequest(ctx _context.Context, oTenant string, oName string) ApiMonitoringDeleteArchiveRequestRequest {
+func (a *MonitoringV1ApiService) DeleteArchiveRequest(ctx _context.Context, oTenant string) ApiMonitoringDeleteArchiveRequestRequest {
 	return ApiMonitoringDeleteArchiveRequestRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -4865,7 +4850,6 @@ func (a *MonitoringV1ApiService) DeleteArchiveRequestExecute(r ApiMonitoringDele
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/archive-requests/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -5500,7 +5484,6 @@ type ApiMonitoringDeleteEventPolicyRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 }
 
 
@@ -5512,15 +5495,13 @@ func (r ApiMonitoringDeleteEventPolicyRequest) Execute() (MonitoringEventPolicy,
  * DeleteEventPolicy Delete EventPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringDeleteEventPolicyRequest
  */
-func (a *MonitoringV1ApiService) DeleteEventPolicy(ctx _context.Context, oTenant string, oName string) ApiMonitoringDeleteEventPolicyRequest {
+func (a *MonitoringV1ApiService) DeleteEventPolicy(ctx _context.Context, oTenant string) ApiMonitoringDeleteEventPolicyRequest {
 	return ApiMonitoringDeleteEventPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -5545,7 +5526,6 @@ func (a *MonitoringV1ApiService) DeleteEventPolicyExecute(r ApiMonitoringDeleteE
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/event-policy/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -5844,7 +5824,6 @@ type ApiMonitoringDeleteFlowExportPolicyRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 }
 
 
@@ -5856,15 +5835,13 @@ func (r ApiMonitoringDeleteFlowExportPolicyRequest) Execute() (MonitoringFlowExp
  * DeleteFlowExportPolicy Delete FlowExportPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringDeleteFlowExportPolicyRequest
  */
-func (a *MonitoringV1ApiService) DeleteFlowExportPolicy(ctx _context.Context, oTenant string, oName string) ApiMonitoringDeleteFlowExportPolicyRequest {
+func (a *MonitoringV1ApiService) DeleteFlowExportPolicy(ctx _context.Context, oTenant string) ApiMonitoringDeleteFlowExportPolicyRequest {
 	return ApiMonitoringDeleteFlowExportPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -5889,7 +5866,6 @@ func (a *MonitoringV1ApiService) DeleteFlowExportPolicyExecute(r ApiMonitoringDe
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/flowExportPolicy/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -6188,7 +6164,6 @@ type ApiMonitoringDeleteFwlogPolicyRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 }
 
 
@@ -6200,15 +6175,13 @@ func (r ApiMonitoringDeleteFwlogPolicyRequest) Execute() (MonitoringFwlogPolicy,
  * DeleteFwlogPolicy Delete FwlogPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringDeleteFwlogPolicyRequest
  */
-func (a *MonitoringV1ApiService) DeleteFwlogPolicy(ctx _context.Context, oTenant string, oName string) ApiMonitoringDeleteFwlogPolicyRequest {
+func (a *MonitoringV1ApiService) DeleteFwlogPolicy(ctx _context.Context, oTenant string) ApiMonitoringDeleteFwlogPolicyRequest {
 	return ApiMonitoringDeleteFwlogPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -6233,7 +6206,6 @@ func (a *MonitoringV1ApiService) DeleteFwlogPolicyExecute(r ApiMonitoringDeleteF
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/fwlogPolicy/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -6532,7 +6504,6 @@ type ApiMonitoringDeleteMirrorSessionRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 }
 
 
@@ -6544,15 +6515,13 @@ func (r ApiMonitoringDeleteMirrorSessionRequest) Execute() (MonitoringMirrorSess
  * DeleteMirrorSession Delete MirrorSession object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringDeleteMirrorSessionRequest
  */
-func (a *MonitoringV1ApiService) DeleteMirrorSession(ctx _context.Context, oTenant string, oName string) ApiMonitoringDeleteMirrorSessionRequest {
+func (a *MonitoringV1ApiService) DeleteMirrorSession(ctx _context.Context, oTenant string) ApiMonitoringDeleteMirrorSessionRequest {
 	return ApiMonitoringDeleteMirrorSessionRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -6577,7 +6546,6 @@ func (a *MonitoringV1ApiService) DeleteMirrorSessionExecute(r ApiMonitoringDelet
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/MirrorSession/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -6876,7 +6844,6 @@ type ApiMonitoringDeleteStatsAlertPolicyRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 }
 
 
@@ -6888,15 +6855,13 @@ func (r ApiMonitoringDeleteStatsAlertPolicyRequest) Execute() (MonitoringStatsAl
  * DeleteStatsAlertPolicy Delete StatsAlertPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringDeleteStatsAlertPolicyRequest
  */
-func (a *MonitoringV1ApiService) DeleteStatsAlertPolicy(ctx _context.Context, oTenant string, oName string) ApiMonitoringDeleteStatsAlertPolicyRequest {
+func (a *MonitoringV1ApiService) DeleteStatsAlertPolicy(ctx _context.Context, oTenant string) ApiMonitoringDeleteStatsAlertPolicyRequest {
 	return ApiMonitoringDeleteStatsAlertPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -6921,7 +6886,6 @@ func (a *MonitoringV1ApiService) DeleteStatsAlertPolicyExecute(r ApiMonitoringDe
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/statsAlertPolicies/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -7390,7 +7354,6 @@ type ApiMonitoringDeleteTroubleshootingSessionRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 }
 
 
@@ -7402,15 +7365,13 @@ func (r ApiMonitoringDeleteTroubleshootingSessionRequest) Execute() (MonitoringT
  * DeleteTroubleshootingSession Delete TroubleshootingSession object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringDeleteTroubleshootingSessionRequest
  */
-func (a *MonitoringV1ApiService) DeleteTroubleshootingSession(ctx _context.Context, oTenant string, oName string) ApiMonitoringDeleteTroubleshootingSessionRequest {
+func (a *MonitoringV1ApiService) DeleteTroubleshootingSession(ctx _context.Context, oTenant string) ApiMonitoringDeleteTroubleshootingSessionRequest {
 	return ApiMonitoringDeleteTroubleshootingSessionRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -7435,7 +7396,6 @@ func (a *MonitoringV1ApiService) DeleteTroubleshootingSessionExecute(r ApiMonito
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/TroubleshootingSession/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -7734,137 +7694,21 @@ type ApiMonitoringGetAlertRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	specState *string
-	statusSeverity *string
-	sourceComponent *string
-	sourceNodeName *string
-	statusEventUri *string
-	objectRefTenant *string
-	objectRefNamespace *string
-	objectRefKind *string
-	objectRefName *string
-	objectRefUri *string
-	statusMessage *string
-	reasonAlertPolicyId *string
-	acknowledgedUser *string
-	acknowledgedTime *time.Time
-	resolvedUser *string
-	resolvedTime *time.Time
-	statusTotalHits *int32
 }
 
 func (r ApiMonitoringGetAlertRequest) TKind(tKind string) ApiMonitoringGetAlertRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiMonitoringGetAlertRequest) TApiVersion(tApiVersion string) ApiMonitoringGetAlertRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiMonitoringGetAlertRequest) MetaNamespace(metaNamespace string) ApiMonitoringGetAlertRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiMonitoringGetAlertRequest) MetaGenerationId(metaGenerationId string) ApiMonitoringGetAlertRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiMonitoringGetAlertRequest) MetaResourceVersion(metaResourceVersion string) ApiMonitoringGetAlertRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiMonitoringGetAlertRequest) MetaUuid(metaUuid string) ApiMonitoringGetAlertRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiMonitoringGetAlertRequest) MetaCreationTime(metaCreationTime time.Time) ApiMonitoringGetAlertRequest {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiMonitoringGetAlertRequest) MetaModTime(metaModTime time.Time) ApiMonitoringGetAlertRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiMonitoringGetAlertRequest) MetaSelfLink(metaSelfLink string) ApiMonitoringGetAlertRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
 func (r ApiMonitoringGetAlertRequest) SpecState(specState string) ApiMonitoringGetAlertRequest {
 	r.specState = &specState
-	return r
-}
-func (r ApiMonitoringGetAlertRequest) StatusSeverity(statusSeverity string) ApiMonitoringGetAlertRequest {
-	r.statusSeverity = &statusSeverity
-	return r
-}
-func (r ApiMonitoringGetAlertRequest) SourceComponent(sourceComponent string) ApiMonitoringGetAlertRequest {
-	r.sourceComponent = &sourceComponent
-	return r
-}
-func (r ApiMonitoringGetAlertRequest) SourceNodeName(sourceNodeName string) ApiMonitoringGetAlertRequest {
-	r.sourceNodeName = &sourceNodeName
-	return r
-}
-func (r ApiMonitoringGetAlertRequest) StatusEventUri(statusEventUri string) ApiMonitoringGetAlertRequest {
-	r.statusEventUri = &statusEventUri
-	return r
-}
-func (r ApiMonitoringGetAlertRequest) ObjectRefTenant(objectRefTenant string) ApiMonitoringGetAlertRequest {
-	r.objectRefTenant = &objectRefTenant
-	return r
-}
-func (r ApiMonitoringGetAlertRequest) ObjectRefNamespace(objectRefNamespace string) ApiMonitoringGetAlertRequest {
-	r.objectRefNamespace = &objectRefNamespace
-	return r
-}
-func (r ApiMonitoringGetAlertRequest) ObjectRefKind(objectRefKind string) ApiMonitoringGetAlertRequest {
-	r.objectRefKind = &objectRefKind
-	return r
-}
-func (r ApiMonitoringGetAlertRequest) ObjectRefName(objectRefName string) ApiMonitoringGetAlertRequest {
-	r.objectRefName = &objectRefName
-	return r
-}
-func (r ApiMonitoringGetAlertRequest) ObjectRefUri(objectRefUri string) ApiMonitoringGetAlertRequest {
-	r.objectRefUri = &objectRefUri
-	return r
-}
-func (r ApiMonitoringGetAlertRequest) StatusMessage(statusMessage string) ApiMonitoringGetAlertRequest {
-	r.statusMessage = &statusMessage
-	return r
-}
-func (r ApiMonitoringGetAlertRequest) ReasonAlertPolicyId(reasonAlertPolicyId string) ApiMonitoringGetAlertRequest {
-	r.reasonAlertPolicyId = &reasonAlertPolicyId
-	return r
-}
-func (r ApiMonitoringGetAlertRequest) AcknowledgedUser(acknowledgedUser string) ApiMonitoringGetAlertRequest {
-	r.acknowledgedUser = &acknowledgedUser
-	return r
-}
-func (r ApiMonitoringGetAlertRequest) AcknowledgedTime(acknowledgedTime time.Time) ApiMonitoringGetAlertRequest {
-	r.acknowledgedTime = &acknowledgedTime
-	return r
-}
-func (r ApiMonitoringGetAlertRequest) ResolvedUser(resolvedUser string) ApiMonitoringGetAlertRequest {
-	r.resolvedUser = &resolvedUser
-	return r
-}
-func (r ApiMonitoringGetAlertRequest) ResolvedTime(resolvedTime time.Time) ApiMonitoringGetAlertRequest {
-	r.resolvedTime = &resolvedTime
-	return r
-}
-func (r ApiMonitoringGetAlertRequest) StatusTotalHits(statusTotalHits int32) ApiMonitoringGetAlertRequest {
-	r.statusTotalHits = &statusTotalHits
 	return r
 }
 
@@ -7876,15 +7720,13 @@ func (r ApiMonitoringGetAlertRequest) Execute() (MonitoringAlert, *_nethttp.Resp
  * GetAlert Get Alert object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringGetAlertRequest
  */
-func (a *MonitoringV1ApiService) GetAlert(ctx _context.Context, oTenant string, oName string) ApiMonitoringGetAlertRequest {
+func (a *MonitoringV1ApiService) GetAlert(ctx _context.Context, oTenant string) ApiMonitoringGetAlertRequest {
 	return ApiMonitoringGetAlertRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -7909,7 +7751,6 @@ func (a *MonitoringV1ApiService) GetAlertExecute(r ApiMonitoringGetAlertRequest)
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/alerts/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -7918,80 +7759,11 @@ func (a *MonitoringV1ApiService) GetAlertExecute(r ApiMonitoringGetAlertRequest)
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
 	if r.specState != nil {
 		localVarQueryParams.Add("spec.state", parameterToString(*r.specState, ""))
-	}
-	if r.statusSeverity != nil {
-		localVarQueryParams.Add("status.severity", parameterToString(*r.statusSeverity, ""))
-	}
-	if r.sourceComponent != nil {
-		localVarQueryParams.Add("source.component", parameterToString(*r.sourceComponent, ""))
-	}
-	if r.sourceNodeName != nil {
-		localVarQueryParams.Add("source.node-name", parameterToString(*r.sourceNodeName, ""))
-	}
-	if r.statusEventUri != nil {
-		localVarQueryParams.Add("status.event-uri", parameterToString(*r.statusEventUri, ""))
-	}
-	if r.objectRefTenant != nil {
-		localVarQueryParams.Add("object-ref.tenant", parameterToString(*r.objectRefTenant, ""))
-	}
-	if r.objectRefNamespace != nil {
-		localVarQueryParams.Add("object-ref.namespace", parameterToString(*r.objectRefNamespace, ""))
-	}
-	if r.objectRefKind != nil {
-		localVarQueryParams.Add("object-ref.kind", parameterToString(*r.objectRefKind, ""))
-	}
-	if r.objectRefName != nil {
-		localVarQueryParams.Add("object-ref.name", parameterToString(*r.objectRefName, ""))
-	}
-	if r.objectRefUri != nil {
-		localVarQueryParams.Add("object-ref.uri", parameterToString(*r.objectRefUri, ""))
-	}
-	if r.statusMessage != nil {
-		localVarQueryParams.Add("status.message", parameterToString(*r.statusMessage, ""))
-	}
-	if r.reasonAlertPolicyId != nil {
-		localVarQueryParams.Add("reason.alert-policy-id", parameterToString(*r.reasonAlertPolicyId, ""))
-	}
-	if r.acknowledgedUser != nil {
-		localVarQueryParams.Add("acknowledged.user", parameterToString(*r.acknowledgedUser, ""))
-	}
-	if r.acknowledgedTime != nil {
-		localVarQueryParams.Add("acknowledged.time", parameterToString(*r.acknowledgedTime, ""))
-	}
-	if r.resolvedUser != nil {
-		localVarQueryParams.Add("resolved.user", parameterToString(*r.resolvedUser, ""))
-	}
-	if r.resolvedTime != nil {
-		localVarQueryParams.Add("resolved.time", parameterToString(*r.resolvedTime, ""))
-	}
-	if r.statusTotalHits != nil {
-		localVarQueryParams.Add("status.total-hits", parameterToString(*r.statusTotalHits, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -8117,140 +7889,20 @@ type ApiMonitoringGetAlert1Request struct {
 	ApiService *MonitoringV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	specState *string
-	statusSeverity *string
-	sourceComponent *string
-	sourceNodeName *string
-	statusEventUri *string
-	objectRefTenant *string
-	objectRefNamespace *string
-	objectRefKind *string
-	objectRefName *string
-	objectRefUri *string
-	statusMessage *string
-	reasonAlertPolicyId *string
-	acknowledgedUser *string
-	acknowledgedTime *time.Time
-	resolvedUser *string
-	resolvedTime *time.Time
-	statusTotalHits *int32
 }
 
 func (r ApiMonitoringGetAlert1Request) TKind(tKind string) ApiMonitoringGetAlert1Request {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiMonitoringGetAlert1Request) TApiVersion(tApiVersion string) ApiMonitoringGetAlert1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiMonitoringGetAlert1Request) MetaTenant(metaTenant string) ApiMonitoringGetAlert1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiMonitoringGetAlert1Request) MetaNamespace(metaNamespace string) ApiMonitoringGetAlert1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiMonitoringGetAlert1Request) MetaGenerationId(metaGenerationId string) ApiMonitoringGetAlert1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiMonitoringGetAlert1Request) MetaResourceVersion(metaResourceVersion string) ApiMonitoringGetAlert1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiMonitoringGetAlert1Request) MetaUuid(metaUuid string) ApiMonitoringGetAlert1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiMonitoringGetAlert1Request) MetaCreationTime(metaCreationTime time.Time) ApiMonitoringGetAlert1Request {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiMonitoringGetAlert1Request) MetaModTime(metaModTime time.Time) ApiMonitoringGetAlert1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiMonitoringGetAlert1Request) MetaSelfLink(metaSelfLink string) ApiMonitoringGetAlert1Request {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
 func (r ApiMonitoringGetAlert1Request) SpecState(specState string) ApiMonitoringGetAlert1Request {
 	r.specState = &specState
-	return r
-}
-func (r ApiMonitoringGetAlert1Request) StatusSeverity(statusSeverity string) ApiMonitoringGetAlert1Request {
-	r.statusSeverity = &statusSeverity
-	return r
-}
-func (r ApiMonitoringGetAlert1Request) SourceComponent(sourceComponent string) ApiMonitoringGetAlert1Request {
-	r.sourceComponent = &sourceComponent
-	return r
-}
-func (r ApiMonitoringGetAlert1Request) SourceNodeName(sourceNodeName string) ApiMonitoringGetAlert1Request {
-	r.sourceNodeName = &sourceNodeName
-	return r
-}
-func (r ApiMonitoringGetAlert1Request) StatusEventUri(statusEventUri string) ApiMonitoringGetAlert1Request {
-	r.statusEventUri = &statusEventUri
-	return r
-}
-func (r ApiMonitoringGetAlert1Request) ObjectRefTenant(objectRefTenant string) ApiMonitoringGetAlert1Request {
-	r.objectRefTenant = &objectRefTenant
-	return r
-}
-func (r ApiMonitoringGetAlert1Request) ObjectRefNamespace(objectRefNamespace string) ApiMonitoringGetAlert1Request {
-	r.objectRefNamespace = &objectRefNamespace
-	return r
-}
-func (r ApiMonitoringGetAlert1Request) ObjectRefKind(objectRefKind string) ApiMonitoringGetAlert1Request {
-	r.objectRefKind = &objectRefKind
-	return r
-}
-func (r ApiMonitoringGetAlert1Request) ObjectRefName(objectRefName string) ApiMonitoringGetAlert1Request {
-	r.objectRefName = &objectRefName
-	return r
-}
-func (r ApiMonitoringGetAlert1Request) ObjectRefUri(objectRefUri string) ApiMonitoringGetAlert1Request {
-	r.objectRefUri = &objectRefUri
-	return r
-}
-func (r ApiMonitoringGetAlert1Request) StatusMessage(statusMessage string) ApiMonitoringGetAlert1Request {
-	r.statusMessage = &statusMessage
-	return r
-}
-func (r ApiMonitoringGetAlert1Request) ReasonAlertPolicyId(reasonAlertPolicyId string) ApiMonitoringGetAlert1Request {
-	r.reasonAlertPolicyId = &reasonAlertPolicyId
-	return r
-}
-func (r ApiMonitoringGetAlert1Request) AcknowledgedUser(acknowledgedUser string) ApiMonitoringGetAlert1Request {
-	r.acknowledgedUser = &acknowledgedUser
-	return r
-}
-func (r ApiMonitoringGetAlert1Request) AcknowledgedTime(acknowledgedTime time.Time) ApiMonitoringGetAlert1Request {
-	r.acknowledgedTime = &acknowledgedTime
-	return r
-}
-func (r ApiMonitoringGetAlert1Request) ResolvedUser(resolvedUser string) ApiMonitoringGetAlert1Request {
-	r.resolvedUser = &resolvedUser
-	return r
-}
-func (r ApiMonitoringGetAlert1Request) ResolvedTime(resolvedTime time.Time) ApiMonitoringGetAlert1Request {
-	r.resolvedTime = &resolvedTime
-	return r
-}
-func (r ApiMonitoringGetAlert1Request) StatusTotalHits(statusTotalHits int32) ApiMonitoringGetAlert1Request {
-	r.statusTotalHits = &statusTotalHits
 	return r
 }
 
@@ -8301,83 +7953,11 @@ func (a *MonitoringV1ApiService) GetAlert1Execute(r ApiMonitoringGetAlert1Reques
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
 	if r.specState != nil {
 		localVarQueryParams.Add("spec.state", parameterToString(*r.specState, ""))
-	}
-	if r.statusSeverity != nil {
-		localVarQueryParams.Add("status.severity", parameterToString(*r.statusSeverity, ""))
-	}
-	if r.sourceComponent != nil {
-		localVarQueryParams.Add("source.component", parameterToString(*r.sourceComponent, ""))
-	}
-	if r.sourceNodeName != nil {
-		localVarQueryParams.Add("source.node-name", parameterToString(*r.sourceNodeName, ""))
-	}
-	if r.statusEventUri != nil {
-		localVarQueryParams.Add("status.event-uri", parameterToString(*r.statusEventUri, ""))
-	}
-	if r.objectRefTenant != nil {
-		localVarQueryParams.Add("object-ref.tenant", parameterToString(*r.objectRefTenant, ""))
-	}
-	if r.objectRefNamespace != nil {
-		localVarQueryParams.Add("object-ref.namespace", parameterToString(*r.objectRefNamespace, ""))
-	}
-	if r.objectRefKind != nil {
-		localVarQueryParams.Add("object-ref.kind", parameterToString(*r.objectRefKind, ""))
-	}
-	if r.objectRefName != nil {
-		localVarQueryParams.Add("object-ref.name", parameterToString(*r.objectRefName, ""))
-	}
-	if r.objectRefUri != nil {
-		localVarQueryParams.Add("object-ref.uri", parameterToString(*r.objectRefUri, ""))
-	}
-	if r.statusMessage != nil {
-		localVarQueryParams.Add("status.message", parameterToString(*r.statusMessage, ""))
-	}
-	if r.reasonAlertPolicyId != nil {
-		localVarQueryParams.Add("reason.alert-policy-id", parameterToString(*r.reasonAlertPolicyId, ""))
-	}
-	if r.acknowledgedUser != nil {
-		localVarQueryParams.Add("acknowledged.user", parameterToString(*r.acknowledgedUser, ""))
-	}
-	if r.acknowledgedTime != nil {
-		localVarQueryParams.Add("acknowledged.time", parameterToString(*r.acknowledgedTime, ""))
-	}
-	if r.resolvedUser != nil {
-		localVarQueryParams.Add("resolved.user", parameterToString(*r.resolvedUser, ""))
-	}
-	if r.resolvedTime != nil {
-		localVarQueryParams.Add("resolved.time", parameterToString(*r.resolvedTime, ""))
-	}
-	if r.statusTotalHits != nil {
-		localVarQueryParams.Add("status.total-hits", parameterToString(*r.statusTotalHits, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -8502,77 +8082,21 @@ type ApiMonitoringGetAlertDestinationRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	emailExportEmailList *[]string
-	syslogExportFormat *string
-	configFacilityOverride *string
-	configPrefix *string
-	statusTotalNotificationsSent *int32
 }
 
 func (r ApiMonitoringGetAlertDestinationRequest) TKind(tKind string) ApiMonitoringGetAlertDestinationRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiMonitoringGetAlertDestinationRequest) TApiVersion(tApiVersion string) ApiMonitoringGetAlertDestinationRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiMonitoringGetAlertDestinationRequest) MetaNamespace(metaNamespace string) ApiMonitoringGetAlertDestinationRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiMonitoringGetAlertDestinationRequest) MetaGenerationId(metaGenerationId string) ApiMonitoringGetAlertDestinationRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiMonitoringGetAlertDestinationRequest) MetaResourceVersion(metaResourceVersion string) ApiMonitoringGetAlertDestinationRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiMonitoringGetAlertDestinationRequest) MetaUuid(metaUuid string) ApiMonitoringGetAlertDestinationRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiMonitoringGetAlertDestinationRequest) MetaCreationTime(metaCreationTime time.Time) ApiMonitoringGetAlertDestinationRequest {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiMonitoringGetAlertDestinationRequest) MetaModTime(metaModTime time.Time) ApiMonitoringGetAlertDestinationRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiMonitoringGetAlertDestinationRequest) MetaSelfLink(metaSelfLink string) ApiMonitoringGetAlertDestinationRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
 func (r ApiMonitoringGetAlertDestinationRequest) EmailExportEmailList(emailExportEmailList []string) ApiMonitoringGetAlertDestinationRequest {
 	r.emailExportEmailList = &emailExportEmailList
-	return r
-}
-func (r ApiMonitoringGetAlertDestinationRequest) SyslogExportFormat(syslogExportFormat string) ApiMonitoringGetAlertDestinationRequest {
-	r.syslogExportFormat = &syslogExportFormat
-	return r
-}
-func (r ApiMonitoringGetAlertDestinationRequest) ConfigFacilityOverride(configFacilityOverride string) ApiMonitoringGetAlertDestinationRequest {
-	r.configFacilityOverride = &configFacilityOverride
-	return r
-}
-func (r ApiMonitoringGetAlertDestinationRequest) ConfigPrefix(configPrefix string) ApiMonitoringGetAlertDestinationRequest {
-	r.configPrefix = &configPrefix
-	return r
-}
-func (r ApiMonitoringGetAlertDestinationRequest) StatusTotalNotificationsSent(statusTotalNotificationsSent int32) ApiMonitoringGetAlertDestinationRequest {
-	r.statusTotalNotificationsSent = &statusTotalNotificationsSent
 	return r
 }
 
@@ -8584,15 +8108,13 @@ func (r ApiMonitoringGetAlertDestinationRequest) Execute() (MonitoringAlertDesti
  * GetAlertDestination Get AlertDestination object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringGetAlertDestinationRequest
  */
-func (a *MonitoringV1ApiService) GetAlertDestination(ctx _context.Context, oTenant string, oName string) ApiMonitoringGetAlertDestinationRequest {
+func (a *MonitoringV1ApiService) GetAlertDestination(ctx _context.Context, oTenant string) ApiMonitoringGetAlertDestinationRequest {
 	return ApiMonitoringGetAlertDestinationRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -8617,7 +8139,6 @@ func (a *MonitoringV1ApiService) GetAlertDestinationExecute(r ApiMonitoringGetAl
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/alertDestinations/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -8626,44 +8147,11 @@ func (a *MonitoringV1ApiService) GetAlertDestinationExecute(r ApiMonitoringGetAl
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
 	if r.emailExportEmailList != nil {
 		localVarQueryParams.Add("email-export.email-list", parameterToString(*r.emailExportEmailList, "csv"))
-	}
-	if r.syslogExportFormat != nil {
-		localVarQueryParams.Add("syslog-export.format", parameterToString(*r.syslogExportFormat, ""))
-	}
-	if r.configFacilityOverride != nil {
-		localVarQueryParams.Add("config.facility-override", parameterToString(*r.configFacilityOverride, ""))
-	}
-	if r.configPrefix != nil {
-		localVarQueryParams.Add("config.prefix", parameterToString(*r.configPrefix, ""))
-	}
-	if r.statusTotalNotificationsSent != nil {
-		localVarQueryParams.Add("status.total-notifications-sent", parameterToString(*r.statusTotalNotificationsSent, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -8789,80 +8277,20 @@ type ApiMonitoringGetAlertDestination1Request struct {
 	ApiService *MonitoringV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	emailExportEmailList *[]string
-	syslogExportFormat *string
-	configFacilityOverride *string
-	configPrefix *string
-	statusTotalNotificationsSent *int32
 }
 
 func (r ApiMonitoringGetAlertDestination1Request) TKind(tKind string) ApiMonitoringGetAlertDestination1Request {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiMonitoringGetAlertDestination1Request) TApiVersion(tApiVersion string) ApiMonitoringGetAlertDestination1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiMonitoringGetAlertDestination1Request) MetaTenant(metaTenant string) ApiMonitoringGetAlertDestination1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiMonitoringGetAlertDestination1Request) MetaNamespace(metaNamespace string) ApiMonitoringGetAlertDestination1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiMonitoringGetAlertDestination1Request) MetaGenerationId(metaGenerationId string) ApiMonitoringGetAlertDestination1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiMonitoringGetAlertDestination1Request) MetaResourceVersion(metaResourceVersion string) ApiMonitoringGetAlertDestination1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiMonitoringGetAlertDestination1Request) MetaUuid(metaUuid string) ApiMonitoringGetAlertDestination1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiMonitoringGetAlertDestination1Request) MetaCreationTime(metaCreationTime time.Time) ApiMonitoringGetAlertDestination1Request {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiMonitoringGetAlertDestination1Request) MetaModTime(metaModTime time.Time) ApiMonitoringGetAlertDestination1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiMonitoringGetAlertDestination1Request) MetaSelfLink(metaSelfLink string) ApiMonitoringGetAlertDestination1Request {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
 func (r ApiMonitoringGetAlertDestination1Request) EmailExportEmailList(emailExportEmailList []string) ApiMonitoringGetAlertDestination1Request {
 	r.emailExportEmailList = &emailExportEmailList
-	return r
-}
-func (r ApiMonitoringGetAlertDestination1Request) SyslogExportFormat(syslogExportFormat string) ApiMonitoringGetAlertDestination1Request {
-	r.syslogExportFormat = &syslogExportFormat
-	return r
-}
-func (r ApiMonitoringGetAlertDestination1Request) ConfigFacilityOverride(configFacilityOverride string) ApiMonitoringGetAlertDestination1Request {
-	r.configFacilityOverride = &configFacilityOverride
-	return r
-}
-func (r ApiMonitoringGetAlertDestination1Request) ConfigPrefix(configPrefix string) ApiMonitoringGetAlertDestination1Request {
-	r.configPrefix = &configPrefix
-	return r
-}
-func (r ApiMonitoringGetAlertDestination1Request) StatusTotalNotificationsSent(statusTotalNotificationsSent int32) ApiMonitoringGetAlertDestination1Request {
-	r.statusTotalNotificationsSent = &statusTotalNotificationsSent
 	return r
 }
 
@@ -8913,47 +8341,11 @@ func (a *MonitoringV1ApiService) GetAlertDestination1Execute(r ApiMonitoringGetA
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
 	if r.emailExportEmailList != nil {
 		localVarQueryParams.Add("email-export.email-list", parameterToString(*r.emailExportEmailList, "csv"))
-	}
-	if r.syslogExportFormat != nil {
-		localVarQueryParams.Add("syslog-export.format", parameterToString(*r.syslogExportFormat, ""))
-	}
-	if r.configFacilityOverride != nil {
-		localVarQueryParams.Add("config.facility-override", parameterToString(*r.configFacilityOverride, ""))
-	}
-	if r.configPrefix != nil {
-		localVarQueryParams.Add("config.prefix", parameterToString(*r.configPrefix, ""))
-	}
-	if r.statusTotalNotificationsSent != nil {
-		localVarQueryParams.Add("status.total-notifications-sent", parameterToString(*r.statusTotalNotificationsSent, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -9078,92 +8470,21 @@ type ApiMonitoringGetAlertPolicyRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specResource *string
-	specSeverity *string
-	specMessage *string
-	specEnable *bool
 	specDestinations *[]string
-	statusTotalHits *int32
-	statusOpenAlerts *int32
-	statusAcknowledgedAlerts *int32
 }
 
 func (r ApiMonitoringGetAlertPolicyRequest) TKind(tKind string) ApiMonitoringGetAlertPolicyRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiMonitoringGetAlertPolicyRequest) TApiVersion(tApiVersion string) ApiMonitoringGetAlertPolicyRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiMonitoringGetAlertPolicyRequest) MetaNamespace(metaNamespace string) ApiMonitoringGetAlertPolicyRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiMonitoringGetAlertPolicyRequest) MetaGenerationId(metaGenerationId string) ApiMonitoringGetAlertPolicyRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiMonitoringGetAlertPolicyRequest) MetaResourceVersion(metaResourceVersion string) ApiMonitoringGetAlertPolicyRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiMonitoringGetAlertPolicyRequest) MetaUuid(metaUuid string) ApiMonitoringGetAlertPolicyRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiMonitoringGetAlertPolicyRequest) MetaCreationTime(metaCreationTime time.Time) ApiMonitoringGetAlertPolicyRequest {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiMonitoringGetAlertPolicyRequest) MetaModTime(metaModTime time.Time) ApiMonitoringGetAlertPolicyRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiMonitoringGetAlertPolicyRequest) MetaSelfLink(metaSelfLink string) ApiMonitoringGetAlertPolicyRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiMonitoringGetAlertPolicyRequest) SpecResource(specResource string) ApiMonitoringGetAlertPolicyRequest {
-	r.specResource = &specResource
-	return r
-}
-func (r ApiMonitoringGetAlertPolicyRequest) SpecSeverity(specSeverity string) ApiMonitoringGetAlertPolicyRequest {
-	r.specSeverity = &specSeverity
-	return r
-}
-func (r ApiMonitoringGetAlertPolicyRequest) SpecMessage(specMessage string) ApiMonitoringGetAlertPolicyRequest {
-	r.specMessage = &specMessage
-	return r
-}
-func (r ApiMonitoringGetAlertPolicyRequest) SpecEnable(specEnable bool) ApiMonitoringGetAlertPolicyRequest {
-	r.specEnable = &specEnable
-	return r
-}
 func (r ApiMonitoringGetAlertPolicyRequest) SpecDestinations(specDestinations []string) ApiMonitoringGetAlertPolicyRequest {
 	r.specDestinations = &specDestinations
-	return r
-}
-func (r ApiMonitoringGetAlertPolicyRequest) StatusTotalHits(statusTotalHits int32) ApiMonitoringGetAlertPolicyRequest {
-	r.statusTotalHits = &statusTotalHits
-	return r
-}
-func (r ApiMonitoringGetAlertPolicyRequest) StatusOpenAlerts(statusOpenAlerts int32) ApiMonitoringGetAlertPolicyRequest {
-	r.statusOpenAlerts = &statusOpenAlerts
-	return r
-}
-func (r ApiMonitoringGetAlertPolicyRequest) StatusAcknowledgedAlerts(statusAcknowledgedAlerts int32) ApiMonitoringGetAlertPolicyRequest {
-	r.statusAcknowledgedAlerts = &statusAcknowledgedAlerts
 	return r
 }
 
@@ -9175,15 +8496,13 @@ func (r ApiMonitoringGetAlertPolicyRequest) Execute() (MonitoringAlertPolicy, *_
  * GetAlertPolicy Get AlertPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringGetAlertPolicyRequest
  */
-func (a *MonitoringV1ApiService) GetAlertPolicy(ctx _context.Context, oTenant string, oName string) ApiMonitoringGetAlertPolicyRequest {
+func (a *MonitoringV1ApiService) GetAlertPolicy(ctx _context.Context, oTenant string) ApiMonitoringGetAlertPolicyRequest {
 	return ApiMonitoringGetAlertPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -9208,7 +8527,6 @@ func (a *MonitoringV1ApiService) GetAlertPolicyExecute(r ApiMonitoringGetAlertPo
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/alertPolicies/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -9217,53 +8535,11 @@ func (a *MonitoringV1ApiService) GetAlertPolicyExecute(r ApiMonitoringGetAlertPo
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specResource != nil {
-		localVarQueryParams.Add("spec.resource", parameterToString(*r.specResource, ""))
-	}
-	if r.specSeverity != nil {
-		localVarQueryParams.Add("spec.severity", parameterToString(*r.specSeverity, ""))
-	}
-	if r.specMessage != nil {
-		localVarQueryParams.Add("spec.message", parameterToString(*r.specMessage, ""))
-	}
-	if r.specEnable != nil {
-		localVarQueryParams.Add("spec.enable", parameterToString(*r.specEnable, ""))
-	}
 	if r.specDestinations != nil {
 		localVarQueryParams.Add("spec.destinations", parameterToString(*r.specDestinations, "csv"))
-	}
-	if r.statusTotalHits != nil {
-		localVarQueryParams.Add("status.total-hits", parameterToString(*r.statusTotalHits, ""))
-	}
-	if r.statusOpenAlerts != nil {
-		localVarQueryParams.Add("status.open-alerts", parameterToString(*r.statusOpenAlerts, ""))
-	}
-	if r.statusAcknowledgedAlerts != nil {
-		localVarQueryParams.Add("status.acknowledged-alerts", parameterToString(*r.statusAcknowledgedAlerts, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -9389,95 +8665,20 @@ type ApiMonitoringGetAlertPolicy1Request struct {
 	ApiService *MonitoringV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specResource *string
-	specSeverity *string
-	specMessage *string
-	specEnable *bool
 	specDestinations *[]string
-	statusTotalHits *int32
-	statusOpenAlerts *int32
-	statusAcknowledgedAlerts *int32
 }
 
 func (r ApiMonitoringGetAlertPolicy1Request) TKind(tKind string) ApiMonitoringGetAlertPolicy1Request {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiMonitoringGetAlertPolicy1Request) TApiVersion(tApiVersion string) ApiMonitoringGetAlertPolicy1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiMonitoringGetAlertPolicy1Request) MetaTenant(metaTenant string) ApiMonitoringGetAlertPolicy1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiMonitoringGetAlertPolicy1Request) MetaNamespace(metaNamespace string) ApiMonitoringGetAlertPolicy1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiMonitoringGetAlertPolicy1Request) MetaGenerationId(metaGenerationId string) ApiMonitoringGetAlertPolicy1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiMonitoringGetAlertPolicy1Request) MetaResourceVersion(metaResourceVersion string) ApiMonitoringGetAlertPolicy1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiMonitoringGetAlertPolicy1Request) MetaUuid(metaUuid string) ApiMonitoringGetAlertPolicy1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiMonitoringGetAlertPolicy1Request) MetaCreationTime(metaCreationTime time.Time) ApiMonitoringGetAlertPolicy1Request {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiMonitoringGetAlertPolicy1Request) MetaModTime(metaModTime time.Time) ApiMonitoringGetAlertPolicy1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiMonitoringGetAlertPolicy1Request) MetaSelfLink(metaSelfLink string) ApiMonitoringGetAlertPolicy1Request {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiMonitoringGetAlertPolicy1Request) SpecResource(specResource string) ApiMonitoringGetAlertPolicy1Request {
-	r.specResource = &specResource
-	return r
-}
-func (r ApiMonitoringGetAlertPolicy1Request) SpecSeverity(specSeverity string) ApiMonitoringGetAlertPolicy1Request {
-	r.specSeverity = &specSeverity
-	return r
-}
-func (r ApiMonitoringGetAlertPolicy1Request) SpecMessage(specMessage string) ApiMonitoringGetAlertPolicy1Request {
-	r.specMessage = &specMessage
-	return r
-}
-func (r ApiMonitoringGetAlertPolicy1Request) SpecEnable(specEnable bool) ApiMonitoringGetAlertPolicy1Request {
-	r.specEnable = &specEnable
-	return r
-}
 func (r ApiMonitoringGetAlertPolicy1Request) SpecDestinations(specDestinations []string) ApiMonitoringGetAlertPolicy1Request {
 	r.specDestinations = &specDestinations
-	return r
-}
-func (r ApiMonitoringGetAlertPolicy1Request) StatusTotalHits(statusTotalHits int32) ApiMonitoringGetAlertPolicy1Request {
-	r.statusTotalHits = &statusTotalHits
-	return r
-}
-func (r ApiMonitoringGetAlertPolicy1Request) StatusOpenAlerts(statusOpenAlerts int32) ApiMonitoringGetAlertPolicy1Request {
-	r.statusOpenAlerts = &statusOpenAlerts
-	return r
-}
-func (r ApiMonitoringGetAlertPolicy1Request) StatusAcknowledgedAlerts(statusAcknowledgedAlerts int32) ApiMonitoringGetAlertPolicy1Request {
-	r.statusAcknowledgedAlerts = &statusAcknowledgedAlerts
 	return r
 }
 
@@ -9528,56 +8729,11 @@ func (a *MonitoringV1ApiService) GetAlertPolicy1Execute(r ApiMonitoringGetAlertP
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specResource != nil {
-		localVarQueryParams.Add("spec.resource", parameterToString(*r.specResource, ""))
-	}
-	if r.specSeverity != nil {
-		localVarQueryParams.Add("spec.severity", parameterToString(*r.specSeverity, ""))
-	}
-	if r.specMessage != nil {
-		localVarQueryParams.Add("spec.message", parameterToString(*r.specMessage, ""))
-	}
-	if r.specEnable != nil {
-		localVarQueryParams.Add("spec.enable", parameterToString(*r.specEnable, ""))
-	}
 	if r.specDestinations != nil {
 		localVarQueryParams.Add("spec.destinations", parameterToString(*r.specDestinations, "csv"))
-	}
-	if r.statusTotalHits != nil {
-		localVarQueryParams.Add("status.total-hits", parameterToString(*r.statusTotalHits, ""))
-	}
-	if r.statusOpenAlerts != nil {
-		localVarQueryParams.Add("status.open-alerts", parameterToString(*r.statusOpenAlerts, ""))
-	}
-	if r.statusAcknowledgedAlerts != nil {
-		localVarQueryParams.Add("status.acknowledged-alerts", parameterToString(*r.statusAcknowledgedAlerts, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -9702,87 +8858,26 @@ type ApiMonitoringGetArchiveRequestRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	specType *string
-	queryStartTime *time.Time
-	queryEndTime *time.Time
 	queryTenants *[]string
-	statusStatus *string
-	statusReason *string
-	statusUri *string
 }
 
 func (r ApiMonitoringGetArchiveRequestRequest) TKind(tKind string) ApiMonitoringGetArchiveRequestRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiMonitoringGetArchiveRequestRequest) TApiVersion(tApiVersion string) ApiMonitoringGetArchiveRequestRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiMonitoringGetArchiveRequestRequest) MetaNamespace(metaNamespace string) ApiMonitoringGetArchiveRequestRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiMonitoringGetArchiveRequestRequest) MetaGenerationId(metaGenerationId string) ApiMonitoringGetArchiveRequestRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiMonitoringGetArchiveRequestRequest) MetaResourceVersion(metaResourceVersion string) ApiMonitoringGetArchiveRequestRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiMonitoringGetArchiveRequestRequest) MetaUuid(metaUuid string) ApiMonitoringGetArchiveRequestRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiMonitoringGetArchiveRequestRequest) MetaCreationTime(metaCreationTime time.Time) ApiMonitoringGetArchiveRequestRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiMonitoringGetArchiveRequestRequest) MetaModTime(metaModTime time.Time) ApiMonitoringGetArchiveRequestRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiMonitoringGetArchiveRequestRequest) MetaSelfLink(metaSelfLink string) ApiMonitoringGetArchiveRequestRequest {
-	r.metaSelfLink = &metaSelfLink
 	return r
 }
 func (r ApiMonitoringGetArchiveRequestRequest) SpecType(specType string) ApiMonitoringGetArchiveRequestRequest {
 	r.specType = &specType
 	return r
 }
-func (r ApiMonitoringGetArchiveRequestRequest) QueryStartTime(queryStartTime time.Time) ApiMonitoringGetArchiveRequestRequest {
-	r.queryStartTime = &queryStartTime
-	return r
-}
-func (r ApiMonitoringGetArchiveRequestRequest) QueryEndTime(queryEndTime time.Time) ApiMonitoringGetArchiveRequestRequest {
-	r.queryEndTime = &queryEndTime
-	return r
-}
 func (r ApiMonitoringGetArchiveRequestRequest) QueryTenants(queryTenants []string) ApiMonitoringGetArchiveRequestRequest {
 	r.queryTenants = &queryTenants
-	return r
-}
-func (r ApiMonitoringGetArchiveRequestRequest) StatusStatus(statusStatus string) ApiMonitoringGetArchiveRequestRequest {
-	r.statusStatus = &statusStatus
-	return r
-}
-func (r ApiMonitoringGetArchiveRequestRequest) StatusReason(statusReason string) ApiMonitoringGetArchiveRequestRequest {
-	r.statusReason = &statusReason
-	return r
-}
-func (r ApiMonitoringGetArchiveRequestRequest) StatusUri(statusUri string) ApiMonitoringGetArchiveRequestRequest {
-	r.statusUri = &statusUri
 	return r
 }
 
@@ -9794,15 +8889,13 @@ func (r ApiMonitoringGetArchiveRequestRequest) Execute() (MonitoringArchiveReque
  * GetArchiveRequest Get ArchiveRequest object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringGetArchiveRequestRequest
  */
-func (a *MonitoringV1ApiService) GetArchiveRequest(ctx _context.Context, oTenant string, oName string) ApiMonitoringGetArchiveRequestRequest {
+func (a *MonitoringV1ApiService) GetArchiveRequest(ctx _context.Context, oTenant string) ApiMonitoringGetArchiveRequestRequest {
 	return ApiMonitoringGetArchiveRequestRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -9827,7 +8920,6 @@ func (a *MonitoringV1ApiService) GetArchiveRequestExecute(r ApiMonitoringGetArch
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/archive-requests/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -9836,50 +8928,14 @@ func (a *MonitoringV1ApiService) GetArchiveRequestExecute(r ApiMonitoringGetArch
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
 	}
 	if r.specType != nil {
 		localVarQueryParams.Add("spec.type", parameterToString(*r.specType, ""))
 	}
-	if r.queryStartTime != nil {
-		localVarQueryParams.Add("query.start-time", parameterToString(*r.queryStartTime, ""))
-	}
-	if r.queryEndTime != nil {
-		localVarQueryParams.Add("query.end-time", parameterToString(*r.queryEndTime, ""))
-	}
 	if r.queryTenants != nil {
 		localVarQueryParams.Add("query.tenants", parameterToString(*r.queryTenants, "csv"))
-	}
-	if r.statusStatus != nil {
-		localVarQueryParams.Add("status.status", parameterToString(*r.statusStatus, ""))
-	}
-	if r.statusReason != nil {
-		localVarQueryParams.Add("status.reason", parameterToString(*r.statusReason, ""))
-	}
-	if r.statusUri != nil {
-		localVarQueryParams.Add("status.uri", parameterToString(*r.statusUri, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -10005,90 +9061,25 @@ type ApiMonitoringGetArchiveRequest1Request struct {
 	ApiService *MonitoringV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	specType *string
-	queryStartTime *time.Time
-	queryEndTime *time.Time
 	queryTenants *[]string
-	statusStatus *string
-	statusReason *string
-	statusUri *string
 }
 
 func (r ApiMonitoringGetArchiveRequest1Request) TKind(tKind string) ApiMonitoringGetArchiveRequest1Request {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiMonitoringGetArchiveRequest1Request) TApiVersion(tApiVersion string) ApiMonitoringGetArchiveRequest1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiMonitoringGetArchiveRequest1Request) MetaTenant(metaTenant string) ApiMonitoringGetArchiveRequest1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiMonitoringGetArchiveRequest1Request) MetaNamespace(metaNamespace string) ApiMonitoringGetArchiveRequest1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiMonitoringGetArchiveRequest1Request) MetaGenerationId(metaGenerationId string) ApiMonitoringGetArchiveRequest1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiMonitoringGetArchiveRequest1Request) MetaResourceVersion(metaResourceVersion string) ApiMonitoringGetArchiveRequest1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiMonitoringGetArchiveRequest1Request) MetaUuid(metaUuid string) ApiMonitoringGetArchiveRequest1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiMonitoringGetArchiveRequest1Request) MetaCreationTime(metaCreationTime time.Time) ApiMonitoringGetArchiveRequest1Request {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiMonitoringGetArchiveRequest1Request) MetaModTime(metaModTime time.Time) ApiMonitoringGetArchiveRequest1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiMonitoringGetArchiveRequest1Request) MetaSelfLink(metaSelfLink string) ApiMonitoringGetArchiveRequest1Request {
-	r.metaSelfLink = &metaSelfLink
 	return r
 }
 func (r ApiMonitoringGetArchiveRequest1Request) SpecType(specType string) ApiMonitoringGetArchiveRequest1Request {
 	r.specType = &specType
 	return r
 }
-func (r ApiMonitoringGetArchiveRequest1Request) QueryStartTime(queryStartTime time.Time) ApiMonitoringGetArchiveRequest1Request {
-	r.queryStartTime = &queryStartTime
-	return r
-}
-func (r ApiMonitoringGetArchiveRequest1Request) QueryEndTime(queryEndTime time.Time) ApiMonitoringGetArchiveRequest1Request {
-	r.queryEndTime = &queryEndTime
-	return r
-}
 func (r ApiMonitoringGetArchiveRequest1Request) QueryTenants(queryTenants []string) ApiMonitoringGetArchiveRequest1Request {
 	r.queryTenants = &queryTenants
-	return r
-}
-func (r ApiMonitoringGetArchiveRequest1Request) StatusStatus(statusStatus string) ApiMonitoringGetArchiveRequest1Request {
-	r.statusStatus = &statusStatus
-	return r
-}
-func (r ApiMonitoringGetArchiveRequest1Request) StatusReason(statusReason string) ApiMonitoringGetArchiveRequest1Request {
-	r.statusReason = &statusReason
-	return r
-}
-func (r ApiMonitoringGetArchiveRequest1Request) StatusUri(statusUri string) ApiMonitoringGetArchiveRequest1Request {
-	r.statusUri = &statusUri
 	return r
 }
 
@@ -10139,53 +9130,14 @@ func (a *MonitoringV1ApiService) GetArchiveRequest1Execute(r ApiMonitoringGetArc
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
 	}
 	if r.specType != nil {
 		localVarQueryParams.Add("spec.type", parameterToString(*r.specType, ""))
 	}
-	if r.queryStartTime != nil {
-		localVarQueryParams.Add("query.start-time", parameterToString(*r.queryStartTime, ""))
-	}
-	if r.queryEndTime != nil {
-		localVarQueryParams.Add("query.end-time", parameterToString(*r.queryEndTime, ""))
-	}
 	if r.queryTenants != nil {
 		localVarQueryParams.Add("query.tenants", parameterToString(*r.queryTenants, "csv"))
-	}
-	if r.statusStatus != nil {
-		localVarQueryParams.Add("status.status", parameterToString(*r.statusStatus, ""))
-	}
-	if r.statusReason != nil {
-		localVarQueryParams.Add("status.reason", parameterToString(*r.statusReason, ""))
-	}
-	if r.statusUri != nil {
-		localVarQueryParams.Add("status.uri", parameterToString(*r.statusUri, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -10311,75 +9263,15 @@ type ApiMonitoringGetAuditPolicyRequest struct {
 	ApiService *MonitoringV1ApiService
 	oTenant string
 	tKind *string
-	tApiVersion *string
-	metaName *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	syslogAuditorEnabled *bool
-	syslogAuditorFormat *string
-	configFacilityOverride *string
-	configPrefix *string
 }
 
 func (r ApiMonitoringGetAuditPolicyRequest) TKind(tKind string) ApiMonitoringGetAuditPolicyRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiMonitoringGetAuditPolicyRequest) TApiVersion(tApiVersion string) ApiMonitoringGetAuditPolicyRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiMonitoringGetAuditPolicyRequest) MetaName(metaName string) ApiMonitoringGetAuditPolicyRequest {
-	r.metaName = &metaName
-	return r
-}
-func (r ApiMonitoringGetAuditPolicyRequest) MetaNamespace(metaNamespace string) ApiMonitoringGetAuditPolicyRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiMonitoringGetAuditPolicyRequest) MetaGenerationId(metaGenerationId string) ApiMonitoringGetAuditPolicyRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiMonitoringGetAuditPolicyRequest) MetaResourceVersion(metaResourceVersion string) ApiMonitoringGetAuditPolicyRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiMonitoringGetAuditPolicyRequest) MetaUuid(metaUuid string) ApiMonitoringGetAuditPolicyRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiMonitoringGetAuditPolicyRequest) MetaCreationTime(metaCreationTime time.Time) ApiMonitoringGetAuditPolicyRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiMonitoringGetAuditPolicyRequest) MetaModTime(metaModTime time.Time) ApiMonitoringGetAuditPolicyRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiMonitoringGetAuditPolicyRequest) MetaSelfLink(metaSelfLink string) ApiMonitoringGetAuditPolicyRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiMonitoringGetAuditPolicyRequest) SyslogAuditorEnabled(syslogAuditorEnabled bool) ApiMonitoringGetAuditPolicyRequest {
-	r.syslogAuditorEnabled = &syslogAuditorEnabled
-	return r
-}
-func (r ApiMonitoringGetAuditPolicyRequest) SyslogAuditorFormat(syslogAuditorFormat string) ApiMonitoringGetAuditPolicyRequest {
-	r.syslogAuditorFormat = &syslogAuditorFormat
-	return r
-}
-func (r ApiMonitoringGetAuditPolicyRequest) ConfigFacilityOverride(configFacilityOverride string) ApiMonitoringGetAuditPolicyRequest {
-	r.configFacilityOverride = &configFacilityOverride
-	return r
-}
-func (r ApiMonitoringGetAuditPolicyRequest) ConfigPrefix(configPrefix string) ApiMonitoringGetAuditPolicyRequest {
-	r.configPrefix = &configPrefix
 	return r
 }
 
@@ -10430,44 +9322,8 @@ func (a *MonitoringV1ApiService) GetAuditPolicyExecute(r ApiMonitoringGetAuditPo
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaName != nil {
-		localVarQueryParams.Add("meta.name", parameterToString(*r.metaName, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.syslogAuditorEnabled != nil {
-		localVarQueryParams.Add("syslog-auditor.enabled", parameterToString(*r.syslogAuditorEnabled, ""))
-	}
-	if r.syslogAuditorFormat != nil {
-		localVarQueryParams.Add("syslog-auditor.format", parameterToString(*r.syslogAuditorFormat, ""))
-	}
-	if r.configFacilityOverride != nil {
-		localVarQueryParams.Add("config.facility-override", parameterToString(*r.configFacilityOverride, ""))
-	}
-	if r.configPrefix != nil {
-		localVarQueryParams.Add("config.prefix", parameterToString(*r.configPrefix, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -10592,80 +9448,15 @@ type ApiMonitoringGetAuditPolicy1Request struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	tKind *string
-	tApiVersion *string
-	metaName *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	syslogAuditorEnabled *bool
-	syslogAuditorFormat *string
-	configFacilityOverride *string
-	configPrefix *string
 }
 
 func (r ApiMonitoringGetAuditPolicy1Request) TKind(tKind string) ApiMonitoringGetAuditPolicy1Request {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiMonitoringGetAuditPolicy1Request) TApiVersion(tApiVersion string) ApiMonitoringGetAuditPolicy1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiMonitoringGetAuditPolicy1Request) MetaName(metaName string) ApiMonitoringGetAuditPolicy1Request {
-	r.metaName = &metaName
-	return r
-}
-func (r ApiMonitoringGetAuditPolicy1Request) MetaTenant(metaTenant string) ApiMonitoringGetAuditPolicy1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiMonitoringGetAuditPolicy1Request) MetaNamespace(metaNamespace string) ApiMonitoringGetAuditPolicy1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiMonitoringGetAuditPolicy1Request) MetaGenerationId(metaGenerationId string) ApiMonitoringGetAuditPolicy1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiMonitoringGetAuditPolicy1Request) MetaResourceVersion(metaResourceVersion string) ApiMonitoringGetAuditPolicy1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiMonitoringGetAuditPolicy1Request) MetaUuid(metaUuid string) ApiMonitoringGetAuditPolicy1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiMonitoringGetAuditPolicy1Request) MetaCreationTime(metaCreationTime time.Time) ApiMonitoringGetAuditPolicy1Request {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiMonitoringGetAuditPolicy1Request) MetaModTime(metaModTime time.Time) ApiMonitoringGetAuditPolicy1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiMonitoringGetAuditPolicy1Request) MetaSelfLink(metaSelfLink string) ApiMonitoringGetAuditPolicy1Request {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiMonitoringGetAuditPolicy1Request) SyslogAuditorEnabled(syslogAuditorEnabled bool) ApiMonitoringGetAuditPolicy1Request {
-	r.syslogAuditorEnabled = &syslogAuditorEnabled
-	return r
-}
-func (r ApiMonitoringGetAuditPolicy1Request) SyslogAuditorFormat(syslogAuditorFormat string) ApiMonitoringGetAuditPolicy1Request {
-	r.syslogAuditorFormat = &syslogAuditorFormat
-	return r
-}
-func (r ApiMonitoringGetAuditPolicy1Request) ConfigFacilityOverride(configFacilityOverride string) ApiMonitoringGetAuditPolicy1Request {
-	r.configFacilityOverride = &configFacilityOverride
-	return r
-}
-func (r ApiMonitoringGetAuditPolicy1Request) ConfigPrefix(configPrefix string) ApiMonitoringGetAuditPolicy1Request {
-	r.configPrefix = &configPrefix
 	return r
 }
 
@@ -10713,47 +9504,8 @@ func (a *MonitoringV1ApiService) GetAuditPolicy1Execute(r ApiMonitoringGetAuditP
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaName != nil {
-		localVarQueryParams.Add("meta.name", parameterToString(*r.metaName, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.syslogAuditorEnabled != nil {
-		localVarQueryParams.Add("syslog-auditor.enabled", parameterToString(*r.syslogAuditorEnabled, ""))
-	}
-	if r.syslogAuditorFormat != nil {
-		localVarQueryParams.Add("syslog-auditor.format", parameterToString(*r.syslogAuditorFormat, ""))
-	}
-	if r.configFacilityOverride != nil {
-		localVarQueryParams.Add("config.facility-override", parameterToString(*r.configFacilityOverride, ""))
-	}
-	if r.configPrefix != nil {
-		localVarQueryParams.Add("config.prefix", parameterToString(*r.configPrefix, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -10878,67 +9630,16 @@ type ApiMonitoringGetEventPolicyRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specFormat *string
-	configFacilityOverride *string
-	configPrefix *string
 }
 
 func (r ApiMonitoringGetEventPolicyRequest) TKind(tKind string) ApiMonitoringGetEventPolicyRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiMonitoringGetEventPolicyRequest) TApiVersion(tApiVersion string) ApiMonitoringGetEventPolicyRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiMonitoringGetEventPolicyRequest) MetaNamespace(metaNamespace string) ApiMonitoringGetEventPolicyRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiMonitoringGetEventPolicyRequest) MetaGenerationId(metaGenerationId string) ApiMonitoringGetEventPolicyRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiMonitoringGetEventPolicyRequest) MetaResourceVersion(metaResourceVersion string) ApiMonitoringGetEventPolicyRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiMonitoringGetEventPolicyRequest) MetaUuid(metaUuid string) ApiMonitoringGetEventPolicyRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiMonitoringGetEventPolicyRequest) MetaCreationTime(metaCreationTime time.Time) ApiMonitoringGetEventPolicyRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiMonitoringGetEventPolicyRequest) MetaModTime(metaModTime time.Time) ApiMonitoringGetEventPolicyRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiMonitoringGetEventPolicyRequest) MetaSelfLink(metaSelfLink string) ApiMonitoringGetEventPolicyRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiMonitoringGetEventPolicyRequest) SpecFormat(specFormat string) ApiMonitoringGetEventPolicyRequest {
-	r.specFormat = &specFormat
-	return r
-}
-func (r ApiMonitoringGetEventPolicyRequest) ConfigFacilityOverride(configFacilityOverride string) ApiMonitoringGetEventPolicyRequest {
-	r.configFacilityOverride = &configFacilityOverride
-	return r
-}
-func (r ApiMonitoringGetEventPolicyRequest) ConfigPrefix(configPrefix string) ApiMonitoringGetEventPolicyRequest {
-	r.configPrefix = &configPrefix
 	return r
 }
 
@@ -10950,15 +9651,13 @@ func (r ApiMonitoringGetEventPolicyRequest) Execute() (MonitoringEventPolicy, *_
  * GetEventPolicy Get EventPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringGetEventPolicyRequest
  */
-func (a *MonitoringV1ApiService) GetEventPolicy(ctx _context.Context, oTenant string, oName string) ApiMonitoringGetEventPolicyRequest {
+func (a *MonitoringV1ApiService) GetEventPolicy(ctx _context.Context, oTenant string) ApiMonitoringGetEventPolicyRequest {
 	return ApiMonitoringGetEventPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -10983,7 +9682,6 @@ func (a *MonitoringV1ApiService) GetEventPolicyExecute(r ApiMonitoringGetEventPo
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/event-policy/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -10992,38 +9690,8 @@ func (a *MonitoringV1ApiService) GetEventPolicyExecute(r ApiMonitoringGetEventPo
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specFormat != nil {
-		localVarQueryParams.Add("spec.format", parameterToString(*r.specFormat, ""))
-	}
-	if r.configFacilityOverride != nil {
-		localVarQueryParams.Add("config.facility-override", parameterToString(*r.configFacilityOverride, ""))
-	}
-	if r.configPrefix != nil {
-		localVarQueryParams.Add("config.prefix", parameterToString(*r.configPrefix, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -11149,70 +9817,15 @@ type ApiMonitoringGetEventPolicy1Request struct {
 	ApiService *MonitoringV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specFormat *string
-	configFacilityOverride *string
-	configPrefix *string
 }
 
 func (r ApiMonitoringGetEventPolicy1Request) TKind(tKind string) ApiMonitoringGetEventPolicy1Request {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiMonitoringGetEventPolicy1Request) TApiVersion(tApiVersion string) ApiMonitoringGetEventPolicy1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiMonitoringGetEventPolicy1Request) MetaTenant(metaTenant string) ApiMonitoringGetEventPolicy1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiMonitoringGetEventPolicy1Request) MetaNamespace(metaNamespace string) ApiMonitoringGetEventPolicy1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiMonitoringGetEventPolicy1Request) MetaGenerationId(metaGenerationId string) ApiMonitoringGetEventPolicy1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiMonitoringGetEventPolicy1Request) MetaResourceVersion(metaResourceVersion string) ApiMonitoringGetEventPolicy1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiMonitoringGetEventPolicy1Request) MetaUuid(metaUuid string) ApiMonitoringGetEventPolicy1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiMonitoringGetEventPolicy1Request) MetaCreationTime(metaCreationTime time.Time) ApiMonitoringGetEventPolicy1Request {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiMonitoringGetEventPolicy1Request) MetaModTime(metaModTime time.Time) ApiMonitoringGetEventPolicy1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiMonitoringGetEventPolicy1Request) MetaSelfLink(metaSelfLink string) ApiMonitoringGetEventPolicy1Request {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiMonitoringGetEventPolicy1Request) SpecFormat(specFormat string) ApiMonitoringGetEventPolicy1Request {
-	r.specFormat = &specFormat
-	return r
-}
-func (r ApiMonitoringGetEventPolicy1Request) ConfigFacilityOverride(configFacilityOverride string) ApiMonitoringGetEventPolicy1Request {
-	r.configFacilityOverride = &configFacilityOverride
-	return r
-}
-func (r ApiMonitoringGetEventPolicy1Request) ConfigPrefix(configPrefix string) ApiMonitoringGetEventPolicy1Request {
-	r.configPrefix = &configPrefix
 	return r
 }
 
@@ -11263,41 +9876,8 @@ func (a *MonitoringV1ApiService) GetEventPolicy1Execute(r ApiMonitoringGetEventP
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specFormat != nil {
-		localVarQueryParams.Add("spec.format", parameterToString(*r.specFormat, ""))
-	}
-	if r.configFacilityOverride != nil {
-		localVarQueryParams.Add("config.facility-override", parameterToString(*r.configFacilityOverride, ""))
-	}
-	if r.configPrefix != nil {
-		localVarQueryParams.Add("config.prefix", parameterToString(*r.configPrefix, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -11422,112 +10002,26 @@ type ApiMonitoringGetFlowExportPolicyRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specVrfName *string
-	specInterval *string
-	specTemplateInterval *string
 	specFormat *string
-	specDisabled *bool
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
 	propagationStatusPendingDscs *[]string
-	statusState *string
 }
 
 func (r ApiMonitoringGetFlowExportPolicyRequest) TKind(tKind string) ApiMonitoringGetFlowExportPolicyRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiMonitoringGetFlowExportPolicyRequest) TApiVersion(tApiVersion string) ApiMonitoringGetFlowExportPolicyRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicyRequest) MetaNamespace(metaNamespace string) ApiMonitoringGetFlowExportPolicyRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicyRequest) MetaGenerationId(metaGenerationId string) ApiMonitoringGetFlowExportPolicyRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicyRequest) MetaResourceVersion(metaResourceVersion string) ApiMonitoringGetFlowExportPolicyRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicyRequest) MetaUuid(metaUuid string) ApiMonitoringGetFlowExportPolicyRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiMonitoringGetFlowExportPolicyRequest) MetaCreationTime(metaCreationTime time.Time) ApiMonitoringGetFlowExportPolicyRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicyRequest) MetaModTime(metaModTime time.Time) ApiMonitoringGetFlowExportPolicyRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicyRequest) MetaSelfLink(metaSelfLink string) ApiMonitoringGetFlowExportPolicyRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicyRequest) SpecVrfName(specVrfName string) ApiMonitoringGetFlowExportPolicyRequest {
-	r.specVrfName = &specVrfName
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicyRequest) SpecInterval(specInterval string) ApiMonitoringGetFlowExportPolicyRequest {
-	r.specInterval = &specInterval
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicyRequest) SpecTemplateInterval(specTemplateInterval string) ApiMonitoringGetFlowExportPolicyRequest {
-	r.specTemplateInterval = &specTemplateInterval
 	return r
 }
 func (r ApiMonitoringGetFlowExportPolicyRequest) SpecFormat(specFormat string) ApiMonitoringGetFlowExportPolicyRequest {
 	r.specFormat = &specFormat
 	return r
 }
-func (r ApiMonitoringGetFlowExportPolicyRequest) SpecDisabled(specDisabled bool) ApiMonitoringGetFlowExportPolicyRequest {
-	r.specDisabled = &specDisabled
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicyRequest) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiMonitoringGetFlowExportPolicyRequest {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicyRequest) PropagationStatusUpdated(propagationStatusUpdated int32) ApiMonitoringGetFlowExportPolicyRequest {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicyRequest) PropagationStatusPending(propagationStatusPending int32) ApiMonitoringGetFlowExportPolicyRequest {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicyRequest) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiMonitoringGetFlowExportPolicyRequest {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicyRequest) PropagationStatusStatus(propagationStatusStatus string) ApiMonitoringGetFlowExportPolicyRequest {
-	r.propagationStatusStatus = &propagationStatusStatus
-	return r
-}
 func (r ApiMonitoringGetFlowExportPolicyRequest) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiMonitoringGetFlowExportPolicyRequest {
 	r.propagationStatusPendingDscs = &propagationStatusPendingDscs
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicyRequest) StatusState(statusState string) ApiMonitoringGetFlowExportPolicyRequest {
-	r.statusState = &statusState
 	return r
 }
 
@@ -11539,15 +10033,13 @@ func (r ApiMonitoringGetFlowExportPolicyRequest) Execute() (MonitoringFlowExport
  * GetFlowExportPolicy Get FlowExportPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringGetFlowExportPolicyRequest
  */
-func (a *MonitoringV1ApiService) GetFlowExportPolicy(ctx _context.Context, oTenant string, oName string) ApiMonitoringGetFlowExportPolicyRequest {
+func (a *MonitoringV1ApiService) GetFlowExportPolicy(ctx _context.Context, oTenant string) ApiMonitoringGetFlowExportPolicyRequest {
 	return ApiMonitoringGetFlowExportPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -11572,7 +10064,6 @@ func (a *MonitoringV1ApiService) GetFlowExportPolicyExecute(r ApiMonitoringGetFl
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/flowExportPolicy/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -11581,65 +10072,14 @@ func (a *MonitoringV1ApiService) GetFlowExportPolicyExecute(r ApiMonitoringGetFl
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specVrfName != nil {
-		localVarQueryParams.Add("spec.vrf-name", parameterToString(*r.specVrfName, ""))
-	}
-	if r.specInterval != nil {
-		localVarQueryParams.Add("spec.interval", parameterToString(*r.specInterval, ""))
-	}
-	if r.specTemplateInterval != nil {
-		localVarQueryParams.Add("spec.template-interval", parameterToString(*r.specTemplateInterval, ""))
 	}
 	if r.specFormat != nil {
 		localVarQueryParams.Add("spec.format", parameterToString(*r.specFormat, ""))
 	}
-	if r.specDisabled != nil {
-		localVarQueryParams.Add("spec.disabled", parameterToString(*r.specDisabled, ""))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
-	}
 	if r.propagationStatusPendingDscs != nil {
 		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
-	}
-	if r.statusState != nil {
-		localVarQueryParams.Add("status.state", parameterToString(*r.statusState, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -11765,115 +10205,25 @@ type ApiMonitoringGetFlowExportPolicy1Request struct {
 	ApiService *MonitoringV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specVrfName *string
-	specInterval *string
-	specTemplateInterval *string
 	specFormat *string
-	specDisabled *bool
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
 	propagationStatusPendingDscs *[]string
-	statusState *string
 }
 
 func (r ApiMonitoringGetFlowExportPolicy1Request) TKind(tKind string) ApiMonitoringGetFlowExportPolicy1Request {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiMonitoringGetFlowExportPolicy1Request) TApiVersion(tApiVersion string) ApiMonitoringGetFlowExportPolicy1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicy1Request) MetaTenant(metaTenant string) ApiMonitoringGetFlowExportPolicy1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicy1Request) MetaNamespace(metaNamespace string) ApiMonitoringGetFlowExportPolicy1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicy1Request) MetaGenerationId(metaGenerationId string) ApiMonitoringGetFlowExportPolicy1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicy1Request) MetaResourceVersion(metaResourceVersion string) ApiMonitoringGetFlowExportPolicy1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicy1Request) MetaUuid(metaUuid string) ApiMonitoringGetFlowExportPolicy1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiMonitoringGetFlowExportPolicy1Request) MetaCreationTime(metaCreationTime time.Time) ApiMonitoringGetFlowExportPolicy1Request {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicy1Request) MetaModTime(metaModTime time.Time) ApiMonitoringGetFlowExportPolicy1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicy1Request) MetaSelfLink(metaSelfLink string) ApiMonitoringGetFlowExportPolicy1Request {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicy1Request) SpecVrfName(specVrfName string) ApiMonitoringGetFlowExportPolicy1Request {
-	r.specVrfName = &specVrfName
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicy1Request) SpecInterval(specInterval string) ApiMonitoringGetFlowExportPolicy1Request {
-	r.specInterval = &specInterval
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicy1Request) SpecTemplateInterval(specTemplateInterval string) ApiMonitoringGetFlowExportPolicy1Request {
-	r.specTemplateInterval = &specTemplateInterval
 	return r
 }
 func (r ApiMonitoringGetFlowExportPolicy1Request) SpecFormat(specFormat string) ApiMonitoringGetFlowExportPolicy1Request {
 	r.specFormat = &specFormat
 	return r
 }
-func (r ApiMonitoringGetFlowExportPolicy1Request) SpecDisabled(specDisabled bool) ApiMonitoringGetFlowExportPolicy1Request {
-	r.specDisabled = &specDisabled
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicy1Request) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiMonitoringGetFlowExportPolicy1Request {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicy1Request) PropagationStatusUpdated(propagationStatusUpdated int32) ApiMonitoringGetFlowExportPolicy1Request {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicy1Request) PropagationStatusPending(propagationStatusPending int32) ApiMonitoringGetFlowExportPolicy1Request {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicy1Request) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiMonitoringGetFlowExportPolicy1Request {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicy1Request) PropagationStatusStatus(propagationStatusStatus string) ApiMonitoringGetFlowExportPolicy1Request {
-	r.propagationStatusStatus = &propagationStatusStatus
-	return r
-}
 func (r ApiMonitoringGetFlowExportPolicy1Request) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiMonitoringGetFlowExportPolicy1Request {
 	r.propagationStatusPendingDscs = &propagationStatusPendingDscs
-	return r
-}
-func (r ApiMonitoringGetFlowExportPolicy1Request) StatusState(statusState string) ApiMonitoringGetFlowExportPolicy1Request {
-	r.statusState = &statusState
 	return r
 }
 
@@ -11924,68 +10274,14 @@ func (a *MonitoringV1ApiService) GetFlowExportPolicy1Execute(r ApiMonitoringGetF
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specVrfName != nil {
-		localVarQueryParams.Add("spec.vrf-name", parameterToString(*r.specVrfName, ""))
-	}
-	if r.specInterval != nil {
-		localVarQueryParams.Add("spec.interval", parameterToString(*r.specInterval, ""))
-	}
-	if r.specTemplateInterval != nil {
-		localVarQueryParams.Add("spec.template-interval", parameterToString(*r.specTemplateInterval, ""))
 	}
 	if r.specFormat != nil {
 		localVarQueryParams.Add("spec.format", parameterToString(*r.specFormat, ""))
 	}
-	if r.specDisabled != nil {
-		localVarQueryParams.Add("spec.disabled", parameterToString(*r.specDisabled, ""))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
-	}
 	if r.propagationStatusPendingDscs != nil {
 		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
-	}
-	if r.statusState != nil {
-		localVarQueryParams.Add("status.state", parameterToString(*r.statusState, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -12110,82 +10406,21 @@ type ApiMonitoringGetFwlogPolicyRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specVrfName *string
-	specFormat *string
 	specFilter *[]string
-	configFacilityOverride *string
-	configPrefix *string
-	psmTargetEnable *bool
 }
 
 func (r ApiMonitoringGetFwlogPolicyRequest) TKind(tKind string) ApiMonitoringGetFwlogPolicyRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiMonitoringGetFwlogPolicyRequest) TApiVersion(tApiVersion string) ApiMonitoringGetFwlogPolicyRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiMonitoringGetFwlogPolicyRequest) MetaNamespace(metaNamespace string) ApiMonitoringGetFwlogPolicyRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiMonitoringGetFwlogPolicyRequest) MetaGenerationId(metaGenerationId string) ApiMonitoringGetFwlogPolicyRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiMonitoringGetFwlogPolicyRequest) MetaResourceVersion(metaResourceVersion string) ApiMonitoringGetFwlogPolicyRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiMonitoringGetFwlogPolicyRequest) MetaUuid(metaUuid string) ApiMonitoringGetFwlogPolicyRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiMonitoringGetFwlogPolicyRequest) MetaCreationTime(metaCreationTime time.Time) ApiMonitoringGetFwlogPolicyRequest {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiMonitoringGetFwlogPolicyRequest) MetaModTime(metaModTime time.Time) ApiMonitoringGetFwlogPolicyRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiMonitoringGetFwlogPolicyRequest) MetaSelfLink(metaSelfLink string) ApiMonitoringGetFwlogPolicyRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiMonitoringGetFwlogPolicyRequest) SpecVrfName(specVrfName string) ApiMonitoringGetFwlogPolicyRequest {
-	r.specVrfName = &specVrfName
-	return r
-}
-func (r ApiMonitoringGetFwlogPolicyRequest) SpecFormat(specFormat string) ApiMonitoringGetFwlogPolicyRequest {
-	r.specFormat = &specFormat
-	return r
-}
 func (r ApiMonitoringGetFwlogPolicyRequest) SpecFilter(specFilter []string) ApiMonitoringGetFwlogPolicyRequest {
 	r.specFilter = &specFilter
-	return r
-}
-func (r ApiMonitoringGetFwlogPolicyRequest) ConfigFacilityOverride(configFacilityOverride string) ApiMonitoringGetFwlogPolicyRequest {
-	r.configFacilityOverride = &configFacilityOverride
-	return r
-}
-func (r ApiMonitoringGetFwlogPolicyRequest) ConfigPrefix(configPrefix string) ApiMonitoringGetFwlogPolicyRequest {
-	r.configPrefix = &configPrefix
-	return r
-}
-func (r ApiMonitoringGetFwlogPolicyRequest) PsmTargetEnable(psmTargetEnable bool) ApiMonitoringGetFwlogPolicyRequest {
-	r.psmTargetEnable = &psmTargetEnable
 	return r
 }
 
@@ -12197,15 +10432,13 @@ func (r ApiMonitoringGetFwlogPolicyRequest) Execute() (MonitoringFwlogPolicy, *_
  * GetFwlogPolicy Get FwlogPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringGetFwlogPolicyRequest
  */
-func (a *MonitoringV1ApiService) GetFwlogPolicy(ctx _context.Context, oTenant string, oName string) ApiMonitoringGetFwlogPolicyRequest {
+func (a *MonitoringV1ApiService) GetFwlogPolicy(ctx _context.Context, oTenant string) ApiMonitoringGetFwlogPolicyRequest {
 	return ApiMonitoringGetFwlogPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -12230,7 +10463,6 @@ func (a *MonitoringV1ApiService) GetFwlogPolicyExecute(r ApiMonitoringGetFwlogPo
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/fwlogPolicy/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -12239,47 +10471,11 @@ func (a *MonitoringV1ApiService) GetFwlogPolicyExecute(r ApiMonitoringGetFwlogPo
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specVrfName != nil {
-		localVarQueryParams.Add("spec.vrf-name", parameterToString(*r.specVrfName, ""))
-	}
-	if r.specFormat != nil {
-		localVarQueryParams.Add("spec.format", parameterToString(*r.specFormat, ""))
-	}
 	if r.specFilter != nil {
 		localVarQueryParams.Add("spec.filter", parameterToString(*r.specFilter, "csv"))
-	}
-	if r.configFacilityOverride != nil {
-		localVarQueryParams.Add("config.facility-override", parameterToString(*r.configFacilityOverride, ""))
-	}
-	if r.configPrefix != nil {
-		localVarQueryParams.Add("config.prefix", parameterToString(*r.configPrefix, ""))
-	}
-	if r.psmTargetEnable != nil {
-		localVarQueryParams.Add("psm-target.enable", parameterToString(*r.psmTargetEnable, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -12405,85 +10601,20 @@ type ApiMonitoringGetFwlogPolicy1Request struct {
 	ApiService *MonitoringV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specVrfName *string
-	specFormat *string
 	specFilter *[]string
-	configFacilityOverride *string
-	configPrefix *string
-	psmTargetEnable *bool
 }
 
 func (r ApiMonitoringGetFwlogPolicy1Request) TKind(tKind string) ApiMonitoringGetFwlogPolicy1Request {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiMonitoringGetFwlogPolicy1Request) TApiVersion(tApiVersion string) ApiMonitoringGetFwlogPolicy1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiMonitoringGetFwlogPolicy1Request) MetaTenant(metaTenant string) ApiMonitoringGetFwlogPolicy1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiMonitoringGetFwlogPolicy1Request) MetaNamespace(metaNamespace string) ApiMonitoringGetFwlogPolicy1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiMonitoringGetFwlogPolicy1Request) MetaGenerationId(metaGenerationId string) ApiMonitoringGetFwlogPolicy1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiMonitoringGetFwlogPolicy1Request) MetaResourceVersion(metaResourceVersion string) ApiMonitoringGetFwlogPolicy1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiMonitoringGetFwlogPolicy1Request) MetaUuid(metaUuid string) ApiMonitoringGetFwlogPolicy1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiMonitoringGetFwlogPolicy1Request) MetaCreationTime(metaCreationTime time.Time) ApiMonitoringGetFwlogPolicy1Request {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiMonitoringGetFwlogPolicy1Request) MetaModTime(metaModTime time.Time) ApiMonitoringGetFwlogPolicy1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiMonitoringGetFwlogPolicy1Request) MetaSelfLink(metaSelfLink string) ApiMonitoringGetFwlogPolicy1Request {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiMonitoringGetFwlogPolicy1Request) SpecVrfName(specVrfName string) ApiMonitoringGetFwlogPolicy1Request {
-	r.specVrfName = &specVrfName
-	return r
-}
-func (r ApiMonitoringGetFwlogPolicy1Request) SpecFormat(specFormat string) ApiMonitoringGetFwlogPolicy1Request {
-	r.specFormat = &specFormat
-	return r
-}
 func (r ApiMonitoringGetFwlogPolicy1Request) SpecFilter(specFilter []string) ApiMonitoringGetFwlogPolicy1Request {
 	r.specFilter = &specFilter
-	return r
-}
-func (r ApiMonitoringGetFwlogPolicy1Request) ConfigFacilityOverride(configFacilityOverride string) ApiMonitoringGetFwlogPolicy1Request {
-	r.configFacilityOverride = &configFacilityOverride
-	return r
-}
-func (r ApiMonitoringGetFwlogPolicy1Request) ConfigPrefix(configPrefix string) ApiMonitoringGetFwlogPolicy1Request {
-	r.configPrefix = &configPrefix
-	return r
-}
-func (r ApiMonitoringGetFwlogPolicy1Request) PsmTargetEnable(psmTargetEnable bool) ApiMonitoringGetFwlogPolicy1Request {
-	r.psmTargetEnable = &psmTargetEnable
 	return r
 }
 
@@ -12534,50 +10665,11 @@ func (a *MonitoringV1ApiService) GetFwlogPolicy1Execute(r ApiMonitoringGetFwlogP
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specVrfName != nil {
-		localVarQueryParams.Add("spec.vrf-name", parameterToString(*r.specVrfName, ""))
-	}
-	if r.specFormat != nil {
-		localVarQueryParams.Add("spec.format", parameterToString(*r.specFormat, ""))
-	}
 	if r.specFilter != nil {
 		localVarQueryParams.Add("spec.filter", parameterToString(*r.specFilter, "csv"))
-	}
-	if r.configFacilityOverride != nil {
-		localVarQueryParams.Add("config.facility-override", parameterToString(*r.configFacilityOverride, ""))
-	}
-	if r.configPrefix != nil {
-		localVarQueryParams.Add("config.prefix", parameterToString(*r.configPrefix, ""))
-	}
-	if r.psmTargetEnable != nil {
-		localVarQueryParams.Add("psm-target.enable", parameterToString(*r.psmTargetEnable, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -12702,32 +10794,11 @@ type ApiMonitoringGetMirrorSessionRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specPacketSize *int64
 	startConditionScheduleTime *time.Time
 	specPacketFilters *[]string
 	interfacesDirection *string
-	specSpanId *int64
-	workloadsDirection *string
-	sourceTargetType *string
-	sourceDirection *string
-	specDisabled *bool
-	statusScheduleState *string
-	statusStartedAt *time.Time
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
 	propagationStatusPendingDscs *[]string
 }
 
@@ -12735,40 +10806,8 @@ func (r ApiMonitoringGetMirrorSessionRequest) TKind(tKind string) ApiMonitoringG
 	r.tKind = &tKind
 	return r
 }
-func (r ApiMonitoringGetMirrorSessionRequest) TApiVersion(tApiVersion string) ApiMonitoringGetMirrorSessionRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiMonitoringGetMirrorSessionRequest) MetaNamespace(metaNamespace string) ApiMonitoringGetMirrorSessionRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiMonitoringGetMirrorSessionRequest) MetaGenerationId(metaGenerationId string) ApiMonitoringGetMirrorSessionRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiMonitoringGetMirrorSessionRequest) MetaResourceVersion(metaResourceVersion string) ApiMonitoringGetMirrorSessionRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiMonitoringGetMirrorSessionRequest) MetaUuid(metaUuid string) ApiMonitoringGetMirrorSessionRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiMonitoringGetMirrorSessionRequest) MetaCreationTime(metaCreationTime time.Time) ApiMonitoringGetMirrorSessionRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiMonitoringGetMirrorSessionRequest) MetaModTime(metaModTime time.Time) ApiMonitoringGetMirrorSessionRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiMonitoringGetMirrorSessionRequest) MetaSelfLink(metaSelfLink string) ApiMonitoringGetMirrorSessionRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiMonitoringGetMirrorSessionRequest) SpecPacketSize(specPacketSize int64) ApiMonitoringGetMirrorSessionRequest {
-	r.specPacketSize = &specPacketSize
 	return r
 }
 func (r ApiMonitoringGetMirrorSessionRequest) StartConditionScheduleTime(startConditionScheduleTime time.Time) ApiMonitoringGetMirrorSessionRequest {
@@ -12781,54 +10820,6 @@ func (r ApiMonitoringGetMirrorSessionRequest) SpecPacketFilters(specPacketFilter
 }
 func (r ApiMonitoringGetMirrorSessionRequest) InterfacesDirection(interfacesDirection string) ApiMonitoringGetMirrorSessionRequest {
 	r.interfacesDirection = &interfacesDirection
-	return r
-}
-func (r ApiMonitoringGetMirrorSessionRequest) SpecSpanId(specSpanId int64) ApiMonitoringGetMirrorSessionRequest {
-	r.specSpanId = &specSpanId
-	return r
-}
-func (r ApiMonitoringGetMirrorSessionRequest) WorkloadsDirection(workloadsDirection string) ApiMonitoringGetMirrorSessionRequest {
-	r.workloadsDirection = &workloadsDirection
-	return r
-}
-func (r ApiMonitoringGetMirrorSessionRequest) SourceTargetType(sourceTargetType string) ApiMonitoringGetMirrorSessionRequest {
-	r.sourceTargetType = &sourceTargetType
-	return r
-}
-func (r ApiMonitoringGetMirrorSessionRequest) SourceDirection(sourceDirection string) ApiMonitoringGetMirrorSessionRequest {
-	r.sourceDirection = &sourceDirection
-	return r
-}
-func (r ApiMonitoringGetMirrorSessionRequest) SpecDisabled(specDisabled bool) ApiMonitoringGetMirrorSessionRequest {
-	r.specDisabled = &specDisabled
-	return r
-}
-func (r ApiMonitoringGetMirrorSessionRequest) StatusScheduleState(statusScheduleState string) ApiMonitoringGetMirrorSessionRequest {
-	r.statusScheduleState = &statusScheduleState
-	return r
-}
-func (r ApiMonitoringGetMirrorSessionRequest) StatusStartedAt(statusStartedAt time.Time) ApiMonitoringGetMirrorSessionRequest {
-	r.statusStartedAt = &statusStartedAt
-	return r
-}
-func (r ApiMonitoringGetMirrorSessionRequest) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiMonitoringGetMirrorSessionRequest {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiMonitoringGetMirrorSessionRequest) PropagationStatusUpdated(propagationStatusUpdated int32) ApiMonitoringGetMirrorSessionRequest {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiMonitoringGetMirrorSessionRequest) PropagationStatusPending(propagationStatusPending int32) ApiMonitoringGetMirrorSessionRequest {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiMonitoringGetMirrorSessionRequest) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiMonitoringGetMirrorSessionRequest {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiMonitoringGetMirrorSessionRequest) PropagationStatusStatus(propagationStatusStatus string) ApiMonitoringGetMirrorSessionRequest {
-	r.propagationStatusStatus = &propagationStatusStatus
 	return r
 }
 func (r ApiMonitoringGetMirrorSessionRequest) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiMonitoringGetMirrorSessionRequest {
@@ -12844,15 +10835,13 @@ func (r ApiMonitoringGetMirrorSessionRequest) Execute() (MonitoringMirrorSession
  * GetMirrorSession Get MirrorSession object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringGetMirrorSessionRequest
  */
-func (a *MonitoringV1ApiService) GetMirrorSession(ctx _context.Context, oTenant string, oName string) ApiMonitoringGetMirrorSessionRequest {
+func (a *MonitoringV1ApiService) GetMirrorSession(ctx _context.Context, oTenant string) ApiMonitoringGetMirrorSessionRequest {
 	return ApiMonitoringGetMirrorSessionRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -12877,7 +10866,6 @@ func (a *MonitoringV1ApiService) GetMirrorSessionExecute(r ApiMonitoringGetMirro
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/MirrorSession/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -12886,32 +10874,8 @@ func (a *MonitoringV1ApiService) GetMirrorSessionExecute(r ApiMonitoringGetMirro
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specPacketSize != nil {
-		localVarQueryParams.Add("spec.packet-size", parameterToString(*r.specPacketSize, ""))
 	}
 	if r.startConditionScheduleTime != nil {
 		localVarQueryParams.Add("start-condition.schedule-time", parameterToString(*r.startConditionScheduleTime, ""))
@@ -12921,42 +10885,6 @@ func (a *MonitoringV1ApiService) GetMirrorSessionExecute(r ApiMonitoringGetMirro
 	}
 	if r.interfacesDirection != nil {
 		localVarQueryParams.Add("interfaces.direction", parameterToString(*r.interfacesDirection, ""))
-	}
-	if r.specSpanId != nil {
-		localVarQueryParams.Add("spec.span-id", parameterToString(*r.specSpanId, ""))
-	}
-	if r.workloadsDirection != nil {
-		localVarQueryParams.Add("workloads.direction", parameterToString(*r.workloadsDirection, ""))
-	}
-	if r.sourceTargetType != nil {
-		localVarQueryParams.Add("source.target-type", parameterToString(*r.sourceTargetType, ""))
-	}
-	if r.sourceDirection != nil {
-		localVarQueryParams.Add("source.direction", parameterToString(*r.sourceDirection, ""))
-	}
-	if r.specDisabled != nil {
-		localVarQueryParams.Add("spec.disabled", parameterToString(*r.specDisabled, ""))
-	}
-	if r.statusScheduleState != nil {
-		localVarQueryParams.Add("status.schedule-state", parameterToString(*r.statusScheduleState, ""))
-	}
-	if r.statusStartedAt != nil {
-		localVarQueryParams.Add("status.started-at", parameterToString(*r.statusStartedAt, ""))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
 	}
 	if r.propagationStatusPendingDscs != nil {
 		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
@@ -13085,31 +11013,10 @@ type ApiMonitoringGetMirrorSession1Request struct {
 	ApiService *MonitoringV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	specPacketSize *int64
 	startConditionScheduleTime *time.Time
 	specPacketFilters *[]string
 	interfacesDirection *string
-	specSpanId *int64
-	workloadsDirection *string
-	sourceTargetType *string
-	sourceDirection *string
-	specDisabled *bool
-	statusScheduleState *string
-	statusStartedAt *time.Time
-	propagationStatusGenerationId *string
-	propagationStatusUpdated *int32
-	propagationStatusPending *int32
-	propagationStatusMinVersion *string
-	propagationStatusStatus *string
 	propagationStatusPendingDscs *[]string
 }
 
@@ -13117,44 +11024,8 @@ func (r ApiMonitoringGetMirrorSession1Request) TKind(tKind string) ApiMonitoring
 	r.tKind = &tKind
 	return r
 }
-func (r ApiMonitoringGetMirrorSession1Request) TApiVersion(tApiVersion string) ApiMonitoringGetMirrorSession1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiMonitoringGetMirrorSession1Request) MetaTenant(metaTenant string) ApiMonitoringGetMirrorSession1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiMonitoringGetMirrorSession1Request) MetaNamespace(metaNamespace string) ApiMonitoringGetMirrorSession1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiMonitoringGetMirrorSession1Request) MetaGenerationId(metaGenerationId string) ApiMonitoringGetMirrorSession1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiMonitoringGetMirrorSession1Request) MetaResourceVersion(metaResourceVersion string) ApiMonitoringGetMirrorSession1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiMonitoringGetMirrorSession1Request) MetaUuid(metaUuid string) ApiMonitoringGetMirrorSession1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiMonitoringGetMirrorSession1Request) MetaCreationTime(metaCreationTime time.Time) ApiMonitoringGetMirrorSession1Request {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiMonitoringGetMirrorSession1Request) MetaModTime(metaModTime time.Time) ApiMonitoringGetMirrorSession1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiMonitoringGetMirrorSession1Request) MetaSelfLink(metaSelfLink string) ApiMonitoringGetMirrorSession1Request {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiMonitoringGetMirrorSession1Request) SpecPacketSize(specPacketSize int64) ApiMonitoringGetMirrorSession1Request {
-	r.specPacketSize = &specPacketSize
 	return r
 }
 func (r ApiMonitoringGetMirrorSession1Request) StartConditionScheduleTime(startConditionScheduleTime time.Time) ApiMonitoringGetMirrorSession1Request {
@@ -13167,54 +11038,6 @@ func (r ApiMonitoringGetMirrorSession1Request) SpecPacketFilters(specPacketFilte
 }
 func (r ApiMonitoringGetMirrorSession1Request) InterfacesDirection(interfacesDirection string) ApiMonitoringGetMirrorSession1Request {
 	r.interfacesDirection = &interfacesDirection
-	return r
-}
-func (r ApiMonitoringGetMirrorSession1Request) SpecSpanId(specSpanId int64) ApiMonitoringGetMirrorSession1Request {
-	r.specSpanId = &specSpanId
-	return r
-}
-func (r ApiMonitoringGetMirrorSession1Request) WorkloadsDirection(workloadsDirection string) ApiMonitoringGetMirrorSession1Request {
-	r.workloadsDirection = &workloadsDirection
-	return r
-}
-func (r ApiMonitoringGetMirrorSession1Request) SourceTargetType(sourceTargetType string) ApiMonitoringGetMirrorSession1Request {
-	r.sourceTargetType = &sourceTargetType
-	return r
-}
-func (r ApiMonitoringGetMirrorSession1Request) SourceDirection(sourceDirection string) ApiMonitoringGetMirrorSession1Request {
-	r.sourceDirection = &sourceDirection
-	return r
-}
-func (r ApiMonitoringGetMirrorSession1Request) SpecDisabled(specDisabled bool) ApiMonitoringGetMirrorSession1Request {
-	r.specDisabled = &specDisabled
-	return r
-}
-func (r ApiMonitoringGetMirrorSession1Request) StatusScheduleState(statusScheduleState string) ApiMonitoringGetMirrorSession1Request {
-	r.statusScheduleState = &statusScheduleState
-	return r
-}
-func (r ApiMonitoringGetMirrorSession1Request) StatusStartedAt(statusStartedAt time.Time) ApiMonitoringGetMirrorSession1Request {
-	r.statusStartedAt = &statusStartedAt
-	return r
-}
-func (r ApiMonitoringGetMirrorSession1Request) PropagationStatusGenerationId(propagationStatusGenerationId string) ApiMonitoringGetMirrorSession1Request {
-	r.propagationStatusGenerationId = &propagationStatusGenerationId
-	return r
-}
-func (r ApiMonitoringGetMirrorSession1Request) PropagationStatusUpdated(propagationStatusUpdated int32) ApiMonitoringGetMirrorSession1Request {
-	r.propagationStatusUpdated = &propagationStatusUpdated
-	return r
-}
-func (r ApiMonitoringGetMirrorSession1Request) PropagationStatusPending(propagationStatusPending int32) ApiMonitoringGetMirrorSession1Request {
-	r.propagationStatusPending = &propagationStatusPending
-	return r
-}
-func (r ApiMonitoringGetMirrorSession1Request) PropagationStatusMinVersion(propagationStatusMinVersion string) ApiMonitoringGetMirrorSession1Request {
-	r.propagationStatusMinVersion = &propagationStatusMinVersion
-	return r
-}
-func (r ApiMonitoringGetMirrorSession1Request) PropagationStatusStatus(propagationStatusStatus string) ApiMonitoringGetMirrorSession1Request {
-	r.propagationStatusStatus = &propagationStatusStatus
 	return r
 }
 func (r ApiMonitoringGetMirrorSession1Request) PropagationStatusPendingDscs(propagationStatusPendingDscs []string) ApiMonitoringGetMirrorSession1Request {
@@ -13269,35 +11092,8 @@ func (a *MonitoringV1ApiService) GetMirrorSession1Execute(r ApiMonitoringGetMirr
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.specPacketSize != nil {
-		localVarQueryParams.Add("spec.packet-size", parameterToString(*r.specPacketSize, ""))
 	}
 	if r.startConditionScheduleTime != nil {
 		localVarQueryParams.Add("start-condition.schedule-time", parameterToString(*r.startConditionScheduleTime, ""))
@@ -13307,42 +11103,6 @@ func (a *MonitoringV1ApiService) GetMirrorSession1Execute(r ApiMonitoringGetMirr
 	}
 	if r.interfacesDirection != nil {
 		localVarQueryParams.Add("interfaces.direction", parameterToString(*r.interfacesDirection, ""))
-	}
-	if r.specSpanId != nil {
-		localVarQueryParams.Add("spec.span-id", parameterToString(*r.specSpanId, ""))
-	}
-	if r.workloadsDirection != nil {
-		localVarQueryParams.Add("workloads.direction", parameterToString(*r.workloadsDirection, ""))
-	}
-	if r.sourceTargetType != nil {
-		localVarQueryParams.Add("source.target-type", parameterToString(*r.sourceTargetType, ""))
-	}
-	if r.sourceDirection != nil {
-		localVarQueryParams.Add("source.direction", parameterToString(*r.sourceDirection, ""))
-	}
-	if r.specDisabled != nil {
-		localVarQueryParams.Add("spec.disabled", parameterToString(*r.specDisabled, ""))
-	}
-	if r.statusScheduleState != nil {
-		localVarQueryParams.Add("status.schedule-state", parameterToString(*r.statusScheduleState, ""))
-	}
-	if r.statusStartedAt != nil {
-		localVarQueryParams.Add("status.started-at", parameterToString(*r.statusStartedAt, ""))
-	}
-	if r.propagationStatusGenerationId != nil {
-		localVarQueryParams.Add("propagation-status.generation-id", parameterToString(*r.propagationStatusGenerationId, ""))
-	}
-	if r.propagationStatusUpdated != nil {
-		localVarQueryParams.Add("propagation-status.updated", parameterToString(*r.propagationStatusUpdated, ""))
-	}
-	if r.propagationStatusPending != nil {
-		localVarQueryParams.Add("propagation-status.pending", parameterToString(*r.propagationStatusPending, ""))
-	}
-	if r.propagationStatusMinVersion != nil {
-		localVarQueryParams.Add("propagation-status.min-version", parameterToString(*r.propagationStatusMinVersion, ""))
-	}
-	if r.propagationStatusStatus != nil {
-		localVarQueryParams.Add("propagation-status.status", parameterToString(*r.propagationStatusStatus, ""))
 	}
 	if r.propagationStatusPendingDscs != nil {
 		localVarQueryParams.Add("propagation-status.pending-dscs", parameterToString(*r.propagationStatusPendingDscs, "csv"))
@@ -13470,117 +11230,21 @@ type ApiMonitoringGetStatsAlertPolicyRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	metricGroup *string
-	metricKind *string
-	metricFieldName *string
-	measurementCriteriaWindow *string
-	measurementCriteriaFunction *string
-	thresholdsOperator *string
-	specEnable *bool
 	specDestinations *[]string
-	instanceSelectorKind *string
-	instanceSelectorNames *[]string
-	statusTotalHits *int32
-	statusOpenAlerts *int32
-	statusAcknowledgedAlerts *int32
 }
 
 func (r ApiMonitoringGetStatsAlertPolicyRequest) TKind(tKind string) ApiMonitoringGetStatsAlertPolicyRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiMonitoringGetStatsAlertPolicyRequest) TApiVersion(tApiVersion string) ApiMonitoringGetStatsAlertPolicyRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicyRequest) MetaNamespace(metaNamespace string) ApiMonitoringGetStatsAlertPolicyRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicyRequest) MetaGenerationId(metaGenerationId string) ApiMonitoringGetStatsAlertPolicyRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicyRequest) MetaResourceVersion(metaResourceVersion string) ApiMonitoringGetStatsAlertPolicyRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicyRequest) MetaUuid(metaUuid string) ApiMonitoringGetStatsAlertPolicyRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiMonitoringGetStatsAlertPolicyRequest) MetaCreationTime(metaCreationTime time.Time) ApiMonitoringGetStatsAlertPolicyRequest {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiMonitoringGetStatsAlertPolicyRequest) MetaModTime(metaModTime time.Time) ApiMonitoringGetStatsAlertPolicyRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicyRequest) MetaSelfLink(metaSelfLink string) ApiMonitoringGetStatsAlertPolicyRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicyRequest) MetricGroup(metricGroup string) ApiMonitoringGetStatsAlertPolicyRequest {
-	r.metricGroup = &metricGroup
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicyRequest) MetricKind(metricKind string) ApiMonitoringGetStatsAlertPolicyRequest {
-	r.metricKind = &metricKind
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicyRequest) MetricFieldName(metricFieldName string) ApiMonitoringGetStatsAlertPolicyRequest {
-	r.metricFieldName = &metricFieldName
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicyRequest) MeasurementCriteriaWindow(measurementCriteriaWindow string) ApiMonitoringGetStatsAlertPolicyRequest {
-	r.measurementCriteriaWindow = &measurementCriteriaWindow
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicyRequest) MeasurementCriteriaFunction(measurementCriteriaFunction string) ApiMonitoringGetStatsAlertPolicyRequest {
-	r.measurementCriteriaFunction = &measurementCriteriaFunction
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicyRequest) ThresholdsOperator(thresholdsOperator string) ApiMonitoringGetStatsAlertPolicyRequest {
-	r.thresholdsOperator = &thresholdsOperator
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicyRequest) SpecEnable(specEnable bool) ApiMonitoringGetStatsAlertPolicyRequest {
-	r.specEnable = &specEnable
-	return r
-}
 func (r ApiMonitoringGetStatsAlertPolicyRequest) SpecDestinations(specDestinations []string) ApiMonitoringGetStatsAlertPolicyRequest {
 	r.specDestinations = &specDestinations
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicyRequest) InstanceSelectorKind(instanceSelectorKind string) ApiMonitoringGetStatsAlertPolicyRequest {
-	r.instanceSelectorKind = &instanceSelectorKind
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicyRequest) InstanceSelectorNames(instanceSelectorNames []string) ApiMonitoringGetStatsAlertPolicyRequest {
-	r.instanceSelectorNames = &instanceSelectorNames
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicyRequest) StatusTotalHits(statusTotalHits int32) ApiMonitoringGetStatsAlertPolicyRequest {
-	r.statusTotalHits = &statusTotalHits
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicyRequest) StatusOpenAlerts(statusOpenAlerts int32) ApiMonitoringGetStatsAlertPolicyRequest {
-	r.statusOpenAlerts = &statusOpenAlerts
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicyRequest) StatusAcknowledgedAlerts(statusAcknowledgedAlerts int32) ApiMonitoringGetStatsAlertPolicyRequest {
-	r.statusAcknowledgedAlerts = &statusAcknowledgedAlerts
 	return r
 }
 
@@ -13592,15 +11256,13 @@ func (r ApiMonitoringGetStatsAlertPolicyRequest) Execute() (MonitoringStatsAlert
  * GetStatsAlertPolicy Get StatsAlertPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringGetStatsAlertPolicyRequest
  */
-func (a *MonitoringV1ApiService) GetStatsAlertPolicy(ctx _context.Context, oTenant string, oName string) ApiMonitoringGetStatsAlertPolicyRequest {
+func (a *MonitoringV1ApiService) GetStatsAlertPolicy(ctx _context.Context, oTenant string) ApiMonitoringGetStatsAlertPolicyRequest {
 	return ApiMonitoringGetStatsAlertPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -13625,7 +11287,6 @@ func (a *MonitoringV1ApiService) GetStatsAlertPolicyExecute(r ApiMonitoringGetSt
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/statsAlertPolicies/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -13634,68 +11295,11 @@ func (a *MonitoringV1ApiService) GetStatsAlertPolicyExecute(r ApiMonitoringGetSt
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.metricGroup != nil {
-		localVarQueryParams.Add("metric.group", parameterToString(*r.metricGroup, ""))
-	}
-	if r.metricKind != nil {
-		localVarQueryParams.Add("metric.kind", parameterToString(*r.metricKind, ""))
-	}
-	if r.metricFieldName != nil {
-		localVarQueryParams.Add("metric.field-name", parameterToString(*r.metricFieldName, ""))
-	}
-	if r.measurementCriteriaWindow != nil {
-		localVarQueryParams.Add("measurement-criteria.window", parameterToString(*r.measurementCriteriaWindow, ""))
-	}
-	if r.measurementCriteriaFunction != nil {
-		localVarQueryParams.Add("measurement-criteria.function", parameterToString(*r.measurementCriteriaFunction, ""))
-	}
-	if r.thresholdsOperator != nil {
-		localVarQueryParams.Add("thresholds.operator", parameterToString(*r.thresholdsOperator, ""))
-	}
-	if r.specEnable != nil {
-		localVarQueryParams.Add("spec.enable", parameterToString(*r.specEnable, ""))
-	}
 	if r.specDestinations != nil {
 		localVarQueryParams.Add("spec.destinations", parameterToString(*r.specDestinations, "csv"))
-	}
-	if r.instanceSelectorKind != nil {
-		localVarQueryParams.Add("instance-selector.kind", parameterToString(*r.instanceSelectorKind, ""))
-	}
-	if r.instanceSelectorNames != nil {
-		localVarQueryParams.Add("instance-selector.names", parameterToString(*r.instanceSelectorNames, "csv"))
-	}
-	if r.statusTotalHits != nil {
-		localVarQueryParams.Add("status.total-hits", parameterToString(*r.statusTotalHits, ""))
-	}
-	if r.statusOpenAlerts != nil {
-		localVarQueryParams.Add("status.open-alerts", parameterToString(*r.statusOpenAlerts, ""))
-	}
-	if r.statusAcknowledgedAlerts != nil {
-		localVarQueryParams.Add("status.acknowledged-alerts", parameterToString(*r.statusAcknowledgedAlerts, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -13821,120 +11425,20 @@ type ApiMonitoringGetStatsAlertPolicy1Request struct {
 	ApiService *MonitoringV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
-	metricGroup *string
-	metricKind *string
-	metricFieldName *string
-	measurementCriteriaWindow *string
-	measurementCriteriaFunction *string
-	thresholdsOperator *string
-	specEnable *bool
 	specDestinations *[]string
-	instanceSelectorKind *string
-	instanceSelectorNames *[]string
-	statusTotalHits *int32
-	statusOpenAlerts *int32
-	statusAcknowledgedAlerts *int32
 }
 
 func (r ApiMonitoringGetStatsAlertPolicy1Request) TKind(tKind string) ApiMonitoringGetStatsAlertPolicy1Request {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiMonitoringGetStatsAlertPolicy1Request) TApiVersion(tApiVersion string) ApiMonitoringGetStatsAlertPolicy1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicy1Request) MetaTenant(metaTenant string) ApiMonitoringGetStatsAlertPolicy1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicy1Request) MetaNamespace(metaNamespace string) ApiMonitoringGetStatsAlertPolicy1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicy1Request) MetaGenerationId(metaGenerationId string) ApiMonitoringGetStatsAlertPolicy1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicy1Request) MetaResourceVersion(metaResourceVersion string) ApiMonitoringGetStatsAlertPolicy1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicy1Request) MetaUuid(metaUuid string) ApiMonitoringGetStatsAlertPolicy1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiMonitoringGetStatsAlertPolicy1Request) MetaCreationTime(metaCreationTime time.Time) ApiMonitoringGetStatsAlertPolicy1Request {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiMonitoringGetStatsAlertPolicy1Request) MetaModTime(metaModTime time.Time) ApiMonitoringGetStatsAlertPolicy1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicy1Request) MetaSelfLink(metaSelfLink string) ApiMonitoringGetStatsAlertPolicy1Request {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicy1Request) MetricGroup(metricGroup string) ApiMonitoringGetStatsAlertPolicy1Request {
-	r.metricGroup = &metricGroup
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicy1Request) MetricKind(metricKind string) ApiMonitoringGetStatsAlertPolicy1Request {
-	r.metricKind = &metricKind
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicy1Request) MetricFieldName(metricFieldName string) ApiMonitoringGetStatsAlertPolicy1Request {
-	r.metricFieldName = &metricFieldName
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicy1Request) MeasurementCriteriaWindow(measurementCriteriaWindow string) ApiMonitoringGetStatsAlertPolicy1Request {
-	r.measurementCriteriaWindow = &measurementCriteriaWindow
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicy1Request) MeasurementCriteriaFunction(measurementCriteriaFunction string) ApiMonitoringGetStatsAlertPolicy1Request {
-	r.measurementCriteriaFunction = &measurementCriteriaFunction
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicy1Request) ThresholdsOperator(thresholdsOperator string) ApiMonitoringGetStatsAlertPolicy1Request {
-	r.thresholdsOperator = &thresholdsOperator
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicy1Request) SpecEnable(specEnable bool) ApiMonitoringGetStatsAlertPolicy1Request {
-	r.specEnable = &specEnable
-	return r
-}
 func (r ApiMonitoringGetStatsAlertPolicy1Request) SpecDestinations(specDestinations []string) ApiMonitoringGetStatsAlertPolicy1Request {
 	r.specDestinations = &specDestinations
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicy1Request) InstanceSelectorKind(instanceSelectorKind string) ApiMonitoringGetStatsAlertPolicy1Request {
-	r.instanceSelectorKind = &instanceSelectorKind
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicy1Request) InstanceSelectorNames(instanceSelectorNames []string) ApiMonitoringGetStatsAlertPolicy1Request {
-	r.instanceSelectorNames = &instanceSelectorNames
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicy1Request) StatusTotalHits(statusTotalHits int32) ApiMonitoringGetStatsAlertPolicy1Request {
-	r.statusTotalHits = &statusTotalHits
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicy1Request) StatusOpenAlerts(statusOpenAlerts int32) ApiMonitoringGetStatsAlertPolicy1Request {
-	r.statusOpenAlerts = &statusOpenAlerts
-	return r
-}
-func (r ApiMonitoringGetStatsAlertPolicy1Request) StatusAcknowledgedAlerts(statusAcknowledgedAlerts int32) ApiMonitoringGetStatsAlertPolicy1Request {
-	r.statusAcknowledgedAlerts = &statusAcknowledgedAlerts
 	return r
 }
 
@@ -13985,71 +11489,11 @@ func (a *MonitoringV1ApiService) GetStatsAlertPolicy1Execute(r ApiMonitoringGetS
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
-	if r.metricGroup != nil {
-		localVarQueryParams.Add("metric.group", parameterToString(*r.metricGroup, ""))
-	}
-	if r.metricKind != nil {
-		localVarQueryParams.Add("metric.kind", parameterToString(*r.metricKind, ""))
-	}
-	if r.metricFieldName != nil {
-		localVarQueryParams.Add("metric.field-name", parameterToString(*r.metricFieldName, ""))
-	}
-	if r.measurementCriteriaWindow != nil {
-		localVarQueryParams.Add("measurement-criteria.window", parameterToString(*r.measurementCriteriaWindow, ""))
-	}
-	if r.measurementCriteriaFunction != nil {
-		localVarQueryParams.Add("measurement-criteria.function", parameterToString(*r.measurementCriteriaFunction, ""))
-	}
-	if r.thresholdsOperator != nil {
-		localVarQueryParams.Add("thresholds.operator", parameterToString(*r.thresholdsOperator, ""))
-	}
-	if r.specEnable != nil {
-		localVarQueryParams.Add("spec.enable", parameterToString(*r.specEnable, ""))
-	}
 	if r.specDestinations != nil {
 		localVarQueryParams.Add("spec.destinations", parameterToString(*r.specDestinations, "csv"))
-	}
-	if r.instanceSelectorKind != nil {
-		localVarQueryParams.Add("instance-selector.kind", parameterToString(*r.instanceSelectorKind, ""))
-	}
-	if r.instanceSelectorNames != nil {
-		localVarQueryParams.Add("instance-selector.names", parameterToString(*r.instanceSelectorNames, "csv"))
-	}
-	if r.statusTotalHits != nil {
-		localVarQueryParams.Add("status.total-hits", parameterToString(*r.statusTotalHits, ""))
-	}
-	if r.statusOpenAlerts != nil {
-		localVarQueryParams.Add("status.open-alerts", parameterToString(*r.statusOpenAlerts, ""))
-	}
-	if r.statusAcknowledgedAlerts != nil {
-		localVarQueryParams.Add("status.acknowledged-alerts", parameterToString(*r.statusAcknowledgedAlerts, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -14175,85 +11619,25 @@ type ApiMonitoringGetTechSupportRequestRequest struct {
 	ApiService *MonitoringV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	nodeSelectorNames *[]string
-	specVerbosity *int32
-	specSkipCores *bool
 	statusInstanceId *string
-	statusStatus *string
-	statusReason *string
 }
 
 func (r ApiMonitoringGetTechSupportRequestRequest) TKind(tKind string) ApiMonitoringGetTechSupportRequestRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiMonitoringGetTechSupportRequestRequest) TApiVersion(tApiVersion string) ApiMonitoringGetTechSupportRequestRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiMonitoringGetTechSupportRequestRequest) MetaTenant(metaTenant string) ApiMonitoringGetTechSupportRequestRequest {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiMonitoringGetTechSupportRequestRequest) MetaNamespace(metaNamespace string) ApiMonitoringGetTechSupportRequestRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiMonitoringGetTechSupportRequestRequest) MetaGenerationId(metaGenerationId string) ApiMonitoringGetTechSupportRequestRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiMonitoringGetTechSupportRequestRequest) MetaResourceVersion(metaResourceVersion string) ApiMonitoringGetTechSupportRequestRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiMonitoringGetTechSupportRequestRequest) MetaUuid(metaUuid string) ApiMonitoringGetTechSupportRequestRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiMonitoringGetTechSupportRequestRequest) MetaCreationTime(metaCreationTime time.Time) ApiMonitoringGetTechSupportRequestRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiMonitoringGetTechSupportRequestRequest) MetaModTime(metaModTime time.Time) ApiMonitoringGetTechSupportRequestRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiMonitoringGetTechSupportRequestRequest) MetaSelfLink(metaSelfLink string) ApiMonitoringGetTechSupportRequestRequest {
-	r.metaSelfLink = &metaSelfLink
 	return r
 }
 func (r ApiMonitoringGetTechSupportRequestRequest) NodeSelectorNames(nodeSelectorNames []string) ApiMonitoringGetTechSupportRequestRequest {
 	r.nodeSelectorNames = &nodeSelectorNames
 	return r
 }
-func (r ApiMonitoringGetTechSupportRequestRequest) SpecVerbosity(specVerbosity int32) ApiMonitoringGetTechSupportRequestRequest {
-	r.specVerbosity = &specVerbosity
-	return r
-}
-func (r ApiMonitoringGetTechSupportRequestRequest) SpecSkipCores(specSkipCores bool) ApiMonitoringGetTechSupportRequestRequest {
-	r.specSkipCores = &specSkipCores
-	return r
-}
 func (r ApiMonitoringGetTechSupportRequestRequest) StatusInstanceId(statusInstanceId string) ApiMonitoringGetTechSupportRequestRequest {
 	r.statusInstanceId = &statusInstanceId
-	return r
-}
-func (r ApiMonitoringGetTechSupportRequestRequest) StatusStatus(statusStatus string) ApiMonitoringGetTechSupportRequestRequest {
-	r.statusStatus = &statusStatus
-	return r
-}
-func (r ApiMonitoringGetTechSupportRequestRequest) StatusReason(statusReason string) ApiMonitoringGetTechSupportRequestRequest {
-	r.statusReason = &statusReason
 	return r
 }
 
@@ -14304,50 +11688,14 @@ func (a *MonitoringV1ApiService) GetTechSupportRequestExecute(r ApiMonitoringGet
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
 	}
 	if r.nodeSelectorNames != nil {
 		localVarQueryParams.Add("node-selector.names", parameterToString(*r.nodeSelectorNames, "csv"))
 	}
-	if r.specVerbosity != nil {
-		localVarQueryParams.Add("spec.verbosity", parameterToString(*r.specVerbosity, ""))
-	}
-	if r.specSkipCores != nil {
-		localVarQueryParams.Add("spec.skip-cores", parameterToString(*r.specSkipCores, ""))
-	}
 	if r.statusInstanceId != nil {
 		localVarQueryParams.Add("status.instance-id", parameterToString(*r.statusInstanceId, ""))
-	}
-	if r.statusStatus != nil {
-		localVarQueryParams.Add("status.status", parameterToString(*r.statusStatus, ""))
-	}
-	if r.statusReason != nil {
-		localVarQueryParams.Add("status.reason", parameterToString(*r.statusReason, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -14472,107 +11820,26 @@ type ApiMonitoringGetTroubleshootingSessionRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	sourceIpAddresses *[]string
-	sourceMacAddresses *[]string
-	destinationIpAddresses *[]string
-	destinationMacAddresses *[]string
-	appProtocolSelectorsProtoPorts *[]string
-	appProtocolSelectorsApplications *[]string
-	timeWindowStartTime *time.Time
-	timeWindowStopTime *time.Time
 	specRepeatEvery *string
-	specEnableMirroring *bool
-	statusState *string
 }
 
 func (r ApiMonitoringGetTroubleshootingSessionRequest) TKind(tKind string) ApiMonitoringGetTroubleshootingSessionRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiMonitoringGetTroubleshootingSessionRequest) TApiVersion(tApiVersion string) ApiMonitoringGetTroubleshootingSessionRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSessionRequest) MetaNamespace(metaNamespace string) ApiMonitoringGetTroubleshootingSessionRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSessionRequest) MetaGenerationId(metaGenerationId string) ApiMonitoringGetTroubleshootingSessionRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSessionRequest) MetaResourceVersion(metaResourceVersion string) ApiMonitoringGetTroubleshootingSessionRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSessionRequest) MetaUuid(metaUuid string) ApiMonitoringGetTroubleshootingSessionRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiMonitoringGetTroubleshootingSessionRequest) MetaCreationTime(metaCreationTime time.Time) ApiMonitoringGetTroubleshootingSessionRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSessionRequest) MetaModTime(metaModTime time.Time) ApiMonitoringGetTroubleshootingSessionRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSessionRequest) MetaSelfLink(metaSelfLink string) ApiMonitoringGetTroubleshootingSessionRequest {
-	r.metaSelfLink = &metaSelfLink
 	return r
 }
 func (r ApiMonitoringGetTroubleshootingSessionRequest) SourceIpAddresses(sourceIpAddresses []string) ApiMonitoringGetTroubleshootingSessionRequest {
 	r.sourceIpAddresses = &sourceIpAddresses
 	return r
 }
-func (r ApiMonitoringGetTroubleshootingSessionRequest) SourceMacAddresses(sourceMacAddresses []string) ApiMonitoringGetTroubleshootingSessionRequest {
-	r.sourceMacAddresses = &sourceMacAddresses
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSessionRequest) DestinationIpAddresses(destinationIpAddresses []string) ApiMonitoringGetTroubleshootingSessionRequest {
-	r.destinationIpAddresses = &destinationIpAddresses
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSessionRequest) DestinationMacAddresses(destinationMacAddresses []string) ApiMonitoringGetTroubleshootingSessionRequest {
-	r.destinationMacAddresses = &destinationMacAddresses
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSessionRequest) AppProtocolSelectorsProtoPorts(appProtocolSelectorsProtoPorts []string) ApiMonitoringGetTroubleshootingSessionRequest {
-	r.appProtocolSelectorsProtoPorts = &appProtocolSelectorsProtoPorts
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSessionRequest) AppProtocolSelectorsApplications(appProtocolSelectorsApplications []string) ApiMonitoringGetTroubleshootingSessionRequest {
-	r.appProtocolSelectorsApplications = &appProtocolSelectorsApplications
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSessionRequest) TimeWindowStartTime(timeWindowStartTime time.Time) ApiMonitoringGetTroubleshootingSessionRequest {
-	r.timeWindowStartTime = &timeWindowStartTime
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSessionRequest) TimeWindowStopTime(timeWindowStopTime time.Time) ApiMonitoringGetTroubleshootingSessionRequest {
-	r.timeWindowStopTime = &timeWindowStopTime
-	return r
-}
 func (r ApiMonitoringGetTroubleshootingSessionRequest) SpecRepeatEvery(specRepeatEvery string) ApiMonitoringGetTroubleshootingSessionRequest {
 	r.specRepeatEvery = &specRepeatEvery
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSessionRequest) SpecEnableMirroring(specEnableMirroring bool) ApiMonitoringGetTroubleshootingSessionRequest {
-	r.specEnableMirroring = &specEnableMirroring
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSessionRequest) StatusState(statusState string) ApiMonitoringGetTroubleshootingSessionRequest {
-	r.statusState = &statusState
 	return r
 }
 
@@ -14584,15 +11851,13 @@ func (r ApiMonitoringGetTroubleshootingSessionRequest) Execute() (MonitoringTrou
  * GetTroubleshootingSession Get TroubleshootingSession object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringGetTroubleshootingSessionRequest
  */
-func (a *MonitoringV1ApiService) GetTroubleshootingSession(ctx _context.Context, oTenant string, oName string) ApiMonitoringGetTroubleshootingSessionRequest {
+func (a *MonitoringV1ApiService) GetTroubleshootingSession(ctx _context.Context, oTenant string) ApiMonitoringGetTroubleshootingSessionRequest {
 	return ApiMonitoringGetTroubleshootingSessionRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -14617,7 +11882,6 @@ func (a *MonitoringV1ApiService) GetTroubleshootingSessionExecute(r ApiMonitorin
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/TroubleshootingSession/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -14626,62 +11890,14 @@ func (a *MonitoringV1ApiService) GetTroubleshootingSessionExecute(r ApiMonitorin
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
 	}
 	if r.sourceIpAddresses != nil {
 		localVarQueryParams.Add("source.ip-addresses", parameterToString(*r.sourceIpAddresses, "csv"))
 	}
-	if r.sourceMacAddresses != nil {
-		localVarQueryParams.Add("source.mac-addresses", parameterToString(*r.sourceMacAddresses, "csv"))
-	}
-	if r.destinationIpAddresses != nil {
-		localVarQueryParams.Add("destination.ip-addresses", parameterToString(*r.destinationIpAddresses, "csv"))
-	}
-	if r.destinationMacAddresses != nil {
-		localVarQueryParams.Add("destination.mac-addresses", parameterToString(*r.destinationMacAddresses, "csv"))
-	}
-	if r.appProtocolSelectorsProtoPorts != nil {
-		localVarQueryParams.Add("app-protocol-selectors.proto-ports", parameterToString(*r.appProtocolSelectorsProtoPorts, "csv"))
-	}
-	if r.appProtocolSelectorsApplications != nil {
-		localVarQueryParams.Add("app-protocol-selectors.applications", parameterToString(*r.appProtocolSelectorsApplications, "csv"))
-	}
-	if r.timeWindowStartTime != nil {
-		localVarQueryParams.Add("time-window.start-time", parameterToString(*r.timeWindowStartTime, ""))
-	}
-	if r.timeWindowStopTime != nil {
-		localVarQueryParams.Add("time-window.stop-time", parameterToString(*r.timeWindowStopTime, ""))
-	}
 	if r.specRepeatEvery != nil {
 		localVarQueryParams.Add("spec.repeat-every", parameterToString(*r.specRepeatEvery, ""))
-	}
-	if r.specEnableMirroring != nil {
-		localVarQueryParams.Add("spec.enable-mirroring", parameterToString(*r.specEnableMirroring, ""))
-	}
-	if r.statusState != nil {
-		localVarQueryParams.Add("status.state", parameterToString(*r.statusState, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -14807,110 +12023,25 @@ type ApiMonitoringGetTroubleshootingSession1Request struct {
 	ApiService *MonitoringV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	sourceIpAddresses *[]string
-	sourceMacAddresses *[]string
-	destinationIpAddresses *[]string
-	destinationMacAddresses *[]string
-	appProtocolSelectorsProtoPorts *[]string
-	appProtocolSelectorsApplications *[]string
-	timeWindowStartTime *time.Time
-	timeWindowStopTime *time.Time
 	specRepeatEvery *string
-	specEnableMirroring *bool
-	statusState *string
 }
 
 func (r ApiMonitoringGetTroubleshootingSession1Request) TKind(tKind string) ApiMonitoringGetTroubleshootingSession1Request {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiMonitoringGetTroubleshootingSession1Request) TApiVersion(tApiVersion string) ApiMonitoringGetTroubleshootingSession1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSession1Request) MetaTenant(metaTenant string) ApiMonitoringGetTroubleshootingSession1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSession1Request) MetaNamespace(metaNamespace string) ApiMonitoringGetTroubleshootingSession1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSession1Request) MetaGenerationId(metaGenerationId string) ApiMonitoringGetTroubleshootingSession1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSession1Request) MetaResourceVersion(metaResourceVersion string) ApiMonitoringGetTroubleshootingSession1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSession1Request) MetaUuid(metaUuid string) ApiMonitoringGetTroubleshootingSession1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiMonitoringGetTroubleshootingSession1Request) MetaCreationTime(metaCreationTime time.Time) ApiMonitoringGetTroubleshootingSession1Request {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSession1Request) MetaModTime(metaModTime time.Time) ApiMonitoringGetTroubleshootingSession1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSession1Request) MetaSelfLink(metaSelfLink string) ApiMonitoringGetTroubleshootingSession1Request {
-	r.metaSelfLink = &metaSelfLink
 	return r
 }
 func (r ApiMonitoringGetTroubleshootingSession1Request) SourceIpAddresses(sourceIpAddresses []string) ApiMonitoringGetTroubleshootingSession1Request {
 	r.sourceIpAddresses = &sourceIpAddresses
 	return r
 }
-func (r ApiMonitoringGetTroubleshootingSession1Request) SourceMacAddresses(sourceMacAddresses []string) ApiMonitoringGetTroubleshootingSession1Request {
-	r.sourceMacAddresses = &sourceMacAddresses
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSession1Request) DestinationIpAddresses(destinationIpAddresses []string) ApiMonitoringGetTroubleshootingSession1Request {
-	r.destinationIpAddresses = &destinationIpAddresses
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSession1Request) DestinationMacAddresses(destinationMacAddresses []string) ApiMonitoringGetTroubleshootingSession1Request {
-	r.destinationMacAddresses = &destinationMacAddresses
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSession1Request) AppProtocolSelectorsProtoPorts(appProtocolSelectorsProtoPorts []string) ApiMonitoringGetTroubleshootingSession1Request {
-	r.appProtocolSelectorsProtoPorts = &appProtocolSelectorsProtoPorts
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSession1Request) AppProtocolSelectorsApplications(appProtocolSelectorsApplications []string) ApiMonitoringGetTroubleshootingSession1Request {
-	r.appProtocolSelectorsApplications = &appProtocolSelectorsApplications
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSession1Request) TimeWindowStartTime(timeWindowStartTime time.Time) ApiMonitoringGetTroubleshootingSession1Request {
-	r.timeWindowStartTime = &timeWindowStartTime
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSession1Request) TimeWindowStopTime(timeWindowStopTime time.Time) ApiMonitoringGetTroubleshootingSession1Request {
-	r.timeWindowStopTime = &timeWindowStopTime
-	return r
-}
 func (r ApiMonitoringGetTroubleshootingSession1Request) SpecRepeatEvery(specRepeatEvery string) ApiMonitoringGetTroubleshootingSession1Request {
 	r.specRepeatEvery = &specRepeatEvery
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSession1Request) SpecEnableMirroring(specEnableMirroring bool) ApiMonitoringGetTroubleshootingSession1Request {
-	r.specEnableMirroring = &specEnableMirroring
-	return r
-}
-func (r ApiMonitoringGetTroubleshootingSession1Request) StatusState(statusState string) ApiMonitoringGetTroubleshootingSession1Request {
-	r.statusState = &statusState
 	return r
 }
 
@@ -14961,65 +12092,14 @@ func (a *MonitoringV1ApiService) GetTroubleshootingSession1Execute(r ApiMonitori
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
 	}
 	if r.sourceIpAddresses != nil {
 		localVarQueryParams.Add("source.ip-addresses", parameterToString(*r.sourceIpAddresses, "csv"))
 	}
-	if r.sourceMacAddresses != nil {
-		localVarQueryParams.Add("source.mac-addresses", parameterToString(*r.sourceMacAddresses, "csv"))
-	}
-	if r.destinationIpAddresses != nil {
-		localVarQueryParams.Add("destination.ip-addresses", parameterToString(*r.destinationIpAddresses, "csv"))
-	}
-	if r.destinationMacAddresses != nil {
-		localVarQueryParams.Add("destination.mac-addresses", parameterToString(*r.destinationMacAddresses, "csv"))
-	}
-	if r.appProtocolSelectorsProtoPorts != nil {
-		localVarQueryParams.Add("app-protocol-selectors.proto-ports", parameterToString(*r.appProtocolSelectorsProtoPorts, "csv"))
-	}
-	if r.appProtocolSelectorsApplications != nil {
-		localVarQueryParams.Add("app-protocol-selectors.applications", parameterToString(*r.appProtocolSelectorsApplications, "csv"))
-	}
-	if r.timeWindowStartTime != nil {
-		localVarQueryParams.Add("time-window.start-time", parameterToString(*r.timeWindowStartTime, ""))
-	}
-	if r.timeWindowStopTime != nil {
-		localVarQueryParams.Add("time-window.stop-time", parameterToString(*r.timeWindowStopTime, ""))
-	}
 	if r.specRepeatEvery != nil {
 		localVarQueryParams.Add("spec.repeat-every", parameterToString(*r.specRepeatEvery, ""))
-	}
-	if r.specEnableMirroring != nil {
-		localVarQueryParams.Add("spec.enable-mirroring", parameterToString(*r.specEnableMirroring, ""))
-	}
-	if r.statusState != nil {
-		localVarQueryParams.Add("status.state", parameterToString(*r.statusState, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -15144,7 +12224,6 @@ type ApiMonitoringLabelAlertRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	body *ApiLabel
 }
 
@@ -15161,15 +12240,13 @@ func (r ApiMonitoringLabelAlertRequest) Execute() (MonitoringAlert, *_nethttp.Re
  * LabelAlert Label Alert object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringLabelAlertRequest
  */
-func (a *MonitoringV1ApiService) LabelAlert(ctx _context.Context, oTenant string, oName string) ApiMonitoringLabelAlertRequest {
+func (a *MonitoringV1ApiService) LabelAlert(ctx _context.Context, oTenant string) ApiMonitoringLabelAlertRequest {
 	return ApiMonitoringLabelAlertRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -15194,7 +12271,6 @@ func (a *MonitoringV1ApiService) LabelAlertExecute(r ApiMonitoringLabelAlertRequ
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/alerts/{O.Name}/label"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -15508,7 +12584,6 @@ type ApiMonitoringLabelAlertDestinationRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	body *ApiLabel
 }
 
@@ -15525,15 +12600,13 @@ func (r ApiMonitoringLabelAlertDestinationRequest) Execute() (MonitoringAlertDes
  * LabelAlertDestination Label AlertDestination object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringLabelAlertDestinationRequest
  */
-func (a *MonitoringV1ApiService) LabelAlertDestination(ctx _context.Context, oTenant string, oName string) ApiMonitoringLabelAlertDestinationRequest {
+func (a *MonitoringV1ApiService) LabelAlertDestination(ctx _context.Context, oTenant string) ApiMonitoringLabelAlertDestinationRequest {
 	return ApiMonitoringLabelAlertDestinationRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -15558,7 +12631,6 @@ func (a *MonitoringV1ApiService) LabelAlertDestinationExecute(r ApiMonitoringLab
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/alertDestinations/{O.Name}/label"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -15872,7 +12944,6 @@ type ApiMonitoringLabelAlertPolicyRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	body *ApiLabel
 }
 
@@ -15889,15 +12960,13 @@ func (r ApiMonitoringLabelAlertPolicyRequest) Execute() (MonitoringAlertPolicy, 
  * LabelAlertPolicy Label AlertPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringLabelAlertPolicyRequest
  */
-func (a *MonitoringV1ApiService) LabelAlertPolicy(ctx _context.Context, oTenant string, oName string) ApiMonitoringLabelAlertPolicyRequest {
+func (a *MonitoringV1ApiService) LabelAlertPolicy(ctx _context.Context, oTenant string) ApiMonitoringLabelAlertPolicyRequest {
 	return ApiMonitoringLabelAlertPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -15922,7 +12991,6 @@ func (a *MonitoringV1ApiService) LabelAlertPolicyExecute(r ApiMonitoringLabelAle
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/alertPolicies/{O.Name}/label"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -16236,7 +13304,6 @@ type ApiMonitoringLabelEventPolicyRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	body *ApiLabel
 }
 
@@ -16253,15 +13320,13 @@ func (r ApiMonitoringLabelEventPolicyRequest) Execute() (MonitoringEventPolicy, 
  * LabelEventPolicy Label EventPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringLabelEventPolicyRequest
  */
-func (a *MonitoringV1ApiService) LabelEventPolicy(ctx _context.Context, oTenant string, oName string) ApiMonitoringLabelEventPolicyRequest {
+func (a *MonitoringV1ApiService) LabelEventPolicy(ctx _context.Context, oTenant string) ApiMonitoringLabelEventPolicyRequest {
 	return ApiMonitoringLabelEventPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -16286,7 +13351,6 @@ func (a *MonitoringV1ApiService) LabelEventPolicyExecute(r ApiMonitoringLabelEve
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/event-policy/{O.Name}/label"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -16600,7 +13664,6 @@ type ApiMonitoringLabelFlowExportPolicyRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	body *ApiLabel
 }
 
@@ -16617,15 +13680,13 @@ func (r ApiMonitoringLabelFlowExportPolicyRequest) Execute() (MonitoringFlowExpo
  * LabelFlowExportPolicy Label FlowExportPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringLabelFlowExportPolicyRequest
  */
-func (a *MonitoringV1ApiService) LabelFlowExportPolicy(ctx _context.Context, oTenant string, oName string) ApiMonitoringLabelFlowExportPolicyRequest {
+func (a *MonitoringV1ApiService) LabelFlowExportPolicy(ctx _context.Context, oTenant string) ApiMonitoringLabelFlowExportPolicyRequest {
 	return ApiMonitoringLabelFlowExportPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -16650,7 +13711,6 @@ func (a *MonitoringV1ApiService) LabelFlowExportPolicyExecute(r ApiMonitoringLab
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/flowExportPolicy/{O.Name}/label"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -16964,7 +14024,6 @@ type ApiMonitoringLabelFwlogPolicyRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	body *ApiLabel
 }
 
@@ -16981,15 +14040,13 @@ func (r ApiMonitoringLabelFwlogPolicyRequest) Execute() (MonitoringFwlogPolicy, 
  * LabelFwlogPolicy Label FwlogPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringLabelFwlogPolicyRequest
  */
-func (a *MonitoringV1ApiService) LabelFwlogPolicy(ctx _context.Context, oTenant string, oName string) ApiMonitoringLabelFwlogPolicyRequest {
+func (a *MonitoringV1ApiService) LabelFwlogPolicy(ctx _context.Context, oTenant string) ApiMonitoringLabelFwlogPolicyRequest {
 	return ApiMonitoringLabelFwlogPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -17014,7 +14071,6 @@ func (a *MonitoringV1ApiService) LabelFwlogPolicyExecute(r ApiMonitoringLabelFwl
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/fwlogPolicy/{O.Name}/label"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -17328,7 +14384,6 @@ type ApiMonitoringLabelMirrorSessionRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	body *ApiLabel
 }
 
@@ -17345,15 +14400,13 @@ func (r ApiMonitoringLabelMirrorSessionRequest) Execute() (MonitoringMirrorSessi
  * LabelMirrorSession Label MirrorSession object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringLabelMirrorSessionRequest
  */
-func (a *MonitoringV1ApiService) LabelMirrorSession(ctx _context.Context, oTenant string, oName string) ApiMonitoringLabelMirrorSessionRequest {
+func (a *MonitoringV1ApiService) LabelMirrorSession(ctx _context.Context, oTenant string) ApiMonitoringLabelMirrorSessionRequest {
 	return ApiMonitoringLabelMirrorSessionRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -17378,7 +14431,6 @@ func (a *MonitoringV1ApiService) LabelMirrorSessionExecute(r ApiMonitoringLabelM
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/MirrorSession/{O.Name}/label"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -17692,7 +14744,6 @@ type ApiMonitoringLabelStatsAlertPolicyRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	body *ApiLabel
 }
 
@@ -17709,15 +14760,13 @@ func (r ApiMonitoringLabelStatsAlertPolicyRequest) Execute() (MonitoringStatsAle
  * LabelStatsAlertPolicy Label StatsAlertPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringLabelStatsAlertPolicyRequest
  */
-func (a *MonitoringV1ApiService) LabelStatsAlertPolicy(ctx _context.Context, oTenant string, oName string) ApiMonitoringLabelStatsAlertPolicyRequest {
+func (a *MonitoringV1ApiService) LabelStatsAlertPolicy(ctx _context.Context, oTenant string) ApiMonitoringLabelStatsAlertPolicyRequest {
 	return ApiMonitoringLabelStatsAlertPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -17742,7 +14791,6 @@ func (a *MonitoringV1ApiService) LabelStatsAlertPolicyExecute(r ApiMonitoringLab
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/statsAlertPolicies/{O.Name}/label"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -18056,7 +15104,6 @@ type ApiMonitoringLabelTroubleshootingSessionRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	body *ApiLabel
 }
 
@@ -18073,15 +15120,13 @@ func (r ApiMonitoringLabelTroubleshootingSessionRequest) Execute() (MonitoringTr
  * LabelTroubleshootingSession Label TroubleshootingSession object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringLabelTroubleshootingSessionRequest
  */
-func (a *MonitoringV1ApiService) LabelTroubleshootingSession(ctx _context.Context, oTenant string, oName string) ApiMonitoringLabelTroubleshootingSessionRequest {
+func (a *MonitoringV1ApiService) LabelTroubleshootingSession(ctx _context.Context, oTenant string) ApiMonitoringLabelTroubleshootingSessionRequest {
 	return ApiMonitoringLabelTroubleshootingSessionRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -18106,7 +15151,6 @@ func (a *MonitoringV1ApiService) LabelTroubleshootingSessionExecute(r ApiMonitor
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/TroubleshootingSession/{O.Name}/label"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -18421,80 +15465,20 @@ type ApiMonitoringListAlertRequest struct {
 	ApiService *MonitoringV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringListAlertRequest) OName(oName string) ApiMonitoringListAlertRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringListAlertRequest) ONamespace(oNamespace string) ApiMonitoringListAlertRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringListAlertRequest) OGenerationId(oGenerationId string) ApiMonitoringListAlertRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringListAlertRequest) OResourceVersion(oResourceVersion string) ApiMonitoringListAlertRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringListAlertRequest) OUuid(oUuid string) ApiMonitoringListAlertRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringListAlertRequest) OCreationTime(oCreationTime time.Time) ApiMonitoringListAlertRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringListAlertRequest) OModTime(oModTime time.Time) ApiMonitoringListAlertRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringListAlertRequest) OSelfLink(oSelfLink string) ApiMonitoringListAlertRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringListAlertRequest) LabelSelector(labelSelector string) ApiMonitoringListAlertRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringListAlertRequest) FieldSelector(fieldSelector string) ApiMonitoringListAlertRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringListAlertRequest) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringListAlertRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringListAlertRequest) From(from int32) ApiMonitoringListAlertRequest {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringListAlertRequest) MaxResults(maxResults int32) ApiMonitoringListAlertRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringListAlertRequest) SortOrder(sortOrder string) ApiMonitoringListAlertRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringListAlertRequest) MetaOnly(metaOnly bool) ApiMonitoringListAlertRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -18545,47 +15529,11 @@ func (a *MonitoringV1ApiService) ListAlertExecute(r ApiMonitoringListAlertReques
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -18710,85 +15658,20 @@ type ApiMonitoringListAlert1Request struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringListAlert1Request) OName(oName string) ApiMonitoringListAlert1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringListAlert1Request) OTenant(oTenant string) ApiMonitoringListAlert1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiMonitoringListAlert1Request) ONamespace(oNamespace string) ApiMonitoringListAlert1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringListAlert1Request) OGenerationId(oGenerationId string) ApiMonitoringListAlert1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringListAlert1Request) OResourceVersion(oResourceVersion string) ApiMonitoringListAlert1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringListAlert1Request) OUuid(oUuid string) ApiMonitoringListAlert1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringListAlert1Request) OCreationTime(oCreationTime time.Time) ApiMonitoringListAlert1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringListAlert1Request) OModTime(oModTime time.Time) ApiMonitoringListAlert1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringListAlert1Request) OSelfLink(oSelfLink string) ApiMonitoringListAlert1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringListAlert1Request) LabelSelector(labelSelector string) ApiMonitoringListAlert1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringListAlert1Request) FieldSelector(fieldSelector string) ApiMonitoringListAlert1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringListAlert1Request) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringListAlert1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringListAlert1Request) From(from int32) ApiMonitoringListAlert1Request {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringListAlert1Request) MaxResults(maxResults int32) ApiMonitoringListAlert1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringListAlert1Request) SortOrder(sortOrder string) ApiMonitoringListAlert1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringListAlert1Request) MetaOnly(metaOnly bool) ApiMonitoringListAlert1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -18836,50 +15719,11 @@ func (a *MonitoringV1ApiService) ListAlert1Execute(r ApiMonitoringListAlert1Requ
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -19005,80 +15849,20 @@ type ApiMonitoringListAlertDestinationRequest struct {
 	ApiService *MonitoringV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringListAlertDestinationRequest) OName(oName string) ApiMonitoringListAlertDestinationRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringListAlertDestinationRequest) ONamespace(oNamespace string) ApiMonitoringListAlertDestinationRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringListAlertDestinationRequest) OGenerationId(oGenerationId string) ApiMonitoringListAlertDestinationRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringListAlertDestinationRequest) OResourceVersion(oResourceVersion string) ApiMonitoringListAlertDestinationRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringListAlertDestinationRequest) OUuid(oUuid string) ApiMonitoringListAlertDestinationRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringListAlertDestinationRequest) OCreationTime(oCreationTime time.Time) ApiMonitoringListAlertDestinationRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringListAlertDestinationRequest) OModTime(oModTime time.Time) ApiMonitoringListAlertDestinationRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringListAlertDestinationRequest) OSelfLink(oSelfLink string) ApiMonitoringListAlertDestinationRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringListAlertDestinationRequest) LabelSelector(labelSelector string) ApiMonitoringListAlertDestinationRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringListAlertDestinationRequest) FieldSelector(fieldSelector string) ApiMonitoringListAlertDestinationRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringListAlertDestinationRequest) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringListAlertDestinationRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringListAlertDestinationRequest) From(from int32) ApiMonitoringListAlertDestinationRequest {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringListAlertDestinationRequest) MaxResults(maxResults int32) ApiMonitoringListAlertDestinationRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringListAlertDestinationRequest) SortOrder(sortOrder string) ApiMonitoringListAlertDestinationRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringListAlertDestinationRequest) MetaOnly(metaOnly bool) ApiMonitoringListAlertDestinationRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -19129,47 +15913,11 @@ func (a *MonitoringV1ApiService) ListAlertDestinationExecute(r ApiMonitoringList
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -19294,85 +16042,20 @@ type ApiMonitoringListAlertDestination1Request struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringListAlertDestination1Request) OName(oName string) ApiMonitoringListAlertDestination1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringListAlertDestination1Request) OTenant(oTenant string) ApiMonitoringListAlertDestination1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiMonitoringListAlertDestination1Request) ONamespace(oNamespace string) ApiMonitoringListAlertDestination1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringListAlertDestination1Request) OGenerationId(oGenerationId string) ApiMonitoringListAlertDestination1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringListAlertDestination1Request) OResourceVersion(oResourceVersion string) ApiMonitoringListAlertDestination1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringListAlertDestination1Request) OUuid(oUuid string) ApiMonitoringListAlertDestination1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringListAlertDestination1Request) OCreationTime(oCreationTime time.Time) ApiMonitoringListAlertDestination1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringListAlertDestination1Request) OModTime(oModTime time.Time) ApiMonitoringListAlertDestination1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringListAlertDestination1Request) OSelfLink(oSelfLink string) ApiMonitoringListAlertDestination1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringListAlertDestination1Request) LabelSelector(labelSelector string) ApiMonitoringListAlertDestination1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringListAlertDestination1Request) FieldSelector(fieldSelector string) ApiMonitoringListAlertDestination1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringListAlertDestination1Request) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringListAlertDestination1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringListAlertDestination1Request) From(from int32) ApiMonitoringListAlertDestination1Request {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringListAlertDestination1Request) MaxResults(maxResults int32) ApiMonitoringListAlertDestination1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringListAlertDestination1Request) SortOrder(sortOrder string) ApiMonitoringListAlertDestination1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringListAlertDestination1Request) MetaOnly(metaOnly bool) ApiMonitoringListAlertDestination1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -19420,50 +16103,11 @@ func (a *MonitoringV1ApiService) ListAlertDestination1Execute(r ApiMonitoringLis
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -19589,80 +16233,20 @@ type ApiMonitoringListAlertPolicyRequest struct {
 	ApiService *MonitoringV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringListAlertPolicyRequest) OName(oName string) ApiMonitoringListAlertPolicyRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringListAlertPolicyRequest) ONamespace(oNamespace string) ApiMonitoringListAlertPolicyRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringListAlertPolicyRequest) OGenerationId(oGenerationId string) ApiMonitoringListAlertPolicyRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringListAlertPolicyRequest) OResourceVersion(oResourceVersion string) ApiMonitoringListAlertPolicyRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringListAlertPolicyRequest) OUuid(oUuid string) ApiMonitoringListAlertPolicyRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringListAlertPolicyRequest) OCreationTime(oCreationTime time.Time) ApiMonitoringListAlertPolicyRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringListAlertPolicyRequest) OModTime(oModTime time.Time) ApiMonitoringListAlertPolicyRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringListAlertPolicyRequest) OSelfLink(oSelfLink string) ApiMonitoringListAlertPolicyRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringListAlertPolicyRequest) LabelSelector(labelSelector string) ApiMonitoringListAlertPolicyRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringListAlertPolicyRequest) FieldSelector(fieldSelector string) ApiMonitoringListAlertPolicyRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringListAlertPolicyRequest) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringListAlertPolicyRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringListAlertPolicyRequest) From(from int32) ApiMonitoringListAlertPolicyRequest {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringListAlertPolicyRequest) MaxResults(maxResults int32) ApiMonitoringListAlertPolicyRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringListAlertPolicyRequest) SortOrder(sortOrder string) ApiMonitoringListAlertPolicyRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringListAlertPolicyRequest) MetaOnly(metaOnly bool) ApiMonitoringListAlertPolicyRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -19713,47 +16297,11 @@ func (a *MonitoringV1ApiService) ListAlertPolicyExecute(r ApiMonitoringListAlert
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -19878,85 +16426,20 @@ type ApiMonitoringListAlertPolicy1Request struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringListAlertPolicy1Request) OName(oName string) ApiMonitoringListAlertPolicy1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringListAlertPolicy1Request) OTenant(oTenant string) ApiMonitoringListAlertPolicy1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiMonitoringListAlertPolicy1Request) ONamespace(oNamespace string) ApiMonitoringListAlertPolicy1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringListAlertPolicy1Request) OGenerationId(oGenerationId string) ApiMonitoringListAlertPolicy1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringListAlertPolicy1Request) OResourceVersion(oResourceVersion string) ApiMonitoringListAlertPolicy1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringListAlertPolicy1Request) OUuid(oUuid string) ApiMonitoringListAlertPolicy1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringListAlertPolicy1Request) OCreationTime(oCreationTime time.Time) ApiMonitoringListAlertPolicy1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringListAlertPolicy1Request) OModTime(oModTime time.Time) ApiMonitoringListAlertPolicy1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringListAlertPolicy1Request) OSelfLink(oSelfLink string) ApiMonitoringListAlertPolicy1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringListAlertPolicy1Request) LabelSelector(labelSelector string) ApiMonitoringListAlertPolicy1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringListAlertPolicy1Request) FieldSelector(fieldSelector string) ApiMonitoringListAlertPolicy1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringListAlertPolicy1Request) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringListAlertPolicy1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringListAlertPolicy1Request) From(from int32) ApiMonitoringListAlertPolicy1Request {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringListAlertPolicy1Request) MaxResults(maxResults int32) ApiMonitoringListAlertPolicy1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringListAlertPolicy1Request) SortOrder(sortOrder string) ApiMonitoringListAlertPolicy1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringListAlertPolicy1Request) MetaOnly(metaOnly bool) ApiMonitoringListAlertPolicy1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -20004,50 +16487,11 @@ func (a *MonitoringV1ApiService) ListAlertPolicy1Execute(r ApiMonitoringListAler
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -20173,80 +16617,20 @@ type ApiMonitoringListArchiveRequestRequest struct {
 	ApiService *MonitoringV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringListArchiveRequestRequest) OName(oName string) ApiMonitoringListArchiveRequestRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringListArchiveRequestRequest) ONamespace(oNamespace string) ApiMonitoringListArchiveRequestRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringListArchiveRequestRequest) OGenerationId(oGenerationId string) ApiMonitoringListArchiveRequestRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringListArchiveRequestRequest) OResourceVersion(oResourceVersion string) ApiMonitoringListArchiveRequestRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringListArchiveRequestRequest) OUuid(oUuid string) ApiMonitoringListArchiveRequestRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringListArchiveRequestRequest) OCreationTime(oCreationTime time.Time) ApiMonitoringListArchiveRequestRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringListArchiveRequestRequest) OModTime(oModTime time.Time) ApiMonitoringListArchiveRequestRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringListArchiveRequestRequest) OSelfLink(oSelfLink string) ApiMonitoringListArchiveRequestRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringListArchiveRequestRequest) LabelSelector(labelSelector string) ApiMonitoringListArchiveRequestRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringListArchiveRequestRequest) FieldSelector(fieldSelector string) ApiMonitoringListArchiveRequestRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringListArchiveRequestRequest) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringListArchiveRequestRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringListArchiveRequestRequest) From(from int32) ApiMonitoringListArchiveRequestRequest {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringListArchiveRequestRequest) MaxResults(maxResults int32) ApiMonitoringListArchiveRequestRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringListArchiveRequestRequest) SortOrder(sortOrder string) ApiMonitoringListArchiveRequestRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringListArchiveRequestRequest) MetaOnly(metaOnly bool) ApiMonitoringListArchiveRequestRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -20297,47 +16681,11 @@ func (a *MonitoringV1ApiService) ListArchiveRequestExecute(r ApiMonitoringListAr
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -20462,85 +16810,20 @@ type ApiMonitoringListArchiveRequest1Request struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringListArchiveRequest1Request) OName(oName string) ApiMonitoringListArchiveRequest1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringListArchiveRequest1Request) OTenant(oTenant string) ApiMonitoringListArchiveRequest1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiMonitoringListArchiveRequest1Request) ONamespace(oNamespace string) ApiMonitoringListArchiveRequest1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringListArchiveRequest1Request) OGenerationId(oGenerationId string) ApiMonitoringListArchiveRequest1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringListArchiveRequest1Request) OResourceVersion(oResourceVersion string) ApiMonitoringListArchiveRequest1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringListArchiveRequest1Request) OUuid(oUuid string) ApiMonitoringListArchiveRequest1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringListArchiveRequest1Request) OCreationTime(oCreationTime time.Time) ApiMonitoringListArchiveRequest1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringListArchiveRequest1Request) OModTime(oModTime time.Time) ApiMonitoringListArchiveRequest1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringListArchiveRequest1Request) OSelfLink(oSelfLink string) ApiMonitoringListArchiveRequest1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringListArchiveRequest1Request) LabelSelector(labelSelector string) ApiMonitoringListArchiveRequest1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringListArchiveRequest1Request) FieldSelector(fieldSelector string) ApiMonitoringListArchiveRequest1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringListArchiveRequest1Request) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringListArchiveRequest1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringListArchiveRequest1Request) From(from int32) ApiMonitoringListArchiveRequest1Request {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringListArchiveRequest1Request) MaxResults(maxResults int32) ApiMonitoringListArchiveRequest1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringListArchiveRequest1Request) SortOrder(sortOrder string) ApiMonitoringListArchiveRequest1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringListArchiveRequest1Request) MetaOnly(metaOnly bool) ApiMonitoringListArchiveRequest1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -20588,50 +16871,11 @@ func (a *MonitoringV1ApiService) ListArchiveRequest1Execute(r ApiMonitoringListA
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -20757,80 +17001,20 @@ type ApiMonitoringListEventPolicyRequest struct {
 	ApiService *MonitoringV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringListEventPolicyRequest) OName(oName string) ApiMonitoringListEventPolicyRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringListEventPolicyRequest) ONamespace(oNamespace string) ApiMonitoringListEventPolicyRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringListEventPolicyRequest) OGenerationId(oGenerationId string) ApiMonitoringListEventPolicyRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringListEventPolicyRequest) OResourceVersion(oResourceVersion string) ApiMonitoringListEventPolicyRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringListEventPolicyRequest) OUuid(oUuid string) ApiMonitoringListEventPolicyRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringListEventPolicyRequest) OCreationTime(oCreationTime time.Time) ApiMonitoringListEventPolicyRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringListEventPolicyRequest) OModTime(oModTime time.Time) ApiMonitoringListEventPolicyRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringListEventPolicyRequest) OSelfLink(oSelfLink string) ApiMonitoringListEventPolicyRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringListEventPolicyRequest) LabelSelector(labelSelector string) ApiMonitoringListEventPolicyRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringListEventPolicyRequest) FieldSelector(fieldSelector string) ApiMonitoringListEventPolicyRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringListEventPolicyRequest) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringListEventPolicyRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringListEventPolicyRequest) From(from int32) ApiMonitoringListEventPolicyRequest {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringListEventPolicyRequest) MaxResults(maxResults int32) ApiMonitoringListEventPolicyRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringListEventPolicyRequest) SortOrder(sortOrder string) ApiMonitoringListEventPolicyRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringListEventPolicyRequest) MetaOnly(metaOnly bool) ApiMonitoringListEventPolicyRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -20881,47 +17065,11 @@ func (a *MonitoringV1ApiService) ListEventPolicyExecute(r ApiMonitoringListEvent
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -21046,85 +17194,20 @@ type ApiMonitoringListEventPolicy1Request struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringListEventPolicy1Request) OName(oName string) ApiMonitoringListEventPolicy1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringListEventPolicy1Request) OTenant(oTenant string) ApiMonitoringListEventPolicy1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiMonitoringListEventPolicy1Request) ONamespace(oNamespace string) ApiMonitoringListEventPolicy1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringListEventPolicy1Request) OGenerationId(oGenerationId string) ApiMonitoringListEventPolicy1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringListEventPolicy1Request) OResourceVersion(oResourceVersion string) ApiMonitoringListEventPolicy1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringListEventPolicy1Request) OUuid(oUuid string) ApiMonitoringListEventPolicy1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringListEventPolicy1Request) OCreationTime(oCreationTime time.Time) ApiMonitoringListEventPolicy1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringListEventPolicy1Request) OModTime(oModTime time.Time) ApiMonitoringListEventPolicy1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringListEventPolicy1Request) OSelfLink(oSelfLink string) ApiMonitoringListEventPolicy1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringListEventPolicy1Request) LabelSelector(labelSelector string) ApiMonitoringListEventPolicy1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringListEventPolicy1Request) FieldSelector(fieldSelector string) ApiMonitoringListEventPolicy1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringListEventPolicy1Request) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringListEventPolicy1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringListEventPolicy1Request) From(from int32) ApiMonitoringListEventPolicy1Request {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringListEventPolicy1Request) MaxResults(maxResults int32) ApiMonitoringListEventPolicy1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringListEventPolicy1Request) SortOrder(sortOrder string) ApiMonitoringListEventPolicy1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringListEventPolicy1Request) MetaOnly(metaOnly bool) ApiMonitoringListEventPolicy1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -21172,50 +17255,11 @@ func (a *MonitoringV1ApiService) ListEventPolicy1Execute(r ApiMonitoringListEven
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -21341,80 +17385,20 @@ type ApiMonitoringListFlowExportPolicyRequest struct {
 	ApiService *MonitoringV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringListFlowExportPolicyRequest) OName(oName string) ApiMonitoringListFlowExportPolicyRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringListFlowExportPolicyRequest) ONamespace(oNamespace string) ApiMonitoringListFlowExportPolicyRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringListFlowExportPolicyRequest) OGenerationId(oGenerationId string) ApiMonitoringListFlowExportPolicyRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringListFlowExportPolicyRequest) OResourceVersion(oResourceVersion string) ApiMonitoringListFlowExportPolicyRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringListFlowExportPolicyRequest) OUuid(oUuid string) ApiMonitoringListFlowExportPolicyRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringListFlowExportPolicyRequest) OCreationTime(oCreationTime time.Time) ApiMonitoringListFlowExportPolicyRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringListFlowExportPolicyRequest) OModTime(oModTime time.Time) ApiMonitoringListFlowExportPolicyRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringListFlowExportPolicyRequest) OSelfLink(oSelfLink string) ApiMonitoringListFlowExportPolicyRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringListFlowExportPolicyRequest) LabelSelector(labelSelector string) ApiMonitoringListFlowExportPolicyRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringListFlowExportPolicyRequest) FieldSelector(fieldSelector string) ApiMonitoringListFlowExportPolicyRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringListFlowExportPolicyRequest) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringListFlowExportPolicyRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringListFlowExportPolicyRequest) From(from int32) ApiMonitoringListFlowExportPolicyRequest {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringListFlowExportPolicyRequest) MaxResults(maxResults int32) ApiMonitoringListFlowExportPolicyRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringListFlowExportPolicyRequest) SortOrder(sortOrder string) ApiMonitoringListFlowExportPolicyRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringListFlowExportPolicyRequest) MetaOnly(metaOnly bool) ApiMonitoringListFlowExportPolicyRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -21465,47 +17449,11 @@ func (a *MonitoringV1ApiService) ListFlowExportPolicyExecute(r ApiMonitoringList
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -21630,85 +17578,20 @@ type ApiMonitoringListFlowExportPolicy1Request struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringListFlowExportPolicy1Request) OName(oName string) ApiMonitoringListFlowExportPolicy1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringListFlowExportPolicy1Request) OTenant(oTenant string) ApiMonitoringListFlowExportPolicy1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiMonitoringListFlowExportPolicy1Request) ONamespace(oNamespace string) ApiMonitoringListFlowExportPolicy1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringListFlowExportPolicy1Request) OGenerationId(oGenerationId string) ApiMonitoringListFlowExportPolicy1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringListFlowExportPolicy1Request) OResourceVersion(oResourceVersion string) ApiMonitoringListFlowExportPolicy1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringListFlowExportPolicy1Request) OUuid(oUuid string) ApiMonitoringListFlowExportPolicy1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringListFlowExportPolicy1Request) OCreationTime(oCreationTime time.Time) ApiMonitoringListFlowExportPolicy1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringListFlowExportPolicy1Request) OModTime(oModTime time.Time) ApiMonitoringListFlowExportPolicy1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringListFlowExportPolicy1Request) OSelfLink(oSelfLink string) ApiMonitoringListFlowExportPolicy1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringListFlowExportPolicy1Request) LabelSelector(labelSelector string) ApiMonitoringListFlowExportPolicy1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringListFlowExportPolicy1Request) FieldSelector(fieldSelector string) ApiMonitoringListFlowExportPolicy1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringListFlowExportPolicy1Request) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringListFlowExportPolicy1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringListFlowExportPolicy1Request) From(from int32) ApiMonitoringListFlowExportPolicy1Request {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringListFlowExportPolicy1Request) MaxResults(maxResults int32) ApiMonitoringListFlowExportPolicy1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringListFlowExportPolicy1Request) SortOrder(sortOrder string) ApiMonitoringListFlowExportPolicy1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringListFlowExportPolicy1Request) MetaOnly(metaOnly bool) ApiMonitoringListFlowExportPolicy1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -21756,50 +17639,11 @@ func (a *MonitoringV1ApiService) ListFlowExportPolicy1Execute(r ApiMonitoringLis
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -21925,80 +17769,20 @@ type ApiMonitoringListFwlogPolicyRequest struct {
 	ApiService *MonitoringV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringListFwlogPolicyRequest) OName(oName string) ApiMonitoringListFwlogPolicyRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringListFwlogPolicyRequest) ONamespace(oNamespace string) ApiMonitoringListFwlogPolicyRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringListFwlogPolicyRequest) OGenerationId(oGenerationId string) ApiMonitoringListFwlogPolicyRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringListFwlogPolicyRequest) OResourceVersion(oResourceVersion string) ApiMonitoringListFwlogPolicyRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringListFwlogPolicyRequest) OUuid(oUuid string) ApiMonitoringListFwlogPolicyRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringListFwlogPolicyRequest) OCreationTime(oCreationTime time.Time) ApiMonitoringListFwlogPolicyRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringListFwlogPolicyRequest) OModTime(oModTime time.Time) ApiMonitoringListFwlogPolicyRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringListFwlogPolicyRequest) OSelfLink(oSelfLink string) ApiMonitoringListFwlogPolicyRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringListFwlogPolicyRequest) LabelSelector(labelSelector string) ApiMonitoringListFwlogPolicyRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringListFwlogPolicyRequest) FieldSelector(fieldSelector string) ApiMonitoringListFwlogPolicyRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringListFwlogPolicyRequest) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringListFwlogPolicyRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringListFwlogPolicyRequest) From(from int32) ApiMonitoringListFwlogPolicyRequest {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringListFwlogPolicyRequest) MaxResults(maxResults int32) ApiMonitoringListFwlogPolicyRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringListFwlogPolicyRequest) SortOrder(sortOrder string) ApiMonitoringListFwlogPolicyRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringListFwlogPolicyRequest) MetaOnly(metaOnly bool) ApiMonitoringListFwlogPolicyRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -22049,47 +17833,11 @@ func (a *MonitoringV1ApiService) ListFwlogPolicyExecute(r ApiMonitoringListFwlog
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -22214,85 +17962,20 @@ type ApiMonitoringListFwlogPolicy1Request struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringListFwlogPolicy1Request) OName(oName string) ApiMonitoringListFwlogPolicy1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringListFwlogPolicy1Request) OTenant(oTenant string) ApiMonitoringListFwlogPolicy1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiMonitoringListFwlogPolicy1Request) ONamespace(oNamespace string) ApiMonitoringListFwlogPolicy1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringListFwlogPolicy1Request) OGenerationId(oGenerationId string) ApiMonitoringListFwlogPolicy1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringListFwlogPolicy1Request) OResourceVersion(oResourceVersion string) ApiMonitoringListFwlogPolicy1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringListFwlogPolicy1Request) OUuid(oUuid string) ApiMonitoringListFwlogPolicy1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringListFwlogPolicy1Request) OCreationTime(oCreationTime time.Time) ApiMonitoringListFwlogPolicy1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringListFwlogPolicy1Request) OModTime(oModTime time.Time) ApiMonitoringListFwlogPolicy1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringListFwlogPolicy1Request) OSelfLink(oSelfLink string) ApiMonitoringListFwlogPolicy1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringListFwlogPolicy1Request) LabelSelector(labelSelector string) ApiMonitoringListFwlogPolicy1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringListFwlogPolicy1Request) FieldSelector(fieldSelector string) ApiMonitoringListFwlogPolicy1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringListFwlogPolicy1Request) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringListFwlogPolicy1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringListFwlogPolicy1Request) From(from int32) ApiMonitoringListFwlogPolicy1Request {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringListFwlogPolicy1Request) MaxResults(maxResults int32) ApiMonitoringListFwlogPolicy1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringListFwlogPolicy1Request) SortOrder(sortOrder string) ApiMonitoringListFwlogPolicy1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringListFwlogPolicy1Request) MetaOnly(metaOnly bool) ApiMonitoringListFwlogPolicy1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -22340,50 +18023,11 @@ func (a *MonitoringV1ApiService) ListFwlogPolicy1Execute(r ApiMonitoringListFwlo
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -22509,80 +18153,20 @@ type ApiMonitoringListMirrorSessionRequest struct {
 	ApiService *MonitoringV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringListMirrorSessionRequest) OName(oName string) ApiMonitoringListMirrorSessionRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringListMirrorSessionRequest) ONamespace(oNamespace string) ApiMonitoringListMirrorSessionRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringListMirrorSessionRequest) OGenerationId(oGenerationId string) ApiMonitoringListMirrorSessionRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringListMirrorSessionRequest) OResourceVersion(oResourceVersion string) ApiMonitoringListMirrorSessionRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringListMirrorSessionRequest) OUuid(oUuid string) ApiMonitoringListMirrorSessionRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringListMirrorSessionRequest) OCreationTime(oCreationTime time.Time) ApiMonitoringListMirrorSessionRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringListMirrorSessionRequest) OModTime(oModTime time.Time) ApiMonitoringListMirrorSessionRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringListMirrorSessionRequest) OSelfLink(oSelfLink string) ApiMonitoringListMirrorSessionRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringListMirrorSessionRequest) LabelSelector(labelSelector string) ApiMonitoringListMirrorSessionRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringListMirrorSessionRequest) FieldSelector(fieldSelector string) ApiMonitoringListMirrorSessionRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringListMirrorSessionRequest) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringListMirrorSessionRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringListMirrorSessionRequest) From(from int32) ApiMonitoringListMirrorSessionRequest {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringListMirrorSessionRequest) MaxResults(maxResults int32) ApiMonitoringListMirrorSessionRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringListMirrorSessionRequest) SortOrder(sortOrder string) ApiMonitoringListMirrorSessionRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringListMirrorSessionRequest) MetaOnly(metaOnly bool) ApiMonitoringListMirrorSessionRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -22633,47 +18217,11 @@ func (a *MonitoringV1ApiService) ListMirrorSessionExecute(r ApiMonitoringListMir
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -22798,85 +18346,20 @@ type ApiMonitoringListMirrorSession1Request struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringListMirrorSession1Request) OName(oName string) ApiMonitoringListMirrorSession1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringListMirrorSession1Request) OTenant(oTenant string) ApiMonitoringListMirrorSession1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiMonitoringListMirrorSession1Request) ONamespace(oNamespace string) ApiMonitoringListMirrorSession1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringListMirrorSession1Request) OGenerationId(oGenerationId string) ApiMonitoringListMirrorSession1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringListMirrorSession1Request) OResourceVersion(oResourceVersion string) ApiMonitoringListMirrorSession1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringListMirrorSession1Request) OUuid(oUuid string) ApiMonitoringListMirrorSession1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringListMirrorSession1Request) OCreationTime(oCreationTime time.Time) ApiMonitoringListMirrorSession1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringListMirrorSession1Request) OModTime(oModTime time.Time) ApiMonitoringListMirrorSession1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringListMirrorSession1Request) OSelfLink(oSelfLink string) ApiMonitoringListMirrorSession1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringListMirrorSession1Request) LabelSelector(labelSelector string) ApiMonitoringListMirrorSession1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringListMirrorSession1Request) FieldSelector(fieldSelector string) ApiMonitoringListMirrorSession1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringListMirrorSession1Request) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringListMirrorSession1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringListMirrorSession1Request) From(from int32) ApiMonitoringListMirrorSession1Request {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringListMirrorSession1Request) MaxResults(maxResults int32) ApiMonitoringListMirrorSession1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringListMirrorSession1Request) SortOrder(sortOrder string) ApiMonitoringListMirrorSession1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringListMirrorSession1Request) MetaOnly(metaOnly bool) ApiMonitoringListMirrorSession1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -22924,50 +18407,11 @@ func (a *MonitoringV1ApiService) ListMirrorSession1Execute(r ApiMonitoringListMi
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -23093,80 +18537,20 @@ type ApiMonitoringListStatsAlertPolicyRequest struct {
 	ApiService *MonitoringV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringListStatsAlertPolicyRequest) OName(oName string) ApiMonitoringListStatsAlertPolicyRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringListStatsAlertPolicyRequest) ONamespace(oNamespace string) ApiMonitoringListStatsAlertPolicyRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringListStatsAlertPolicyRequest) OGenerationId(oGenerationId string) ApiMonitoringListStatsAlertPolicyRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringListStatsAlertPolicyRequest) OResourceVersion(oResourceVersion string) ApiMonitoringListStatsAlertPolicyRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringListStatsAlertPolicyRequest) OUuid(oUuid string) ApiMonitoringListStatsAlertPolicyRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringListStatsAlertPolicyRequest) OCreationTime(oCreationTime time.Time) ApiMonitoringListStatsAlertPolicyRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringListStatsAlertPolicyRequest) OModTime(oModTime time.Time) ApiMonitoringListStatsAlertPolicyRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringListStatsAlertPolicyRequest) OSelfLink(oSelfLink string) ApiMonitoringListStatsAlertPolicyRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringListStatsAlertPolicyRequest) LabelSelector(labelSelector string) ApiMonitoringListStatsAlertPolicyRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringListStatsAlertPolicyRequest) FieldSelector(fieldSelector string) ApiMonitoringListStatsAlertPolicyRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringListStatsAlertPolicyRequest) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringListStatsAlertPolicyRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringListStatsAlertPolicyRequest) From(from int32) ApiMonitoringListStatsAlertPolicyRequest {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringListStatsAlertPolicyRequest) MaxResults(maxResults int32) ApiMonitoringListStatsAlertPolicyRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringListStatsAlertPolicyRequest) SortOrder(sortOrder string) ApiMonitoringListStatsAlertPolicyRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringListStatsAlertPolicyRequest) MetaOnly(metaOnly bool) ApiMonitoringListStatsAlertPolicyRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -23217,47 +18601,11 @@ func (a *MonitoringV1ApiService) ListStatsAlertPolicyExecute(r ApiMonitoringList
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -23382,85 +18730,20 @@ type ApiMonitoringListStatsAlertPolicy1Request struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringListStatsAlertPolicy1Request) OName(oName string) ApiMonitoringListStatsAlertPolicy1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringListStatsAlertPolicy1Request) OTenant(oTenant string) ApiMonitoringListStatsAlertPolicy1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiMonitoringListStatsAlertPolicy1Request) ONamespace(oNamespace string) ApiMonitoringListStatsAlertPolicy1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringListStatsAlertPolicy1Request) OGenerationId(oGenerationId string) ApiMonitoringListStatsAlertPolicy1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringListStatsAlertPolicy1Request) OResourceVersion(oResourceVersion string) ApiMonitoringListStatsAlertPolicy1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringListStatsAlertPolicy1Request) OUuid(oUuid string) ApiMonitoringListStatsAlertPolicy1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringListStatsAlertPolicy1Request) OCreationTime(oCreationTime time.Time) ApiMonitoringListStatsAlertPolicy1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringListStatsAlertPolicy1Request) OModTime(oModTime time.Time) ApiMonitoringListStatsAlertPolicy1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringListStatsAlertPolicy1Request) OSelfLink(oSelfLink string) ApiMonitoringListStatsAlertPolicy1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringListStatsAlertPolicy1Request) LabelSelector(labelSelector string) ApiMonitoringListStatsAlertPolicy1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringListStatsAlertPolicy1Request) FieldSelector(fieldSelector string) ApiMonitoringListStatsAlertPolicy1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringListStatsAlertPolicy1Request) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringListStatsAlertPolicy1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringListStatsAlertPolicy1Request) From(from int32) ApiMonitoringListStatsAlertPolicy1Request {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringListStatsAlertPolicy1Request) MaxResults(maxResults int32) ApiMonitoringListStatsAlertPolicy1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringListStatsAlertPolicy1Request) SortOrder(sortOrder string) ApiMonitoringListStatsAlertPolicy1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringListStatsAlertPolicy1Request) MetaOnly(metaOnly bool) ApiMonitoringListStatsAlertPolicy1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -23508,50 +18791,11 @@ func (a *MonitoringV1ApiService) ListStatsAlertPolicy1Execute(r ApiMonitoringLis
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -23676,85 +18920,20 @@ type ApiMonitoringListTechSupportRequestRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringListTechSupportRequestRequest) OName(oName string) ApiMonitoringListTechSupportRequestRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringListTechSupportRequestRequest) OTenant(oTenant string) ApiMonitoringListTechSupportRequestRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiMonitoringListTechSupportRequestRequest) ONamespace(oNamespace string) ApiMonitoringListTechSupportRequestRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringListTechSupportRequestRequest) OGenerationId(oGenerationId string) ApiMonitoringListTechSupportRequestRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringListTechSupportRequestRequest) OResourceVersion(oResourceVersion string) ApiMonitoringListTechSupportRequestRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringListTechSupportRequestRequest) OUuid(oUuid string) ApiMonitoringListTechSupportRequestRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringListTechSupportRequestRequest) OCreationTime(oCreationTime time.Time) ApiMonitoringListTechSupportRequestRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringListTechSupportRequestRequest) OModTime(oModTime time.Time) ApiMonitoringListTechSupportRequestRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringListTechSupportRequestRequest) OSelfLink(oSelfLink string) ApiMonitoringListTechSupportRequestRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringListTechSupportRequestRequest) LabelSelector(labelSelector string) ApiMonitoringListTechSupportRequestRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringListTechSupportRequestRequest) FieldSelector(fieldSelector string) ApiMonitoringListTechSupportRequestRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringListTechSupportRequestRequest) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringListTechSupportRequestRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringListTechSupportRequestRequest) From(from int32) ApiMonitoringListTechSupportRequestRequest {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringListTechSupportRequestRequest) MaxResults(maxResults int32) ApiMonitoringListTechSupportRequestRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringListTechSupportRequestRequest) SortOrder(sortOrder string) ApiMonitoringListTechSupportRequestRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringListTechSupportRequestRequest) MetaOnly(metaOnly bool) ApiMonitoringListTechSupportRequestRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -23802,50 +18981,11 @@ func (a *MonitoringV1ApiService) ListTechSupportRequestExecute(r ApiMonitoringLi
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -23971,80 +19111,20 @@ type ApiMonitoringListTroubleshootingSessionRequest struct {
 	ApiService *MonitoringV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringListTroubleshootingSessionRequest) OName(oName string) ApiMonitoringListTroubleshootingSessionRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringListTroubleshootingSessionRequest) ONamespace(oNamespace string) ApiMonitoringListTroubleshootingSessionRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringListTroubleshootingSessionRequest) OGenerationId(oGenerationId string) ApiMonitoringListTroubleshootingSessionRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringListTroubleshootingSessionRequest) OResourceVersion(oResourceVersion string) ApiMonitoringListTroubleshootingSessionRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringListTroubleshootingSessionRequest) OUuid(oUuid string) ApiMonitoringListTroubleshootingSessionRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringListTroubleshootingSessionRequest) OCreationTime(oCreationTime time.Time) ApiMonitoringListTroubleshootingSessionRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringListTroubleshootingSessionRequest) OModTime(oModTime time.Time) ApiMonitoringListTroubleshootingSessionRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringListTroubleshootingSessionRequest) OSelfLink(oSelfLink string) ApiMonitoringListTroubleshootingSessionRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringListTroubleshootingSessionRequest) LabelSelector(labelSelector string) ApiMonitoringListTroubleshootingSessionRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringListTroubleshootingSessionRequest) FieldSelector(fieldSelector string) ApiMonitoringListTroubleshootingSessionRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringListTroubleshootingSessionRequest) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringListTroubleshootingSessionRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringListTroubleshootingSessionRequest) From(from int32) ApiMonitoringListTroubleshootingSessionRequest {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringListTroubleshootingSessionRequest) MaxResults(maxResults int32) ApiMonitoringListTroubleshootingSessionRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringListTroubleshootingSessionRequest) SortOrder(sortOrder string) ApiMonitoringListTroubleshootingSessionRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringListTroubleshootingSessionRequest) MetaOnly(metaOnly bool) ApiMonitoringListTroubleshootingSessionRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -24095,47 +19175,11 @@ func (a *MonitoringV1ApiService) ListTroubleshootingSessionExecute(r ApiMonitori
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -24260,85 +19304,20 @@ type ApiMonitoringListTroubleshootingSession1Request struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringListTroubleshootingSession1Request) OName(oName string) ApiMonitoringListTroubleshootingSession1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringListTroubleshootingSession1Request) OTenant(oTenant string) ApiMonitoringListTroubleshootingSession1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiMonitoringListTroubleshootingSession1Request) ONamespace(oNamespace string) ApiMonitoringListTroubleshootingSession1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringListTroubleshootingSession1Request) OGenerationId(oGenerationId string) ApiMonitoringListTroubleshootingSession1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringListTroubleshootingSession1Request) OResourceVersion(oResourceVersion string) ApiMonitoringListTroubleshootingSession1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringListTroubleshootingSession1Request) OUuid(oUuid string) ApiMonitoringListTroubleshootingSession1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringListTroubleshootingSession1Request) OCreationTime(oCreationTime time.Time) ApiMonitoringListTroubleshootingSession1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringListTroubleshootingSession1Request) OModTime(oModTime time.Time) ApiMonitoringListTroubleshootingSession1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringListTroubleshootingSession1Request) OSelfLink(oSelfLink string) ApiMonitoringListTroubleshootingSession1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringListTroubleshootingSession1Request) LabelSelector(labelSelector string) ApiMonitoringListTroubleshootingSession1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringListTroubleshootingSession1Request) FieldSelector(fieldSelector string) ApiMonitoringListTroubleshootingSession1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringListTroubleshootingSession1Request) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringListTroubleshootingSession1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringListTroubleshootingSession1Request) From(from int32) ApiMonitoringListTroubleshootingSession1Request {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringListTroubleshootingSession1Request) MaxResults(maxResults int32) ApiMonitoringListTroubleshootingSession1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringListTroubleshootingSession1Request) SortOrder(sortOrder string) ApiMonitoringListTroubleshootingSession1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringListTroubleshootingSession1Request) MetaOnly(metaOnly bool) ApiMonitoringListTroubleshootingSession1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -24386,50 +19365,11 @@ func (a *MonitoringV1ApiService) ListTroubleshootingSession1Execute(r ApiMonitor
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -24554,7 +19494,6 @@ type ApiMonitoringUpdateAlertRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	body *MonitoringAlert
 }
 
@@ -24571,15 +19510,13 @@ func (r ApiMonitoringUpdateAlertRequest) Execute() (MonitoringAlert, *_nethttp.R
  * UpdateAlert Update Alert object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringUpdateAlertRequest
  */
-func (a *MonitoringV1ApiService) UpdateAlert(ctx _context.Context, oTenant string, oName string) ApiMonitoringUpdateAlertRequest {
+func (a *MonitoringV1ApiService) UpdateAlert(ctx _context.Context, oTenant string) ApiMonitoringUpdateAlertRequest {
 	return ApiMonitoringUpdateAlertRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -24604,7 +19541,6 @@ func (a *MonitoringV1ApiService) UpdateAlertExecute(r ApiMonitoringUpdateAlertRe
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/alerts/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -24918,7 +19854,6 @@ type ApiMonitoringUpdateAlertDestinationRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	body *MonitoringAlertDestination
 }
 
@@ -24935,15 +19870,13 @@ func (r ApiMonitoringUpdateAlertDestinationRequest) Execute() (MonitoringAlertDe
  * UpdateAlertDestination Update AlertDestination object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringUpdateAlertDestinationRequest
  */
-func (a *MonitoringV1ApiService) UpdateAlertDestination(ctx _context.Context, oTenant string, oName string) ApiMonitoringUpdateAlertDestinationRequest {
+func (a *MonitoringV1ApiService) UpdateAlertDestination(ctx _context.Context, oTenant string) ApiMonitoringUpdateAlertDestinationRequest {
 	return ApiMonitoringUpdateAlertDestinationRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -24968,7 +19901,6 @@ func (a *MonitoringV1ApiService) UpdateAlertDestinationExecute(r ApiMonitoringUp
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/alertDestinations/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -25282,7 +20214,6 @@ type ApiMonitoringUpdateAlertPolicyRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	body *MonitoringAlertPolicy
 }
 
@@ -25299,15 +20230,13 @@ func (r ApiMonitoringUpdateAlertPolicyRequest) Execute() (MonitoringAlertPolicy,
  * UpdateAlertPolicy Update AlertPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringUpdateAlertPolicyRequest
  */
-func (a *MonitoringV1ApiService) UpdateAlertPolicy(ctx _context.Context, oTenant string, oName string) ApiMonitoringUpdateAlertPolicyRequest {
+func (a *MonitoringV1ApiService) UpdateAlertPolicy(ctx _context.Context, oTenant string) ApiMonitoringUpdateAlertPolicyRequest {
 	return ApiMonitoringUpdateAlertPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -25332,7 +20261,6 @@ func (a *MonitoringV1ApiService) UpdateAlertPolicyExecute(r ApiMonitoringUpdateA
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/alertPolicies/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -26002,7 +20930,6 @@ type ApiMonitoringUpdateEventPolicyRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	body *MonitoringEventPolicy
 }
 
@@ -26019,15 +20946,13 @@ func (r ApiMonitoringUpdateEventPolicyRequest) Execute() (MonitoringEventPolicy,
  * UpdateEventPolicy Update EventPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringUpdateEventPolicyRequest
  */
-func (a *MonitoringV1ApiService) UpdateEventPolicy(ctx _context.Context, oTenant string, oName string) ApiMonitoringUpdateEventPolicyRequest {
+func (a *MonitoringV1ApiService) UpdateEventPolicy(ctx _context.Context, oTenant string) ApiMonitoringUpdateEventPolicyRequest {
 	return ApiMonitoringUpdateEventPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -26052,7 +20977,6 @@ func (a *MonitoringV1ApiService) UpdateEventPolicyExecute(r ApiMonitoringUpdateE
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/event-policy/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -26366,7 +21290,6 @@ type ApiMonitoringUpdateFlowExportPolicyRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	body *MonitoringFlowExportPolicy
 }
 
@@ -26383,15 +21306,13 @@ func (r ApiMonitoringUpdateFlowExportPolicyRequest) Execute() (MonitoringFlowExp
  * UpdateFlowExportPolicy Update FlowExportPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringUpdateFlowExportPolicyRequest
  */
-func (a *MonitoringV1ApiService) UpdateFlowExportPolicy(ctx _context.Context, oTenant string, oName string) ApiMonitoringUpdateFlowExportPolicyRequest {
+func (a *MonitoringV1ApiService) UpdateFlowExportPolicy(ctx _context.Context, oTenant string) ApiMonitoringUpdateFlowExportPolicyRequest {
 	return ApiMonitoringUpdateFlowExportPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -26416,7 +21337,6 @@ func (a *MonitoringV1ApiService) UpdateFlowExportPolicyExecute(r ApiMonitoringUp
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/flowExportPolicy/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -26730,7 +21650,6 @@ type ApiMonitoringUpdateFwlogPolicyRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	body *MonitoringFwlogPolicy
 }
 
@@ -26747,15 +21666,13 @@ func (r ApiMonitoringUpdateFwlogPolicyRequest) Execute() (MonitoringFwlogPolicy,
  * UpdateFwlogPolicy Update FwlogPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringUpdateFwlogPolicyRequest
  */
-func (a *MonitoringV1ApiService) UpdateFwlogPolicy(ctx _context.Context, oTenant string, oName string) ApiMonitoringUpdateFwlogPolicyRequest {
+func (a *MonitoringV1ApiService) UpdateFwlogPolicy(ctx _context.Context, oTenant string) ApiMonitoringUpdateFwlogPolicyRequest {
 	return ApiMonitoringUpdateFwlogPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -26780,7 +21697,6 @@ func (a *MonitoringV1ApiService) UpdateFwlogPolicyExecute(r ApiMonitoringUpdateF
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/fwlogPolicy/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -27094,7 +22010,6 @@ type ApiMonitoringUpdateMirrorSessionRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	body *MonitoringMirrorSession
 }
 
@@ -27111,15 +22026,13 @@ func (r ApiMonitoringUpdateMirrorSessionRequest) Execute() (MonitoringMirrorSess
  * UpdateMirrorSession Update MirrorSession object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringUpdateMirrorSessionRequest
  */
-func (a *MonitoringV1ApiService) UpdateMirrorSession(ctx _context.Context, oTenant string, oName string) ApiMonitoringUpdateMirrorSessionRequest {
+func (a *MonitoringV1ApiService) UpdateMirrorSession(ctx _context.Context, oTenant string) ApiMonitoringUpdateMirrorSessionRequest {
 	return ApiMonitoringUpdateMirrorSessionRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -27144,7 +22057,6 @@ func (a *MonitoringV1ApiService) UpdateMirrorSessionExecute(r ApiMonitoringUpdat
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/MirrorSession/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -27458,7 +22370,6 @@ type ApiMonitoringUpdateStatsAlertPolicyRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	body *MonitoringStatsAlertPolicy
 }
 
@@ -27475,15 +22386,13 @@ func (r ApiMonitoringUpdateStatsAlertPolicyRequest) Execute() (MonitoringStatsAl
  * UpdateStatsAlertPolicy Update StatsAlertPolicy object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringUpdateStatsAlertPolicyRequest
  */
-func (a *MonitoringV1ApiService) UpdateStatsAlertPolicy(ctx _context.Context, oTenant string, oName string) ApiMonitoringUpdateStatsAlertPolicyRequest {
+func (a *MonitoringV1ApiService) UpdateStatsAlertPolicy(ctx _context.Context, oTenant string) ApiMonitoringUpdateStatsAlertPolicyRequest {
 	return ApiMonitoringUpdateStatsAlertPolicyRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -27508,7 +22417,6 @@ func (a *MonitoringV1ApiService) UpdateStatsAlertPolicyExecute(r ApiMonitoringUp
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/statsAlertPolicies/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -27822,7 +22730,6 @@ type ApiMonitoringUpdateTroubleshootingSessionRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oTenant string
-	oName string
 	body *MonitoringTroubleshootingSession
 }
 
@@ -27839,15 +22746,13 @@ func (r ApiMonitoringUpdateTroubleshootingSessionRequest) Execute() (MonitoringT
  * UpdateTroubleshootingSession Update TroubleshootingSession object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiMonitoringUpdateTroubleshootingSessionRequest
  */
-func (a *MonitoringV1ApiService) UpdateTroubleshootingSession(ctx _context.Context, oTenant string, oName string) ApiMonitoringUpdateTroubleshootingSessionRequest {
+func (a *MonitoringV1ApiService) UpdateTroubleshootingSession(ctx _context.Context, oTenant string) ApiMonitoringUpdateTroubleshootingSessionRequest {
 	return ApiMonitoringUpdateTroubleshootingSessionRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -27872,7 +22777,6 @@ func (a *MonitoringV1ApiService) UpdateTroubleshootingSessionExecute(r ApiMonito
 
 	localVarPath := localBasePath + "/configs/monitoring/v1/tenant/{O.Tenant}/TroubleshootingSession/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -28187,80 +23091,20 @@ type ApiMonitoringWatchAlertRequest struct {
 	ApiService *MonitoringV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringWatchAlertRequest) OName(oName string) ApiMonitoringWatchAlertRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringWatchAlertRequest) ONamespace(oNamespace string) ApiMonitoringWatchAlertRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringWatchAlertRequest) OGenerationId(oGenerationId string) ApiMonitoringWatchAlertRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringWatchAlertRequest) OResourceVersion(oResourceVersion string) ApiMonitoringWatchAlertRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringWatchAlertRequest) OUuid(oUuid string) ApiMonitoringWatchAlertRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringWatchAlertRequest) OCreationTime(oCreationTime time.Time) ApiMonitoringWatchAlertRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringWatchAlertRequest) OModTime(oModTime time.Time) ApiMonitoringWatchAlertRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringWatchAlertRequest) OSelfLink(oSelfLink string) ApiMonitoringWatchAlertRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringWatchAlertRequest) LabelSelector(labelSelector string) ApiMonitoringWatchAlertRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringWatchAlertRequest) FieldSelector(fieldSelector string) ApiMonitoringWatchAlertRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringWatchAlertRequest) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringWatchAlertRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringWatchAlertRequest) From(from int32) ApiMonitoringWatchAlertRequest {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringWatchAlertRequest) MaxResults(maxResults int32) ApiMonitoringWatchAlertRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringWatchAlertRequest) SortOrder(sortOrder string) ApiMonitoringWatchAlertRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringWatchAlertRequest) MetaOnly(metaOnly bool) ApiMonitoringWatchAlertRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -28311,47 +23155,11 @@ func (a *MonitoringV1ApiService) WatchAlertExecute(r ApiMonitoringWatchAlertRequ
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -28476,85 +23284,20 @@ type ApiMonitoringWatchAlert1Request struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringWatchAlert1Request) OName(oName string) ApiMonitoringWatchAlert1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringWatchAlert1Request) OTenant(oTenant string) ApiMonitoringWatchAlert1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiMonitoringWatchAlert1Request) ONamespace(oNamespace string) ApiMonitoringWatchAlert1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringWatchAlert1Request) OGenerationId(oGenerationId string) ApiMonitoringWatchAlert1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringWatchAlert1Request) OResourceVersion(oResourceVersion string) ApiMonitoringWatchAlert1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringWatchAlert1Request) OUuid(oUuid string) ApiMonitoringWatchAlert1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringWatchAlert1Request) OCreationTime(oCreationTime time.Time) ApiMonitoringWatchAlert1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringWatchAlert1Request) OModTime(oModTime time.Time) ApiMonitoringWatchAlert1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringWatchAlert1Request) OSelfLink(oSelfLink string) ApiMonitoringWatchAlert1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringWatchAlert1Request) LabelSelector(labelSelector string) ApiMonitoringWatchAlert1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringWatchAlert1Request) FieldSelector(fieldSelector string) ApiMonitoringWatchAlert1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringWatchAlert1Request) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringWatchAlert1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringWatchAlert1Request) From(from int32) ApiMonitoringWatchAlert1Request {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringWatchAlert1Request) MaxResults(maxResults int32) ApiMonitoringWatchAlert1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringWatchAlert1Request) SortOrder(sortOrder string) ApiMonitoringWatchAlert1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringWatchAlert1Request) MetaOnly(metaOnly bool) ApiMonitoringWatchAlert1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -28602,50 +23345,11 @@ func (a *MonitoringV1ApiService) WatchAlert1Execute(r ApiMonitoringWatchAlert1Re
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -28771,80 +23475,20 @@ type ApiMonitoringWatchAlertDestinationRequest struct {
 	ApiService *MonitoringV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringWatchAlertDestinationRequest) OName(oName string) ApiMonitoringWatchAlertDestinationRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringWatchAlertDestinationRequest) ONamespace(oNamespace string) ApiMonitoringWatchAlertDestinationRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringWatchAlertDestinationRequest) OGenerationId(oGenerationId string) ApiMonitoringWatchAlertDestinationRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringWatchAlertDestinationRequest) OResourceVersion(oResourceVersion string) ApiMonitoringWatchAlertDestinationRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringWatchAlertDestinationRequest) OUuid(oUuid string) ApiMonitoringWatchAlertDestinationRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringWatchAlertDestinationRequest) OCreationTime(oCreationTime time.Time) ApiMonitoringWatchAlertDestinationRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringWatchAlertDestinationRequest) OModTime(oModTime time.Time) ApiMonitoringWatchAlertDestinationRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringWatchAlertDestinationRequest) OSelfLink(oSelfLink string) ApiMonitoringWatchAlertDestinationRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringWatchAlertDestinationRequest) LabelSelector(labelSelector string) ApiMonitoringWatchAlertDestinationRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringWatchAlertDestinationRequest) FieldSelector(fieldSelector string) ApiMonitoringWatchAlertDestinationRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringWatchAlertDestinationRequest) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringWatchAlertDestinationRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringWatchAlertDestinationRequest) From(from int32) ApiMonitoringWatchAlertDestinationRequest {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringWatchAlertDestinationRequest) MaxResults(maxResults int32) ApiMonitoringWatchAlertDestinationRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringWatchAlertDestinationRequest) SortOrder(sortOrder string) ApiMonitoringWatchAlertDestinationRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringWatchAlertDestinationRequest) MetaOnly(metaOnly bool) ApiMonitoringWatchAlertDestinationRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -28895,47 +23539,11 @@ func (a *MonitoringV1ApiService) WatchAlertDestinationExecute(r ApiMonitoringWat
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -29060,85 +23668,20 @@ type ApiMonitoringWatchAlertDestination1Request struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringWatchAlertDestination1Request) OName(oName string) ApiMonitoringWatchAlertDestination1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringWatchAlertDestination1Request) OTenant(oTenant string) ApiMonitoringWatchAlertDestination1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiMonitoringWatchAlertDestination1Request) ONamespace(oNamespace string) ApiMonitoringWatchAlertDestination1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringWatchAlertDestination1Request) OGenerationId(oGenerationId string) ApiMonitoringWatchAlertDestination1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringWatchAlertDestination1Request) OResourceVersion(oResourceVersion string) ApiMonitoringWatchAlertDestination1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringWatchAlertDestination1Request) OUuid(oUuid string) ApiMonitoringWatchAlertDestination1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringWatchAlertDestination1Request) OCreationTime(oCreationTime time.Time) ApiMonitoringWatchAlertDestination1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringWatchAlertDestination1Request) OModTime(oModTime time.Time) ApiMonitoringWatchAlertDestination1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringWatchAlertDestination1Request) OSelfLink(oSelfLink string) ApiMonitoringWatchAlertDestination1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringWatchAlertDestination1Request) LabelSelector(labelSelector string) ApiMonitoringWatchAlertDestination1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringWatchAlertDestination1Request) FieldSelector(fieldSelector string) ApiMonitoringWatchAlertDestination1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringWatchAlertDestination1Request) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringWatchAlertDestination1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringWatchAlertDestination1Request) From(from int32) ApiMonitoringWatchAlertDestination1Request {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringWatchAlertDestination1Request) MaxResults(maxResults int32) ApiMonitoringWatchAlertDestination1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringWatchAlertDestination1Request) SortOrder(sortOrder string) ApiMonitoringWatchAlertDestination1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringWatchAlertDestination1Request) MetaOnly(metaOnly bool) ApiMonitoringWatchAlertDestination1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -29186,50 +23729,11 @@ func (a *MonitoringV1ApiService) WatchAlertDestination1Execute(r ApiMonitoringWa
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -29355,80 +23859,20 @@ type ApiMonitoringWatchAlertPolicyRequest struct {
 	ApiService *MonitoringV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringWatchAlertPolicyRequest) OName(oName string) ApiMonitoringWatchAlertPolicyRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringWatchAlertPolicyRequest) ONamespace(oNamespace string) ApiMonitoringWatchAlertPolicyRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringWatchAlertPolicyRequest) OGenerationId(oGenerationId string) ApiMonitoringWatchAlertPolicyRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringWatchAlertPolicyRequest) OResourceVersion(oResourceVersion string) ApiMonitoringWatchAlertPolicyRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringWatchAlertPolicyRequest) OUuid(oUuid string) ApiMonitoringWatchAlertPolicyRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringWatchAlertPolicyRequest) OCreationTime(oCreationTime time.Time) ApiMonitoringWatchAlertPolicyRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringWatchAlertPolicyRequest) OModTime(oModTime time.Time) ApiMonitoringWatchAlertPolicyRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringWatchAlertPolicyRequest) OSelfLink(oSelfLink string) ApiMonitoringWatchAlertPolicyRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringWatchAlertPolicyRequest) LabelSelector(labelSelector string) ApiMonitoringWatchAlertPolicyRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringWatchAlertPolicyRequest) FieldSelector(fieldSelector string) ApiMonitoringWatchAlertPolicyRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringWatchAlertPolicyRequest) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringWatchAlertPolicyRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringWatchAlertPolicyRequest) From(from int32) ApiMonitoringWatchAlertPolicyRequest {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringWatchAlertPolicyRequest) MaxResults(maxResults int32) ApiMonitoringWatchAlertPolicyRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringWatchAlertPolicyRequest) SortOrder(sortOrder string) ApiMonitoringWatchAlertPolicyRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringWatchAlertPolicyRequest) MetaOnly(metaOnly bool) ApiMonitoringWatchAlertPolicyRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -29479,47 +23923,11 @@ func (a *MonitoringV1ApiService) WatchAlertPolicyExecute(r ApiMonitoringWatchAle
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -29644,85 +24052,20 @@ type ApiMonitoringWatchAlertPolicy1Request struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringWatchAlertPolicy1Request) OName(oName string) ApiMonitoringWatchAlertPolicy1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringWatchAlertPolicy1Request) OTenant(oTenant string) ApiMonitoringWatchAlertPolicy1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiMonitoringWatchAlertPolicy1Request) ONamespace(oNamespace string) ApiMonitoringWatchAlertPolicy1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringWatchAlertPolicy1Request) OGenerationId(oGenerationId string) ApiMonitoringWatchAlertPolicy1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringWatchAlertPolicy1Request) OResourceVersion(oResourceVersion string) ApiMonitoringWatchAlertPolicy1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringWatchAlertPolicy1Request) OUuid(oUuid string) ApiMonitoringWatchAlertPolicy1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringWatchAlertPolicy1Request) OCreationTime(oCreationTime time.Time) ApiMonitoringWatchAlertPolicy1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringWatchAlertPolicy1Request) OModTime(oModTime time.Time) ApiMonitoringWatchAlertPolicy1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringWatchAlertPolicy1Request) OSelfLink(oSelfLink string) ApiMonitoringWatchAlertPolicy1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringWatchAlertPolicy1Request) LabelSelector(labelSelector string) ApiMonitoringWatchAlertPolicy1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringWatchAlertPolicy1Request) FieldSelector(fieldSelector string) ApiMonitoringWatchAlertPolicy1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringWatchAlertPolicy1Request) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringWatchAlertPolicy1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringWatchAlertPolicy1Request) From(from int32) ApiMonitoringWatchAlertPolicy1Request {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringWatchAlertPolicy1Request) MaxResults(maxResults int32) ApiMonitoringWatchAlertPolicy1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringWatchAlertPolicy1Request) SortOrder(sortOrder string) ApiMonitoringWatchAlertPolicy1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringWatchAlertPolicy1Request) MetaOnly(metaOnly bool) ApiMonitoringWatchAlertPolicy1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -29770,50 +24113,11 @@ func (a *MonitoringV1ApiService) WatchAlertPolicy1Execute(r ApiMonitoringWatchAl
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -29939,80 +24243,20 @@ type ApiMonitoringWatchArchiveRequestRequest struct {
 	ApiService *MonitoringV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringWatchArchiveRequestRequest) OName(oName string) ApiMonitoringWatchArchiveRequestRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringWatchArchiveRequestRequest) ONamespace(oNamespace string) ApiMonitoringWatchArchiveRequestRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringWatchArchiveRequestRequest) OGenerationId(oGenerationId string) ApiMonitoringWatchArchiveRequestRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringWatchArchiveRequestRequest) OResourceVersion(oResourceVersion string) ApiMonitoringWatchArchiveRequestRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringWatchArchiveRequestRequest) OUuid(oUuid string) ApiMonitoringWatchArchiveRequestRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringWatchArchiveRequestRequest) OCreationTime(oCreationTime time.Time) ApiMonitoringWatchArchiveRequestRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringWatchArchiveRequestRequest) OModTime(oModTime time.Time) ApiMonitoringWatchArchiveRequestRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringWatchArchiveRequestRequest) OSelfLink(oSelfLink string) ApiMonitoringWatchArchiveRequestRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringWatchArchiveRequestRequest) LabelSelector(labelSelector string) ApiMonitoringWatchArchiveRequestRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringWatchArchiveRequestRequest) FieldSelector(fieldSelector string) ApiMonitoringWatchArchiveRequestRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringWatchArchiveRequestRequest) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringWatchArchiveRequestRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringWatchArchiveRequestRequest) From(from int32) ApiMonitoringWatchArchiveRequestRequest {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringWatchArchiveRequestRequest) MaxResults(maxResults int32) ApiMonitoringWatchArchiveRequestRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringWatchArchiveRequestRequest) SortOrder(sortOrder string) ApiMonitoringWatchArchiveRequestRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringWatchArchiveRequestRequest) MetaOnly(metaOnly bool) ApiMonitoringWatchArchiveRequestRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -30063,47 +24307,11 @@ func (a *MonitoringV1ApiService) WatchArchiveRequestExecute(r ApiMonitoringWatch
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -30228,85 +24436,20 @@ type ApiMonitoringWatchArchiveRequest1Request struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringWatchArchiveRequest1Request) OName(oName string) ApiMonitoringWatchArchiveRequest1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringWatchArchiveRequest1Request) OTenant(oTenant string) ApiMonitoringWatchArchiveRequest1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiMonitoringWatchArchiveRequest1Request) ONamespace(oNamespace string) ApiMonitoringWatchArchiveRequest1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringWatchArchiveRequest1Request) OGenerationId(oGenerationId string) ApiMonitoringWatchArchiveRequest1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringWatchArchiveRequest1Request) OResourceVersion(oResourceVersion string) ApiMonitoringWatchArchiveRequest1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringWatchArchiveRequest1Request) OUuid(oUuid string) ApiMonitoringWatchArchiveRequest1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringWatchArchiveRequest1Request) OCreationTime(oCreationTime time.Time) ApiMonitoringWatchArchiveRequest1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringWatchArchiveRequest1Request) OModTime(oModTime time.Time) ApiMonitoringWatchArchiveRequest1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringWatchArchiveRequest1Request) OSelfLink(oSelfLink string) ApiMonitoringWatchArchiveRequest1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringWatchArchiveRequest1Request) LabelSelector(labelSelector string) ApiMonitoringWatchArchiveRequest1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringWatchArchiveRequest1Request) FieldSelector(fieldSelector string) ApiMonitoringWatchArchiveRequest1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringWatchArchiveRequest1Request) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringWatchArchiveRequest1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringWatchArchiveRequest1Request) From(from int32) ApiMonitoringWatchArchiveRequest1Request {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringWatchArchiveRequest1Request) MaxResults(maxResults int32) ApiMonitoringWatchArchiveRequest1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringWatchArchiveRequest1Request) SortOrder(sortOrder string) ApiMonitoringWatchArchiveRequest1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringWatchArchiveRequest1Request) MetaOnly(metaOnly bool) ApiMonitoringWatchArchiveRequest1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -30354,50 +24497,11 @@ func (a *MonitoringV1ApiService) WatchArchiveRequest1Execute(r ApiMonitoringWatc
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -30523,80 +24627,20 @@ type ApiMonitoringWatchAuditPolicyRequest struct {
 	ApiService *MonitoringV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringWatchAuditPolicyRequest) OName(oName string) ApiMonitoringWatchAuditPolicyRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringWatchAuditPolicyRequest) ONamespace(oNamespace string) ApiMonitoringWatchAuditPolicyRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringWatchAuditPolicyRequest) OGenerationId(oGenerationId string) ApiMonitoringWatchAuditPolicyRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringWatchAuditPolicyRequest) OResourceVersion(oResourceVersion string) ApiMonitoringWatchAuditPolicyRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringWatchAuditPolicyRequest) OUuid(oUuid string) ApiMonitoringWatchAuditPolicyRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringWatchAuditPolicyRequest) OCreationTime(oCreationTime time.Time) ApiMonitoringWatchAuditPolicyRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringWatchAuditPolicyRequest) OModTime(oModTime time.Time) ApiMonitoringWatchAuditPolicyRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringWatchAuditPolicyRequest) OSelfLink(oSelfLink string) ApiMonitoringWatchAuditPolicyRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringWatchAuditPolicyRequest) LabelSelector(labelSelector string) ApiMonitoringWatchAuditPolicyRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringWatchAuditPolicyRequest) FieldSelector(fieldSelector string) ApiMonitoringWatchAuditPolicyRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringWatchAuditPolicyRequest) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringWatchAuditPolicyRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringWatchAuditPolicyRequest) From(from int32) ApiMonitoringWatchAuditPolicyRequest {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringWatchAuditPolicyRequest) MaxResults(maxResults int32) ApiMonitoringWatchAuditPolicyRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringWatchAuditPolicyRequest) SortOrder(sortOrder string) ApiMonitoringWatchAuditPolicyRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringWatchAuditPolicyRequest) MetaOnly(metaOnly bool) ApiMonitoringWatchAuditPolicyRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -30647,47 +24691,11 @@ func (a *MonitoringV1ApiService) WatchAuditPolicyExecute(r ApiMonitoringWatchAud
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -30812,85 +24820,20 @@ type ApiMonitoringWatchAuditPolicy1Request struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringWatchAuditPolicy1Request) OName(oName string) ApiMonitoringWatchAuditPolicy1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringWatchAuditPolicy1Request) OTenant(oTenant string) ApiMonitoringWatchAuditPolicy1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiMonitoringWatchAuditPolicy1Request) ONamespace(oNamespace string) ApiMonitoringWatchAuditPolicy1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringWatchAuditPolicy1Request) OGenerationId(oGenerationId string) ApiMonitoringWatchAuditPolicy1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringWatchAuditPolicy1Request) OResourceVersion(oResourceVersion string) ApiMonitoringWatchAuditPolicy1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringWatchAuditPolicy1Request) OUuid(oUuid string) ApiMonitoringWatchAuditPolicy1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringWatchAuditPolicy1Request) OCreationTime(oCreationTime time.Time) ApiMonitoringWatchAuditPolicy1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringWatchAuditPolicy1Request) OModTime(oModTime time.Time) ApiMonitoringWatchAuditPolicy1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringWatchAuditPolicy1Request) OSelfLink(oSelfLink string) ApiMonitoringWatchAuditPolicy1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringWatchAuditPolicy1Request) LabelSelector(labelSelector string) ApiMonitoringWatchAuditPolicy1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringWatchAuditPolicy1Request) FieldSelector(fieldSelector string) ApiMonitoringWatchAuditPolicy1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringWatchAuditPolicy1Request) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringWatchAuditPolicy1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringWatchAuditPolicy1Request) From(from int32) ApiMonitoringWatchAuditPolicy1Request {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringWatchAuditPolicy1Request) MaxResults(maxResults int32) ApiMonitoringWatchAuditPolicy1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringWatchAuditPolicy1Request) SortOrder(sortOrder string) ApiMonitoringWatchAuditPolicy1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringWatchAuditPolicy1Request) MetaOnly(metaOnly bool) ApiMonitoringWatchAuditPolicy1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -30938,50 +24881,11 @@ func (a *MonitoringV1ApiService) WatchAuditPolicy1Execute(r ApiMonitoringWatchAu
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -31107,80 +25011,20 @@ type ApiMonitoringWatchEventPolicyRequest struct {
 	ApiService *MonitoringV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringWatchEventPolicyRequest) OName(oName string) ApiMonitoringWatchEventPolicyRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringWatchEventPolicyRequest) ONamespace(oNamespace string) ApiMonitoringWatchEventPolicyRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringWatchEventPolicyRequest) OGenerationId(oGenerationId string) ApiMonitoringWatchEventPolicyRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringWatchEventPolicyRequest) OResourceVersion(oResourceVersion string) ApiMonitoringWatchEventPolicyRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringWatchEventPolicyRequest) OUuid(oUuid string) ApiMonitoringWatchEventPolicyRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringWatchEventPolicyRequest) OCreationTime(oCreationTime time.Time) ApiMonitoringWatchEventPolicyRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringWatchEventPolicyRequest) OModTime(oModTime time.Time) ApiMonitoringWatchEventPolicyRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringWatchEventPolicyRequest) OSelfLink(oSelfLink string) ApiMonitoringWatchEventPolicyRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringWatchEventPolicyRequest) LabelSelector(labelSelector string) ApiMonitoringWatchEventPolicyRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringWatchEventPolicyRequest) FieldSelector(fieldSelector string) ApiMonitoringWatchEventPolicyRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringWatchEventPolicyRequest) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringWatchEventPolicyRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringWatchEventPolicyRequest) From(from int32) ApiMonitoringWatchEventPolicyRequest {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringWatchEventPolicyRequest) MaxResults(maxResults int32) ApiMonitoringWatchEventPolicyRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringWatchEventPolicyRequest) SortOrder(sortOrder string) ApiMonitoringWatchEventPolicyRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringWatchEventPolicyRequest) MetaOnly(metaOnly bool) ApiMonitoringWatchEventPolicyRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -31231,47 +25075,11 @@ func (a *MonitoringV1ApiService) WatchEventPolicyExecute(r ApiMonitoringWatchEve
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -31396,85 +25204,20 @@ type ApiMonitoringWatchEventPolicy1Request struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringWatchEventPolicy1Request) OName(oName string) ApiMonitoringWatchEventPolicy1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringWatchEventPolicy1Request) OTenant(oTenant string) ApiMonitoringWatchEventPolicy1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiMonitoringWatchEventPolicy1Request) ONamespace(oNamespace string) ApiMonitoringWatchEventPolicy1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringWatchEventPolicy1Request) OGenerationId(oGenerationId string) ApiMonitoringWatchEventPolicy1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringWatchEventPolicy1Request) OResourceVersion(oResourceVersion string) ApiMonitoringWatchEventPolicy1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringWatchEventPolicy1Request) OUuid(oUuid string) ApiMonitoringWatchEventPolicy1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringWatchEventPolicy1Request) OCreationTime(oCreationTime time.Time) ApiMonitoringWatchEventPolicy1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringWatchEventPolicy1Request) OModTime(oModTime time.Time) ApiMonitoringWatchEventPolicy1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringWatchEventPolicy1Request) OSelfLink(oSelfLink string) ApiMonitoringWatchEventPolicy1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringWatchEventPolicy1Request) LabelSelector(labelSelector string) ApiMonitoringWatchEventPolicy1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringWatchEventPolicy1Request) FieldSelector(fieldSelector string) ApiMonitoringWatchEventPolicy1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringWatchEventPolicy1Request) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringWatchEventPolicy1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringWatchEventPolicy1Request) From(from int32) ApiMonitoringWatchEventPolicy1Request {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringWatchEventPolicy1Request) MaxResults(maxResults int32) ApiMonitoringWatchEventPolicy1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringWatchEventPolicy1Request) SortOrder(sortOrder string) ApiMonitoringWatchEventPolicy1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringWatchEventPolicy1Request) MetaOnly(metaOnly bool) ApiMonitoringWatchEventPolicy1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -31522,50 +25265,11 @@ func (a *MonitoringV1ApiService) WatchEventPolicy1Execute(r ApiMonitoringWatchEv
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -31691,80 +25395,20 @@ type ApiMonitoringWatchFlowExportPolicyRequest struct {
 	ApiService *MonitoringV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringWatchFlowExportPolicyRequest) OName(oName string) ApiMonitoringWatchFlowExportPolicyRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringWatchFlowExportPolicyRequest) ONamespace(oNamespace string) ApiMonitoringWatchFlowExportPolicyRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringWatchFlowExportPolicyRequest) OGenerationId(oGenerationId string) ApiMonitoringWatchFlowExportPolicyRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringWatchFlowExportPolicyRequest) OResourceVersion(oResourceVersion string) ApiMonitoringWatchFlowExportPolicyRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringWatchFlowExportPolicyRequest) OUuid(oUuid string) ApiMonitoringWatchFlowExportPolicyRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringWatchFlowExportPolicyRequest) OCreationTime(oCreationTime time.Time) ApiMonitoringWatchFlowExportPolicyRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringWatchFlowExportPolicyRequest) OModTime(oModTime time.Time) ApiMonitoringWatchFlowExportPolicyRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringWatchFlowExportPolicyRequest) OSelfLink(oSelfLink string) ApiMonitoringWatchFlowExportPolicyRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringWatchFlowExportPolicyRequest) LabelSelector(labelSelector string) ApiMonitoringWatchFlowExportPolicyRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringWatchFlowExportPolicyRequest) FieldSelector(fieldSelector string) ApiMonitoringWatchFlowExportPolicyRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringWatchFlowExportPolicyRequest) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringWatchFlowExportPolicyRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringWatchFlowExportPolicyRequest) From(from int32) ApiMonitoringWatchFlowExportPolicyRequest {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringWatchFlowExportPolicyRequest) MaxResults(maxResults int32) ApiMonitoringWatchFlowExportPolicyRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringWatchFlowExportPolicyRequest) SortOrder(sortOrder string) ApiMonitoringWatchFlowExportPolicyRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringWatchFlowExportPolicyRequest) MetaOnly(metaOnly bool) ApiMonitoringWatchFlowExportPolicyRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -31815,47 +25459,11 @@ func (a *MonitoringV1ApiService) WatchFlowExportPolicyExecute(r ApiMonitoringWat
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -31980,85 +25588,20 @@ type ApiMonitoringWatchFlowExportPolicy1Request struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringWatchFlowExportPolicy1Request) OName(oName string) ApiMonitoringWatchFlowExportPolicy1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringWatchFlowExportPolicy1Request) OTenant(oTenant string) ApiMonitoringWatchFlowExportPolicy1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiMonitoringWatchFlowExportPolicy1Request) ONamespace(oNamespace string) ApiMonitoringWatchFlowExportPolicy1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringWatchFlowExportPolicy1Request) OGenerationId(oGenerationId string) ApiMonitoringWatchFlowExportPolicy1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringWatchFlowExportPolicy1Request) OResourceVersion(oResourceVersion string) ApiMonitoringWatchFlowExportPolicy1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringWatchFlowExportPolicy1Request) OUuid(oUuid string) ApiMonitoringWatchFlowExportPolicy1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringWatchFlowExportPolicy1Request) OCreationTime(oCreationTime time.Time) ApiMonitoringWatchFlowExportPolicy1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringWatchFlowExportPolicy1Request) OModTime(oModTime time.Time) ApiMonitoringWatchFlowExportPolicy1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringWatchFlowExportPolicy1Request) OSelfLink(oSelfLink string) ApiMonitoringWatchFlowExportPolicy1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringWatchFlowExportPolicy1Request) LabelSelector(labelSelector string) ApiMonitoringWatchFlowExportPolicy1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringWatchFlowExportPolicy1Request) FieldSelector(fieldSelector string) ApiMonitoringWatchFlowExportPolicy1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringWatchFlowExportPolicy1Request) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringWatchFlowExportPolicy1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringWatchFlowExportPolicy1Request) From(from int32) ApiMonitoringWatchFlowExportPolicy1Request {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringWatchFlowExportPolicy1Request) MaxResults(maxResults int32) ApiMonitoringWatchFlowExportPolicy1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringWatchFlowExportPolicy1Request) SortOrder(sortOrder string) ApiMonitoringWatchFlowExportPolicy1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringWatchFlowExportPolicy1Request) MetaOnly(metaOnly bool) ApiMonitoringWatchFlowExportPolicy1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -32106,50 +25649,11 @@ func (a *MonitoringV1ApiService) WatchFlowExportPolicy1Execute(r ApiMonitoringWa
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -32275,80 +25779,20 @@ type ApiMonitoringWatchFwlogPolicyRequest struct {
 	ApiService *MonitoringV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringWatchFwlogPolicyRequest) OName(oName string) ApiMonitoringWatchFwlogPolicyRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringWatchFwlogPolicyRequest) ONamespace(oNamespace string) ApiMonitoringWatchFwlogPolicyRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringWatchFwlogPolicyRequest) OGenerationId(oGenerationId string) ApiMonitoringWatchFwlogPolicyRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringWatchFwlogPolicyRequest) OResourceVersion(oResourceVersion string) ApiMonitoringWatchFwlogPolicyRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringWatchFwlogPolicyRequest) OUuid(oUuid string) ApiMonitoringWatchFwlogPolicyRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringWatchFwlogPolicyRequest) OCreationTime(oCreationTime time.Time) ApiMonitoringWatchFwlogPolicyRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringWatchFwlogPolicyRequest) OModTime(oModTime time.Time) ApiMonitoringWatchFwlogPolicyRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringWatchFwlogPolicyRequest) OSelfLink(oSelfLink string) ApiMonitoringWatchFwlogPolicyRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringWatchFwlogPolicyRequest) LabelSelector(labelSelector string) ApiMonitoringWatchFwlogPolicyRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringWatchFwlogPolicyRequest) FieldSelector(fieldSelector string) ApiMonitoringWatchFwlogPolicyRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringWatchFwlogPolicyRequest) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringWatchFwlogPolicyRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringWatchFwlogPolicyRequest) From(from int32) ApiMonitoringWatchFwlogPolicyRequest {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringWatchFwlogPolicyRequest) MaxResults(maxResults int32) ApiMonitoringWatchFwlogPolicyRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringWatchFwlogPolicyRequest) SortOrder(sortOrder string) ApiMonitoringWatchFwlogPolicyRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringWatchFwlogPolicyRequest) MetaOnly(metaOnly bool) ApiMonitoringWatchFwlogPolicyRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -32399,47 +25843,11 @@ func (a *MonitoringV1ApiService) WatchFwlogPolicyExecute(r ApiMonitoringWatchFwl
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -32564,85 +25972,20 @@ type ApiMonitoringWatchFwlogPolicy1Request struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringWatchFwlogPolicy1Request) OName(oName string) ApiMonitoringWatchFwlogPolicy1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringWatchFwlogPolicy1Request) OTenant(oTenant string) ApiMonitoringWatchFwlogPolicy1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiMonitoringWatchFwlogPolicy1Request) ONamespace(oNamespace string) ApiMonitoringWatchFwlogPolicy1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringWatchFwlogPolicy1Request) OGenerationId(oGenerationId string) ApiMonitoringWatchFwlogPolicy1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringWatchFwlogPolicy1Request) OResourceVersion(oResourceVersion string) ApiMonitoringWatchFwlogPolicy1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringWatchFwlogPolicy1Request) OUuid(oUuid string) ApiMonitoringWatchFwlogPolicy1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringWatchFwlogPolicy1Request) OCreationTime(oCreationTime time.Time) ApiMonitoringWatchFwlogPolicy1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringWatchFwlogPolicy1Request) OModTime(oModTime time.Time) ApiMonitoringWatchFwlogPolicy1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringWatchFwlogPolicy1Request) OSelfLink(oSelfLink string) ApiMonitoringWatchFwlogPolicy1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringWatchFwlogPolicy1Request) LabelSelector(labelSelector string) ApiMonitoringWatchFwlogPolicy1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringWatchFwlogPolicy1Request) FieldSelector(fieldSelector string) ApiMonitoringWatchFwlogPolicy1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringWatchFwlogPolicy1Request) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringWatchFwlogPolicy1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringWatchFwlogPolicy1Request) From(from int32) ApiMonitoringWatchFwlogPolicy1Request {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringWatchFwlogPolicy1Request) MaxResults(maxResults int32) ApiMonitoringWatchFwlogPolicy1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringWatchFwlogPolicy1Request) SortOrder(sortOrder string) ApiMonitoringWatchFwlogPolicy1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringWatchFwlogPolicy1Request) MetaOnly(metaOnly bool) ApiMonitoringWatchFwlogPolicy1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -32690,50 +26033,11 @@ func (a *MonitoringV1ApiService) WatchFwlogPolicy1Execute(r ApiMonitoringWatchFw
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -32859,80 +26163,20 @@ type ApiMonitoringWatchMirrorSessionRequest struct {
 	ApiService *MonitoringV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringWatchMirrorSessionRequest) OName(oName string) ApiMonitoringWatchMirrorSessionRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringWatchMirrorSessionRequest) ONamespace(oNamespace string) ApiMonitoringWatchMirrorSessionRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringWatchMirrorSessionRequest) OGenerationId(oGenerationId string) ApiMonitoringWatchMirrorSessionRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringWatchMirrorSessionRequest) OResourceVersion(oResourceVersion string) ApiMonitoringWatchMirrorSessionRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringWatchMirrorSessionRequest) OUuid(oUuid string) ApiMonitoringWatchMirrorSessionRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringWatchMirrorSessionRequest) OCreationTime(oCreationTime time.Time) ApiMonitoringWatchMirrorSessionRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringWatchMirrorSessionRequest) OModTime(oModTime time.Time) ApiMonitoringWatchMirrorSessionRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringWatchMirrorSessionRequest) OSelfLink(oSelfLink string) ApiMonitoringWatchMirrorSessionRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringWatchMirrorSessionRequest) LabelSelector(labelSelector string) ApiMonitoringWatchMirrorSessionRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringWatchMirrorSessionRequest) FieldSelector(fieldSelector string) ApiMonitoringWatchMirrorSessionRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringWatchMirrorSessionRequest) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringWatchMirrorSessionRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringWatchMirrorSessionRequest) From(from int32) ApiMonitoringWatchMirrorSessionRequest {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringWatchMirrorSessionRequest) MaxResults(maxResults int32) ApiMonitoringWatchMirrorSessionRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringWatchMirrorSessionRequest) SortOrder(sortOrder string) ApiMonitoringWatchMirrorSessionRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringWatchMirrorSessionRequest) MetaOnly(metaOnly bool) ApiMonitoringWatchMirrorSessionRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -32983,47 +26227,11 @@ func (a *MonitoringV1ApiService) WatchMirrorSessionExecute(r ApiMonitoringWatchM
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -33148,85 +26356,20 @@ type ApiMonitoringWatchMirrorSession1Request struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringWatchMirrorSession1Request) OName(oName string) ApiMonitoringWatchMirrorSession1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringWatchMirrorSession1Request) OTenant(oTenant string) ApiMonitoringWatchMirrorSession1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiMonitoringWatchMirrorSession1Request) ONamespace(oNamespace string) ApiMonitoringWatchMirrorSession1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringWatchMirrorSession1Request) OGenerationId(oGenerationId string) ApiMonitoringWatchMirrorSession1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringWatchMirrorSession1Request) OResourceVersion(oResourceVersion string) ApiMonitoringWatchMirrorSession1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringWatchMirrorSession1Request) OUuid(oUuid string) ApiMonitoringWatchMirrorSession1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringWatchMirrorSession1Request) OCreationTime(oCreationTime time.Time) ApiMonitoringWatchMirrorSession1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringWatchMirrorSession1Request) OModTime(oModTime time.Time) ApiMonitoringWatchMirrorSession1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringWatchMirrorSession1Request) OSelfLink(oSelfLink string) ApiMonitoringWatchMirrorSession1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringWatchMirrorSession1Request) LabelSelector(labelSelector string) ApiMonitoringWatchMirrorSession1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringWatchMirrorSession1Request) FieldSelector(fieldSelector string) ApiMonitoringWatchMirrorSession1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringWatchMirrorSession1Request) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringWatchMirrorSession1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringWatchMirrorSession1Request) From(from int32) ApiMonitoringWatchMirrorSession1Request {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringWatchMirrorSession1Request) MaxResults(maxResults int32) ApiMonitoringWatchMirrorSession1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringWatchMirrorSession1Request) SortOrder(sortOrder string) ApiMonitoringWatchMirrorSession1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringWatchMirrorSession1Request) MetaOnly(metaOnly bool) ApiMonitoringWatchMirrorSession1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -33274,50 +26417,11 @@ func (a *MonitoringV1ApiService) WatchMirrorSession1Execute(r ApiMonitoringWatch
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -33443,80 +26547,20 @@ type ApiMonitoringWatchStatsAlertPolicyRequest struct {
 	ApiService *MonitoringV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringWatchStatsAlertPolicyRequest) OName(oName string) ApiMonitoringWatchStatsAlertPolicyRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringWatchStatsAlertPolicyRequest) ONamespace(oNamespace string) ApiMonitoringWatchStatsAlertPolicyRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringWatchStatsAlertPolicyRequest) OGenerationId(oGenerationId string) ApiMonitoringWatchStatsAlertPolicyRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringWatchStatsAlertPolicyRequest) OResourceVersion(oResourceVersion string) ApiMonitoringWatchStatsAlertPolicyRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringWatchStatsAlertPolicyRequest) OUuid(oUuid string) ApiMonitoringWatchStatsAlertPolicyRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringWatchStatsAlertPolicyRequest) OCreationTime(oCreationTime time.Time) ApiMonitoringWatchStatsAlertPolicyRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringWatchStatsAlertPolicyRequest) OModTime(oModTime time.Time) ApiMonitoringWatchStatsAlertPolicyRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringWatchStatsAlertPolicyRequest) OSelfLink(oSelfLink string) ApiMonitoringWatchStatsAlertPolicyRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringWatchStatsAlertPolicyRequest) LabelSelector(labelSelector string) ApiMonitoringWatchStatsAlertPolicyRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringWatchStatsAlertPolicyRequest) FieldSelector(fieldSelector string) ApiMonitoringWatchStatsAlertPolicyRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringWatchStatsAlertPolicyRequest) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringWatchStatsAlertPolicyRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringWatchStatsAlertPolicyRequest) From(from int32) ApiMonitoringWatchStatsAlertPolicyRequest {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringWatchStatsAlertPolicyRequest) MaxResults(maxResults int32) ApiMonitoringWatchStatsAlertPolicyRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringWatchStatsAlertPolicyRequest) SortOrder(sortOrder string) ApiMonitoringWatchStatsAlertPolicyRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringWatchStatsAlertPolicyRequest) MetaOnly(metaOnly bool) ApiMonitoringWatchStatsAlertPolicyRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -33567,47 +26611,11 @@ func (a *MonitoringV1ApiService) WatchStatsAlertPolicyExecute(r ApiMonitoringWat
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -33732,85 +26740,20 @@ type ApiMonitoringWatchStatsAlertPolicy1Request struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringWatchStatsAlertPolicy1Request) OName(oName string) ApiMonitoringWatchStatsAlertPolicy1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringWatchStatsAlertPolicy1Request) OTenant(oTenant string) ApiMonitoringWatchStatsAlertPolicy1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiMonitoringWatchStatsAlertPolicy1Request) ONamespace(oNamespace string) ApiMonitoringWatchStatsAlertPolicy1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringWatchStatsAlertPolicy1Request) OGenerationId(oGenerationId string) ApiMonitoringWatchStatsAlertPolicy1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringWatchStatsAlertPolicy1Request) OResourceVersion(oResourceVersion string) ApiMonitoringWatchStatsAlertPolicy1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringWatchStatsAlertPolicy1Request) OUuid(oUuid string) ApiMonitoringWatchStatsAlertPolicy1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringWatchStatsAlertPolicy1Request) OCreationTime(oCreationTime time.Time) ApiMonitoringWatchStatsAlertPolicy1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringWatchStatsAlertPolicy1Request) OModTime(oModTime time.Time) ApiMonitoringWatchStatsAlertPolicy1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringWatchStatsAlertPolicy1Request) OSelfLink(oSelfLink string) ApiMonitoringWatchStatsAlertPolicy1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringWatchStatsAlertPolicy1Request) LabelSelector(labelSelector string) ApiMonitoringWatchStatsAlertPolicy1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringWatchStatsAlertPolicy1Request) FieldSelector(fieldSelector string) ApiMonitoringWatchStatsAlertPolicy1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringWatchStatsAlertPolicy1Request) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringWatchStatsAlertPolicy1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringWatchStatsAlertPolicy1Request) From(from int32) ApiMonitoringWatchStatsAlertPolicy1Request {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringWatchStatsAlertPolicy1Request) MaxResults(maxResults int32) ApiMonitoringWatchStatsAlertPolicy1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringWatchStatsAlertPolicy1Request) SortOrder(sortOrder string) ApiMonitoringWatchStatsAlertPolicy1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringWatchStatsAlertPolicy1Request) MetaOnly(metaOnly bool) ApiMonitoringWatchStatsAlertPolicy1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -33858,50 +26801,11 @@ func (a *MonitoringV1ApiService) WatchStatsAlertPolicy1Execute(r ApiMonitoringWa
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -34026,85 +26930,20 @@ type ApiMonitoringWatchTechSupportRequestRequest struct {
 	ctx _context.Context
 	ApiService *MonitoringV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiMonitoringWatchTechSupportRequestRequest) OName(oName string) ApiMonitoringWatchTechSupportRequestRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiMonitoringWatchTechSupportRequestRequest) OTenant(oTenant string) ApiMonitoringWatchTechSupportRequestRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiMonitoringWatchTechSupportRequestRequest) ONamespace(oNamespace string) ApiMonitoringWatchTechSupportRequestRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiMonitoringWatchTechSupportRequestRequest) OGenerationId(oGenerationId string) ApiMonitoringWatchTechSupportRequestRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiMonitoringWatchTechSupportRequestRequest) OResourceVersion(oResourceVersion string) ApiMonitoringWatchTechSupportRequestRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiMonitoringWatchTechSupportRequestRequest) OUuid(oUuid string) ApiMonitoringWatchTechSupportRequestRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiMonitoringWatchTechSupportRequestRequest) OCreationTime(oCreationTime time.Time) ApiMonitoringWatchTechSupportRequestRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiMonitoringWatchTechSupportRequestRequest) OModTime(oModTime time.Time) ApiMonitoringWatchTechSupportRequestRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiMonitoringWatchTechSupportRequestRequest) OSelfLink(oSelfLink string) ApiMonitoringWatchTechSupportRequestRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiMonitoringWatchTechSupportRequestRequest) LabelSelector(labelSelector string) ApiMonitoringWatchTechSupportRequestRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiMonitoringWatchTechSupportRequestRequest) FieldSelector(fieldSelector string) ApiMonitoringWatchTechSupportRequestRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiMonitoringWatchTechSupportRequestRequest) FieldChangeSelector(fieldChangeSelector []string) ApiMonitoringWatchTechSupportRequestRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiMonitoringWatchTechSupportRequestRequest) From(from int32) ApiMonitoringWatchTechSupportRequestRequest {
-	r.from = &from
-	return r
-}
-func (r ApiMonitoringWatchTechSupportRequestRequest) MaxResults(maxResults int32) ApiMonitoringWatchTechSupportRequestRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiMonitoringWatchTechSupportRequestRequest) SortOrder(sortOrder string) ApiMonitoringWatchTechSupportRequestRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiMonitoringWatchTechSupportRequestRequest) MetaOnly(metaOnly bool) ApiMonitoringWatchTechSupportRequestRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -34152,50 +26991,11 @@ func (a *MonitoringV1ApiService) WatchTechSupportRequestExecute(r ApiMonitoringW
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

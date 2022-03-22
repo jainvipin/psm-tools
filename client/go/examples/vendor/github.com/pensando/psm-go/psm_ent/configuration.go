@@ -132,6 +132,7 @@ func (c *PSMConfig) AddPSMIP() {
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Enter PSMIP: ")
 	psmip, _ := reader.ReadString('\n')
+	psmip = strings.Replace(psmip, "\n", " ", -1)
 	c.PSMIP = psmip
 }
 

@@ -1276,7 +1276,6 @@ type ApiAuthDeleteRoleRequest struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oTenant string
-	oName string
 }
 
 
@@ -1288,15 +1287,13 @@ func (r ApiAuthDeleteRoleRequest) Execute() (AuthRole, *_nethttp.Response, error
  * DeleteRole Delete Role object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiAuthDeleteRoleRequest
  */
-func (a *AuthV1ApiService) DeleteRole(ctx _context.Context, oTenant string, oName string) ApiAuthDeleteRoleRequest {
+func (a *AuthV1ApiService) DeleteRole(ctx _context.Context, oTenant string) ApiAuthDeleteRoleRequest {
 	return ApiAuthDeleteRoleRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -1321,7 +1318,6 @@ func (a *AuthV1ApiService) DeleteRoleExecute(r ApiAuthDeleteRoleRequest) (AuthRo
 
 	localVarPath := localBasePath + "/configs/auth/v1/tenant/{O.Tenant}/roles/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1620,7 +1616,6 @@ type ApiAuthDeleteRoleBindingRequest struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oTenant string
-	oName string
 }
 
 
@@ -1632,15 +1627,13 @@ func (r ApiAuthDeleteRoleBindingRequest) Execute() (AuthRoleBinding, *_nethttp.R
  * DeleteRoleBinding Delete RoleBinding object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiAuthDeleteRoleBindingRequest
  */
-func (a *AuthV1ApiService) DeleteRoleBinding(ctx _context.Context, oTenant string, oName string) ApiAuthDeleteRoleBindingRequest {
+func (a *AuthV1ApiService) DeleteRoleBinding(ctx _context.Context, oTenant string) ApiAuthDeleteRoleBindingRequest {
 	return ApiAuthDeleteRoleBindingRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -1665,7 +1658,6 @@ func (a *AuthV1ApiService) DeleteRoleBindingExecute(r ApiAuthDeleteRoleBindingRe
 
 	localVarPath := localBasePath + "/configs/auth/v1/tenant/{O.Tenant}/role-bindings/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1964,7 +1956,6 @@ type ApiAuthDeleteUserRequest struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oTenant string
-	oName string
 }
 
 
@@ -1976,15 +1967,13 @@ func (r ApiAuthDeleteUserRequest) Execute() (AuthUser, *_nethttp.Response, error
  * DeleteUser Delete User object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiAuthDeleteUserRequest
  */
-func (a *AuthV1ApiService) DeleteUser(ctx _context.Context, oTenant string, oName string) ApiAuthDeleteUserRequest {
+func (a *AuthV1ApiService) DeleteUser(ctx _context.Context, oTenant string) ApiAuthDeleteUserRequest {
 	return ApiAuthDeleteUserRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -2009,7 +1998,6 @@ func (a *AuthV1ApiService) DeleteUserExecute(r ApiAuthDeleteUserRequest) (AuthUs
 
 	localVarPath := localBasePath + "/configs/auth/v1/tenant/{O.Tenant}/users/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -2308,90 +2296,20 @@ type ApiAuthGetAuthenticationPolicyRequest struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	tKind *string
-	tApiVersion *string
-	metaName *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	authenticatorsAuthenticatorOrder *[]string
-	localPasswordLength *int32
-	localAllowedFailedLoginAttempts *int32
-	localFailedLoginAttemptsDuration *string
-	specSecret *string
-	specTokenExpiry *string
 }
 
 func (r ApiAuthGetAuthenticationPolicyRequest) TKind(tKind string) ApiAuthGetAuthenticationPolicyRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiAuthGetAuthenticationPolicyRequest) TApiVersion(tApiVersion string) ApiAuthGetAuthenticationPolicyRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiAuthGetAuthenticationPolicyRequest) MetaName(metaName string) ApiAuthGetAuthenticationPolicyRequest {
-	r.metaName = &metaName
-	return r
-}
-func (r ApiAuthGetAuthenticationPolicyRequest) MetaTenant(metaTenant string) ApiAuthGetAuthenticationPolicyRequest {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiAuthGetAuthenticationPolicyRequest) MetaNamespace(metaNamespace string) ApiAuthGetAuthenticationPolicyRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiAuthGetAuthenticationPolicyRequest) MetaGenerationId(metaGenerationId string) ApiAuthGetAuthenticationPolicyRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiAuthGetAuthenticationPolicyRequest) MetaResourceVersion(metaResourceVersion string) ApiAuthGetAuthenticationPolicyRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiAuthGetAuthenticationPolicyRequest) MetaUuid(metaUuid string) ApiAuthGetAuthenticationPolicyRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiAuthGetAuthenticationPolicyRequest) MetaCreationTime(metaCreationTime time.Time) ApiAuthGetAuthenticationPolicyRequest {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiAuthGetAuthenticationPolicyRequest) MetaModTime(metaModTime time.Time) ApiAuthGetAuthenticationPolicyRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiAuthGetAuthenticationPolicyRequest) MetaSelfLink(metaSelfLink string) ApiAuthGetAuthenticationPolicyRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
 func (r ApiAuthGetAuthenticationPolicyRequest) AuthenticatorsAuthenticatorOrder(authenticatorsAuthenticatorOrder []string) ApiAuthGetAuthenticationPolicyRequest {
 	r.authenticatorsAuthenticatorOrder = &authenticatorsAuthenticatorOrder
-	return r
-}
-func (r ApiAuthGetAuthenticationPolicyRequest) LocalPasswordLength(localPasswordLength int32) ApiAuthGetAuthenticationPolicyRequest {
-	r.localPasswordLength = &localPasswordLength
-	return r
-}
-func (r ApiAuthGetAuthenticationPolicyRequest) LocalAllowedFailedLoginAttempts(localAllowedFailedLoginAttempts int32) ApiAuthGetAuthenticationPolicyRequest {
-	r.localAllowedFailedLoginAttempts = &localAllowedFailedLoginAttempts
-	return r
-}
-func (r ApiAuthGetAuthenticationPolicyRequest) LocalFailedLoginAttemptsDuration(localFailedLoginAttemptsDuration string) ApiAuthGetAuthenticationPolicyRequest {
-	r.localFailedLoginAttemptsDuration = &localFailedLoginAttemptsDuration
-	return r
-}
-func (r ApiAuthGetAuthenticationPolicyRequest) SpecSecret(specSecret string) ApiAuthGetAuthenticationPolicyRequest {
-	r.specSecret = &specSecret
-	return r
-}
-func (r ApiAuthGetAuthenticationPolicyRequest) SpecTokenExpiry(specTokenExpiry string) ApiAuthGetAuthenticationPolicyRequest {
-	r.specTokenExpiry = &specTokenExpiry
 	return r
 }
 
@@ -2439,53 +2357,11 @@ func (a *AuthV1ApiService) GetAuthenticationPolicyExecute(r ApiAuthGetAuthentica
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaName != nil {
-		localVarQueryParams.Add("meta.name", parameterToString(*r.metaName, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
 	if r.authenticatorsAuthenticatorOrder != nil {
 		localVarQueryParams.Add("authenticators.authenticator-order", parameterToString(*r.authenticatorsAuthenticatorOrder, "csv"))
-	}
-	if r.localPasswordLength != nil {
-		localVarQueryParams.Add("local.password-length", parameterToString(*r.localPasswordLength, ""))
-	}
-	if r.localAllowedFailedLoginAttempts != nil {
-		localVarQueryParams.Add("local.allowed-failed-login-attempts", parameterToString(*r.localAllowedFailedLoginAttempts, ""))
-	}
-	if r.localFailedLoginAttemptsDuration != nil {
-		localVarQueryParams.Add("local.failed-login-attempts-duration", parameterToString(*r.localFailedLoginAttemptsDuration, ""))
-	}
-	if r.specSecret != nil {
-		localVarQueryParams.Add("spec.secret", parameterToString(*r.specSecret, ""))
-	}
-	if r.specTokenExpiry != nil {
-		localVarQueryParams.Add("spec.token-expiry", parameterToString(*r.specTokenExpiry, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2610,52 +2486,16 @@ type ApiAuthGetRoleRequest struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 }
 
 func (r ApiAuthGetRoleRequest) TKind(tKind string) ApiAuthGetRoleRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiAuthGetRoleRequest) TApiVersion(tApiVersion string) ApiAuthGetRoleRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiAuthGetRoleRequest) MetaNamespace(metaNamespace string) ApiAuthGetRoleRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiAuthGetRoleRequest) MetaGenerationId(metaGenerationId string) ApiAuthGetRoleRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiAuthGetRoleRequest) MetaResourceVersion(metaResourceVersion string) ApiAuthGetRoleRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiAuthGetRoleRequest) MetaUuid(metaUuid string) ApiAuthGetRoleRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiAuthGetRoleRequest) MetaCreationTime(metaCreationTime time.Time) ApiAuthGetRoleRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiAuthGetRoleRequest) MetaModTime(metaModTime time.Time) ApiAuthGetRoleRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiAuthGetRoleRequest) MetaSelfLink(metaSelfLink string) ApiAuthGetRoleRequest {
-	r.metaSelfLink = &metaSelfLink
 	return r
 }
 
@@ -2667,15 +2507,13 @@ func (r ApiAuthGetRoleRequest) Execute() (AuthRole, *_nethttp.Response, error) {
  * GetRole Get Role object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiAuthGetRoleRequest
  */
-func (a *AuthV1ApiService) GetRole(ctx _context.Context, oTenant string, oName string) ApiAuthGetRoleRequest {
+func (a *AuthV1ApiService) GetRole(ctx _context.Context, oTenant string) ApiAuthGetRoleRequest {
 	return ApiAuthGetRoleRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -2700,7 +2538,6 @@ func (a *AuthV1ApiService) GetRoleExecute(r ApiAuthGetRoleRequest) (AuthRole, *_
 
 	localVarPath := localBasePath + "/configs/auth/v1/tenant/{O.Tenant}/roles/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -2709,29 +2546,8 @@ func (a *AuthV1ApiService) GetRoleExecute(r ApiAuthGetRoleRequest) (AuthRole, *_
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2857,55 +2673,15 @@ type ApiAuthGetRole1Request struct {
 	ApiService *AuthV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 }
 
 func (r ApiAuthGetRole1Request) TKind(tKind string) ApiAuthGetRole1Request {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiAuthGetRole1Request) TApiVersion(tApiVersion string) ApiAuthGetRole1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiAuthGetRole1Request) MetaTenant(metaTenant string) ApiAuthGetRole1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiAuthGetRole1Request) MetaNamespace(metaNamespace string) ApiAuthGetRole1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiAuthGetRole1Request) MetaGenerationId(metaGenerationId string) ApiAuthGetRole1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiAuthGetRole1Request) MetaResourceVersion(metaResourceVersion string) ApiAuthGetRole1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiAuthGetRole1Request) MetaUuid(metaUuid string) ApiAuthGetRole1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiAuthGetRole1Request) MetaCreationTime(metaCreationTime time.Time) ApiAuthGetRole1Request {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiAuthGetRole1Request) MetaModTime(metaModTime time.Time) ApiAuthGetRole1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiAuthGetRole1Request) MetaSelfLink(metaSelfLink string) ApiAuthGetRole1Request {
-	r.metaSelfLink = &metaSelfLink
 	return r
 }
 
@@ -2956,32 +2732,8 @@ func (a *AuthV1ApiService) GetRole1Execute(r ApiAuthGetRole1Request) (AuthRole, 
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3106,18 +2858,9 @@ type ApiAuthGetRoleBindingRequest struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	specUsers *[]string
-	specUserGroups *[]string
 	specRole *string
 }
 
@@ -3125,44 +2868,12 @@ func (r ApiAuthGetRoleBindingRequest) TKind(tKind string) ApiAuthGetRoleBindingR
 	r.tKind = &tKind
 	return r
 }
-func (r ApiAuthGetRoleBindingRequest) TApiVersion(tApiVersion string) ApiAuthGetRoleBindingRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiAuthGetRoleBindingRequest) MetaNamespace(metaNamespace string) ApiAuthGetRoleBindingRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiAuthGetRoleBindingRequest) MetaGenerationId(metaGenerationId string) ApiAuthGetRoleBindingRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiAuthGetRoleBindingRequest) MetaResourceVersion(metaResourceVersion string) ApiAuthGetRoleBindingRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiAuthGetRoleBindingRequest) MetaUuid(metaUuid string) ApiAuthGetRoleBindingRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiAuthGetRoleBindingRequest) MetaCreationTime(metaCreationTime time.Time) ApiAuthGetRoleBindingRequest {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiAuthGetRoleBindingRequest) MetaModTime(metaModTime time.Time) ApiAuthGetRoleBindingRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiAuthGetRoleBindingRequest) MetaSelfLink(metaSelfLink string) ApiAuthGetRoleBindingRequest {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
 func (r ApiAuthGetRoleBindingRequest) SpecUsers(specUsers []string) ApiAuthGetRoleBindingRequest {
 	r.specUsers = &specUsers
-	return r
-}
-func (r ApiAuthGetRoleBindingRequest) SpecUserGroups(specUserGroups []string) ApiAuthGetRoleBindingRequest {
-	r.specUserGroups = &specUserGroups
 	return r
 }
 func (r ApiAuthGetRoleBindingRequest) SpecRole(specRole string) ApiAuthGetRoleBindingRequest {
@@ -3178,15 +2889,13 @@ func (r ApiAuthGetRoleBindingRequest) Execute() (AuthRoleBinding, *_nethttp.Resp
  * GetRoleBinding Get RoleBinding object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiAuthGetRoleBindingRequest
  */
-func (a *AuthV1ApiService) GetRoleBinding(ctx _context.Context, oTenant string, oName string) ApiAuthGetRoleBindingRequest {
+func (a *AuthV1ApiService) GetRoleBinding(ctx _context.Context, oTenant string) ApiAuthGetRoleBindingRequest {
 	return ApiAuthGetRoleBindingRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -3211,7 +2920,6 @@ func (a *AuthV1ApiService) GetRoleBindingExecute(r ApiAuthGetRoleBindingRequest)
 
 	localVarPath := localBasePath + "/configs/auth/v1/tenant/{O.Tenant}/role-bindings/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -3220,35 +2928,11 @@ func (a *AuthV1ApiService) GetRoleBindingExecute(r ApiAuthGetRoleBindingRequest)
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
 	if r.specUsers != nil {
 		localVarQueryParams.Add("spec.users", parameterToString(*r.specUsers, "csv"))
-	}
-	if r.specUserGroups != nil {
-		localVarQueryParams.Add("spec.user-groups", parameterToString(*r.specUserGroups, "csv"))
 	}
 	if r.specRole != nil {
 		localVarQueryParams.Add("spec.role", parameterToString(*r.specRole, ""))
@@ -3377,17 +3061,8 @@ type ApiAuthGetRoleBinding1Request struct {
 	ApiService *AuthV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	specUsers *[]string
-	specUserGroups *[]string
 	specRole *string
 }
 
@@ -3395,48 +3070,12 @@ func (r ApiAuthGetRoleBinding1Request) TKind(tKind string) ApiAuthGetRoleBinding
 	r.tKind = &tKind
 	return r
 }
-func (r ApiAuthGetRoleBinding1Request) TApiVersion(tApiVersion string) ApiAuthGetRoleBinding1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiAuthGetRoleBinding1Request) MetaTenant(metaTenant string) ApiAuthGetRoleBinding1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiAuthGetRoleBinding1Request) MetaNamespace(metaNamespace string) ApiAuthGetRoleBinding1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiAuthGetRoleBinding1Request) MetaGenerationId(metaGenerationId string) ApiAuthGetRoleBinding1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiAuthGetRoleBinding1Request) MetaResourceVersion(metaResourceVersion string) ApiAuthGetRoleBinding1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiAuthGetRoleBinding1Request) MetaUuid(metaUuid string) ApiAuthGetRoleBinding1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiAuthGetRoleBinding1Request) MetaCreationTime(metaCreationTime time.Time) ApiAuthGetRoleBinding1Request {
 	r.metaCreationTime = &metaCreationTime
 	return r
 }
-func (r ApiAuthGetRoleBinding1Request) MetaModTime(metaModTime time.Time) ApiAuthGetRoleBinding1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiAuthGetRoleBinding1Request) MetaSelfLink(metaSelfLink string) ApiAuthGetRoleBinding1Request {
-	r.metaSelfLink = &metaSelfLink
-	return r
-}
 func (r ApiAuthGetRoleBinding1Request) SpecUsers(specUsers []string) ApiAuthGetRoleBinding1Request {
 	r.specUsers = &specUsers
-	return r
-}
-func (r ApiAuthGetRoleBinding1Request) SpecUserGroups(specUserGroups []string) ApiAuthGetRoleBinding1Request {
-	r.specUserGroups = &specUserGroups
 	return r
 }
 func (r ApiAuthGetRoleBinding1Request) SpecRole(specRole string) ApiAuthGetRoleBinding1Request {
@@ -3491,38 +3130,11 @@ func (a *AuthV1ApiService) GetRoleBinding1Execute(r ApiAuthGetRoleBinding1Reques
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
 	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
-	}
 	if r.specUsers != nil {
 		localVarQueryParams.Add("spec.users", parameterToString(*r.specUsers, "csv"))
-	}
-	if r.specUserGroups != nil {
-		localVarQueryParams.Add("spec.user-groups", parameterToString(*r.specUserGroups, "csv"))
 	}
 	if r.specRole != nil {
 		localVarQueryParams.Add("spec.role", parameterToString(*r.specRole, ""))
@@ -3650,112 +3262,26 @@ type ApiAuthGetUserRequest struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	specFullname *string
-	specEmail *string
-	specPassword *string
-	specType *string
 	statusRoles *[]string
-	statusUserGroups *[]string
-	statusLastLogin *time.Time
-	statusAuthenticators *[]string
-	statusLastPasswordChange *time.Time
-	statusFirstFailedLogin *time.Time
-	statusFailedLoginAttempts *int32
-	statusLocked *bool
 }
 
 func (r ApiAuthGetUserRequest) TKind(tKind string) ApiAuthGetUserRequest {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiAuthGetUserRequest) TApiVersion(tApiVersion string) ApiAuthGetUserRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiAuthGetUserRequest) MetaNamespace(metaNamespace string) ApiAuthGetUserRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiAuthGetUserRequest) MetaGenerationId(metaGenerationId string) ApiAuthGetUserRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiAuthGetUserRequest) MetaResourceVersion(metaResourceVersion string) ApiAuthGetUserRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiAuthGetUserRequest) MetaUuid(metaUuid string) ApiAuthGetUserRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiAuthGetUserRequest) MetaCreationTime(metaCreationTime time.Time) ApiAuthGetUserRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiAuthGetUserRequest) MetaModTime(metaModTime time.Time) ApiAuthGetUserRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiAuthGetUserRequest) MetaSelfLink(metaSelfLink string) ApiAuthGetUserRequest {
-	r.metaSelfLink = &metaSelfLink
 	return r
 }
 func (r ApiAuthGetUserRequest) SpecFullname(specFullname string) ApiAuthGetUserRequest {
 	r.specFullname = &specFullname
 	return r
 }
-func (r ApiAuthGetUserRequest) SpecEmail(specEmail string) ApiAuthGetUserRequest {
-	r.specEmail = &specEmail
-	return r
-}
-func (r ApiAuthGetUserRequest) SpecPassword(specPassword string) ApiAuthGetUserRequest {
-	r.specPassword = &specPassword
-	return r
-}
-func (r ApiAuthGetUserRequest) SpecType(specType string) ApiAuthGetUserRequest {
-	r.specType = &specType
-	return r
-}
 func (r ApiAuthGetUserRequest) StatusRoles(statusRoles []string) ApiAuthGetUserRequest {
 	r.statusRoles = &statusRoles
-	return r
-}
-func (r ApiAuthGetUserRequest) StatusUserGroups(statusUserGroups []string) ApiAuthGetUserRequest {
-	r.statusUserGroups = &statusUserGroups
-	return r
-}
-func (r ApiAuthGetUserRequest) StatusLastLogin(statusLastLogin time.Time) ApiAuthGetUserRequest {
-	r.statusLastLogin = &statusLastLogin
-	return r
-}
-func (r ApiAuthGetUserRequest) StatusAuthenticators(statusAuthenticators []string) ApiAuthGetUserRequest {
-	r.statusAuthenticators = &statusAuthenticators
-	return r
-}
-func (r ApiAuthGetUserRequest) StatusLastPasswordChange(statusLastPasswordChange time.Time) ApiAuthGetUserRequest {
-	r.statusLastPasswordChange = &statusLastPasswordChange
-	return r
-}
-func (r ApiAuthGetUserRequest) StatusFirstFailedLogin(statusFirstFailedLogin time.Time) ApiAuthGetUserRequest {
-	r.statusFirstFailedLogin = &statusFirstFailedLogin
-	return r
-}
-func (r ApiAuthGetUserRequest) StatusFailedLoginAttempts(statusFailedLoginAttempts int32) ApiAuthGetUserRequest {
-	r.statusFailedLoginAttempts = &statusFailedLoginAttempts
-	return r
-}
-func (r ApiAuthGetUserRequest) StatusLocked(statusLocked bool) ApiAuthGetUserRequest {
-	r.statusLocked = &statusLocked
 	return r
 }
 
@@ -3767,15 +3293,13 @@ func (r ApiAuthGetUserRequest) Execute() (AuthUser, *_nethttp.Response, error) {
  * GetUser Get User object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiAuthGetUserRequest
  */
-func (a *AuthV1ApiService) GetUser(ctx _context.Context, oTenant string, oName string) ApiAuthGetUserRequest {
+func (a *AuthV1ApiService) GetUser(ctx _context.Context, oTenant string) ApiAuthGetUserRequest {
 	return ApiAuthGetUserRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -3800,7 +3324,6 @@ func (a *AuthV1ApiService) GetUserExecute(r ApiAuthGetUserRequest) (AuthUser, *_
 
 	localVarPath := localBasePath + "/configs/auth/v1/tenant/{O.Tenant}/users/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -3809,65 +3332,14 @@ func (a *AuthV1ApiService) GetUserExecute(r ApiAuthGetUserRequest) (AuthUser, *_
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
 	}
 	if r.specFullname != nil {
 		localVarQueryParams.Add("spec.fullname", parameterToString(*r.specFullname, ""))
 	}
-	if r.specEmail != nil {
-		localVarQueryParams.Add("spec.email", parameterToString(*r.specEmail, ""))
-	}
-	if r.specPassword != nil {
-		localVarQueryParams.Add("spec.password", parameterToString(*r.specPassword, ""))
-	}
-	if r.specType != nil {
-		localVarQueryParams.Add("spec.type", parameterToString(*r.specType, ""))
-	}
 	if r.statusRoles != nil {
 		localVarQueryParams.Add("status.roles", parameterToString(*r.statusRoles, "csv"))
-	}
-	if r.statusUserGroups != nil {
-		localVarQueryParams.Add("status.user-groups", parameterToString(*r.statusUserGroups, "csv"))
-	}
-	if r.statusLastLogin != nil {
-		localVarQueryParams.Add("status.last-login", parameterToString(*r.statusLastLogin, ""))
-	}
-	if r.statusAuthenticators != nil {
-		localVarQueryParams.Add("status.authenticators", parameterToString(*r.statusAuthenticators, "csv"))
-	}
-	if r.statusLastPasswordChange != nil {
-		localVarQueryParams.Add("status.last-password-change", parameterToString(*r.statusLastPasswordChange, ""))
-	}
-	if r.statusFirstFailedLogin != nil {
-		localVarQueryParams.Add("status.first-failed-login", parameterToString(*r.statusFirstFailedLogin, ""))
-	}
-	if r.statusFailedLoginAttempts != nil {
-		localVarQueryParams.Add("status.failed-login-attempts", parameterToString(*r.statusFailedLoginAttempts, ""))
-	}
-	if r.statusLocked != nil {
-		localVarQueryParams.Add("status.locked", parameterToString(*r.statusLocked, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3993,115 +3465,25 @@ type ApiAuthGetUser1Request struct {
 	ApiService *AuthV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	specFullname *string
-	specEmail *string
-	specPassword *string
-	specType *string
 	statusRoles *[]string
-	statusUserGroups *[]string
-	statusLastLogin *time.Time
-	statusAuthenticators *[]string
-	statusLastPasswordChange *time.Time
-	statusFirstFailedLogin *time.Time
-	statusFailedLoginAttempts *int32
-	statusLocked *bool
 }
 
 func (r ApiAuthGetUser1Request) TKind(tKind string) ApiAuthGetUser1Request {
 	r.tKind = &tKind
 	return r
 }
-func (r ApiAuthGetUser1Request) TApiVersion(tApiVersion string) ApiAuthGetUser1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiAuthGetUser1Request) MetaTenant(metaTenant string) ApiAuthGetUser1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiAuthGetUser1Request) MetaNamespace(metaNamespace string) ApiAuthGetUser1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiAuthGetUser1Request) MetaGenerationId(metaGenerationId string) ApiAuthGetUser1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiAuthGetUser1Request) MetaResourceVersion(metaResourceVersion string) ApiAuthGetUser1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiAuthGetUser1Request) MetaUuid(metaUuid string) ApiAuthGetUser1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiAuthGetUser1Request) MetaCreationTime(metaCreationTime time.Time) ApiAuthGetUser1Request {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiAuthGetUser1Request) MetaModTime(metaModTime time.Time) ApiAuthGetUser1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiAuthGetUser1Request) MetaSelfLink(metaSelfLink string) ApiAuthGetUser1Request {
-	r.metaSelfLink = &metaSelfLink
 	return r
 }
 func (r ApiAuthGetUser1Request) SpecFullname(specFullname string) ApiAuthGetUser1Request {
 	r.specFullname = &specFullname
 	return r
 }
-func (r ApiAuthGetUser1Request) SpecEmail(specEmail string) ApiAuthGetUser1Request {
-	r.specEmail = &specEmail
-	return r
-}
-func (r ApiAuthGetUser1Request) SpecPassword(specPassword string) ApiAuthGetUser1Request {
-	r.specPassword = &specPassword
-	return r
-}
-func (r ApiAuthGetUser1Request) SpecType(specType string) ApiAuthGetUser1Request {
-	r.specType = &specType
-	return r
-}
 func (r ApiAuthGetUser1Request) StatusRoles(statusRoles []string) ApiAuthGetUser1Request {
 	r.statusRoles = &statusRoles
-	return r
-}
-func (r ApiAuthGetUser1Request) StatusUserGroups(statusUserGroups []string) ApiAuthGetUser1Request {
-	r.statusUserGroups = &statusUserGroups
-	return r
-}
-func (r ApiAuthGetUser1Request) StatusLastLogin(statusLastLogin time.Time) ApiAuthGetUser1Request {
-	r.statusLastLogin = &statusLastLogin
-	return r
-}
-func (r ApiAuthGetUser1Request) StatusAuthenticators(statusAuthenticators []string) ApiAuthGetUser1Request {
-	r.statusAuthenticators = &statusAuthenticators
-	return r
-}
-func (r ApiAuthGetUser1Request) StatusLastPasswordChange(statusLastPasswordChange time.Time) ApiAuthGetUser1Request {
-	r.statusLastPasswordChange = &statusLastPasswordChange
-	return r
-}
-func (r ApiAuthGetUser1Request) StatusFirstFailedLogin(statusFirstFailedLogin time.Time) ApiAuthGetUser1Request {
-	r.statusFirstFailedLogin = &statusFirstFailedLogin
-	return r
-}
-func (r ApiAuthGetUser1Request) StatusFailedLoginAttempts(statusFailedLoginAttempts int32) ApiAuthGetUser1Request {
-	r.statusFailedLoginAttempts = &statusFailedLoginAttempts
-	return r
-}
-func (r ApiAuthGetUser1Request) StatusLocked(statusLocked bool) ApiAuthGetUser1Request {
-	r.statusLocked = &statusLocked
 	return r
 }
 
@@ -4152,68 +3534,14 @@ func (a *AuthV1ApiService) GetUser1Execute(r ApiAuthGetUser1Request) (AuthUser, 
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
 	}
 	if r.specFullname != nil {
 		localVarQueryParams.Add("spec.fullname", parameterToString(*r.specFullname, ""))
 	}
-	if r.specEmail != nil {
-		localVarQueryParams.Add("spec.email", parameterToString(*r.specEmail, ""))
-	}
-	if r.specPassword != nil {
-		localVarQueryParams.Add("spec.password", parameterToString(*r.specPassword, ""))
-	}
-	if r.specType != nil {
-		localVarQueryParams.Add("spec.type", parameterToString(*r.specType, ""))
-	}
 	if r.statusRoles != nil {
 		localVarQueryParams.Add("status.roles", parameterToString(*r.statusRoles, "csv"))
-	}
-	if r.statusUserGroups != nil {
-		localVarQueryParams.Add("status.user-groups", parameterToString(*r.statusUserGroups, "csv"))
-	}
-	if r.statusLastLogin != nil {
-		localVarQueryParams.Add("status.last-login", parameterToString(*r.statusLastLogin, ""))
-	}
-	if r.statusAuthenticators != nil {
-		localVarQueryParams.Add("status.authenticators", parameterToString(*r.statusAuthenticators, "csv"))
-	}
-	if r.statusLastPasswordChange != nil {
-		localVarQueryParams.Add("status.last-password-change", parameterToString(*r.statusLastPasswordChange, ""))
-	}
-	if r.statusFirstFailedLogin != nil {
-		localVarQueryParams.Add("status.first-failed-login", parameterToString(*r.statusFirstFailedLogin, ""))
-	}
-	if r.statusFailedLoginAttempts != nil {
-		localVarQueryParams.Add("status.failed-login-attempts", parameterToString(*r.statusFailedLoginAttempts, ""))
-	}
-	if r.statusLocked != nil {
-		localVarQueryParams.Add("status.locked", parameterToString(*r.statusLocked, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -4338,16 +3666,8 @@ type ApiAuthGetUserPreferenceRequest struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oTenant string
-	oName string
 	tKind *string
-	tApiVersion *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	specOptions *string
 }
 
@@ -4355,36 +3675,8 @@ func (r ApiAuthGetUserPreferenceRequest) TKind(tKind string) ApiAuthGetUserPrefe
 	r.tKind = &tKind
 	return r
 }
-func (r ApiAuthGetUserPreferenceRequest) TApiVersion(tApiVersion string) ApiAuthGetUserPreferenceRequest {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiAuthGetUserPreferenceRequest) MetaNamespace(metaNamespace string) ApiAuthGetUserPreferenceRequest {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiAuthGetUserPreferenceRequest) MetaGenerationId(metaGenerationId string) ApiAuthGetUserPreferenceRequest {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiAuthGetUserPreferenceRequest) MetaResourceVersion(metaResourceVersion string) ApiAuthGetUserPreferenceRequest {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiAuthGetUserPreferenceRequest) MetaUuid(metaUuid string) ApiAuthGetUserPreferenceRequest {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiAuthGetUserPreferenceRequest) MetaCreationTime(metaCreationTime time.Time) ApiAuthGetUserPreferenceRequest {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiAuthGetUserPreferenceRequest) MetaModTime(metaModTime time.Time) ApiAuthGetUserPreferenceRequest {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiAuthGetUserPreferenceRequest) MetaSelfLink(metaSelfLink string) ApiAuthGetUserPreferenceRequest {
-	r.metaSelfLink = &metaSelfLink
 	return r
 }
 func (r ApiAuthGetUserPreferenceRequest) SpecOptions(specOptions string) ApiAuthGetUserPreferenceRequest {
@@ -4400,15 +3692,13 @@ func (r ApiAuthGetUserPreferenceRequest) Execute() (AuthUserPreference, *_nethtt
  * GetUserPreference Get UserPreference object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiAuthGetUserPreferenceRequest
  */
-func (a *AuthV1ApiService) GetUserPreference(ctx _context.Context, oTenant string, oName string) ApiAuthGetUserPreferenceRequest {
+func (a *AuthV1ApiService) GetUserPreference(ctx _context.Context, oTenant string) ApiAuthGetUserPreferenceRequest {
 	return ApiAuthGetUserPreferenceRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -4433,7 +3723,6 @@ func (a *AuthV1ApiService) GetUserPreferenceExecute(r ApiAuthGetUserPreferenceRe
 
 	localVarPath := localBasePath + "/configs/auth/v1/tenant/{O.Tenant}/user-preferences/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -4442,29 +3731,8 @@ func (a *AuthV1ApiService) GetUserPreferenceExecute(r ApiAuthGetUserPreferenceRe
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
 	}
 	if r.specOptions != nil {
 		localVarQueryParams.Add("spec.options", parameterToString(*r.specOptions, ""))
@@ -4593,15 +3861,7 @@ type ApiAuthGetUserPreference1Request struct {
 	ApiService *AuthV1ApiService
 	oName string
 	tKind *string
-	tApiVersion *string
-	metaTenant *string
-	metaNamespace *string
-	metaGenerationId *string
-	metaResourceVersion *string
-	metaUuid *string
 	metaCreationTime *time.Time
-	metaModTime *time.Time
-	metaSelfLink *string
 	specOptions *string
 }
 
@@ -4609,40 +3869,8 @@ func (r ApiAuthGetUserPreference1Request) TKind(tKind string) ApiAuthGetUserPref
 	r.tKind = &tKind
 	return r
 }
-func (r ApiAuthGetUserPreference1Request) TApiVersion(tApiVersion string) ApiAuthGetUserPreference1Request {
-	r.tApiVersion = &tApiVersion
-	return r
-}
-func (r ApiAuthGetUserPreference1Request) MetaTenant(metaTenant string) ApiAuthGetUserPreference1Request {
-	r.metaTenant = &metaTenant
-	return r
-}
-func (r ApiAuthGetUserPreference1Request) MetaNamespace(metaNamespace string) ApiAuthGetUserPreference1Request {
-	r.metaNamespace = &metaNamespace
-	return r
-}
-func (r ApiAuthGetUserPreference1Request) MetaGenerationId(metaGenerationId string) ApiAuthGetUserPreference1Request {
-	r.metaGenerationId = &metaGenerationId
-	return r
-}
-func (r ApiAuthGetUserPreference1Request) MetaResourceVersion(metaResourceVersion string) ApiAuthGetUserPreference1Request {
-	r.metaResourceVersion = &metaResourceVersion
-	return r
-}
-func (r ApiAuthGetUserPreference1Request) MetaUuid(metaUuid string) ApiAuthGetUserPreference1Request {
-	r.metaUuid = &metaUuid
-	return r
-}
 func (r ApiAuthGetUserPreference1Request) MetaCreationTime(metaCreationTime time.Time) ApiAuthGetUserPreference1Request {
 	r.metaCreationTime = &metaCreationTime
-	return r
-}
-func (r ApiAuthGetUserPreference1Request) MetaModTime(metaModTime time.Time) ApiAuthGetUserPreference1Request {
-	r.metaModTime = &metaModTime
-	return r
-}
-func (r ApiAuthGetUserPreference1Request) MetaSelfLink(metaSelfLink string) ApiAuthGetUserPreference1Request {
-	r.metaSelfLink = &metaSelfLink
 	return r
 }
 func (r ApiAuthGetUserPreference1Request) SpecOptions(specOptions string) ApiAuthGetUserPreference1Request {
@@ -4697,32 +3925,8 @@ func (a *AuthV1ApiService) GetUserPreference1Execute(r ApiAuthGetUserPreference1
 	if r.tKind != nil {
 		localVarQueryParams.Add("T.kind", parameterToString(*r.tKind, ""))
 	}
-	if r.tApiVersion != nil {
-		localVarQueryParams.Add("T.api-version", parameterToString(*r.tApiVersion, ""))
-	}
-	if r.metaTenant != nil {
-		localVarQueryParams.Add("meta.tenant", parameterToString(*r.metaTenant, ""))
-	}
-	if r.metaNamespace != nil {
-		localVarQueryParams.Add("meta.namespace", parameterToString(*r.metaNamespace, ""))
-	}
-	if r.metaGenerationId != nil {
-		localVarQueryParams.Add("meta.generation-id", parameterToString(*r.metaGenerationId, ""))
-	}
-	if r.metaResourceVersion != nil {
-		localVarQueryParams.Add("meta.resource-version", parameterToString(*r.metaResourceVersion, ""))
-	}
-	if r.metaUuid != nil {
-		localVarQueryParams.Add("meta.uuid", parameterToString(*r.metaUuid, ""))
-	}
 	if r.metaCreationTime != nil {
 		localVarQueryParams.Add("meta.creation-time", parameterToString(*r.metaCreationTime, ""))
-	}
-	if r.metaModTime != nil {
-		localVarQueryParams.Add("meta.mod-time", parameterToString(*r.metaModTime, ""))
-	}
-	if r.metaSelfLink != nil {
-		localVarQueryParams.Add("meta.self-link", parameterToString(*r.metaSelfLink, ""))
 	}
 	if r.specOptions != nil {
 		localVarQueryParams.Add("spec.options", parameterToString(*r.specOptions, ""))
@@ -4850,7 +4054,6 @@ type ApiAuthIsAuthorizedRequest struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oTenant string
-	oName string
 	body *AuthSubjectAccessReviewRequest
 }
 
@@ -4867,15 +4070,13 @@ func (r ApiAuthIsAuthorizedRequest) Execute() (AuthUser, *_nethttp.Response, err
  * IsAuthorized Review authorization for user
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiAuthIsAuthorizedRequest
  */
-func (a *AuthV1ApiService) IsAuthorized(ctx _context.Context, oTenant string, oName string) ApiAuthIsAuthorizedRequest {
+func (a *AuthV1ApiService) IsAuthorized(ctx _context.Context, oTenant string) ApiAuthIsAuthorizedRequest {
 	return ApiAuthIsAuthorizedRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -4900,7 +4101,6 @@ func (a *AuthV1ApiService) IsAuthorizedExecute(r ApiAuthIsAuthorizedRequest) (Au
 
 	localVarPath := localBasePath + "/configs/auth/v1/tenant/{O.Tenant}/users/{O.Name}/IsAuthorized"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -5390,7 +4590,6 @@ type ApiAuthLabelRoleRequest struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oTenant string
-	oName string
 	body *ApiLabel
 }
 
@@ -5407,15 +4606,13 @@ func (r ApiAuthLabelRoleRequest) Execute() (AuthRole, *_nethttp.Response, error)
  * LabelRole Label Role object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiAuthLabelRoleRequest
  */
-func (a *AuthV1ApiService) LabelRole(ctx _context.Context, oTenant string, oName string) ApiAuthLabelRoleRequest {
+func (a *AuthV1ApiService) LabelRole(ctx _context.Context, oTenant string) ApiAuthLabelRoleRequest {
 	return ApiAuthLabelRoleRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -5440,7 +4637,6 @@ func (a *AuthV1ApiService) LabelRoleExecute(r ApiAuthLabelRoleRequest) (AuthRole
 
 	localVarPath := localBasePath + "/configs/auth/v1/tenant/{O.Tenant}/roles/{O.Name}/label"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -5754,7 +4950,6 @@ type ApiAuthLabelRoleBindingRequest struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oTenant string
-	oName string
 	body *ApiLabel
 }
 
@@ -5771,15 +4966,13 @@ func (r ApiAuthLabelRoleBindingRequest) Execute() (AuthRoleBinding, *_nethttp.Re
  * LabelRoleBinding Label RoleBinding object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiAuthLabelRoleBindingRequest
  */
-func (a *AuthV1ApiService) LabelRoleBinding(ctx _context.Context, oTenant string, oName string) ApiAuthLabelRoleBindingRequest {
+func (a *AuthV1ApiService) LabelRoleBinding(ctx _context.Context, oTenant string) ApiAuthLabelRoleBindingRequest {
 	return ApiAuthLabelRoleBindingRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -5804,7 +4997,6 @@ func (a *AuthV1ApiService) LabelRoleBindingExecute(r ApiAuthLabelRoleBindingRequ
 
 	localVarPath := localBasePath + "/configs/auth/v1/tenant/{O.Tenant}/role-bindings/{O.Name}/label"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -6118,7 +5310,6 @@ type ApiAuthLabelUserRequest struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oTenant string
-	oName string
 	body *ApiLabel
 }
 
@@ -6135,15 +5326,13 @@ func (r ApiAuthLabelUserRequest) Execute() (AuthUser, *_nethttp.Response, error)
  * LabelUser Label User object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiAuthLabelUserRequest
  */
-func (a *AuthV1ApiService) LabelUser(ctx _context.Context, oTenant string, oName string) ApiAuthLabelUserRequest {
+func (a *AuthV1ApiService) LabelUser(ctx _context.Context, oTenant string) ApiAuthLabelUserRequest {
 	return ApiAuthLabelUserRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -6168,7 +5357,6 @@ func (a *AuthV1ApiService) LabelUserExecute(r ApiAuthLabelUserRequest) (AuthUser
 
 	localVarPath := localBasePath + "/configs/auth/v1/tenant/{O.Tenant}/users/{O.Name}/label"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -6482,7 +5670,6 @@ type ApiAuthLabelUserPreferenceRequest struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oTenant string
-	oName string
 	body *ApiLabel
 }
 
@@ -6499,15 +5686,13 @@ func (r ApiAuthLabelUserPreferenceRequest) Execute() (AuthUserPreference, *_neth
  * LabelUserPreference Label UserPreference object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiAuthLabelUserPreferenceRequest
  */
-func (a *AuthV1ApiService) LabelUserPreference(ctx _context.Context, oTenant string, oName string) ApiAuthLabelUserPreferenceRequest {
+func (a *AuthV1ApiService) LabelUserPreference(ctx _context.Context, oTenant string) ApiAuthLabelUserPreferenceRequest {
 	return ApiAuthLabelUserPreferenceRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -6532,7 +5717,6 @@ func (a *AuthV1ApiService) LabelUserPreferenceExecute(r ApiAuthLabelUserPreferen
 
 	localVarPath := localBasePath + "/configs/auth/v1/tenant/{O.Tenant}/user-preferences/{O.Name}/label"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -7199,80 +6383,20 @@ type ApiAuthListRoleRequest struct {
 	ApiService *AuthV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiAuthListRoleRequest) OName(oName string) ApiAuthListRoleRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiAuthListRoleRequest) ONamespace(oNamespace string) ApiAuthListRoleRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiAuthListRoleRequest) OGenerationId(oGenerationId string) ApiAuthListRoleRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiAuthListRoleRequest) OResourceVersion(oResourceVersion string) ApiAuthListRoleRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiAuthListRoleRequest) OUuid(oUuid string) ApiAuthListRoleRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiAuthListRoleRequest) OCreationTime(oCreationTime time.Time) ApiAuthListRoleRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiAuthListRoleRequest) OModTime(oModTime time.Time) ApiAuthListRoleRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiAuthListRoleRequest) OSelfLink(oSelfLink string) ApiAuthListRoleRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiAuthListRoleRequest) LabelSelector(labelSelector string) ApiAuthListRoleRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiAuthListRoleRequest) FieldSelector(fieldSelector string) ApiAuthListRoleRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiAuthListRoleRequest) FieldChangeSelector(fieldChangeSelector []string) ApiAuthListRoleRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiAuthListRoleRequest) From(from int32) ApiAuthListRoleRequest {
-	r.from = &from
-	return r
-}
-func (r ApiAuthListRoleRequest) MaxResults(maxResults int32) ApiAuthListRoleRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiAuthListRoleRequest) SortOrder(sortOrder string) ApiAuthListRoleRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiAuthListRoleRequest) MetaOnly(metaOnly bool) ApiAuthListRoleRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -7323,47 +6447,11 @@ func (a *AuthV1ApiService) ListRoleExecute(r ApiAuthListRoleRequest) (AuthRoleLi
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -7488,85 +6576,20 @@ type ApiAuthListRole1Request struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiAuthListRole1Request) OName(oName string) ApiAuthListRole1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiAuthListRole1Request) OTenant(oTenant string) ApiAuthListRole1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiAuthListRole1Request) ONamespace(oNamespace string) ApiAuthListRole1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiAuthListRole1Request) OGenerationId(oGenerationId string) ApiAuthListRole1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiAuthListRole1Request) OResourceVersion(oResourceVersion string) ApiAuthListRole1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiAuthListRole1Request) OUuid(oUuid string) ApiAuthListRole1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiAuthListRole1Request) OCreationTime(oCreationTime time.Time) ApiAuthListRole1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiAuthListRole1Request) OModTime(oModTime time.Time) ApiAuthListRole1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiAuthListRole1Request) OSelfLink(oSelfLink string) ApiAuthListRole1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiAuthListRole1Request) LabelSelector(labelSelector string) ApiAuthListRole1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiAuthListRole1Request) FieldSelector(fieldSelector string) ApiAuthListRole1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiAuthListRole1Request) FieldChangeSelector(fieldChangeSelector []string) ApiAuthListRole1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiAuthListRole1Request) From(from int32) ApiAuthListRole1Request {
-	r.from = &from
-	return r
-}
-func (r ApiAuthListRole1Request) MaxResults(maxResults int32) ApiAuthListRole1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiAuthListRole1Request) SortOrder(sortOrder string) ApiAuthListRole1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiAuthListRole1Request) MetaOnly(metaOnly bool) ApiAuthListRole1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -7614,50 +6637,11 @@ func (a *AuthV1ApiService) ListRole1Execute(r ApiAuthListRole1Request) (AuthRole
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -7783,80 +6767,20 @@ type ApiAuthListRoleBindingRequest struct {
 	ApiService *AuthV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiAuthListRoleBindingRequest) OName(oName string) ApiAuthListRoleBindingRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiAuthListRoleBindingRequest) ONamespace(oNamespace string) ApiAuthListRoleBindingRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiAuthListRoleBindingRequest) OGenerationId(oGenerationId string) ApiAuthListRoleBindingRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiAuthListRoleBindingRequest) OResourceVersion(oResourceVersion string) ApiAuthListRoleBindingRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiAuthListRoleBindingRequest) OUuid(oUuid string) ApiAuthListRoleBindingRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiAuthListRoleBindingRequest) OCreationTime(oCreationTime time.Time) ApiAuthListRoleBindingRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiAuthListRoleBindingRequest) OModTime(oModTime time.Time) ApiAuthListRoleBindingRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiAuthListRoleBindingRequest) OSelfLink(oSelfLink string) ApiAuthListRoleBindingRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiAuthListRoleBindingRequest) LabelSelector(labelSelector string) ApiAuthListRoleBindingRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiAuthListRoleBindingRequest) FieldSelector(fieldSelector string) ApiAuthListRoleBindingRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiAuthListRoleBindingRequest) FieldChangeSelector(fieldChangeSelector []string) ApiAuthListRoleBindingRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiAuthListRoleBindingRequest) From(from int32) ApiAuthListRoleBindingRequest {
-	r.from = &from
-	return r
-}
-func (r ApiAuthListRoleBindingRequest) MaxResults(maxResults int32) ApiAuthListRoleBindingRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiAuthListRoleBindingRequest) SortOrder(sortOrder string) ApiAuthListRoleBindingRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiAuthListRoleBindingRequest) MetaOnly(metaOnly bool) ApiAuthListRoleBindingRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -7907,47 +6831,11 @@ func (a *AuthV1ApiService) ListRoleBindingExecute(r ApiAuthListRoleBindingReques
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -8072,85 +6960,20 @@ type ApiAuthListRoleBinding1Request struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiAuthListRoleBinding1Request) OName(oName string) ApiAuthListRoleBinding1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiAuthListRoleBinding1Request) OTenant(oTenant string) ApiAuthListRoleBinding1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiAuthListRoleBinding1Request) ONamespace(oNamespace string) ApiAuthListRoleBinding1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiAuthListRoleBinding1Request) OGenerationId(oGenerationId string) ApiAuthListRoleBinding1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiAuthListRoleBinding1Request) OResourceVersion(oResourceVersion string) ApiAuthListRoleBinding1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiAuthListRoleBinding1Request) OUuid(oUuid string) ApiAuthListRoleBinding1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiAuthListRoleBinding1Request) OCreationTime(oCreationTime time.Time) ApiAuthListRoleBinding1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiAuthListRoleBinding1Request) OModTime(oModTime time.Time) ApiAuthListRoleBinding1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiAuthListRoleBinding1Request) OSelfLink(oSelfLink string) ApiAuthListRoleBinding1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiAuthListRoleBinding1Request) LabelSelector(labelSelector string) ApiAuthListRoleBinding1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiAuthListRoleBinding1Request) FieldSelector(fieldSelector string) ApiAuthListRoleBinding1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiAuthListRoleBinding1Request) FieldChangeSelector(fieldChangeSelector []string) ApiAuthListRoleBinding1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiAuthListRoleBinding1Request) From(from int32) ApiAuthListRoleBinding1Request {
-	r.from = &from
-	return r
-}
-func (r ApiAuthListRoleBinding1Request) MaxResults(maxResults int32) ApiAuthListRoleBinding1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiAuthListRoleBinding1Request) SortOrder(sortOrder string) ApiAuthListRoleBinding1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiAuthListRoleBinding1Request) MetaOnly(metaOnly bool) ApiAuthListRoleBinding1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -8198,50 +7021,11 @@ func (a *AuthV1ApiService) ListRoleBinding1Execute(r ApiAuthListRoleBinding1Requ
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -8367,80 +7151,20 @@ type ApiAuthListUserRequest struct {
 	ApiService *AuthV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiAuthListUserRequest) OName(oName string) ApiAuthListUserRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiAuthListUserRequest) ONamespace(oNamespace string) ApiAuthListUserRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiAuthListUserRequest) OGenerationId(oGenerationId string) ApiAuthListUserRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiAuthListUserRequest) OResourceVersion(oResourceVersion string) ApiAuthListUserRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiAuthListUserRequest) OUuid(oUuid string) ApiAuthListUserRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiAuthListUserRequest) OCreationTime(oCreationTime time.Time) ApiAuthListUserRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiAuthListUserRequest) OModTime(oModTime time.Time) ApiAuthListUserRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiAuthListUserRequest) OSelfLink(oSelfLink string) ApiAuthListUserRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiAuthListUserRequest) LabelSelector(labelSelector string) ApiAuthListUserRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiAuthListUserRequest) FieldSelector(fieldSelector string) ApiAuthListUserRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiAuthListUserRequest) FieldChangeSelector(fieldChangeSelector []string) ApiAuthListUserRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiAuthListUserRequest) From(from int32) ApiAuthListUserRequest {
-	r.from = &from
-	return r
-}
-func (r ApiAuthListUserRequest) MaxResults(maxResults int32) ApiAuthListUserRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiAuthListUserRequest) SortOrder(sortOrder string) ApiAuthListUserRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiAuthListUserRequest) MetaOnly(metaOnly bool) ApiAuthListUserRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -8491,47 +7215,11 @@ func (a *AuthV1ApiService) ListUserExecute(r ApiAuthListUserRequest) (AuthUserLi
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -8656,85 +7344,20 @@ type ApiAuthListUser1Request struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiAuthListUser1Request) OName(oName string) ApiAuthListUser1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiAuthListUser1Request) OTenant(oTenant string) ApiAuthListUser1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiAuthListUser1Request) ONamespace(oNamespace string) ApiAuthListUser1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiAuthListUser1Request) OGenerationId(oGenerationId string) ApiAuthListUser1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiAuthListUser1Request) OResourceVersion(oResourceVersion string) ApiAuthListUser1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiAuthListUser1Request) OUuid(oUuid string) ApiAuthListUser1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiAuthListUser1Request) OCreationTime(oCreationTime time.Time) ApiAuthListUser1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiAuthListUser1Request) OModTime(oModTime time.Time) ApiAuthListUser1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiAuthListUser1Request) OSelfLink(oSelfLink string) ApiAuthListUser1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiAuthListUser1Request) LabelSelector(labelSelector string) ApiAuthListUser1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiAuthListUser1Request) FieldSelector(fieldSelector string) ApiAuthListUser1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiAuthListUser1Request) FieldChangeSelector(fieldChangeSelector []string) ApiAuthListUser1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiAuthListUser1Request) From(from int32) ApiAuthListUser1Request {
-	r.from = &from
-	return r
-}
-func (r ApiAuthListUser1Request) MaxResults(maxResults int32) ApiAuthListUser1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiAuthListUser1Request) SortOrder(sortOrder string) ApiAuthListUser1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiAuthListUser1Request) MetaOnly(metaOnly bool) ApiAuthListUser1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -8782,50 +7405,11 @@ func (a *AuthV1ApiService) ListUser1Execute(r ApiAuthListUser1Request) (AuthUser
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -8950,7 +7534,6 @@ type ApiAuthPasswordChangeRequest struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oTenant string
-	oName string
 	body *AuthPasswordChangeRequest
 }
 
@@ -8967,15 +7550,13 @@ func (r ApiAuthPasswordChangeRequest) Execute() (AuthUser, *_nethttp.Response, e
  * PasswordChange Change user password
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiAuthPasswordChangeRequest
  */
-func (a *AuthV1ApiService) PasswordChange(ctx _context.Context, oTenant string, oName string) ApiAuthPasswordChangeRequest {
+func (a *AuthV1ApiService) PasswordChange(ctx _context.Context, oTenant string) ApiAuthPasswordChangeRequest {
 	return ApiAuthPasswordChangeRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -9000,7 +7581,6 @@ func (a *AuthV1ApiService) PasswordChangeExecute(r ApiAuthPasswordChangeRequest)
 
 	localVarPath := localBasePath + "/configs/auth/v1/tenant/{O.Tenant}/users/{O.Name}/PasswordChange"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -9314,7 +7894,6 @@ type ApiAuthPasswordResetRequest struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oTenant string
-	oName string
 	body *AuthPasswordResetRequest
 }
 
@@ -9331,15 +7910,13 @@ func (r ApiAuthPasswordResetRequest) Execute() (AuthUser, *_nethttp.Response, er
  * PasswordReset Reset user password
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiAuthPasswordResetRequest
  */
-func (a *AuthV1ApiService) PasswordReset(ctx _context.Context, oTenant string, oName string) ApiAuthPasswordResetRequest {
+func (a *AuthV1ApiService) PasswordReset(ctx _context.Context, oTenant string) ApiAuthPasswordResetRequest {
 	return ApiAuthPasswordResetRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -9364,7 +7941,6 @@ func (a *AuthV1ApiService) PasswordResetExecute(r ApiAuthPasswordResetRequest) (
 
 	localVarPath := localBasePath + "/configs/auth/v1/tenant/{O.Tenant}/users/{O.Name}/PasswordReset"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -9854,7 +8430,6 @@ type ApiAuthUnlockRequest struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oTenant string
-	oName string
 	body *AuthUserUnlockRequest
 }
 
@@ -9871,15 +8446,13 @@ func (r ApiAuthUnlockRequest) Execute() (AuthUser, *_nethttp.Response, error) {
  * Unlock Unlock user
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiAuthUnlockRequest
  */
-func (a *AuthV1ApiService) Unlock(ctx _context.Context, oTenant string, oName string) ApiAuthUnlockRequest {
+func (a *AuthV1ApiService) Unlock(ctx _context.Context, oTenant string) ApiAuthUnlockRequest {
 	return ApiAuthUnlockRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -9904,7 +8477,6 @@ func (a *AuthV1ApiService) UnlockExecute(r ApiAuthUnlockRequest) (AuthUser, *_ne
 
 	localVarPath := localBasePath + "/configs/auth/v1/tenant/{O.Tenant}/users/{O.Name}/Unlock"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -10394,7 +8966,6 @@ type ApiAuthUpdateRoleRequest struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oTenant string
-	oName string
 	body *AuthRole
 }
 
@@ -10411,15 +8982,13 @@ func (r ApiAuthUpdateRoleRequest) Execute() (AuthRole, *_nethttp.Response, error
  * UpdateRole Update Role object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiAuthUpdateRoleRequest
  */
-func (a *AuthV1ApiService) UpdateRole(ctx _context.Context, oTenant string, oName string) ApiAuthUpdateRoleRequest {
+func (a *AuthV1ApiService) UpdateRole(ctx _context.Context, oTenant string) ApiAuthUpdateRoleRequest {
 	return ApiAuthUpdateRoleRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -10444,7 +9013,6 @@ func (a *AuthV1ApiService) UpdateRoleExecute(r ApiAuthUpdateRoleRequest) (AuthRo
 
 	localVarPath := localBasePath + "/configs/auth/v1/tenant/{O.Tenant}/roles/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -10758,7 +9326,6 @@ type ApiAuthUpdateRoleBindingRequest struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oTenant string
-	oName string
 	body *AuthRoleBinding
 }
 
@@ -10775,15 +9342,13 @@ func (r ApiAuthUpdateRoleBindingRequest) Execute() (AuthRoleBinding, *_nethttp.R
  * UpdateRoleBinding Update RoleBinding object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiAuthUpdateRoleBindingRequest
  */
-func (a *AuthV1ApiService) UpdateRoleBinding(ctx _context.Context, oTenant string, oName string) ApiAuthUpdateRoleBindingRequest {
+func (a *AuthV1ApiService) UpdateRoleBinding(ctx _context.Context, oTenant string) ApiAuthUpdateRoleBindingRequest {
 	return ApiAuthUpdateRoleBindingRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -10808,7 +9373,6 @@ func (a *AuthV1ApiService) UpdateRoleBindingExecute(r ApiAuthUpdateRoleBindingRe
 
 	localVarPath := localBasePath + "/configs/auth/v1/tenant/{O.Tenant}/role-bindings/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -11122,7 +9686,6 @@ type ApiAuthUpdateUserRequest struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oTenant string
-	oName string
 	body *AuthUser
 }
 
@@ -11139,15 +9702,13 @@ func (r ApiAuthUpdateUserRequest) Execute() (AuthUser, *_nethttp.Response, error
  * UpdateUser Update User object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiAuthUpdateUserRequest
  */
-func (a *AuthV1ApiService) UpdateUser(ctx _context.Context, oTenant string, oName string) ApiAuthUpdateUserRequest {
+func (a *AuthV1ApiService) UpdateUser(ctx _context.Context, oTenant string) ApiAuthUpdateUserRequest {
 	return ApiAuthUpdateUserRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -11172,7 +9733,6 @@ func (a *AuthV1ApiService) UpdateUserExecute(r ApiAuthUpdateUserRequest) (AuthUs
 
 	localVarPath := localBasePath + "/configs/auth/v1/tenant/{O.Tenant}/users/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -11486,7 +10046,6 @@ type ApiAuthUpdateUserPreferenceRequest struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oTenant string
-	oName string
 	body *AuthUserPreference
 }
 
@@ -11503,15 +10062,13 @@ func (r ApiAuthUpdateUserPreferenceRequest) Execute() (AuthUserPreference, *_net
  * UpdateUserPreference Update UserPreference object
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param oTenant
- * @param oName
  * @return ApiAuthUpdateUserPreferenceRequest
  */
-func (a *AuthV1ApiService) UpdateUserPreference(ctx _context.Context, oTenant string, oName string) ApiAuthUpdateUserPreferenceRequest {
+func (a *AuthV1ApiService) UpdateUserPreference(ctx _context.Context, oTenant string) ApiAuthUpdateUserPreferenceRequest {
 	return ApiAuthUpdateUserPreferenceRequest{
 		ApiService: a,
 		ctx: ctx,
 		oTenant: oTenant,
-		oName: oName,
 	}
 }
 
@@ -11536,7 +10093,6 @@ func (a *AuthV1ApiService) UpdateUserPreferenceExecute(r ApiAuthUpdateUserPrefer
 
 	localVarPath := localBasePath + "/configs/auth/v1/tenant/{O.Tenant}/user-preferences/{O.Name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"O.Tenant"+"}", _neturl.PathEscape(parameterToString(r.oTenant, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"O.Name"+"}", _neturl.PathEscape(parameterToString(r.oName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -11850,85 +10406,20 @@ type ApiAuthWatchAuthenticationPolicyRequest struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiAuthWatchAuthenticationPolicyRequest) OName(oName string) ApiAuthWatchAuthenticationPolicyRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiAuthWatchAuthenticationPolicyRequest) OTenant(oTenant string) ApiAuthWatchAuthenticationPolicyRequest {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiAuthWatchAuthenticationPolicyRequest) ONamespace(oNamespace string) ApiAuthWatchAuthenticationPolicyRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiAuthWatchAuthenticationPolicyRequest) OGenerationId(oGenerationId string) ApiAuthWatchAuthenticationPolicyRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiAuthWatchAuthenticationPolicyRequest) OResourceVersion(oResourceVersion string) ApiAuthWatchAuthenticationPolicyRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiAuthWatchAuthenticationPolicyRequest) OUuid(oUuid string) ApiAuthWatchAuthenticationPolicyRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiAuthWatchAuthenticationPolicyRequest) OCreationTime(oCreationTime time.Time) ApiAuthWatchAuthenticationPolicyRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiAuthWatchAuthenticationPolicyRequest) OModTime(oModTime time.Time) ApiAuthWatchAuthenticationPolicyRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiAuthWatchAuthenticationPolicyRequest) OSelfLink(oSelfLink string) ApiAuthWatchAuthenticationPolicyRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiAuthWatchAuthenticationPolicyRequest) LabelSelector(labelSelector string) ApiAuthWatchAuthenticationPolicyRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiAuthWatchAuthenticationPolicyRequest) FieldSelector(fieldSelector string) ApiAuthWatchAuthenticationPolicyRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiAuthWatchAuthenticationPolicyRequest) FieldChangeSelector(fieldChangeSelector []string) ApiAuthWatchAuthenticationPolicyRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiAuthWatchAuthenticationPolicyRequest) From(from int32) ApiAuthWatchAuthenticationPolicyRequest {
-	r.from = &from
-	return r
-}
-func (r ApiAuthWatchAuthenticationPolicyRequest) MaxResults(maxResults int32) ApiAuthWatchAuthenticationPolicyRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiAuthWatchAuthenticationPolicyRequest) SortOrder(sortOrder string) ApiAuthWatchAuthenticationPolicyRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiAuthWatchAuthenticationPolicyRequest) MetaOnly(metaOnly bool) ApiAuthWatchAuthenticationPolicyRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -11976,50 +10467,11 @@ func (a *AuthV1ApiService) WatchAuthenticationPolicyExecute(r ApiAuthWatchAuthen
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -12145,80 +10597,20 @@ type ApiAuthWatchRoleRequest struct {
 	ApiService *AuthV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiAuthWatchRoleRequest) OName(oName string) ApiAuthWatchRoleRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiAuthWatchRoleRequest) ONamespace(oNamespace string) ApiAuthWatchRoleRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiAuthWatchRoleRequest) OGenerationId(oGenerationId string) ApiAuthWatchRoleRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiAuthWatchRoleRequest) OResourceVersion(oResourceVersion string) ApiAuthWatchRoleRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiAuthWatchRoleRequest) OUuid(oUuid string) ApiAuthWatchRoleRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiAuthWatchRoleRequest) OCreationTime(oCreationTime time.Time) ApiAuthWatchRoleRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiAuthWatchRoleRequest) OModTime(oModTime time.Time) ApiAuthWatchRoleRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiAuthWatchRoleRequest) OSelfLink(oSelfLink string) ApiAuthWatchRoleRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiAuthWatchRoleRequest) LabelSelector(labelSelector string) ApiAuthWatchRoleRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiAuthWatchRoleRequest) FieldSelector(fieldSelector string) ApiAuthWatchRoleRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiAuthWatchRoleRequest) FieldChangeSelector(fieldChangeSelector []string) ApiAuthWatchRoleRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiAuthWatchRoleRequest) From(from int32) ApiAuthWatchRoleRequest {
-	r.from = &from
-	return r
-}
-func (r ApiAuthWatchRoleRequest) MaxResults(maxResults int32) ApiAuthWatchRoleRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiAuthWatchRoleRequest) SortOrder(sortOrder string) ApiAuthWatchRoleRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiAuthWatchRoleRequest) MetaOnly(metaOnly bool) ApiAuthWatchRoleRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -12269,47 +10661,11 @@ func (a *AuthV1ApiService) WatchRoleExecute(r ApiAuthWatchRoleRequest) (AuthAuto
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -12434,85 +10790,20 @@ type ApiAuthWatchRole1Request struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiAuthWatchRole1Request) OName(oName string) ApiAuthWatchRole1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiAuthWatchRole1Request) OTenant(oTenant string) ApiAuthWatchRole1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiAuthWatchRole1Request) ONamespace(oNamespace string) ApiAuthWatchRole1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiAuthWatchRole1Request) OGenerationId(oGenerationId string) ApiAuthWatchRole1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiAuthWatchRole1Request) OResourceVersion(oResourceVersion string) ApiAuthWatchRole1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiAuthWatchRole1Request) OUuid(oUuid string) ApiAuthWatchRole1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiAuthWatchRole1Request) OCreationTime(oCreationTime time.Time) ApiAuthWatchRole1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiAuthWatchRole1Request) OModTime(oModTime time.Time) ApiAuthWatchRole1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiAuthWatchRole1Request) OSelfLink(oSelfLink string) ApiAuthWatchRole1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiAuthWatchRole1Request) LabelSelector(labelSelector string) ApiAuthWatchRole1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiAuthWatchRole1Request) FieldSelector(fieldSelector string) ApiAuthWatchRole1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiAuthWatchRole1Request) FieldChangeSelector(fieldChangeSelector []string) ApiAuthWatchRole1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiAuthWatchRole1Request) From(from int32) ApiAuthWatchRole1Request {
-	r.from = &from
-	return r
-}
-func (r ApiAuthWatchRole1Request) MaxResults(maxResults int32) ApiAuthWatchRole1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiAuthWatchRole1Request) SortOrder(sortOrder string) ApiAuthWatchRole1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiAuthWatchRole1Request) MetaOnly(metaOnly bool) ApiAuthWatchRole1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -12560,50 +10851,11 @@ func (a *AuthV1ApiService) WatchRole1Execute(r ApiAuthWatchRole1Request) (AuthAu
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -12729,80 +10981,20 @@ type ApiAuthWatchRoleBindingRequest struct {
 	ApiService *AuthV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiAuthWatchRoleBindingRequest) OName(oName string) ApiAuthWatchRoleBindingRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiAuthWatchRoleBindingRequest) ONamespace(oNamespace string) ApiAuthWatchRoleBindingRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiAuthWatchRoleBindingRequest) OGenerationId(oGenerationId string) ApiAuthWatchRoleBindingRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiAuthWatchRoleBindingRequest) OResourceVersion(oResourceVersion string) ApiAuthWatchRoleBindingRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiAuthWatchRoleBindingRequest) OUuid(oUuid string) ApiAuthWatchRoleBindingRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiAuthWatchRoleBindingRequest) OCreationTime(oCreationTime time.Time) ApiAuthWatchRoleBindingRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiAuthWatchRoleBindingRequest) OModTime(oModTime time.Time) ApiAuthWatchRoleBindingRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiAuthWatchRoleBindingRequest) OSelfLink(oSelfLink string) ApiAuthWatchRoleBindingRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiAuthWatchRoleBindingRequest) LabelSelector(labelSelector string) ApiAuthWatchRoleBindingRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiAuthWatchRoleBindingRequest) FieldSelector(fieldSelector string) ApiAuthWatchRoleBindingRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiAuthWatchRoleBindingRequest) FieldChangeSelector(fieldChangeSelector []string) ApiAuthWatchRoleBindingRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiAuthWatchRoleBindingRequest) From(from int32) ApiAuthWatchRoleBindingRequest {
-	r.from = &from
-	return r
-}
-func (r ApiAuthWatchRoleBindingRequest) MaxResults(maxResults int32) ApiAuthWatchRoleBindingRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiAuthWatchRoleBindingRequest) SortOrder(sortOrder string) ApiAuthWatchRoleBindingRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiAuthWatchRoleBindingRequest) MetaOnly(metaOnly bool) ApiAuthWatchRoleBindingRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -12853,47 +11045,11 @@ func (a *AuthV1ApiService) WatchRoleBindingExecute(r ApiAuthWatchRoleBindingRequ
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -13018,85 +11174,20 @@ type ApiAuthWatchRoleBinding1Request struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiAuthWatchRoleBinding1Request) OName(oName string) ApiAuthWatchRoleBinding1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiAuthWatchRoleBinding1Request) OTenant(oTenant string) ApiAuthWatchRoleBinding1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiAuthWatchRoleBinding1Request) ONamespace(oNamespace string) ApiAuthWatchRoleBinding1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiAuthWatchRoleBinding1Request) OGenerationId(oGenerationId string) ApiAuthWatchRoleBinding1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiAuthWatchRoleBinding1Request) OResourceVersion(oResourceVersion string) ApiAuthWatchRoleBinding1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiAuthWatchRoleBinding1Request) OUuid(oUuid string) ApiAuthWatchRoleBinding1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiAuthWatchRoleBinding1Request) OCreationTime(oCreationTime time.Time) ApiAuthWatchRoleBinding1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiAuthWatchRoleBinding1Request) OModTime(oModTime time.Time) ApiAuthWatchRoleBinding1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiAuthWatchRoleBinding1Request) OSelfLink(oSelfLink string) ApiAuthWatchRoleBinding1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiAuthWatchRoleBinding1Request) LabelSelector(labelSelector string) ApiAuthWatchRoleBinding1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiAuthWatchRoleBinding1Request) FieldSelector(fieldSelector string) ApiAuthWatchRoleBinding1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiAuthWatchRoleBinding1Request) FieldChangeSelector(fieldChangeSelector []string) ApiAuthWatchRoleBinding1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiAuthWatchRoleBinding1Request) From(from int32) ApiAuthWatchRoleBinding1Request {
-	r.from = &from
-	return r
-}
-func (r ApiAuthWatchRoleBinding1Request) MaxResults(maxResults int32) ApiAuthWatchRoleBinding1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiAuthWatchRoleBinding1Request) SortOrder(sortOrder string) ApiAuthWatchRoleBinding1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiAuthWatchRoleBinding1Request) MetaOnly(metaOnly bool) ApiAuthWatchRoleBinding1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -13144,50 +11235,11 @@ func (a *AuthV1ApiService) WatchRoleBinding1Execute(r ApiAuthWatchRoleBinding1Re
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -13313,80 +11365,20 @@ type ApiAuthWatchUserRequest struct {
 	ApiService *AuthV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiAuthWatchUserRequest) OName(oName string) ApiAuthWatchUserRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiAuthWatchUserRequest) ONamespace(oNamespace string) ApiAuthWatchUserRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiAuthWatchUserRequest) OGenerationId(oGenerationId string) ApiAuthWatchUserRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiAuthWatchUserRequest) OResourceVersion(oResourceVersion string) ApiAuthWatchUserRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiAuthWatchUserRequest) OUuid(oUuid string) ApiAuthWatchUserRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiAuthWatchUserRequest) OCreationTime(oCreationTime time.Time) ApiAuthWatchUserRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiAuthWatchUserRequest) OModTime(oModTime time.Time) ApiAuthWatchUserRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiAuthWatchUserRequest) OSelfLink(oSelfLink string) ApiAuthWatchUserRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiAuthWatchUserRequest) LabelSelector(labelSelector string) ApiAuthWatchUserRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiAuthWatchUserRequest) FieldSelector(fieldSelector string) ApiAuthWatchUserRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiAuthWatchUserRequest) FieldChangeSelector(fieldChangeSelector []string) ApiAuthWatchUserRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiAuthWatchUserRequest) From(from int32) ApiAuthWatchUserRequest {
-	r.from = &from
-	return r
-}
-func (r ApiAuthWatchUserRequest) MaxResults(maxResults int32) ApiAuthWatchUserRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiAuthWatchUserRequest) SortOrder(sortOrder string) ApiAuthWatchUserRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiAuthWatchUserRequest) MetaOnly(metaOnly bool) ApiAuthWatchUserRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -13437,47 +11429,11 @@ func (a *AuthV1ApiService) WatchUserExecute(r ApiAuthWatchUserRequest) (AuthAuto
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -13602,85 +11558,20 @@ type ApiAuthWatchUser1Request struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiAuthWatchUser1Request) OName(oName string) ApiAuthWatchUser1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiAuthWatchUser1Request) OTenant(oTenant string) ApiAuthWatchUser1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiAuthWatchUser1Request) ONamespace(oNamespace string) ApiAuthWatchUser1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiAuthWatchUser1Request) OGenerationId(oGenerationId string) ApiAuthWatchUser1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiAuthWatchUser1Request) OResourceVersion(oResourceVersion string) ApiAuthWatchUser1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiAuthWatchUser1Request) OUuid(oUuid string) ApiAuthWatchUser1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiAuthWatchUser1Request) OCreationTime(oCreationTime time.Time) ApiAuthWatchUser1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiAuthWatchUser1Request) OModTime(oModTime time.Time) ApiAuthWatchUser1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiAuthWatchUser1Request) OSelfLink(oSelfLink string) ApiAuthWatchUser1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiAuthWatchUser1Request) LabelSelector(labelSelector string) ApiAuthWatchUser1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiAuthWatchUser1Request) FieldSelector(fieldSelector string) ApiAuthWatchUser1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiAuthWatchUser1Request) FieldChangeSelector(fieldChangeSelector []string) ApiAuthWatchUser1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiAuthWatchUser1Request) From(from int32) ApiAuthWatchUser1Request {
-	r.from = &from
-	return r
-}
-func (r ApiAuthWatchUser1Request) MaxResults(maxResults int32) ApiAuthWatchUser1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiAuthWatchUser1Request) SortOrder(sortOrder string) ApiAuthWatchUser1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiAuthWatchUser1Request) MetaOnly(metaOnly bool) ApiAuthWatchUser1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -13728,50 +11619,11 @@ func (a *AuthV1ApiService) WatchUser1Execute(r ApiAuthWatchUser1Request) (AuthAu
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -13897,80 +11749,20 @@ type ApiAuthWatchUserPreferenceRequest struct {
 	ApiService *AuthV1ApiService
 	oTenant string
 	oName *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiAuthWatchUserPreferenceRequest) OName(oName string) ApiAuthWatchUserPreferenceRequest {
 	r.oName = &oName
 	return r
 }
-func (r ApiAuthWatchUserPreferenceRequest) ONamespace(oNamespace string) ApiAuthWatchUserPreferenceRequest {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiAuthWatchUserPreferenceRequest) OGenerationId(oGenerationId string) ApiAuthWatchUserPreferenceRequest {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiAuthWatchUserPreferenceRequest) OResourceVersion(oResourceVersion string) ApiAuthWatchUserPreferenceRequest {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiAuthWatchUserPreferenceRequest) OUuid(oUuid string) ApiAuthWatchUserPreferenceRequest {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiAuthWatchUserPreferenceRequest) OCreationTime(oCreationTime time.Time) ApiAuthWatchUserPreferenceRequest {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiAuthWatchUserPreferenceRequest) OModTime(oModTime time.Time) ApiAuthWatchUserPreferenceRequest {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiAuthWatchUserPreferenceRequest) OSelfLink(oSelfLink string) ApiAuthWatchUserPreferenceRequest {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiAuthWatchUserPreferenceRequest) LabelSelector(labelSelector string) ApiAuthWatchUserPreferenceRequest {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiAuthWatchUserPreferenceRequest) FieldSelector(fieldSelector string) ApiAuthWatchUserPreferenceRequest {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiAuthWatchUserPreferenceRequest) FieldChangeSelector(fieldChangeSelector []string) ApiAuthWatchUserPreferenceRequest {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiAuthWatchUserPreferenceRequest) From(from int32) ApiAuthWatchUserPreferenceRequest {
-	r.from = &from
-	return r
-}
-func (r ApiAuthWatchUserPreferenceRequest) MaxResults(maxResults int32) ApiAuthWatchUserPreferenceRequest {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiAuthWatchUserPreferenceRequest) SortOrder(sortOrder string) ApiAuthWatchUserPreferenceRequest {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiAuthWatchUserPreferenceRequest) MetaOnly(metaOnly bool) ApiAuthWatchUserPreferenceRequest {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -14021,47 +11813,11 @@ func (a *AuthV1ApiService) WatchUserPreferenceExecute(r ApiAuthWatchUserPreferen
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -14186,85 +11942,20 @@ type ApiAuthWatchUserPreference1Request struct {
 	ctx _context.Context
 	ApiService *AuthV1ApiService
 	oName *string
-	oTenant *string
-	oNamespace *string
-	oGenerationId *string
-	oResourceVersion *string
-	oUuid *string
 	oCreationTime *time.Time
-	oModTime *time.Time
-	oSelfLink *string
-	labelSelector *string
-	fieldSelector *string
 	fieldChangeSelector *[]string
-	from *int32
-	maxResults *int32
-	sortOrder *string
-	metaOnly *bool
 }
 
 func (r ApiAuthWatchUserPreference1Request) OName(oName string) ApiAuthWatchUserPreference1Request {
 	r.oName = &oName
 	return r
 }
-func (r ApiAuthWatchUserPreference1Request) OTenant(oTenant string) ApiAuthWatchUserPreference1Request {
-	r.oTenant = &oTenant
-	return r
-}
-func (r ApiAuthWatchUserPreference1Request) ONamespace(oNamespace string) ApiAuthWatchUserPreference1Request {
-	r.oNamespace = &oNamespace
-	return r
-}
-func (r ApiAuthWatchUserPreference1Request) OGenerationId(oGenerationId string) ApiAuthWatchUserPreference1Request {
-	r.oGenerationId = &oGenerationId
-	return r
-}
-func (r ApiAuthWatchUserPreference1Request) OResourceVersion(oResourceVersion string) ApiAuthWatchUserPreference1Request {
-	r.oResourceVersion = &oResourceVersion
-	return r
-}
-func (r ApiAuthWatchUserPreference1Request) OUuid(oUuid string) ApiAuthWatchUserPreference1Request {
-	r.oUuid = &oUuid
-	return r
-}
 func (r ApiAuthWatchUserPreference1Request) OCreationTime(oCreationTime time.Time) ApiAuthWatchUserPreference1Request {
 	r.oCreationTime = &oCreationTime
 	return r
 }
-func (r ApiAuthWatchUserPreference1Request) OModTime(oModTime time.Time) ApiAuthWatchUserPreference1Request {
-	r.oModTime = &oModTime
-	return r
-}
-func (r ApiAuthWatchUserPreference1Request) OSelfLink(oSelfLink string) ApiAuthWatchUserPreference1Request {
-	r.oSelfLink = &oSelfLink
-	return r
-}
-func (r ApiAuthWatchUserPreference1Request) LabelSelector(labelSelector string) ApiAuthWatchUserPreference1Request {
-	r.labelSelector = &labelSelector
-	return r
-}
-func (r ApiAuthWatchUserPreference1Request) FieldSelector(fieldSelector string) ApiAuthWatchUserPreference1Request {
-	r.fieldSelector = &fieldSelector
-	return r
-}
 func (r ApiAuthWatchUserPreference1Request) FieldChangeSelector(fieldChangeSelector []string) ApiAuthWatchUserPreference1Request {
 	r.fieldChangeSelector = &fieldChangeSelector
-	return r
-}
-func (r ApiAuthWatchUserPreference1Request) From(from int32) ApiAuthWatchUserPreference1Request {
-	r.from = &from
-	return r
-}
-func (r ApiAuthWatchUserPreference1Request) MaxResults(maxResults int32) ApiAuthWatchUserPreference1Request {
-	r.maxResults = &maxResults
-	return r
-}
-func (r ApiAuthWatchUserPreference1Request) SortOrder(sortOrder string) ApiAuthWatchUserPreference1Request {
-	r.sortOrder = &sortOrder
-	return r
-}
-func (r ApiAuthWatchUserPreference1Request) MetaOnly(metaOnly bool) ApiAuthWatchUserPreference1Request {
-	r.metaOnly = &metaOnly
 	return r
 }
 
@@ -14312,50 +12003,11 @@ func (a *AuthV1ApiService) WatchUserPreference1Execute(r ApiAuthWatchUserPrefere
 	if r.oName != nil {
 		localVarQueryParams.Add("O.name", parameterToString(*r.oName, ""))
 	}
-	if r.oTenant != nil {
-		localVarQueryParams.Add("O.tenant", parameterToString(*r.oTenant, ""))
-	}
-	if r.oNamespace != nil {
-		localVarQueryParams.Add("O.namespace", parameterToString(*r.oNamespace, ""))
-	}
-	if r.oGenerationId != nil {
-		localVarQueryParams.Add("O.generation-id", parameterToString(*r.oGenerationId, ""))
-	}
-	if r.oResourceVersion != nil {
-		localVarQueryParams.Add("O.resource-version", parameterToString(*r.oResourceVersion, ""))
-	}
-	if r.oUuid != nil {
-		localVarQueryParams.Add("O.uuid", parameterToString(*r.oUuid, ""))
-	}
 	if r.oCreationTime != nil {
 		localVarQueryParams.Add("O.creation-time", parameterToString(*r.oCreationTime, ""))
 	}
-	if r.oModTime != nil {
-		localVarQueryParams.Add("O.mod-time", parameterToString(*r.oModTime, ""))
-	}
-	if r.oSelfLink != nil {
-		localVarQueryParams.Add("O.self-link", parameterToString(*r.oSelfLink, ""))
-	}
-	if r.labelSelector != nil {
-		localVarQueryParams.Add("label-selector", parameterToString(*r.labelSelector, ""))
-	}
-	if r.fieldSelector != nil {
-		localVarQueryParams.Add("field-selector", parameterToString(*r.fieldSelector, ""))
-	}
 	if r.fieldChangeSelector != nil {
 		localVarQueryParams.Add("field-change-selector", parameterToString(*r.fieldChangeSelector, "csv"))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.maxResults != nil {
-		localVarQueryParams.Add("max-results", parameterToString(*r.maxResults, ""))
-	}
-	if r.sortOrder != nil {
-		localVarQueryParams.Add("sort-order", parameterToString(*r.sortOrder, ""))
-	}
-	if r.metaOnly != nil {
-		localVarQueryParams.Add("meta-only", parameterToString(*r.metaOnly, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

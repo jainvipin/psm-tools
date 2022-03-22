@@ -84,8 +84,12 @@ Class | Method | HTTP request | Description
 *WorkloadV1Api* | [**AbortMigration1**](docs/WorkloadV1Api.md#abortmigration1) | **Post** /configs/workload/v1/workloads/{O.Name}/AbortMigration | Abort Workload Migration operation
 *WorkloadV1Api* | [**AddWorkload**](docs/WorkloadV1Api.md#addworkload) | **Post** /configs/workload/v1/tenant/{O.Tenant}/workloads | Create Workload object
 *WorkloadV1Api* | [**AddWorkload1**](docs/WorkloadV1Api.md#addworkload1) | **Post** /configs/workload/v1/workloads | Create Workload object
+*WorkloadV1Api* | [**AddWorkloadGroup**](docs/WorkloadV1Api.md#addworkloadgroup) | **Post** /configs/workload/v1/tenant/{O.Tenant}/workloadgroups | Create WorkloadGroup object
+*WorkloadV1Api* | [**AddWorkloadGroup1**](docs/WorkloadV1Api.md#addworkloadgroup1) | **Post** /configs/workload/v1/workloadgroups | Create WorkloadGroup object
 *WorkloadV1Api* | [**DeleteWorkload**](docs/WorkloadV1Api.md#deleteworkload) | **Delete** /configs/workload/v1/tenant/{O.Tenant}/workloads/{O.Name} | Delete Workload object
 *WorkloadV1Api* | [**DeleteWorkload1**](docs/WorkloadV1Api.md#deleteworkload1) | **Delete** /configs/workload/v1/workloads/{O.Name} | Delete Workload object
+*WorkloadV1Api* | [**DeleteWorkloadGroup**](docs/WorkloadV1Api.md#deleteworkloadgroup) | **Delete** /configs/workload/v1/tenant/{O.Tenant}/workloadgroups/{O.Name} | Delete WorkloadGroup object
+*WorkloadV1Api* | [**DeleteWorkloadGroup1**](docs/WorkloadV1Api.md#deleteworkloadgroup1) | **Delete** /configs/workload/v1/workloadgroups/{O.Name} | Delete WorkloadGroup object
 *WorkloadV1Api* | [**FinalSyncMigration**](docs/WorkloadV1Api.md#finalsyncmigration) | **Post** /configs/workload/v1/tenant/{O.Tenant}/workloads/{O.Name}/FinalSyncMigration | Initiates the final sync for the Workload Migration operation
 *WorkloadV1Api* | [**FinalSyncMigration1**](docs/WorkloadV1Api.md#finalsyncmigration1) | **Post** /configs/workload/v1/workloads/{O.Name}/FinalSyncMigration | Initiates the final sync for the Workload Migration operation
 *WorkloadV1Api* | [**FinishMigration**](docs/WorkloadV1Api.md#finishmigration) | **Post** /configs/workload/v1/tenant/{O.Tenant}/workloads/{O.Name}/FinishMigration | Finish Workload Migration operation
@@ -94,20 +98,30 @@ Class | Method | HTTP request | Description
 *WorkloadV1Api* | [**GetEndpoint1**](docs/WorkloadV1Api.md#getendpoint1) | **Get** /configs/workload/v1/endpoints/{O.Name} | Get Endpoint object
 *WorkloadV1Api* | [**GetWorkload**](docs/WorkloadV1Api.md#getworkload) | **Get** /configs/workload/v1/tenant/{O.Tenant}/workloads/{O.Name} | Get Workload object
 *WorkloadV1Api* | [**GetWorkload1**](docs/WorkloadV1Api.md#getworkload1) | **Get** /configs/workload/v1/workloads/{O.Name} | Get Workload object
+*WorkloadV1Api* | [**GetWorkloadGroup**](docs/WorkloadV1Api.md#getworkloadgroup) | **Get** /configs/workload/v1/tenant/{O.Tenant}/workloadgroups/{O.Name} | Get WorkloadGroup object
+*WorkloadV1Api* | [**GetWorkloadGroup1**](docs/WorkloadV1Api.md#getworkloadgroup1) | **Get** /configs/workload/v1/workloadgroups/{O.Name} | Get WorkloadGroup object
 *WorkloadV1Api* | [**LabelWorkload**](docs/WorkloadV1Api.md#labelworkload) | **Post** /configs/workload/v1/tenant/{O.Tenant}/workloads/{O.Name}/label | Label Workload object
 *WorkloadV1Api* | [**LabelWorkload1**](docs/WorkloadV1Api.md#labelworkload1) | **Post** /configs/workload/v1/workloads/{O.Name}/label | Label Workload object
+*WorkloadV1Api* | [**LabelWorkloadGroup**](docs/WorkloadV1Api.md#labelworkloadgroup) | **Post** /configs/workload/v1/tenant/{O.Tenant}/workloadgroups/{O.Name}/label | Label WorkloadGroup object
+*WorkloadV1Api* | [**LabelWorkloadGroup1**](docs/WorkloadV1Api.md#labelworkloadgroup1) | **Post** /configs/workload/v1/workloadgroups/{O.Name}/label | Label WorkloadGroup object
 *WorkloadV1Api* | [**ListEndpoint**](docs/WorkloadV1Api.md#listendpoint) | **Get** /configs/workload/v1/tenant/{O.Tenant}/endpoints | List Endpoint objects
 *WorkloadV1Api* | [**ListEndpoint1**](docs/WorkloadV1Api.md#listendpoint1) | **Get** /configs/workload/v1/endpoints | List Endpoint objects
 *WorkloadV1Api* | [**ListWorkload**](docs/WorkloadV1Api.md#listworkload) | **Get** /configs/workload/v1/tenant/{O.Tenant}/workloads | List Workload objects
 *WorkloadV1Api* | [**ListWorkload1**](docs/WorkloadV1Api.md#listworkload1) | **Get** /configs/workload/v1/workloads | List Workload objects
+*WorkloadV1Api* | [**ListWorkloadGroup**](docs/WorkloadV1Api.md#listworkloadgroup) | **Get** /configs/workload/v1/tenant/{O.Tenant}/workloadgroups | List WorkloadGroup objects
+*WorkloadV1Api* | [**ListWorkloadGroup1**](docs/WorkloadV1Api.md#listworkloadgroup1) | **Get** /configs/workload/v1/workloadgroups | List WorkloadGroup objects
 *WorkloadV1Api* | [**StartMigration**](docs/WorkloadV1Api.md#startmigration) | **Post** /configs/workload/v1/tenant/{O.Tenant}/workloads/{O.Name}/StartMigration | Start Workload Migration operation
 *WorkloadV1Api* | [**StartMigration1**](docs/WorkloadV1Api.md#startmigration1) | **Post** /configs/workload/v1/workloads/{O.Name}/StartMigration | Start Workload Migration operation
 *WorkloadV1Api* | [**UpdateWorkload**](docs/WorkloadV1Api.md#updateworkload) | **Put** /configs/workload/v1/tenant/{O.Tenant}/workloads/{O.Name} | Update Workload object
 *WorkloadV1Api* | [**UpdateWorkload1**](docs/WorkloadV1Api.md#updateworkload1) | **Put** /configs/workload/v1/workloads/{O.Name} | Update Workload object
+*WorkloadV1Api* | [**UpdateWorkloadGroup**](docs/WorkloadV1Api.md#updateworkloadgroup) | **Put** /configs/workload/v1/tenant/{O.Tenant}/workloadgroups/{O.Name} | Update WorkloadGroup object
+*WorkloadV1Api* | [**UpdateWorkloadGroup1**](docs/WorkloadV1Api.md#updateworkloadgroup1) | **Put** /configs/workload/v1/workloadgroups/{O.Name} | Update WorkloadGroup object
 *WorkloadV1Api* | [**WatchEndpoint**](docs/WorkloadV1Api.md#watchendpoint) | **Get** /configs/workload/v1/watch/tenant/{O.Tenant}/endpoints | Watch Endpoint objects. Supports WebSockets or HTTP long poll
 *WorkloadV1Api* | [**WatchEndpoint1**](docs/WorkloadV1Api.md#watchendpoint1) | **Get** /configs/workload/v1/watch/endpoints | Watch Endpoint objects. Supports WebSockets or HTTP long poll
 *WorkloadV1Api* | [**WatchWorkload**](docs/WorkloadV1Api.md#watchworkload) | **Get** /configs/workload/v1/watch/tenant/{O.Tenant}/workloads | Watch Workload objects. Supports WebSockets or HTTP long poll
 *WorkloadV1Api* | [**WatchWorkload1**](docs/WorkloadV1Api.md#watchworkload1) | **Get** /configs/workload/v1/watch/workloads | Watch Workload objects. Supports WebSockets or HTTP long poll
+*WorkloadV1Api* | [**WatchWorkloadGroup**](docs/WorkloadV1Api.md#watchworkloadgroup) | **Get** /configs/workload/v1/watch/tenant/{O.Tenant}/workloadgroups | Watch WorkloadGroup objects. Supports WebSockets or HTTP long poll
+*WorkloadV1Api* | [**WatchWorkloadGroup1**](docs/WorkloadV1Api.md#watchworkloadgroup1) | **Get** /configs/workload/v1/watch/workloadgroups | Watch WorkloadGroup objects. Supports WebSockets or HTTP long poll
 
 
 ## Documentation For Models
@@ -128,10 +142,14 @@ Class | Method | HTTP request | Description
  - [ApiWatchEventList](docs/ApiWatchEventList.md)
  - [ClusterIPConfig](docs/ClusterIPConfig.md)
  - [GoogleprotobufAny](docs/GoogleprotobufAny.md)
+ - [LabelsRequirement](docs/LabelsRequirement.md)
+ - [LabelsSelector](docs/LabelsSelector.md)
  - [SecurityDSCStatus](docs/SecurityDSCStatus.md)
  - [SecurityPropagationStatus](docs/SecurityPropagationStatus.md)
  - [WorkloadAutoMsgEndpointWatchHelper](docs/WorkloadAutoMsgEndpointWatchHelper.md)
  - [WorkloadAutoMsgEndpointWatchHelperWatchEvent](docs/WorkloadAutoMsgEndpointWatchHelperWatchEvent.md)
+ - [WorkloadAutoMsgWorkloadGroupWatchHelper](docs/WorkloadAutoMsgWorkloadGroupWatchHelper.md)
+ - [WorkloadAutoMsgWorkloadGroupWatchHelperWatchEvent](docs/WorkloadAutoMsgWorkloadGroupWatchHelperWatchEvent.md)
  - [WorkloadAutoMsgWorkloadWatchHelper](docs/WorkloadAutoMsgWorkloadWatchHelper.md)
  - [WorkloadAutoMsgWorkloadWatchHelperWatchEvent](docs/WorkloadAutoMsgWorkloadWatchHelperWatchEvent.md)
  - [WorkloadEndpoint](docs/WorkloadEndpoint.md)
@@ -139,8 +157,14 @@ Class | Method | HTTP request | Description
  - [WorkloadEndpointMigrationStatus](docs/WorkloadEndpointMigrationStatus.md)
  - [WorkloadEndpointSpec](docs/WorkloadEndpointSpec.md)
  - [WorkloadEndpointStatus](docs/WorkloadEndpointStatus.md)
+ - [WorkloadIPBlock](docs/WorkloadIPBlock.md)
+ - [WorkloadInterfaceMigrationStatus](docs/WorkloadInterfaceMigrationStatus.md)
  - [WorkloadMigrationSource](docs/WorkloadMigrationSource.md)
  - [WorkloadWorkload](docs/WorkloadWorkload.md)
+ - [WorkloadWorkloadGroup](docs/WorkloadWorkloadGroup.md)
+ - [WorkloadWorkloadGroupList](docs/WorkloadWorkloadGroupList.md)
+ - [WorkloadWorkloadGroupSpec](docs/WorkloadWorkloadGroupSpec.md)
+ - [WorkloadWorkloadGroupStatus](docs/WorkloadWorkloadGroupStatus.md)
  - [WorkloadWorkloadIntfSpec](docs/WorkloadWorkloadIntfSpec.md)
  - [WorkloadWorkloadIntfStatus](docs/WorkloadWorkloadIntfStatus.md)
  - [WorkloadWorkloadList](docs/WorkloadWorkloadList.md)
